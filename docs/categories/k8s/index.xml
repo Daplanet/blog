@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>K8s on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/k8s/index.xml</link>
+    <link>https://hypriot.io/categories/k8s/index.xml</link>
     <description>Recent content in K8s on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/k8s/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
       <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
       <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
 
@@ -135,7 +135,7 @@ sys	8m18,404s
 
 &lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
 
@@ -256,7 +256,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 
 &lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -267,7 +267,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 &lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
 
 &lt;p&gt;Finally, May the 4th be with You!
-&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 
@@ -280,17 +280,17 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
     
     <item>
       <title>Setup Kubernetes on a Raspberry Pi Cluster easily the official way!</title>
-      <link>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</link>
+      <link>https://hypriot.io/post/setup-kubernetes-raspberry-pi-cluster/</link>
       <pubDate>Wed, 11 Jan 2017 14:03:34 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</guid>
+      <guid>https://hypriot.io/post/setup-kubernetes-raspberry-pi-cluster/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; shares the pole position with Docker in the category &amp;ldquo;orchestration solutions for Raspberry Pi cluster&amp;rdquo;.
 However it&amp;rsquo;s setup process has been elaborate – until &lt;a href=&#34;http://blog.kubernetes.io/2016/09/how-we-made-kubernetes-easy-to-install.html&#34;&gt;v1.4 with the kubeadm announcement&lt;/a&gt;.
 With that effort, Kubernetes changed this game completely and can be up and running officially within no time.&lt;/p&gt;
 
 &lt;p&gt;I am very happy to announce that this blog post has been written in collaboration with &lt;a href=&#34;https://github.com/luxas&#34;&gt;Lucas Käldström&lt;/a&gt;, an independent maintainer of Kubernetes (his story is very interesting,  you can read it in a &lt;a href=&#34;https://www.cncf.io/blog/2016/11/29/diversity-scholarship-series-programming-journey-becoming-kubernetes-maintainer&#34;&gt;CNCF blogpost&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -380,7 +380,7 @@ $ echo &amp;quot;deb http://apt.kubernetes.io/ kubernetes-xenial main&amp;quot; 
 
 &lt;p&gt;After Kubernetes has been initialized, the last lines of your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To start using your cluster, you need to run (as a regular user):&lt;/p&gt;
 
@@ -401,7 +401,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, &lt;strong&gt;we need to setup flannel v0.9.1 as the Pod network driver&lt;/strong&gt;. Do not use &lt;a href=&#34;https://github.com/coreos/flannel/releases/tag/v0.8.0&#34;&gt;v0.8.0&lt;/a&gt; due to a known &lt;a href=&#34;https://github.com/coreos/flannel/issues/773&#34;&gt;bug&lt;/a&gt; that can cause a &lt;code&gt;CrashLoopBackOff&lt;/code&gt; error. Run this &lt;strong&gt;on the master node&lt;/strong&gt;:&lt;/p&gt;
 
@@ -410,7 +410,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then wait until all flannel and all other cluster-internal Pods are &lt;code&gt;Running&lt;/code&gt; before you continue:&lt;/p&gt;
 
@@ -419,7 +419,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Nice, it seems like they are all &lt;code&gt;Running&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s all for the setup of Kubernetes! Next, let&amp;rsquo;s actually spin up a service on the cluster!&lt;/p&gt;
 
@@ -446,11 +446,11 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;You should see three endpoints (= containers) like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s curl one of them to see if the service is up:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The HTML is the response of the service. Good, it&amp;rsquo;s up and running! Next, let&amp;rsquo;s see how we can access it from outside the cluster!&lt;/p&gt;
 
@@ -497,7 +497,7 @@ $ kubectl apply -f hypriot-ingress.yaml
 
 &lt;p&gt;Visit the loadbalancing node&amp;rsquo;s IP address in your browser and you should see a nice web page:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you don&amp;rsquo;t see a website there yet, run:&lt;/p&gt;
 

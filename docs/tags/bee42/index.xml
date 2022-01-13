@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bee42 on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/bee42/index.xml</link>
+    <link>https://hypriot.io/tags/bee42/index.xml</link>
     <description>Recent content in Bee42 on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/bee42/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/bee42/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building a 64bit Docker OS for the Raspberry Pi 3</title>
-      <link>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</link>
+      <link>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</link>
       <pubDate>Thu, 02 Mar 2017 11:28:42 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</guid>
+      <guid>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m happy to announce the start of a &amp;ldquo;short&amp;rdquo; workshop were I&amp;rsquo;m going through all the steps to build a complete 64bit operating system for the Raspberry Pi 3. This 64bit HypriotOS is mainly focused on running Docker containers easily on this popular DIY and IoT device.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e6/Raspberry-Pi-3-Flat-Top.jpg&#34; alt=&#34;Raspi3-Image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You&amp;rsquo;ll see that I&amp;rsquo;m using Docker heavily for each and every build step, because it really helps us a lot to run a local build with &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker-for-Mac&lt;/a&gt; or later on the cloud build servers at &lt;a href=&#34;https://travis-ci.org&#34;&gt;Travis CI&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This workshop is sponsored by &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bee42solutions&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @bee42solutions&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
@@ -72,7 +72,7 @@
 
 &lt;p&gt;Special thanks goes to &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; for giving me the time to work on this awesome topic to build a complete Docker-enabled 64bit OS for the Raspberry Pi 3.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 

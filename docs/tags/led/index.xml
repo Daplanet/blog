@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Led on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/led/index.xml</link>
+    <link>https://hypriot.io/tags/led/index.xml</link>
     <description>Recent content in Led on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/led/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/led/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Let&#39;s get physical with Docker on the Raspberry Pi</title>
-      <link>https://blog.hypriot.com/post/lets-get-physical/</link>
+      <link>https://hypriot.io/post/lets-get-physical/</link>
       <pubDate>Thu, 09 Apr 2015 16:49:33 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/lets-get-physical/</guid>
+      <guid>https://hypriot.io/post/lets-get-physical/</guid>
       <description>&lt;p&gt;With Docker on the Raspberry Pi we are able to connect cloud tools with IoT devices. So how can we interact with the real world from inside a Docker container? Let&amp;rsquo;s see and get physical&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -31,11 +31,11 @@
 
 &lt;p&gt;See the wiring diagram on how to connect the LED and the 220Ω resistor to your Raspberry Pi for the following examples. We use the 11th (BCM GPIO 17 / wiringPi Pin 0) and 9th (Ground) Pin of the Raspberry Pi B/B+ or Pi 2 B.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/gpio/wiringPi-LED-Pin0_Steckplatine.svg&#34; alt=&#34;wiringPi LED Pin 0&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/gpio/wiringPi-LED-Pin0_Steckplatine.svg&#34; alt=&#34;wiringPi LED Pin 0&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And here is the circuit diagram:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/gpio/wiringPi-LED-Pin0_Schaltplan.svg&#34; alt=&#34;wiringPi LED Pin 0 circuit&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/gpio/wiringPi-LED-Pin0_Schaltplan.svg&#34; alt=&#34;wiringPi LED Pin 0 circuit&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now you can use these commands:&lt;/p&gt;
 
@@ -104,11 +104,11 @@ The button is also connected to the 2nd Pin (3.3 V) and the pull down resistor i
 
 &lt;p&gt;The wiring diagram shows how to connect all parts. You need a push button, a 1kΩ resistor for pull down and a 10kΩ resistor to connect to the Raspberry Pi.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/gpio/wiringPi-Button-Pin1_Steckplatine.svg&#34; alt=&#34;wiringPi Button on Pin 1&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/gpio/wiringPi-Button-Pin1_Steckplatine.svg&#34; alt=&#34;wiringPi Button on Pin 1&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And here is the corresponding circuit diagram:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/gpio/wiringPi-Button-Pin1_Schaltplan.svg&#34; alt=&#34;wiringPi Button on Pin 1 circuit&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/gpio/wiringPi-Button-Pin1_Schaltplan.svg&#34; alt=&#34;wiringPi Button on Pin 1 circuit&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;read-button-state&#34;&gt;Read button state&lt;/h3&gt;
 

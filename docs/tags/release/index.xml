@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Release on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/release/index.xml</link>
+    <link>https://hypriot.io/tags/release/index.xml</link>
     <description>Recent content in Release on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/release/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/release/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Docker 1.6.0 is finally released into the wild</title>
-      <link>https://blog.hypriot.com/post/docker-1-6-is-finally-released-into-the-wild/</link>
+      <link>https://hypriot.io/post/docker-1-6-is-finally-released-into-the-wild/</link>
       <pubDate>Thu, 16 Apr 2015 22:06:11 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/docker-1-6-is-finally-released-into-the-wild/</guid>
+      <guid>https://hypriot.io/post/docker-1-6-is-finally-released-into-the-wild/</guid>
       <description>&lt;p&gt;After nearly two months of development Docker 1.6.0 was finally released into the wild.
 Being right on the heels of the Docker team we were able to create an ARM compatible version within minutes and of course you can download it here as a Debian package.&lt;/p&gt;
 
@@ -76,10 +76,10 @@ $ dpkg -i docker-hypriot_1.6.0-1_armhf.deb
     
     <item>
       <title>Stay on the cutting edge with Docker 1.6 and test drive it on your Raspberry Pi today</title>
-      <link>https://blog.hypriot.com/post/docker-1-dot-6-release-candidate-ready-for-arm/</link>
+      <link>https://hypriot.io/post/docker-1-dot-6-release-candidate-ready-for-arm/</link>
       <pubDate>Tue, 31 Mar 2015 20:00:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/docker-1-dot-6-release-candidate-ready-for-arm/</guid>
+      <guid>https://hypriot.io/post/docker-1-dot-6-release-candidate-ready-for-arm/</guid>
       <description>&lt;p&gt;If you like to stay on the cutting edge of things as much as we do you will be happy to hear that there is an easy way to test drive Docker 1.6 RC2 on your Raspberry Pi.
 &lt;/p&gt;
 
@@ -101,7 +101,7 @@ $ dpkg -i docker-hypriot_1.6.0-1_armhf.deb
 
 &lt;p&gt;Find out more details in the &lt;a href=&#34;https://github.com/docker/docker/blob/v1.6.0-rc2/CHANGELOG.md&#34;&gt;changelog&lt;/a&gt; yourself.&lt;/p&gt;
 
-&lt;p&gt;The only prerequisite to get started is that you are using our Hypriot SD card image for the Rasperry Pi. We published a new version just yesterday and you can the blog post about it here: &lt;a href=&#34;https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm&#34;&gt;HypriotOS: Back Again and Better then Ever&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The only prerequisite to get started is that you are using our Hypriot SD card image for the Rasperry Pi. We published a new version just yesterday and you can the blog post about it here: &lt;a href=&#34;https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm&#34;&gt;HypriotOS: Back Again and Better then Ever&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;get-it-while-it-is-still-hot&#34;&gt;Get it while it is still hot&lt;/h3&gt;
 
@@ -118,7 +118,7 @@ $ dpkg -i docker-hypriot_1.6.0-rc2-1_armhf.deb
 
 
 &lt;p&gt;Afterwards you should be able to quench your curiosity by playing with this shiny new toy.
-This is not yet a stable release so let us know what you think! And by the way - you can find older versions of Docker as Debian packages in our &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;Download-Area&lt;/a&gt;.
+This is not yet a stable release so let us know what you think! And by the way - you can find older versions of Docker as Debian packages in our &lt;a href=&#34;https://hypriot.io/downloads/&#34;&gt;Download-Area&lt;/a&gt;.
 Installing a new version replaces the existing one and thus makes it possible to switch versions without breaking a sweat.&lt;/p&gt;
 
 &lt;p&gt;Have fun.&lt;/p&gt;
@@ -154,10 +154,10 @@ Installing a new version replaces the existing one and thus makes it possible to
     
     <item>
       <title>HypriotOS: Back Again and Better then Ever</title>
-      <link>https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm/</link>
+      <link>https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm/</link>
       <pubDate>Mon, 30 Mar 2015 00:00:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm/</guid>
+      <guid>https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm/</guid>
       <description>&lt;p&gt;Time is running and it is nearly a month since we released our last ARM Docker SD card image for the Raspberry Pi.
 Listening to our users and having some ideas of our own we are back again with our latest version of HypriotOS.&lt;/p&gt;
 
@@ -324,17 +324,17 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
     
     <item>
       <title>Heavily ARMed after major upgrade: Raspberry Pi with Docker 1.5.0</title>
-      <link>https://blog.hypriot.com/post/heavily-armed-after-major-upgrade-raspberry-pi-with-docker-1-dot-5-0/</link>
+      <link>https://hypriot.io/post/heavily-armed-after-major-upgrade-raspberry-pi-with-docker-1-dot-5-0/</link>
       <pubDate>Tue, 03 Mar 2015 22:09:33 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/heavily-armed-after-major-upgrade-raspberry-pi-with-docker-1-dot-5-0/</guid>
-      <description>&lt;p&gt;Nearly two weeks ago we have been blown away by the positive feedback we got for &lt;a href=&#34;https://blog.hypriot.com/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1&#34;&gt;our first Raspberry Pi SD card image&lt;/a&gt;. It allowed people to get up and running with Docker on the Raspberry Pi in no time.&lt;/p&gt;
+      <guid>https://hypriot.io/post/heavily-armed-after-major-upgrade-raspberry-pi-with-docker-1-dot-5-0/</guid>
+      <description>&lt;p&gt;Nearly two weeks ago we have been blown away by the positive feedback we got for &lt;a href=&#34;https://hypriot.io/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1&#34;&gt;our first Raspberry Pi SD card image&lt;/a&gt;. It allowed people to get up and running with Docker on the Raspberry Pi in no time.&lt;/p&gt;
 
 &lt;p&gt;The positive feedback we received and the fact that two days later Docker 1.5.0 was released did motivate us to create an improved version of our Get-Docker-Up-And-Running-On-Your-Pi-In-No-Time SD card image.
 &lt;/p&gt;
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34; class=&#34;clearfix&#34;&gt;
-  &lt;img src=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/black-pearl.jpg&#34; alt=&#34;&#34; /&gt;
+  &lt;img src=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/black-pearl.jpg&#34; alt=&#34;&#34; /&gt;
 
   
   &lt;figcaption style=&#34;height: 1rem;&#34;&gt;
@@ -358,8 +358,8 @@ Needless to say that OverlayFS comes out at the top. Even the big players like &
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-01.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-01.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Modern Kernel build for Docker&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-01.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-01.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Modern Kernel build for Docker&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -373,8 +373,8 @@ Needless to say that OverlayFS comes out at the top. Even the big players like &
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-02.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-02.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Output of &amp;#39;docker version&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-02.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-02.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Output of &amp;#39;docker version&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -388,8 +388,8 @@ Needless to say that OverlayFS comes out at the top. Even the big players like &
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-03.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-03.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Output of &amp;#39;docker info&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-03.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-03.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Output of &amp;#39;docker info&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -403,8 +403,8 @@ Needless to say that OverlayFS comes out at the top. Even the big players like &
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-04.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-04.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Output of &amp;#39;docker images&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/hypriot-pi-04.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1008&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/heavily-armed-after-major-upgrade/thumbnails/thumb_hypriot-pi-04.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Output of &amp;#39;docker images&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -418,11 +418,11 @@ Needless to say that OverlayFS comes out at the top. Even the big players like &
 &lt;/div&gt;
 
 
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/photoswipe.css&#34;&gt;
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/default-skin/default-skin.css&#34;&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/photoswipe.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/default-skin/default-skin.css&#34;&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
 
 
 
@@ -515,7 +515,7 @@ Needless to say that OverlayFS comes out at the top. Even the big players like &
 
 &lt;p&gt;Docker-Pi Image (hypriot-rpi-20150301-140537.img.zip) (~347MB)&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Update (30.03.2015):&lt;/strong&gt; We have published a more &lt;a href=&#34;https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm&#34;&gt;recent version of our SD card image&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update (30.03.2015):&lt;/strong&gt; We have published a more &lt;a href=&#34;https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm&#34;&gt;recent version of our SD card image&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;how-to-get-started&#34;&gt;How to get started&lt;/h2&gt;
 
@@ -543,10 +543,10 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
     
     <item>
       <title>Kick-Ass Raspberry Pi 2 having a forbidden love affair with Docker 1.4.1</title>
-      <link>https://blog.hypriot.com/post/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1/</link>
+      <link>https://hypriot.io/post/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1/</link>
       <pubDate>Sun, 08 Feb 2015 22:09:33 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1/</guid>
+      <guid>https://hypriot.io/post/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1/</guid>
       <description>&lt;p&gt;If you have not been living under a rock last week you probably heard that the &lt;a href=&#34;http://www.raspberrypi.org/&#34;&gt;Raspberry Pi Foundation&lt;/a&gt; did release a second generation Raspberry Pi on the 2th of February.&lt;/p&gt;
 
 &lt;p&gt;The last generation being a huge success with 4 million devices sold at the end of 2014 the success story is likely to continue with a new Raspberry Pi 2 Model B in 2015.&lt;/p&gt;
@@ -560,8 +560,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi2_01.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_01.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2 front and its package&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi2_01.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_01.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2 front and its package&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -575,8 +575,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi2_02.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_02.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2 backside&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi2_02.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_02.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2 backside&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -590,8 +590,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi2_03.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_03.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2 front&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi2_03.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_03.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2 front&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -605,8 +605,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi2_04.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_04.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi2_04.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_04.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -620,8 +620,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi2_05.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_05.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi2_05.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_05.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -635,8 +635,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi2_06.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_06.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi2_06.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x900&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi2_06.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi 2&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -677,8 +677,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi_uname.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_uname.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi_uname.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_uname.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -692,8 +692,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi_docker_info.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_docker_info.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi_docker_info.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_docker_info.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -707,8 +707,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi_docker_images.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_docker_images.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi_docker_images.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_docker_images.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -722,8 +722,8 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/hypriot_pi_docker_run.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_docker_run.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/hypriot_pi_docker_run.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;986x540&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/gallery/forbidden-love-affair/thumbnails/thumb_hypriot_pi_docker_run.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Command &amp;#39;docker images&amp;#39;&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -737,11 +737,11 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 &lt;/div&gt;
 &lt;/p&gt;
 
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/photoswipe.css&#34;&gt;
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/default-skin/default-skin.css&#34;&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/photoswipe.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/default-skin/default-skin.css&#34;&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
 
 
 
@@ -809,7 +809,7 @@ Low-cost instant access to Docker awesomeness on your Raspberry Pi.&lt;/p&gt;</d
 
 &lt;p&gt;Docker-Pi-Image (hypriot-rpi-20150208-015447.zip) (~400MB)&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Update (30.03.2015):&lt;/strong&gt; We have published a more &lt;a href=&#34;https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm&#34;&gt;recent version of our SD card image&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update (30.03.2015):&lt;/strong&gt; We have published a more &lt;a href=&#34;https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm&#34;&gt;recent version of our SD card image&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Tell us what you like or dislike about this image!&lt;/p&gt;
 

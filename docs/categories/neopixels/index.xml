@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Neopixels on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/neopixels/index.xml</link>
+    <link>https://hypriot.io/categories/neopixels/index.xml</link>
     <description>Recent content in Neopixels on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/neopixels/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/neopixels/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Drive NeoPixels in Docker on Raspberry Pi</title>
-      <link>https://blog.hypriot.com/post/drive-neopixels-in-docker/</link>
+      <link>https://hypriot.io/post/drive-neopixels-in-docker/</link>
       <pubDate>Tue, 14 Apr 2015 13:25:33 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/drive-neopixels-in-docker/</guid>
-      <description>&lt;p&gt;In our &lt;a href=&#34;https://blog.hypriot.com/post/lets-get-physical/&#34;&gt;last blog post&lt;/a&gt; we showed you how to interact with the GPIO ports and how to turn on one LED. Now for some more magic lights we create a little Node.js application that drives a NeoPixel LED strip from Adafruit in a Docker container.&lt;/p&gt;
+      <guid>https://hypriot.io/post/drive-neopixels-in-docker/</guid>
+      <description>&lt;p&gt;In our &lt;a href=&#34;https://hypriot.io/post/lets-get-physical/&#34;&gt;last blog post&lt;/a&gt; we showed you how to interact with the GPIO ports and how to turn on one LED. Now for some more magic lights we create a little Node.js application that drives a NeoPixel LED strip from Adafruit in a Docker container.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -26,7 +26,7 @@
 
 &lt;p&gt;Let&amp;rsquo;s have a look at the wiring first. The Raspberry Pi can create the serial signal on GPIO Pin 18 trough PWM/DMA. But the signal level has to be shifted from 3.3V to 5V for the LED strip. I have used a Adafruit Level Shifter Breakout Board, but a 74AHCT125 level converter could be used as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/neopixel/rpi-levelshifter-neopixel_Steckplatine.png&#34; alt=&#34;wiring diagram&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/neopixel/rpi-levelshifter-neopixel_Steckplatine.png&#34; alt=&#34;wiring diagram&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Do not power the NeoPixels directly from your Raspberry Pi as the 5V output could not source enough current to light many pixels. This could damage your Raspberry Pi!&lt;/strong&gt; For my tests with only eight pixels it is ok to use the 5V from the Pi, but be warned!&lt;/p&gt;
 
@@ -143,7 +143,7 @@ function color(r, g, b) {
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run --privileged -d node-neopixel
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/neopixel/neopixel640.gif&#34; alt=&#34;Let there be lights!&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/neopixel/neopixel640.gif&#34; alt=&#34;Let there be lights!&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You can find the complete Node.js example on GitHub at &lt;a href=&#34;https://github.com/hypriot/rpi-node-neopixel-example&#34;&gt;https://github.com/hypriot/rpi-node-neopixel-example&lt;/a&gt;.&lt;/p&gt;
 

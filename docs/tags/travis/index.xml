@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Travis on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/travis/index.xml</link>
+    <link>https://hypriot.io/tags/travis/index.xml</link>
     <description>Recent content in Travis on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/travis/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/travis/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Setup a simple CI pipeline to build Docker images for ARM</title>
-      <link>https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/</link>
+      <link>https://hypriot.io/post/setup-simple-ci-pipeline-for-arm-images/</link>
       <pubDate>Tue, 10 Jan 2017 07:25:23 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/</guid>
+      <guid>https://hypriot.io/post/setup-simple-ci-pipeline-for-arm-images/</guid>
       <description>&lt;p&gt;Recently I did an experiment: Can we build Docker images for ARM on ordinary cloud CI services that only provide Intel CPU&amp;rsquo;s?&lt;/p&gt;
 
 &lt;p&gt;The idea was to get rid of self hosted CI build agents that you have to care for. If you want to provide an ARM Docker image for an open source project your task is to build it and not to setup and maintain a whole pipeline for it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/setup-simple-ci-pipeline-for-arm-images/github_yaml_arm.png&#34; alt=&#34;GitHub + YAML = ARM Docker image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/setup-simple-ci-pipeline-for-arm-images/github_yaml_arm.png&#34; alt=&#34;GitHub + YAML = ARM Docker image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hypriotos on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/hypriotos/index.xml</link>
+    <link>https://hypriot.io/categories/hypriotos/index.xml</link>
     <description>Recent content in Hypriotos on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/hypriotos/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/hypriotos/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Releasing HypriotOS 1.11.0: Docker 19.03.0 CE from Raspberry Pi Zero to 4 B</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-11/</link>
       <pubDate>Thu, 25 Jul 2019 06:31:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-11/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.11.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-11/raspberry-pi-4-b.jpg&#34; alt=&#34;Raspberry Pi 4 B&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-11/raspberry-pi-4-b.jpg&#34; alt=&#34;Raspberry Pi 4 B&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -85,13 +85,13 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>Releasing HypriotOS 1.10.0: Docker 18.06.3 CE from Raspberry Pi Zero to 3 B&#43;</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-10/</link>
       <pubDate>Sun, 24 Feb 2019 16:01:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-10/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.10.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-10/hypriotos-1.10.0-docker-18.06.3.png&#34; alt=&#34;Raspberry Pi Zero with Docker 18.06.3&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-10/hypriotos-1.10.0-docker-18.06.3.png&#34; alt=&#34;Raspberry Pi Zero with Docker 18.06.3&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -165,15 +165,15 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>Fix Dirty COW on Raspberry Pi the Docker way</title>
-      <link>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</link>
+      <link>https://hypriot.io/post/fix-dirty-cow-on-raspberry-pi/</link>
       <pubDate>Tue, 01 Nov 2016 13:42:20 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</guid>
+      <guid>https://hypriot.io/post/fix-dirty-cow-on-raspberry-pi/</guid>
       <description>&lt;p&gt;Have you seen the latest reports about the Linux kernel security vulnerability called &amp;ldquo;Dirty COW&amp;rdquo;?
 Dirty COW is a &lt;a href=&#34;http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/&#34;&gt;race condition in Linux&lt;/a&gt; arising from how Copy-On-Write (the COW in the name) is handled by the kernel&amp;rsquo;s memory subsystem&amp;rsquo;s use of private mappings.&lt;/p&gt;
 
 &lt;p&gt;The really dangerous point here is, it can be used to &lt;a href=&#34;http://www.theregister.co.uk/2016/11/01/docker_user_havent_patched_dirty_cow_yet_bad_news/&#34;&gt;escape Docker containers&lt;/a&gt;.
-&lt;img src=&#34;https://blog.hypriot.com/images/fix-dirty-cow-on-raspberry-pi/dirty-cow-001.jpg&#34; alt=&#34;dirty-cow-001&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/fix-dirty-cow-on-raspberry-pi/dirty-cow-001.jpg&#34; alt=&#34;dirty-cow-001&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, we&amp;rsquo;re encourage you to immediately fix it with upgrading your Linux kernel on the Raspberry Pi !!!&lt;/p&gt;
 
@@ -389,10 +389,10 @@ HypriotOS/armv7: pirate@black-pearl in ~
     
     <item>
       <title>How to get Docker working on your favourite ARM board with HypriotOS</title>
-      <link>https://blog.hypriot.com/post/how-to-get-docker-working-on-your-favourite-arm-board-with-hypriotos/</link>
+      <link>https://hypriot.io/post/how-to-get-docker-working-on-your-favourite-arm-board-with-hypriotos/</link>
       <pubDate>Mon, 18 Jan 2016 16:00:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/how-to-get-docker-working-on-your-favourite-arm-board-with-hypriotos/</guid>
+      <guid>https://hypriot.io/post/how-to-get-docker-working-on-your-favourite-arm-board-with-hypriotos/</guid>
       <description>&lt;p&gt;It all began when Dieter aka &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt; started to experiment with the NVIDIA ShieldTV.
 The ShieldTV is a curious little thing. Sold as a media hub for your living room it does deliver one teraflop of processing power.
 On top of that it is one of the first 64-bit ARM boards that can be bought for a reasonable price.&lt;/p&gt;
@@ -402,7 +402,7 @@ Read on to learn what happened next&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;Last December he started the work to get Docker running on the ShieldTV and &lt;a href=&#34;https://blog.hypriot.com/post/getting-docker-running-on-a-highend-arm-gaming-console-for-fun-and-profit/&#34;&gt;described his journey&lt;/a&gt; on our blog.
+&lt;p&gt;Last December he started the work to get Docker running on the ShieldTV and &lt;a href=&#34;https://hypriot.io/post/getting-docker-running-on-a-highend-arm-gaming-console-for-fun-and-profit/&#34;&gt;described his journey&lt;/a&gt; on our blog.
 The gist of it is that it was quite an involved process of creating his own custom Debian based operating system that supported building Go and Docker for ARM64.&lt;/p&gt;
 
 &lt;p&gt;The work of Dieter on the ShieldTV inspired our team to revisit the way we were building our beloved HypriotOS for the Raspberry Pi.
@@ -452,7 +452,7 @@ A highlevel comparision of both devices can be found at &lt;a href=&#34;http://w
 
 &lt;p&gt;Overall the relation of the different repositories now looks like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/hypriotos-xxx/hypriotos_buildpipeline.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/hypriotos-xxx/hypriotos_buildpipeline.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;All these changes also redefined for us what HypriotOS is all about.&lt;/p&gt;
 
@@ -496,10 +496,10 @@ You also might wanna discuss this article on &lt;a href=&#34;https://news.ycombi
     
     <item>
       <title>HypriotOS: Back Again and Better then Ever</title>
-      <link>https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm/</link>
+      <link>https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm/</link>
       <pubDate>Mon, 30 Mar 2015 00:00:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm/</guid>
+      <guid>https://hypriot.io/post/hypriotos-back-again-with-docker-on-arm/</guid>
       <description>&lt;p&gt;Time is running and it is nearly a month since we released our last ARM Docker SD card image for the Raspberry Pi.
 Listening to our users and having some ideas of our own we are back again with our latest version of HypriotOS.&lt;/p&gt;
 

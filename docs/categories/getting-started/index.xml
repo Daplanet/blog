@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting Started on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/getting-started/index.xml</link>
+    <link>https://hypriot.io/categories/getting-started/index.xml</link>
     <description>Recent content in Getting Started on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Brand new Getting-Started guide for Docker on the Raspberry Pi</title>
-      <link>https://blog.hypriot.com/post/brand-new-getting-started-guide/</link>
+      <link>https://hypriot.io/post/brand-new-getting-started-guide/</link>
       <pubDate>Fri, 15 May 2015 12:35:44 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/brand-new-getting-started-guide/</guid>
-      <description>&lt;p&gt;The last couple of days Mathias Renner and I were busy creating a comprehensive &lt;a href=&#34;https://blog.hypriot.com/getting-started&#34;&gt;Getting Started guide for Docker on the Raspberry Pi&lt;/a&gt;.
+      <guid>https://hypriot.io/post/brand-new-getting-started-guide/</guid>
+      <description>&lt;p&gt;The last couple of days Mathias Renner and I were busy creating a comprehensive &lt;a href=&#34;https://hypriot.io/getting-started&#34;&gt;Getting Started guide for Docker on the Raspberry Pi&lt;/a&gt;.
 Our goal was to give users easy to understand step by step instructions on how to get Docker running on a Raspberry Pi.
 &lt;/p&gt;
 

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dockercon on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/dockercon/index.xml</link>
+    <link>https://hypriot.io/tags/dockercon/index.xml</link>
     <description>Recent content in Dockercon on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/dockercon/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/dockercon/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>DockerCon 2017 Demo: Monitoring Docker Swarm with LED&#39;s</title>
-      <link>https://blog.hypriot.com/post/dockerconaustin2017/</link>
+      <link>https://hypriot.io/post/dockerconaustin2017/</link>
       <pubDate>Thu, 20 Apr 2017 14:30:34 -0600</pubDate>
       
-      <guid>https://blog.hypriot.com/post/dockerconaustin2017/</guid>
+      <guid>https://hypriot.io/post/dockerconaustin2017/</guid>
       <description>&lt;p&gt;At DockerCon 2017 in Austin I gave a presentation of a Raspberry Pi cluster mixed with some UP boards. The audience really liked the visual effects of the Docker Swarm scaling a service up and down. So I show you some background details what you need to run that demo on your Raspberry Pi cluster as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/stage2.jpg&#34; alt=&#34;PiCloud at DockerCon Austin&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/stage2.jpg&#34; alt=&#34;PiCloud at DockerCon Austin&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -62,7 +62,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker service scale whoami=16
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/scale-up.gif&#34; alt=&#34;Scale up&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/scale-up.gif&#34; alt=&#34;Scale up&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And then light up all the LED&amp;rsquo;s by scaling up to the number of LED&amp;rsquo;s you have.&lt;/p&gt;
 
@@ -81,7 +81,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 
 &lt;p&gt;Now watch what happens. Each destroyed container lights up red and then dims. After a while Docker swarm manager starts the new version and so new LED&amp;rsquo;s with blue light up. After a while all LED&amp;rsquo;s have changed from yellow (version 1.1.0) to blue (version 1.2.0). And while this rolling update is going on you still can use this &amp;ldquo;whoami&amp;rdquo; service by curl&amp;rsquo;ing it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/rolling-update.gif&#34; alt=&#34;Rolling update&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/rolling-update.gif&#34; alt=&#34;Rolling update&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;scale-down-to-one&#34;&gt;Scale down to one&lt;/h2&gt;
 
@@ -90,7 +90,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker service scale whoami=1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/scale-down-to-one.gif&#34; alt=&#34;Scale down to one&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/scale-down-to-one.gif&#34; alt=&#34;Scale down to one&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hope I did make you curious to try it out on your own cluster. Happy hacking and have fun! If you want to improve the visual effects have a look at the Node.js sources in the &lt;a href=&#34;https://github.com/StefanScherer/swarm-monitor&#34;&gt;GitHub repo&lt;/a&gt;. Rewrite it in Golang or anything else and suprise me with other nice visual effects.&lt;/p&gt;
 
@@ -101,10 +101,10 @@ After the image has been downloaded the LED monitor should show one yellow LED l
     
     <item>
       <title>Hypriot-Demo and challenge at DockerCon 2015</title>
-      <link>https://blog.hypriot.com/post/dockercon2015/</link>
+      <link>https://hypriot.io/post/dockercon2015/</link>
       <pubDate>Wed, 24 Jun 2015 01:30:34 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/dockercon2015/</guid>
+      <guid>https://hypriot.io/post/dockercon2015/</guid>
       <description>&lt;p&gt;Hypriot had a short demo session (16:45 - 17:15 PDT) on the second day of the DockerCon 2015 in San Francisco,CA (USA).
 The goal of the demo was to show that Docker is a really lightweight &amp;ldquo;virtualization&amp;rdquo; solution that can be easily run on small IoT devices.&lt;/p&gt;
 
@@ -117,8 +117,8 @@ The goal of the demo was to show that Docker is a really lightweight &amp;ldquo;
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/dieter_at_dockercon/dieter_hypriot_dockercon_2015_1.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1426x804&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/dieter_at_dockercon/thumbnails/thumb_dieter_hypriot_dockercon_2015_1.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;It&amp;#39;s fun because the demo actually works fine :-)&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/dieter_at_dockercon/dieter_hypriot_dockercon_2015_1.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1426x804&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/dieter_at_dockercon/thumbnails/thumb_dieter_hypriot_dockercon_2015_1.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;It&amp;#39;s fun because the demo actually works fine :-)&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -132,8 +132,8 @@ The goal of the demo was to show that Docker is a really lightweight &amp;ldquo;
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/dieter_at_dockercon/dieter_hypriot_dockercon_2015_2.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1430x802&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/dieter_at_dockercon/thumbnails/thumb_dieter_hypriot_dockercon_2015_2.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;7 minutes have passed and 250 container have been started...&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/dieter_at_dockercon/dieter_hypriot_dockercon_2015_2.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1430x802&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/dieter_at_dockercon/thumbnails/thumb_dieter_hypriot_dockercon_2015_2.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;7 minutes have passed and 250 container have been started...&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -147,8 +147,8 @@ The goal of the demo was to show that Docker is a really lightweight &amp;ldquo;
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/dieter_at_dockercon/dieter_hypriot_dockercon_2015_3.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1428x806&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/dieter_at_dockercon/thumbnails/thumb_dieter_hypriot_dockercon_2015_3.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Get on our blog and start with the #hypriot_docker_challenge!&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/dieter_at_dockercon/dieter_hypriot_dockercon_2015_3.png&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1428x806&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/dieter_at_dockercon/thumbnails/thumb_dieter_hypriot_dockercon_2015_3.png&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Get on our blog and start with the #hypriot_docker_challenge!&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -162,11 +162,11 @@ The goal of the demo was to show that Docker is a really lightweight &amp;ldquo;
 &lt;/div&gt;
 
 
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/photoswipe.css&#34;&gt;
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/default-skin/default-skin.css&#34;&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/photoswipe.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/default-skin/default-skin.css&#34;&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
 
 
 
@@ -266,7 +266,7 @@ That is why &lt;strong&gt;we challenge you&lt;/strong&gt; to help us to improve 
 &lt;p&gt;To get you started for this challenge we prepared a couple of links for you:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://blog.hypriot.com/getting-started&#34;&gt;Getting started with our Docker Hypriot SD-card image on Raspberry Pi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hypriot.io/getting-started&#34;&gt;Getting started with our Docker Hypriot SD-card image on Raspberry Pi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hypriot/rpi-busybox-httpd&#34;&gt;Raspberry Pi Docker Image for HTTPd&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/hypriot/rpi-busybox-httpd/blob/master/start-webservers.sh&#34;&gt;Start-Script for running lots of containers on the Raspberry Pi&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;

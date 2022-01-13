@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aarch64 on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/aarch64/index.xml</link>
+    <link>https://hypriot.io/categories/aarch64/index.xml</link>
     <description>Recent content in Aarch64 on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/aarch64/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/aarch64/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>NVIDIA Jetson Nano - Upgrade Docker Engine</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</link>
       <pubDate>Mon, 22 Apr 2019 08:44:52 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</guid>
       <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;But, this isn&amp;rsquo;t the latest available version of the Docker Engine. So, I&amp;rsquo;d like to point you to a few different options on how to upgrade the Docker Engine to the very latest available version for the NVIDIA Jetson Nano.&lt;/p&gt;
 
@@ -288,7 +288,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-docker-ce/jetson-desktop-docker-ce.jpg&#34; alt=&#34;jetson-desktop-docker-ce.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-docker-ce.jpg&#34; alt=&#34;jetson-desktop-docker-ce.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -309,13 +309,13 @@ For more examples and ideas, visit:
     
     <item>
       <title>NVIDIA Jetson Nano - Install Docker Compose</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</link>
       <pubDate>Sat, 20 Apr 2019 09:51:52 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</guid>
       <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Today, I want to share some more details on how you can easily install Docker Compose on the Jetson Nano.&lt;/p&gt;
 
@@ -600,13 +600,13 @@ Server:
     
     <item>
       <title>NVIDIA Jetson Nano Developer Kit - Introduction</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-intro/</link>
       <pubDate>Fri, 19 Apr 2019 14:16:25 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-intro/</guid>
       <description>&lt;p&gt;Let me introduce the brand new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt;, which is basically a quad-core 64bit ARM Cortex-A57 CPU with 128 GPU cores - suitable for all kinds of maker ideas: AI, Robotics, and of course for running Docker Containers&amp;hellip;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Box.jpg&#34; alt=&#34;Jetson-Nano-Box.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Box.jpg&#34; alt=&#34;Jetson-Nano-Box.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;unboxing&#34;&gt;Unboxing&lt;/h3&gt;
 
@@ -614,7 +614,7 @@ Server:
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When opening the box we&amp;rsquo;ll find the board itself and a short getting started flyer which heads us to the NVIDIA website &lt;a href=&#34;https://NVIDIA.com/JetsonNano-Start&#34;&gt;https://NVIDIA.com/JetsonNano-Start&lt;/a&gt; where we can find all basic information about the new DevKit.&lt;/p&gt;
 
@@ -689,7 +689,7 @@ Mounting Disk
 
 &lt;p&gt;Then power up the board with the Micro-USB power supply and follow the tutorial. This procedure will take a few minutes and then you&amp;rsquo;ll have a fully configured desktop system up and running which is based upon Ubuntu 18.04 LTS.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Board-Closeup.jpg&#34; alt=&#34;Jetson-Nano-Board-Closeup.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Board-Closeup.jpg&#34; alt=&#34;Jetson-Nano-Board-Closeup.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As I already said, the initial configuration of the Nano board has to be done interactively with the help of a computer monitor, mouse and keyboard. It&amp;rsquo;s really straight forward and consists of the following steps and settings. I also did a short video of this initial setup, so it&amp;rsquo;s maybe a little bit easier for you to follow.&lt;/p&gt;
 
@@ -715,7 +715,7 @@ Mounting Disk
 
 &lt;p&gt;At the end we login with the defined username &amp;ldquo;pirate&amp;rdquo; and get this nice Ubuntu desktop on our computer monitor. Yes, it&amp;rsquo;s really a fully Linux desktop system running on a 64bit ARM Cortex A57 board with 4 GByte of memory!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop.jpg&#34; alt=&#34;jetson-desktop.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/jetson-desktop.jpg&#34; alt=&#34;jetson-desktop.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;running-docker&#34;&gt;Running Docker&lt;/h3&gt;
 
@@ -829,7 +829,7 @@ Live Restore Enabled: false
 
 &lt;p&gt;Here is another screenshot directly from the Jetson Nano desktop with running the &lt;code&gt;docker version&lt;/code&gt; command.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop-docker.jpg&#34; alt=&#34;jetson-desktop-docker.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/jetson-desktop-docker.jpg&#34; alt=&#34;jetson-desktop-docker.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;starting-a-docker-container-for-arm&#34;&gt;Starting a Docker Container for ARM&lt;/h3&gt;
 
@@ -865,11 +865,11 @@ ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …
 
 &lt;p&gt;Opening up a web browser with the URL &lt;code&gt;http://192.168.7.158:8000&lt;/code&gt; and we should see the web page served by our Docker container running on the NVIDIA Jetson Nano.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/docker-container-webpage.jpg&#34; alt=&#34;docker-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/docker-container-webpage.jpg&#34; alt=&#34;docker-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is another screenshot directly from the Jetson Nano desktop and a Chromium browser window which is showing our webpage served from the Docker container.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop-container-webpage.jpg&#34; alt=&#34;jetson-desktop-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/jetson-desktop-container-webpage.jpg&#34; alt=&#34;jetson-desktop-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;SUCCESS:&lt;/strong&gt; Docker Engine 18.06.1-CE is preinstalled on the brandnew NVIDIA Jetson Nano board and even old 32bit ARM Docker Images are running easily!&lt;/p&gt;
 
@@ -892,17 +892,17 @@ ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …
     
     <item>
       <title>Building a 64bit Docker OS for the Raspberry Pi 3</title>
-      <link>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</link>
+      <link>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</link>
       <pubDate>Thu, 02 Mar 2017 11:28:42 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</guid>
+      <guid>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m happy to announce the start of a &amp;ldquo;short&amp;rdquo; workshop were I&amp;rsquo;m going through all the steps to build a complete 64bit operating system for the Raspberry Pi 3. This 64bit HypriotOS is mainly focused on running Docker containers easily on this popular DIY and IoT device.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e6/Raspberry-Pi-3-Flat-Top.jpg&#34; alt=&#34;Raspi3-Image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You&amp;rsquo;ll see that I&amp;rsquo;m using Docker heavily for each and every build step, because it really helps us a lot to run a local build with &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker-for-Mac&lt;/a&gt; or later on the cloud build servers at &lt;a href=&#34;https://travis-ci.org&#34;&gt;Travis CI&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This workshop is sponsored by &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bee42solutions&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @bee42solutions&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
@@ -954,7 +954,7 @@ ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …
 
 &lt;p&gt;Special thanks goes to &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; for giving me the time to work on this awesome topic to build a complete Docker-enabled 64bit OS for the Raspberry Pi 3.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker Swarm on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/docker-swarm/index.xml</link>
+    <link>https://hypriot.io/categories/docker-swarm/index.xml</link>
     <description>Recent content in Docker Swarm on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/docker-swarm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/docker-swarm/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Let Docker Swarm all over your Raspberry Pi Cluster</title>
-      <link>https://blog.hypriot.com/post/let-docker-swarm-all-over-your-raspberry-pi-cluster/</link>
+      <link>https://hypriot.io/post/let-docker-swarm-all-over-your-raspberry-pi-cluster/</link>
       <pubDate>Fri, 03 Jul 2015 00:30:45 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/let-docker-swarm-all-over-your-raspberry-pi-cluster/</guid>
+      <guid>https://hypriot.io/post/let-docker-swarm-all-over-your-raspberry-pi-cluster/</guid>
       <description>&lt;p&gt;In this blog post we show you how easy it is to install Swarm on your Raspberry Pi and how to set up a Raspberry Pi Swarm cluster with the help of Docker Machine.&lt;/p&gt;
 
 &lt;p&gt;We have built a little &amp;ldquo;Pi Tower&amp;rdquo; with three Raspberry Pi 2 model B and combined them into a Docker Swarm cluster.
@@ -29,8 +29,8 @@ This makes a very solid but portable &amp;ldquo;Pi Tower&amp;rdquo; with only on
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/docker-swarm/d-link_mounting_holes.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/docker-swarm/thumbnails/thumb_d-link_mounting_holes.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;The Making of Pi Tower&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/docker-swarm/d-link_mounting_holes.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/docker-swarm/thumbnails/thumb_d-link_mounting_holes.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;The Making of Pi Tower&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -44,8 +44,8 @@ This makes a very solid but portable &amp;ldquo;Pi Tower&amp;rdquo; with only on
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/docker-swarm/d-link_rpi2_cluster.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/docker-swarm/thumbnails/thumb_d-link_rpi2_cluster.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi Tower with D-Link Switch&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/docker-swarm/d-link_rpi2_cluster.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/docker-swarm/thumbnails/thumb_d-link_rpi2_cluster.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi Tower with D-Link Switch&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -59,8 +59,8 @@ This makes a very solid but portable &amp;ldquo;Pi Tower&amp;rdquo; with only on
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/docker-swarm/d-link_rpi2_cluster02.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/docker-swarm/thumbnails/thumb_d-link_rpi2_cluster02.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi Tower with D-Link Switch&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/docker-swarm/d-link_rpi2_cluster02.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/docker-swarm/thumbnails/thumb_d-link_rpi2_cluster02.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi Tower with D-Link Switch&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -74,8 +74,8 @@ This makes a very solid but portable &amp;ldquo;Pi Tower&amp;rdquo; with only on
 
 
 &lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
-  &lt;a href=&#34;https://blog.hypriot.com/images/docker-swarm/d-link_rpi2_cluster_lights.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
-      &lt;img src=&#34;https://blog.hypriot.com/images/docker-swarm/thumbnails/thumb_d-link_rpi2_cluster_lights.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi Tower at night&#34; /&gt;
+  &lt;a href=&#34;https://hypriot.io/images/docker-swarm/d-link_rpi2_cluster_lights.jpg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;1600x1200&#34;&gt;
+      &lt;img src=&#34;https://hypriot.io/images/docker-swarm/thumbnails/thumb_d-link_rpi2_cluster_lights.jpg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Pi Tower at night&#34; /&gt;
   &lt;/a&gt;
 
 
@@ -89,11 +89,11 @@ This makes a very solid but portable &amp;ldquo;Pi Tower&amp;rdquo; with only on
 &lt;/div&gt;
 
 
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/photoswipe.css&#34;&gt;
-&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/default-skin/default-skin.css&#34;&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://blog.hypriot.com/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/photoswipe.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://hypriot.io/css/default-skin/default-skin.css&#34;&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://hypriot.io/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
 
 
 

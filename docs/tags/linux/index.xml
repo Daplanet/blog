@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/linux/index.xml</link>
+    <link>https://hypriot.io/tags/linux/index.xml</link>
     <description>Recent content in Linux on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
       <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
       <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
 
@@ -135,7 +135,7 @@ sys	8m18,404s
 
 &lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
 
@@ -256,7 +256,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 
 &lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -267,7 +267,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 &lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
 
 &lt;p&gt;Finally, May the 4th be with You!
-&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 
@@ -280,13 +280,13 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
     
     <item>
       <title>Verify your Linux Kernel for Container Compatibility</title>
-      <link>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</link>
+      <link>https://hypriot.io/post/verify-kernel-container-compatibility/</link>
       <pubDate>Sun, 28 Apr 2019 08:48:50 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</guid>
+      <guid>https://hypriot.io/post/verify-kernel-container-compatibility/</guid>
       <description>&lt;p&gt;Are you sure whether your Linux kernel is able to run Containers in an optimal way, or if there are still some missing kernel settings which will lead to some strange issues in the future?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Normally you don&amp;rsquo;t have to bother about this question. When you&amp;rsquo;re using Docker and Containers on a modern Linux system or on a public cloud offering, this has been already optimized by the Linux distribution or your cloud provider. But when you start using Containers on Embedded Devices you should verify this carefully.&lt;/p&gt;
 
@@ -367,7 +367,7 @@ Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarc
 
 &lt;p&gt;In the first section &amp;ldquo;Generally Necessary&amp;rdquo; all the mandatory kernel settings are listed, and for the Nano this is completely green, all is perfect.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then in the second section &amp;ldquo;Optional Features&amp;rdquo; we can see that most Container related settings are applied, but a few are missing.&lt;/p&gt;
 
@@ -375,7 +375,7 @@ Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarc
 
 &lt;p&gt;For &amp;ldquo;Storage Drivers&amp;rdquo; you can typically ignore the missing settings for &lt;code&gt;aufs&lt;/code&gt; and &lt;code&gt;zfs&lt;/code&gt; as long as you don&amp;rsquo;t required to use these, same is true for &lt;code&gt;devicemapper&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here I&amp;rsquo;d also like to present the output as pure ASCII text so you can easily analyse (search, copy&amp;amp;paste) it later.&lt;/p&gt;
 
@@ -503,13 +503,13 @@ Limits:
     
     <item>
       <title>Docker Engine on Intel Linux runs Arm Containers</title>
-      <link>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</link>
+      <link>https://hypriot.io/post/docker-intel-runs-arm-containers/</link>
       <pubDate>Sat, 27 Apr 2019 10:48:50 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</guid>
+      <guid>https://hypriot.io/post/docker-intel-runs-arm-containers/</guid>
       <description>&lt;p&gt;Did you read the latest news from Docker about their newly announced technology partnership together with Arm, &lt;a href=&#34;https://twitter.com/Docker/status/1121054608795688963&#34;&gt;&amp;ldquo;Docker and Arm Partner to Deliver Frictionless Cloud-Native Software Development and Delivery Model for Cloud, Edge, and IoT&amp;rdquo;&lt;/a&gt;?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is really a great ground-breaking news, as it will enable an improved development workflow. Build and test all your Arm containers on your Intel-based laptop or workstation. These new Arm capabilities will be available in &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;Docker Desktop&lt;/a&gt; products from Docker, both for MacOs and Windows, and for Docker’s commercial enterprise offerings. First technical details and roadmap will be announced next week at &lt;a href=&#34;https://www.docker.com/dockercon/&#34;&gt;DockerCon 2019&lt;/a&gt; in San Francisco, so please stay tuned.&lt;/p&gt;
 
@@ -529,7 +529,7 @@ Limits:
 
 &lt;p&gt;Next you have to click on &amp;ldquo;START SCENARIO&amp;rdquo; and the Linux Docker environment is ready for you.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Run an Arm-based Container&lt;/p&gt;
 
@@ -542,7 +542,7 @@ Limits:
 
 &lt;p&gt;we&amp;rsquo;ll get an cryptic error message &lt;code&gt;exec user process caused &amp;quot;exec format error&amp;quot;&lt;/code&gt;, which basically tells us that this Docker Image tries to start a binary/executable which can&amp;rsquo;t be run on the provided Intel processor.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Step 3:&lt;/strong&gt; Run the magic command to enable Arm/Arm64 on Intel&lt;/p&gt;
 
@@ -603,7 +603,7 @@ $
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -it dieterreuter/alpine-arm64:3.9
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When we run the command &lt;code&gt;uname -a&lt;/code&gt; it tell us, we&amp;rsquo;re running a Linux kernel 4.14.29 on Arm 64-bit architecture indicated as &lt;code&gt;aarch64&lt;/code&gt;.&lt;/p&gt;
 
@@ -632,16 +632,16 @@ $
     
     <item>
       <title>How to get Docker running on your Raspberry Pi using Linux</title>
-      <link>https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/</link>
+      <link>https://hypriot.io/getting-started-with-docker-and-linux-on-the-raspberry-pi/</link>
       <pubDate>Fri, 15 May 2015 20:16:11 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/</guid>
+      <guid>https://hypriot.io/getting-started-with-docker-and-linux-on-the-raspberry-pi/</guid>
       <description>
 
 &lt;p&gt;This guide shows you how to get Docker running on your Raspberry Pi using a &lt;strong&gt;Linux workstation&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;If you have not read the getting started guide about Docker on the Raspberry Pi yet you might wanna check it out first: &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device&#34;&gt;Getting started on your ARM device&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you have not read the getting started guide about Docker on the Raspberry Pi yet you might wanna check it out first: &lt;a href=&#34;https://hypriot.io/getting-started-with-docker-on-your-arm-device&#34;&gt;Getting started on your ARM device&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;We tried to make this guide as concise as possible. Make sure that you know the basics about the command line and you should be ready to go.
@@ -654,13 +654,13 @@ The SD card contains all the software which we are going to use on our Raspberry
 With software we basically mean two things: first an operating system for your Raspberry Pi and second the software you as user would like to use - e.g. a browser or a word processing program.
 In our case the software we wanna use is Docker.&lt;/p&gt;
 
-&lt;p&gt;We - from Hypriot - created a preconfigured &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;SD card image&lt;/a&gt; which contains everything you need to run Docker on your Raspberry Pi.
+&lt;p&gt;We - from Hypriot - created a preconfigured &lt;a href=&#34;https://hypriot.io/downloads/&#34;&gt;SD card image&lt;/a&gt; which contains everything you need to run Docker on your Raspberry Pi.
 To use the image you first have to download and transfer it to your SD card. Transferring an image to an SD card is often referred to as &lt;em&gt;flashing&lt;/em&gt;.
 Afterwards you just have to insert the flashed SD card into your Raspberry Pi and start it up.&lt;/p&gt;
 
 &lt;h3 id=&#34;download-the-hypriot-docker-sd-card-image&#34;&gt;Download the Hypriot Docker SD card image&lt;/h3&gt;
 
-&lt;p&gt;Download our latest SD card image from the &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;download page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Download our latest SD card image from the &lt;a href=&#34;https://hypriot.io/downloads/&#34;&gt;download page&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;After the download is completed open a terminal window. To do this use the search function of your Linux distribution and type &lt;em&gt;terminal&lt;/em&gt; and press &lt;em&gt;Enter&lt;/em&gt;.&lt;/p&gt;
 
@@ -686,7 +686,7 @@ In the next step we will flash this file onto your SD card.&lt;/p&gt;
 
 &lt;p&gt;You should see a list of all your disks like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/linux-screenies/lsblk.png&#34; alt=&#34;lsblk&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/blog_post_getting-started/linux-screenies/lsblk.png&#34; alt=&#34;lsblk&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now identify the SD Card. Look at the fourth column which shows the size of the devices of your workstation.
 One item in the list should have a size that is very close to the size of your SD card.
@@ -720,7 +720,7 @@ Depending on your hardware and the performance of your SD card it will take up t
 
 &lt;p&gt;When &lt;code&gt;dd&lt;/code&gt; is finished you should get an output like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/linux-screenies/after-dd.png&#34; alt=&#34;after-dd&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/blog_post_getting-started/linux-screenies/after-dd.png&#34; alt=&#34;after-dd&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally unmount the SD card again in the same way as before.&lt;/p&gt;
 
@@ -758,14 +758,14 @@ yum install nmap       # for red hat based distros
 
 &lt;p&gt;As you can see in the following screenshot our IP address is &lt;code&gt;192.168.0.101&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/linux-screenies/hostname-i.png&#34; alt=&#34;hostname-i&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/blog_post_getting-started/linux-screenies/hostname-i.png&#34; alt=&#34;hostname-i&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then replace the IP address in front of the &lt;code&gt;/24&lt;/code&gt; with yours and type&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;nmap -sP 192.168.0.101/24 | grep black-pearl
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/linux-screenies/nmap.png&#34; alt=&#34;nmap result of query&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/blog_post_getting-started/linux-screenies/nmap.png&#34; alt=&#34;nmap result of query&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The output of the &lt;code&gt;nmap&lt;/code&gt; command should show you the IP address of your Raspberry Pi.
 If you get a blank line without an IP address your Raspberry Pi is probably not connected to the network.
@@ -783,7 +783,7 @@ Replace the IP address after the &lt;code&gt;@&lt;/code&gt; with the one of your
 
 &lt;p&gt;If everything went fine you should now see the &lt;em&gt;HypriotOS&lt;/em&gt; command line prompt waiting for your input.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/linux-screenies/rpi-first-connect.png&#34; alt=&#34;screenshot docker first connection&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/blog_post_getting-started/linux-screenies/rpi-first-connect.png&#34; alt=&#34;screenshot docker first connection&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally check if the Docker service is running by typing&lt;/p&gt;
 
@@ -792,11 +792,11 @@ Replace the IP address after the &lt;code&gt;@&lt;/code&gt; with the one of your
 
 &lt;p&gt;The output of the &lt;code&gt;docker info&lt;/code&gt; command should look similar to:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/linux-screenies/docker-info.png&#34; alt=&#34;screenshot docker info&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/blog_post_getting-started/linux-screenies/docker-info.png&#34; alt=&#34;screenshot docker info&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Congratulations! You have succeeded in getting Docker running on your Raspberry Pi!&lt;/strong&gt; :)&lt;/p&gt;
 
-&lt;p&gt;You are now ready to continue your exploration of Docker with our &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device#going-wild-with-docker-what-can-you-actually-do-with-it:397c66ef19f9f061b6711d2e296cb276&#34;&gt;Getting Started Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You are now ready to continue your exploration of Docker with our &lt;a href=&#34;https://hypriot.io/getting-started-with-docker-on-your-arm-device#going-wild-with-docker-what-can-you-actually-do-with-it:397c66ef19f9f061b6711d2e296cb276&#34;&gt;Getting Started Guide&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Have fun!&lt;/p&gt;
 </description>

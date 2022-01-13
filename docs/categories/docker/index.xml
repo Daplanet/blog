@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/docker/index.xml</link>
+    <link>https://hypriot.io/categories/docker/index.xml</link>
     <description>Recent content in Docker on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Releasing HypriotOS 1.11.0: Docker 19.03.0 CE from Raspberry Pi Zero to 4 B</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-11/</link>
       <pubDate>Thu, 25 Jul 2019 06:31:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-11/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.11.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-11/raspberry-pi-4-b.jpg&#34; alt=&#34;Raspberry Pi 4 B&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-11/raspberry-pi-4-b.jpg&#34; alt=&#34;Raspberry Pi 4 B&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -85,13 +85,13 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
       <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
       <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
 
@@ -210,7 +210,7 @@ sys	8m18,404s
 
 &lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
 
@@ -331,7 +331,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 
 &lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -342,7 +342,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 &lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
 
 &lt;p&gt;Finally, May the 4th be with You!
-&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 
@@ -355,13 +355,13 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
     
     <item>
       <title>Verify your Linux Kernel for Container Compatibility</title>
-      <link>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</link>
+      <link>https://hypriot.io/post/verify-kernel-container-compatibility/</link>
       <pubDate>Sun, 28 Apr 2019 08:48:50 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</guid>
+      <guid>https://hypriot.io/post/verify-kernel-container-compatibility/</guid>
       <description>&lt;p&gt;Are you sure whether your Linux kernel is able to run Containers in an optimal way, or if there are still some missing kernel settings which will lead to some strange issues in the future?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Normally you don&amp;rsquo;t have to bother about this question. When you&amp;rsquo;re using Docker and Containers on a modern Linux system or on a public cloud offering, this has been already optimized by the Linux distribution or your cloud provider. But when you start using Containers on Embedded Devices you should verify this carefully.&lt;/p&gt;
 
@@ -442,7 +442,7 @@ Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarc
 
 &lt;p&gt;In the first section &amp;ldquo;Generally Necessary&amp;rdquo; all the mandatory kernel settings are listed, and for the Nano this is completely green, all is perfect.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then in the second section &amp;ldquo;Optional Features&amp;rdquo; we can see that most Container related settings are applied, but a few are missing.&lt;/p&gt;
 
@@ -450,7 +450,7 @@ Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarc
 
 &lt;p&gt;For &amp;ldquo;Storage Drivers&amp;rdquo; you can typically ignore the missing settings for &lt;code&gt;aufs&lt;/code&gt; and &lt;code&gt;zfs&lt;/code&gt; as long as you don&amp;rsquo;t required to use these, same is true for &lt;code&gt;devicemapper&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here I&amp;rsquo;d also like to present the output as pure ASCII text so you can easily analyse (search, copy&amp;amp;paste) it later.&lt;/p&gt;
 
@@ -578,13 +578,13 @@ Limits:
     
     <item>
       <title>Docker Engine on Intel Linux runs Arm Containers</title>
-      <link>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</link>
+      <link>https://hypriot.io/post/docker-intel-runs-arm-containers/</link>
       <pubDate>Sat, 27 Apr 2019 10:48:50 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</guid>
+      <guid>https://hypriot.io/post/docker-intel-runs-arm-containers/</guid>
       <description>&lt;p&gt;Did you read the latest news from Docker about their newly announced technology partnership together with Arm, &lt;a href=&#34;https://twitter.com/Docker/status/1121054608795688963&#34;&gt;&amp;ldquo;Docker and Arm Partner to Deliver Frictionless Cloud-Native Software Development and Delivery Model for Cloud, Edge, and IoT&amp;rdquo;&lt;/a&gt;?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is really a great ground-breaking news, as it will enable an improved development workflow. Build and test all your Arm containers on your Intel-based laptop or workstation. These new Arm capabilities will be available in &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;Docker Desktop&lt;/a&gt; products from Docker, both for MacOs and Windows, and for Docker’s commercial enterprise offerings. First technical details and roadmap will be announced next week at &lt;a href=&#34;https://www.docker.com/dockercon/&#34;&gt;DockerCon 2019&lt;/a&gt; in San Francisco, so please stay tuned.&lt;/p&gt;
 
@@ -604,7 +604,7 @@ Limits:
 
 &lt;p&gt;Next you have to click on &amp;ldquo;START SCENARIO&amp;rdquo; and the Linux Docker environment is ready for you.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Run an Arm-based Container&lt;/p&gt;
 
@@ -617,7 +617,7 @@ Limits:
 
 &lt;p&gt;we&amp;rsquo;ll get an cryptic error message &lt;code&gt;exec user process caused &amp;quot;exec format error&amp;quot;&lt;/code&gt;, which basically tells us that this Docker Image tries to start a binary/executable which can&amp;rsquo;t be run on the provided Intel processor.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Step 3:&lt;/strong&gt; Run the magic command to enable Arm/Arm64 on Intel&lt;/p&gt;
 
@@ -678,7 +678,7 @@ $
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -it dieterreuter/alpine-arm64:3.9
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When we run the command &lt;code&gt;uname -a&lt;/code&gt; it tell us, we&amp;rsquo;re running a Linux kernel 4.14.29 on Arm 64-bit architecture indicated as &lt;code&gt;aarch64&lt;/code&gt;.&lt;/p&gt;
 
@@ -707,13 +707,13 @@ $
     
     <item>
       <title>NVIDIA Jetson Nano - Upgrade Docker Engine</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</link>
       <pubDate>Mon, 22 Apr 2019 08:44:52 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</guid>
       <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;But, this isn&amp;rsquo;t the latest available version of the Docker Engine. So, I&amp;rsquo;d like to point you to a few different options on how to upgrade the Docker Engine to the very latest available version for the NVIDIA Jetson Nano.&lt;/p&gt;
 
@@ -985,7 +985,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-docker-ce/jetson-desktop-docker-ce.jpg&#34; alt=&#34;jetson-desktop-docker-ce.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-docker-ce.jpg&#34; alt=&#34;jetson-desktop-docker-ce.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -1006,13 +1006,13 @@ For more examples and ideas, visit:
     
     <item>
       <title>NVIDIA Jetson Nano - Install Docker Compose</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</link>
       <pubDate>Sat, 20 Apr 2019 09:51:52 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</guid>
       <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Today, I want to share some more details on how you can easily install Docker Compose on the Jetson Nano.&lt;/p&gt;
 
@@ -1297,13 +1297,13 @@ Server:
     
     <item>
       <title>NVIDIA Jetson Nano Developer Kit - Introduction</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-intro/</link>
       <pubDate>Fri, 19 Apr 2019 14:16:25 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-intro/</guid>
       <description>&lt;p&gt;Let me introduce the brand new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt;, which is basically a quad-core 64bit ARM Cortex-A57 CPU with 128 GPU cores - suitable for all kinds of maker ideas: AI, Robotics, and of course for running Docker Containers&amp;hellip;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Box.jpg&#34; alt=&#34;Jetson-Nano-Box.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Box.jpg&#34; alt=&#34;Jetson-Nano-Box.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;unboxing&#34;&gt;Unboxing&lt;/h3&gt;
 
@@ -1311,7 +1311,7 @@ Server:
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When opening the box we&amp;rsquo;ll find the board itself and a short getting started flyer which heads us to the NVIDIA website &lt;a href=&#34;https://NVIDIA.com/JetsonNano-Start&#34;&gt;https://NVIDIA.com/JetsonNano-Start&lt;/a&gt; where we can find all basic information about the new DevKit.&lt;/p&gt;
 
@@ -1386,7 +1386,7 @@ Mounting Disk
 
 &lt;p&gt;Then power up the board with the Micro-USB power supply and follow the tutorial. This procedure will take a few minutes and then you&amp;rsquo;ll have a fully configured desktop system up and running which is based upon Ubuntu 18.04 LTS.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Board-Closeup.jpg&#34; alt=&#34;Jetson-Nano-Board-Closeup.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Board-Closeup.jpg&#34; alt=&#34;Jetson-Nano-Board-Closeup.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As I already said, the initial configuration of the Nano board has to be done interactively with the help of a computer monitor, mouse and keyboard. It&amp;rsquo;s really straight forward and consists of the following steps and settings. I also did a short video of this initial setup, so it&amp;rsquo;s maybe a little bit easier for you to follow.&lt;/p&gt;
 
@@ -1412,7 +1412,7 @@ Mounting Disk
 
 &lt;p&gt;At the end we login with the defined username &amp;ldquo;pirate&amp;rdquo; and get this nice Ubuntu desktop on our computer monitor. Yes, it&amp;rsquo;s really a fully Linux desktop system running on a 64bit ARM Cortex A57 board with 4 GByte of memory!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop.jpg&#34; alt=&#34;jetson-desktop.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/jetson-desktop.jpg&#34; alt=&#34;jetson-desktop.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;running-docker&#34;&gt;Running Docker&lt;/h3&gt;
 
@@ -1526,7 +1526,7 @@ Live Restore Enabled: false
 
 &lt;p&gt;Here is another screenshot directly from the Jetson Nano desktop with running the &lt;code&gt;docker version&lt;/code&gt; command.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop-docker.jpg&#34; alt=&#34;jetson-desktop-docker.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/jetson-desktop-docker.jpg&#34; alt=&#34;jetson-desktop-docker.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;starting-a-docker-container-for-arm&#34;&gt;Starting a Docker Container for ARM&lt;/h3&gt;
 
@@ -1562,11 +1562,11 @@ ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …
 
 &lt;p&gt;Opening up a web browser with the URL &lt;code&gt;http://192.168.7.158:8000&lt;/code&gt; and we should see the web page served by our Docker container running on the NVIDIA Jetson Nano.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/docker-container-webpage.jpg&#34; alt=&#34;docker-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/docker-container-webpage.jpg&#34; alt=&#34;docker-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is another screenshot directly from the Jetson Nano desktop and a Chromium browser window which is showing our webpage served from the Docker container.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop-container-webpage.jpg&#34; alt=&#34;jetson-desktop-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/jetson-desktop-container-webpage.jpg&#34; alt=&#34;jetson-desktop-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;SUCCESS:&lt;/strong&gt; Docker Engine 18.06.1-CE is preinstalled on the brandnew NVIDIA Jetson Nano board and even old 32bit ARM Docker Images are running easily!&lt;/p&gt;
 
@@ -1589,13 +1589,13 @@ ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …
     
     <item>
       <title>Releasing HypriotOS 1.10.0: Docker 18.06.3 CE from Raspberry Pi Zero to 3 B&#43;</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-10/</link>
       <pubDate>Sun, 24 Feb 2019 16:01:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-10/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.10.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-10/hypriotos-1.10.0-docker-18.06.3.png&#34; alt=&#34;Raspberry Pi Zero with Docker 18.06.3&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-10/hypriotos-1.10.0-docker-18.06.3.png&#34; alt=&#34;Raspberry Pi Zero with Docker 18.06.3&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -1669,15 +1669,15 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>We now accept donations. Buy us a beer!</title>
-      <link>https://blog.hypriot.com/post/donation-liberapay-support-contribute/</link>
+      <link>https://hypriot.io/post/donation-liberapay-support-contribute/</link>
       <pubDate>Tue, 29 May 2018 16:30:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/donation-liberapay-support-contribute/</guid>
+      <guid>https://hypriot.io/post/donation-liberapay-support-contribute/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Many of our users have asked for it for quite a long time. Now, we finally took the time to setup a donation option.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Since we started Hypriot in 2015, we received great attention from a growing community around Docker on ARMed devices. We received numerous &amp;ldquo;kudos&amp;rdquo; and nice words. Even though we greatly appreciate this until today, words do not enable us to pay our infrastructure bills. Now you have the option to support us materialistically.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/donations/liberapay-hypriot.png&#34; alt=&#34;Donations Screenshot Liberpay&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/donations/liberapay-hypriot.png&#34; alt=&#34;Donations Screenshot Liberpay&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -1708,15 +1708,15 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>Releasing HypriotOS 1.8.0: Raspberry Pi 3 B&#43;, Stretch and more</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-8/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-8/</link>
       <pubDate>Tue, 27 Mar 2018 16:30:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-8/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-8/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.8.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi including the new Pi 3 B+.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;At this years Pi day the Raspberry Pi foundation &lt;a href=&#34;https://www.raspberrypi.org/blog/raspberry-pi-3-model-bplus-sale-now-35/&#34;&gt;has announced a new model&lt;/a&gt; - the Raspberry Pi 3 B+ with improved networking and a faster CPU. A good reason for us to update our HypriotOS to support this new device. And while we were at it we also updated the OS to Raspbian Stretch and Linux Kernel version 4.9.80 - and of course the latest Docker 18.03.0-ce release.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-8/pi3-b-plus.jpg&#34; alt=&#34;Raspberry Pi 3 B+&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-8/pi3-b-plus.jpg&#34; alt=&#34;Raspberry Pi 3 B+&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -1796,7 +1796,7 @@ You only have to customize the YAML file at&lt;/p&gt;
 
 &lt;p&gt;And after booting a Raspberry Pi Zero or Pi 3/Pi 3 B+ you will see some blinking LED&amp;rsquo;s once everything has been set up after the first boot.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-8/rainbow.jpg&#34; alt=&#34;Raspberry Pi 3 B+ with rainbow service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-8/rainbow.jpg&#34; alt=&#34;Raspberry Pi 3 B+ with rainbow service&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h2&gt;
 
@@ -1811,17 +1811,17 @@ You only have to customize the YAML file at&lt;/p&gt;
     
     <item>
       <title>Bootstrapping a Cloud with Cloud-Init and HypriotOS</title>
-      <link>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</link>
+      <link>https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/</link>
       <pubDate>Sun, 29 Oct 2017 00:14:00 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</guid>
+      <guid>https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Things may come to those who wait, but only the things left by those who hustle.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;Dieter Reuter&lt;/a&gt; really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn&amp;rsquo;t a single man army, the rest of the &lt;a href=&#34;http://blog.hypriot.com/crew/&#34;&gt;Docker Pirates&lt;/a&gt; over at &lt;a href=&#34;http://blog.hypriot.com/&#34;&gt;Hypriot&lt;/a&gt; have been doing some awesome things as well!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
 &lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/horiavarlan/5019447085/in/photolist-8DxYK8-6RFbEf-6RFfrw-6RLCGd-6RAH6n-6RF9gf-6RATnx-6RGCKM-6RB7L2-6REXqA-6T4VEQ-6RBeKg-brFbp6-6RAZU8-6RGwNk-6RAiLD-6RBgp6-6RLAvm-6RBbwM-6RAE5e-6RLJVj-6RLFdN-6RBsmr-6RFxxw-6RLJrY-6RFvGJ-6RFtZS-6REvrf-6RENUY-6RFwCC-6RGBEn-6RGz9n-6RFpb3-6RFzo1-if9tn-9NF66y-84UZy9-6RFew9-6RFq2m-6RLHWJ-6T4Wd9-9NChKc-6RAZ5V-9NCiK8-6T5Lbf-6RAUfp-6RBhb6-9NF3UW-9NF979-9NFaFW&#34;&gt;Horia Varlan&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;Building on the backs of these outstanding community members, I was finally able to spin up a Raspberry Pi, exactly like I do in the &amp;ldquo;real world&amp;rdquo;, just turn it on, let it self-configure, then software just runs.&lt;/p&gt;
@@ -2156,13 +2156,13 @@ flash \
     
     <item>
       <title>DockerCon 2017 Demo: Monitoring Docker Swarm with LED&#39;s</title>
-      <link>https://blog.hypriot.com/post/dockerconaustin2017/</link>
+      <link>https://hypriot.io/post/dockerconaustin2017/</link>
       <pubDate>Thu, 20 Apr 2017 14:30:34 -0600</pubDate>
       
-      <guid>https://blog.hypriot.com/post/dockerconaustin2017/</guid>
+      <guid>https://hypriot.io/post/dockerconaustin2017/</guid>
       <description>&lt;p&gt;At DockerCon 2017 in Austin I gave a presentation of a Raspberry Pi cluster mixed with some UP boards. The audience really liked the visual effects of the Docker Swarm scaling a service up and down. So I show you some background details what you need to run that demo on your Raspberry Pi cluster as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/stage2.jpg&#34; alt=&#34;PiCloud at DockerCon Austin&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/stage2.jpg&#34; alt=&#34;PiCloud at DockerCon Austin&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -2208,7 +2208,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker service scale whoami=16
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/scale-up.gif&#34; alt=&#34;Scale up&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/scale-up.gif&#34; alt=&#34;Scale up&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And then light up all the LED&amp;rsquo;s by scaling up to the number of LED&amp;rsquo;s you have.&lt;/p&gt;
 
@@ -2227,7 +2227,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 
 &lt;p&gt;Now watch what happens. Each destroyed container lights up red and then dims. After a while Docker swarm manager starts the new version and so new LED&amp;rsquo;s with blue light up. After a while all LED&amp;rsquo;s have changed from yellow (version 1.1.0) to blue (version 1.2.0). And while this rolling update is going on you still can use this &amp;ldquo;whoami&amp;rdquo; service by curl&amp;rsquo;ing it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/rolling-update.gif&#34; alt=&#34;Rolling update&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/rolling-update.gif&#34; alt=&#34;Rolling update&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;scale-down-to-one&#34;&gt;Scale down to one&lt;/h2&gt;
 
@@ -2236,7 +2236,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker service scale whoami=1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/scale-down-to-one.gif&#34; alt=&#34;Scale down to one&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/scale-down-to-one.gif&#34; alt=&#34;Scale down to one&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hope I did make you curious to try it out on your own cluster. Happy hacking and have fun! If you want to improve the visual effects have a look at the Node.js sources in the &lt;a href=&#34;https://github.com/StefanScherer/swarm-monitor&#34;&gt;GitHub repo&lt;/a&gt;. Rewrite it in Golang or anything else and suprise me with other nice visual effects.&lt;/p&gt;
 
@@ -2247,17 +2247,17 @@ After the image has been downloaded the LED monitor should show one yellow LED l
     
     <item>
       <title>Building a 64bit Docker OS for the Raspberry Pi 3</title>
-      <link>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</link>
+      <link>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</link>
       <pubDate>Thu, 02 Mar 2017 11:28:42 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</guid>
+      <guid>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m happy to announce the start of a &amp;ldquo;short&amp;rdquo; workshop were I&amp;rsquo;m going through all the steps to build a complete 64bit operating system for the Raspberry Pi 3. This 64bit HypriotOS is mainly focused on running Docker containers easily on this popular DIY and IoT device.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e6/Raspberry-Pi-3-Flat-Top.jpg&#34; alt=&#34;Raspi3-Image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You&amp;rsquo;ll see that I&amp;rsquo;m using Docker heavily for each and every build step, because it really helps us a lot to run a local build with &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker-for-Mac&lt;/a&gt; or later on the cloud build servers at &lt;a href=&#34;https://travis-ci.org&#34;&gt;Travis CI&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This workshop is sponsored by &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bee42solutions&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @bee42solutions&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
@@ -2309,7 +2309,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 
 &lt;p&gt;Special thanks goes to &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; for giving me the time to work on this awesome topic to build a complete Docker-enabled 64bit OS for the Raspberry Pi 3.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 
@@ -2322,15 +2322,15 @@ After the image has been downloaded the LED monitor should show one yellow LED l
     
     <item>
       <title>Let&#39;s build the smallest possible Docker image</title>
-      <link>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</link>
+      <link>https://hypriot.io/post/build-smallest-possible-docker-image/</link>
       <pubDate>Wed, 22 Feb 2017 09:18:35 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</guid>
+      <guid>https://hypriot.io/post/build-smallest-possible-docker-image/</guid>
       <description>&lt;p&gt;Imagine what happens if we&amp;rsquo;re starting to use Docker containers on IoT devices. On small and slow devices with limited system resources and connected via a damn slow network connection we do have to care differently on how to build and ship our apps. In these circumstances it pays off and it&amp;rsquo;s absolutely essential to optimize our applications and the resulting Docker images for size.&lt;/p&gt;
 
 &lt;p&gt;SIZE DOES MATTER&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/build-smallest-possible-docker-image/docker-image-minimal.png&#34; alt=&#34;docker-image-minimal.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/build-smallest-possible-docker-image/docker-image-minimal.png&#34; alt=&#34;docker-image-minimal.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If we&amp;rsquo;re doing it right we&amp;rsquo;ll get a lot of benefits such as blasting fast download speed for updating to a new or more secured version. On wireless networks we are also reducing the costs for data transfers as well.&lt;/p&gt;
 
@@ -2431,7 +2431,7 @@ Hello Docker World!
 
 &lt;p&gt;Please publish your results on DockerHub, source codes on GitHub and tweet about it on Twitter with the hashtag #DockerChallenge. The goal of this challenge is to get familiar with the techniques to build minimal sized Docker images not only for IoT use cases, to understand the fact that a Docker container can be just a single process, and that this process can be really extremely small itself. On the way we&amp;rsquo;ll learn to take care about all the necessary steps to reduce the size and how we can optimize our development workflow as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/build-smallest-possible-docker-image/docker-image-minimal2.png&#34; alt=&#34;docker-image-minimal2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/build-smallest-possible-docker-image/docker-image-minimal2.png&#34; alt=&#34;docker-image-minimal2.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s start the journey&amp;hellip;&lt;/p&gt;
 
@@ -2446,17 +2446,17 @@ Hello Docker World!
     
     <item>
       <title>Setup Kubernetes on a Raspberry Pi Cluster easily the official way!</title>
-      <link>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</link>
+      <link>https://hypriot.io/post/setup-kubernetes-raspberry-pi-cluster/</link>
       <pubDate>Wed, 11 Jan 2017 14:03:34 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</guid>
+      <guid>https://hypriot.io/post/setup-kubernetes-raspberry-pi-cluster/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; shares the pole position with Docker in the category &amp;ldquo;orchestration solutions for Raspberry Pi cluster&amp;rdquo;.
 However it&amp;rsquo;s setup process has been elaborate – until &lt;a href=&#34;http://blog.kubernetes.io/2016/09/how-we-made-kubernetes-easy-to-install.html&#34;&gt;v1.4 with the kubeadm announcement&lt;/a&gt;.
 With that effort, Kubernetes changed this game completely and can be up and running officially within no time.&lt;/p&gt;
 
 &lt;p&gt;I am very happy to announce that this blog post has been written in collaboration with &lt;a href=&#34;https://github.com/luxas&#34;&gt;Lucas Käldström&lt;/a&gt;, an independent maintainer of Kubernetes (his story is very interesting,  you can read it in a &lt;a href=&#34;https://www.cncf.io/blog/2016/11/29/diversity-scholarship-series-programming-journey-becoming-kubernetes-maintainer&#34;&gt;CNCF blogpost&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -2546,7 +2546,7 @@ $ echo &amp;quot;deb http://apt.kubernetes.io/ kubernetes-xenial main&amp;quot; 
 
 &lt;p&gt;After Kubernetes has been initialized, the last lines of your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To start using your cluster, you need to run (as a regular user):&lt;/p&gt;
 
@@ -2567,7 +2567,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, &lt;strong&gt;we need to setup flannel v0.9.1 as the Pod network driver&lt;/strong&gt;. Do not use &lt;a href=&#34;https://github.com/coreos/flannel/releases/tag/v0.8.0&#34;&gt;v0.8.0&lt;/a&gt; due to a known &lt;a href=&#34;https://github.com/coreos/flannel/issues/773&#34;&gt;bug&lt;/a&gt; that can cause a &lt;code&gt;CrashLoopBackOff&lt;/code&gt; error. Run this &lt;strong&gt;on the master node&lt;/strong&gt;:&lt;/p&gt;
 
@@ -2576,7 +2576,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then wait until all flannel and all other cluster-internal Pods are &lt;code&gt;Running&lt;/code&gt; before you continue:&lt;/p&gt;
 
@@ -2585,7 +2585,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Nice, it seems like they are all &lt;code&gt;Running&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s all for the setup of Kubernetes! Next, let&amp;rsquo;s actually spin up a service on the cluster!&lt;/p&gt;
 
@@ -2612,11 +2612,11 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;You should see three endpoints (= containers) like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s curl one of them to see if the service is up:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The HTML is the response of the service. Good, it&amp;rsquo;s up and running! Next, let&amp;rsquo;s see how we can access it from outside the cluster!&lt;/p&gt;
 
@@ -2663,7 +2663,7 @@ $ kubectl apply -f hypriot-ingress.yaml
 
 &lt;p&gt;Visit the loadbalancing node&amp;rsquo;s IP address in your browser and you should see a nice web page:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you don&amp;rsquo;t see a website there yet, run:&lt;/p&gt;
 

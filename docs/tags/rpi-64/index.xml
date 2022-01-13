@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rpi 64 on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/rpi-64/index.xml</link>
+    <link>https://hypriot.io/tags/rpi-64/index.xml</link>
     <description>Recent content in Rpi 64 on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/rpi-64/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/rpi-64/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Bootstrapping a Cloud with Cloud-Init and HypriotOS</title>
-      <link>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</link>
+      <link>https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/</link>
       <pubDate>Sun, 29 Oct 2017 00:14:00 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</guid>
+      <guid>https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Things may come to those who wait, but only the things left by those who hustle.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;Dieter Reuter&lt;/a&gt; really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn&amp;rsquo;t a single man army, the rest of the &lt;a href=&#34;http://blog.hypriot.com/crew/&#34;&gt;Docker Pirates&lt;/a&gt; over at &lt;a href=&#34;http://blog.hypriot.com/&#34;&gt;Hypriot&lt;/a&gt; have been doing some awesome things as well!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
 &lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/horiavarlan/5019447085/in/photolist-8DxYK8-6RFbEf-6RFfrw-6RLCGd-6RAH6n-6RF9gf-6RATnx-6RGCKM-6RB7L2-6REXqA-6T4VEQ-6RBeKg-brFbp6-6RAZU8-6RGwNk-6RAiLD-6RBgp6-6RLAvm-6RBbwM-6RAE5e-6RLJVj-6RLFdN-6RBsmr-6RFxxw-6RLJrY-6RFvGJ-6RFtZS-6REvrf-6RENUY-6RFwCC-6RGBEn-6RGz9n-6RFpb3-6RFzo1-if9tn-9NF66y-84UZy9-6RFew9-6RFq2m-6RLHWJ-6T4Wd9-9NChKc-6RAZ5V-9NCiK8-6T5Lbf-6RAUfp-6RBhb6-9NF3UW-9NF979-9NFaFW&#34;&gt;Horia Varlan&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;Building on the backs of these outstanding community members, I was finally able to spin up a Raspberry Pi, exactly like I do in the &amp;ldquo;real world&amp;rdquo;, just turn it on, let it self-configure, then software just runs.&lt;/p&gt;

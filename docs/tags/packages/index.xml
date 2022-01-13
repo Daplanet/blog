@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Packages on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/packages/index.xml</link>
+    <link>https://hypriot.io/tags/packages/index.xml</link>
     <description>Recent content in Packages on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/packages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/packages/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Your No. 1 source for Docker on ARM</title>
-      <link>https://blog.hypriot.com/post/your-number-one-source-for-docker-on-arm/</link>
+      <link>https://hypriot.io/post/your-number-one-source-for-docker-on-arm/</link>
       <pubDate>Mon, 28 Mar 2016 22:00:00 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/your-number-one-source-for-docker-on-arm/</guid>
-      <description>&lt;p&gt;Besides our &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;Download section&lt;/a&gt; we do have another source for getting the latest and greatest Docker for ARM.&lt;br /&gt;
+      <guid>https://hypriot.io/post/your-number-one-source-for-docker-on-arm/</guid>
+      <description>&lt;p&gt;Besides our &lt;a href=&#34;https://hypriot.io/downloads/&#34;&gt;Download section&lt;/a&gt; we do have another source for getting the latest and greatest Docker for ARM.&lt;br /&gt;
 It is a debian package repository hosted at &lt;a href=&#34;https://packagecloud.io/&#34;&gt;packagecloud.io&lt;/a&gt; that contains lots of the stuff from our Download section.&lt;/p&gt;
 
 &lt;p&gt;Despite having a package repository for a couple of months now, it seems many people do not know it.
@@ -23,7 +23,7 @@ Installing or updating Docker or other Docker goodies like Docker-Compose from t
 
 &lt;p&gt;In this post I gonna show you what you need to know to get started with this repository.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/packagecloud/packagecloud_io_wide.jpg&#34; alt=&#34;Raspberry Pi Workshop in Brussels&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/packagecloud/packagecloud_io_wide.jpg&#34; alt=&#34;Raspberry Pi Workshop in Brussels&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 

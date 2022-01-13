@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ipvlan on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/ipvlan/index.xml</link>
+    <link>https://hypriot.io/tags/ipvlan/index.xml</link>
     <description>Recent content in Ipvlan on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/ipvlan/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/ipvlan/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
       <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
       <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
 
@@ -135,7 +135,7 @@ sys	8m18,404s
 
 &lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
 
@@ -256,7 +256,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 
 &lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -267,7 +267,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 &lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
 
 &lt;p&gt;Finally, May the 4th be with You!
-&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 

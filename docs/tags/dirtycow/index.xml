@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dirtycow on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/dirtycow/index.xml</link>
+    <link>https://hypriot.io/tags/dirtycow/index.xml</link>
     <description>Recent content in Dirtycow on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/dirtycow/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/dirtycow/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Fix Dirty COW on Raspberry Pi the Docker way</title>
-      <link>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</link>
+      <link>https://hypriot.io/post/fix-dirty-cow-on-raspberry-pi/</link>
       <pubDate>Tue, 01 Nov 2016 13:42:20 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</guid>
+      <guid>https://hypriot.io/post/fix-dirty-cow-on-raspberry-pi/</guid>
       <description>&lt;p&gt;Have you seen the latest reports about the Linux kernel security vulnerability called &amp;ldquo;Dirty COW&amp;rdquo;?
 Dirty COW is a &lt;a href=&#34;http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/&#34;&gt;race condition in Linux&lt;/a&gt; arising from how Copy-On-Write (the COW in the name) is handled by the kernel&amp;rsquo;s memory subsystem&amp;rsquo;s use of private mappings.&lt;/p&gt;
 
 &lt;p&gt;The really dangerous point here is, it can be used to &lt;a href=&#34;http://www.theregister.co.uk/2016/11/01/docker_user_havent_patched_dirty_cow_yet_bad_news/&#34;&gt;escape Docker containers&lt;/a&gt;.
-&lt;img src=&#34;https://blog.hypriot.com/images/fix-dirty-cow-on-raspberry-pi/dirty-cow-001.jpg&#34; alt=&#34;dirty-cow-001&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/fix-dirty-cow-on-raspberry-pi/dirty-cow-001.jpg&#34; alt=&#34;dirty-cow-001&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, we&amp;rsquo;re encourage you to immediately fix it with upgrading your Linux kernel on the Raspberry Pi !!!&lt;/p&gt;
 

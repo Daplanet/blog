@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kernel on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/tags/kernel/index.xml</link>
+    <link>https://hypriot.io/tags/kernel/index.xml</link>
     <description>Recent content in Kernel on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/tags/kernel/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
-      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <link>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
       <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <guid>https://hypriot.io/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
       <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
 
@@ -135,7 +135,7 @@ sys	8m18,404s
 
 &lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
 
@@ -256,7 +256,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 
 &lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 
@@ -267,7 +267,7 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
 &lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
 
 &lt;p&gt;Finally, May the 4th be with You!
-&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 
@@ -280,13 +280,13 @@ pirate@jetson-nano:~$ ls -al /boot/Image*
     
     <item>
       <title>Verify your Linux Kernel for Container Compatibility</title>
-      <link>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</link>
+      <link>https://hypriot.io/post/verify-kernel-container-compatibility/</link>
       <pubDate>Sun, 28 Apr 2019 08:48:50 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</guid>
+      <guid>https://hypriot.io/post/verify-kernel-container-compatibility/</guid>
       <description>&lt;p&gt;Are you sure whether your Linux kernel is able to run Containers in an optimal way, or if there are still some missing kernel settings which will lead to some strange issues in the future?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Normally you don&amp;rsquo;t have to bother about this question. When you&amp;rsquo;re using Docker and Containers on a modern Linux system or on a public cloud offering, this has been already optimized by the Linux distribution or your cloud provider. But when you start using Containers on Embedded Devices you should verify this carefully.&lt;/p&gt;
 
@@ -367,7 +367,7 @@ Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarc
 
 &lt;p&gt;In the first section &amp;ldquo;Generally Necessary&amp;rdquo; all the mandatory kernel settings are listed, and for the Nano this is completely green, all is perfect.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then in the second section &amp;ldquo;Optional Features&amp;rdquo; we can see that most Container related settings are applied, but a few are missing.&lt;/p&gt;
 
@@ -375,7 +375,7 @@ Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarc
 
 &lt;p&gt;For &amp;ldquo;Storage Drivers&amp;rdquo; you can typically ignore the missing settings for &lt;code&gt;aufs&lt;/code&gt; and &lt;code&gt;zfs&lt;/code&gt; as long as you don&amp;rsquo;t required to use these, same is true for &lt;code&gt;devicemapper&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here I&amp;rsquo;d also like to present the output as pure ASCII text so you can easily analyse (search, copy&amp;amp;paste) it later.&lt;/p&gt;
 
@@ -503,13 +503,13 @@ Limits:
     
     <item>
       <title>Docker Engine on Intel Linux runs Arm Containers</title>
-      <link>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</link>
+      <link>https://hypriot.io/post/docker-intel-runs-arm-containers/</link>
       <pubDate>Sat, 27 Apr 2019 10:48:50 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</guid>
+      <guid>https://hypriot.io/post/docker-intel-runs-arm-containers/</guid>
       <description>&lt;p&gt;Did you read the latest news from Docker about their newly announced technology partnership together with Arm, &lt;a href=&#34;https://twitter.com/Docker/status/1121054608795688963&#34;&gt;&amp;ldquo;Docker and Arm Partner to Deliver Frictionless Cloud-Native Software Development and Delivery Model for Cloud, Edge, and IoT&amp;rdquo;&lt;/a&gt;?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is really a great ground-breaking news, as it will enable an improved development workflow. Build and test all your Arm containers on your Intel-based laptop or workstation. These new Arm capabilities will be available in &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;Docker Desktop&lt;/a&gt; products from Docker, both for MacOs and Windows, and for Docker’s commercial enterprise offerings. First technical details and roadmap will be announced next week at &lt;a href=&#34;https://www.docker.com/dockercon/&#34;&gt;DockerCon 2019&lt;/a&gt; in San Francisco, so please stay tuned.&lt;/p&gt;
 
@@ -529,7 +529,7 @@ Limits:
 
 &lt;p&gt;Next you have to click on &amp;ldquo;START SCENARIO&amp;rdquo; and the Linux Docker environment is ready for you.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Run an Arm-based Container&lt;/p&gt;
 
@@ -542,7 +542,7 @@ Limits:
 
 &lt;p&gt;we&amp;rsquo;ll get an cryptic error message &lt;code&gt;exec user process caused &amp;quot;exec format error&amp;quot;&lt;/code&gt;, which basically tells us that this Docker Image tries to start a binary/executable which can&amp;rsquo;t be run on the provided Intel processor.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Step 3:&lt;/strong&gt; Run the magic command to enable Arm/Arm64 on Intel&lt;/p&gt;
 
@@ -603,7 +603,7 @@ $
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -it dieterreuter/alpine-arm64:3.9
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;When we run the command &lt;code&gt;uname -a&lt;/code&gt; it tell us, we&amp;rsquo;re running a Linux kernel 4.14.29 on Arm 64-bit architecture indicated as &lt;code&gt;aarch64&lt;/code&gt;.&lt;/p&gt;
 

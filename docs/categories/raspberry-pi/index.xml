@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Raspberry Pi on Docker Pirates ARMed with explosive stuff</title>
-    <link>https://blog.hypriot.com/categories/raspberry-pi/index.xml</link>
+    <link>https://hypriot.io/categories/raspberry-pi/index.xml</link>
     <description>Recent content in Raspberry Pi on Docker Pirates ARMed with explosive stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://blog.hypriot.com/categories/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hypriot.io/categories/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Releasing HypriotOS 1.11.0: Docker 19.03.0 CE from Raspberry Pi Zero to 4 B</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-11/</link>
       <pubDate>Thu, 25 Jul 2019 06:31:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-11/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.11.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-11/raspberry-pi-4-b.jpg&#34; alt=&#34;Raspberry Pi 4 B&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-11/raspberry-pi-4-b.jpg&#34; alt=&#34;Raspberry Pi 4 B&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -85,13 +85,13 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>Releasing HypriotOS 1.10.0: Docker 18.06.3 CE from Raspberry Pi Zero to 3 B&#43;</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-10/</link>
       <pubDate>Sun, 24 Feb 2019 16:01:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-10/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.10.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-10/hypriotos-1.10.0-docker-18.06.3.png&#34; alt=&#34;Raspberry Pi Zero with Docker 18.06.3&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-10/hypriotos-1.10.0-docker-18.06.3.png&#34; alt=&#34;Raspberry Pi Zero with Docker 18.06.3&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -165,15 +165,15 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>We now accept donations. Buy us a beer!</title>
-      <link>https://blog.hypriot.com/post/donation-liberapay-support-contribute/</link>
+      <link>https://hypriot.io/post/donation-liberapay-support-contribute/</link>
       <pubDate>Tue, 29 May 2018 16:30:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/donation-liberapay-support-contribute/</guid>
+      <guid>https://hypriot.io/post/donation-liberapay-support-contribute/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Many of our users have asked for it for quite a long time. Now, we finally took the time to setup a donation option.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Since we started Hypriot in 2015, we received great attention from a growing community around Docker on ARMed devices. We received numerous &amp;ldquo;kudos&amp;rdquo; and nice words. Even though we greatly appreciate this until today, words do not enable us to pay our infrastructure bills. Now you have the option to support us materialistically.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/donations/liberapay-hypriot.png&#34; alt=&#34;Donations Screenshot Liberpay&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/donations/liberapay-hypriot.png&#34; alt=&#34;Donations Screenshot Liberpay&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -204,15 +204,15 @@ sudo mv flash /usr/local/bin/flash
     
     <item>
       <title>Releasing HypriotOS 1.8.0: Raspberry Pi 3 B&#43;, Stretch and more</title>
-      <link>https://blog.hypriot.com/post/releasing-HypriotOS-1-8/</link>
+      <link>https://hypriot.io/post/releasing-HypriotOS-1-8/</link>
       <pubDate>Tue, 27 Mar 2018 16:30:00 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/releasing-HypriotOS-1-8/</guid>
+      <guid>https://hypriot.io/post/releasing-HypriotOS-1-8/</guid>
       <description>&lt;p&gt;&lt;strong&gt;We&amp;rsquo;re proud to announce our 1.8.0 release of HypriotOS - the fastest way to get Docker up and running on any Raspberry Pi including the new Pi 3 B+.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;At this years Pi day the Raspberry Pi foundation &lt;a href=&#34;https://www.raspberrypi.org/blog/raspberry-pi-3-model-bplus-sale-now-35/&#34;&gt;has announced a new model&lt;/a&gt; - the Raspberry Pi 3 B+ with improved networking and a faster CPU. A good reason for us to update our HypriotOS to support this new device. And while we were at it we also updated the OS to Raspbian Stretch and Linux Kernel version 4.9.80 - and of course the latest Docker 18.03.0-ce release.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-8/pi3-b-plus.jpg&#34; alt=&#34;Raspberry Pi 3 B+&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-8/pi3-b-plus.jpg&#34; alt=&#34;Raspberry Pi 3 B+&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -292,7 +292,7 @@ You only have to customize the YAML file at&lt;/p&gt;
 
 &lt;p&gt;And after booting a Raspberry Pi Zero or Pi 3/Pi 3 B+ you will see some blinking LED&amp;rsquo;s once everything has been set up after the first boot.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/release-1-8/rainbow.jpg&#34; alt=&#34;Raspberry Pi 3 B+ with rainbow service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/release-1-8/rainbow.jpg&#34; alt=&#34;Raspberry Pi 3 B+ with rainbow service&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h2&gt;
 
@@ -307,17 +307,17 @@ You only have to customize the YAML file at&lt;/p&gt;
     
     <item>
       <title>Bootstrapping a Cloud with Cloud-Init and HypriotOS</title>
-      <link>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</link>
+      <link>https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/</link>
       <pubDate>Sun, 29 Oct 2017 00:14:00 -0700</pubDate>
       
-      <guid>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</guid>
+      <guid>https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Things may come to those who wait, but only the things left by those who hustle.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;Dieter Reuter&lt;/a&gt; really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn&amp;rsquo;t a single man army, the rest of the &lt;a href=&#34;http://blog.hypriot.com/crew/&#34;&gt;Docker Pirates&lt;/a&gt; over at &lt;a href=&#34;http://blog.hypriot.com/&#34;&gt;Hypriot&lt;/a&gt; have been doing some awesome things as well!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
 &lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/horiavarlan/5019447085/in/photolist-8DxYK8-6RFbEf-6RFfrw-6RLCGd-6RAH6n-6RF9gf-6RATnx-6RGCKM-6RB7L2-6REXqA-6T4VEQ-6RBeKg-brFbp6-6RAZU8-6RGwNk-6RAiLD-6RBgp6-6RLAvm-6RBbwM-6RAE5e-6RLJVj-6RLFdN-6RBsmr-6RFxxw-6RLJrY-6RFvGJ-6RFtZS-6REvrf-6RENUY-6RFwCC-6RGBEn-6RGz9n-6RFpb3-6RFzo1-if9tn-9NF66y-84UZy9-6RFew9-6RFq2m-6RLHWJ-6T4Wd9-9NChKc-6RAZ5V-9NCiK8-6T5Lbf-6RAUfp-6RBhb6-9NF3UW-9NF979-9NFaFW&#34;&gt;Horia Varlan&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;Building on the backs of these outstanding community members, I was finally able to spin up a Raspberry Pi, exactly like I do in the &amp;ldquo;real world&amp;rdquo;, just turn it on, let it self-configure, then software just runs.&lt;/p&gt;
@@ -652,13 +652,13 @@ flash \
     
     <item>
       <title>DockerCon 2017 Demo: Monitoring Docker Swarm with LED&#39;s</title>
-      <link>https://blog.hypriot.com/post/dockerconaustin2017/</link>
+      <link>https://hypriot.io/post/dockerconaustin2017/</link>
       <pubDate>Thu, 20 Apr 2017 14:30:34 -0600</pubDate>
       
-      <guid>https://blog.hypriot.com/post/dockerconaustin2017/</guid>
+      <guid>https://hypriot.io/post/dockerconaustin2017/</guid>
       <description>&lt;p&gt;At DockerCon 2017 in Austin I gave a presentation of a Raspberry Pi cluster mixed with some UP boards. The audience really liked the visual effects of the Docker Swarm scaling a service up and down. So I show you some background details what you need to run that demo on your Raspberry Pi cluster as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/stage2.jpg&#34; alt=&#34;PiCloud at DockerCon Austin&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/stage2.jpg&#34; alt=&#34;PiCloud at DockerCon Austin&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -704,7 +704,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker service scale whoami=16
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/scale-up.gif&#34; alt=&#34;Scale up&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/scale-up.gif&#34; alt=&#34;Scale up&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And then light up all the LED&amp;rsquo;s by scaling up to the number of LED&amp;rsquo;s you have.&lt;/p&gt;
 
@@ -723,7 +723,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 
 &lt;p&gt;Now watch what happens. Each destroyed container lights up red and then dims. After a while Docker swarm manager starts the new version and so new LED&amp;rsquo;s with blue light up. After a while all LED&amp;rsquo;s have changed from yellow (version 1.1.0) to blue (version 1.2.0). And while this rolling update is going on you still can use this &amp;ldquo;whoami&amp;rdquo; service by curl&amp;rsquo;ing it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/rolling-update.gif&#34; alt=&#34;Rolling update&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/rolling-update.gif&#34; alt=&#34;Rolling update&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;scale-down-to-one&#34;&gt;Scale down to one&lt;/h2&gt;
 
@@ -732,7 +732,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;docker service scale whoami=1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/dockercon2017/scale-down-to-one.gif&#34; alt=&#34;Scale down to one&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/dockercon2017/scale-down-to-one.gif&#34; alt=&#34;Scale down to one&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hope I did make you curious to try it out on your own cluster. Happy hacking and have fun! If you want to improve the visual effects have a look at the Node.js sources in the &lt;a href=&#34;https://github.com/StefanScherer/swarm-monitor&#34;&gt;GitHub repo&lt;/a&gt;. Rewrite it in Golang or anything else and suprise me with other nice visual effects.&lt;/p&gt;
 
@@ -743,17 +743,17 @@ After the image has been downloaded the LED monitor should show one yellow LED l
     
     <item>
       <title>Building a 64bit Docker OS for the Raspberry Pi 3</title>
-      <link>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</link>
+      <link>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</link>
       <pubDate>Thu, 02 Mar 2017 11:28:42 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</guid>
+      <guid>https://hypriot.io/post/building-a-64bit-docker-os-for-rpi3/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m happy to announce the start of a &amp;ldquo;short&amp;rdquo; workshop were I&amp;rsquo;m going through all the steps to build a complete 64bit operating system for the Raspberry Pi 3. This 64bit HypriotOS is mainly focused on running Docker containers easily on this popular DIY and IoT device.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e6/Raspberry-Pi-3-Flat-Top.jpg&#34; alt=&#34;Raspi3-Image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You&amp;rsquo;ll see that I&amp;rsquo;m using Docker heavily for each and every build step, because it really helps us a lot to run a local build with &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker-for-Mac&lt;/a&gt; or later on the cloud build servers at &lt;a href=&#34;https://travis-ci.org&#34;&gt;Travis CI&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This workshop is sponsored by &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bee42solutions&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @bee42solutions&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
@@ -805,7 +805,7 @@ After the image has been downloaded the LED monitor should show one yellow LED l
 
 &lt;p&gt;Special thanks goes to &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; for giving me the time to work on this awesome topic to build a complete Docker-enabled 64bit OS for the Raspberry Pi 3.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
 
@@ -818,15 +818,15 @@ After the image has been downloaded the LED monitor should show one yellow LED l
     
     <item>
       <title>Let&#39;s build the smallest possible Docker image</title>
-      <link>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</link>
+      <link>https://hypriot.io/post/build-smallest-possible-docker-image/</link>
       <pubDate>Wed, 22 Feb 2017 09:18:35 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</guid>
+      <guid>https://hypriot.io/post/build-smallest-possible-docker-image/</guid>
       <description>&lt;p&gt;Imagine what happens if we&amp;rsquo;re starting to use Docker containers on IoT devices. On small and slow devices with limited system resources and connected via a damn slow network connection we do have to care differently on how to build and ship our apps. In these circumstances it pays off and it&amp;rsquo;s absolutely essential to optimize our applications and the resulting Docker images for size.&lt;/p&gt;
 
 &lt;p&gt;SIZE DOES MATTER&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/build-smallest-possible-docker-image/docker-image-minimal.png&#34; alt=&#34;docker-image-minimal.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/build-smallest-possible-docker-image/docker-image-minimal.png&#34; alt=&#34;docker-image-minimal.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If we&amp;rsquo;re doing it right we&amp;rsquo;ll get a lot of benefits such as blasting fast download speed for updating to a new or more secured version. On wireless networks we are also reducing the costs for data transfers as well.&lt;/p&gt;
 
@@ -927,7 +927,7 @@ Hello Docker World!
 
 &lt;p&gt;Please publish your results on DockerHub, source codes on GitHub and tweet about it on Twitter with the hashtag #DockerChallenge. The goal of this challenge is to get familiar with the techniques to build minimal sized Docker images not only for IoT use cases, to understand the fact that a Docker container can be just a single process, and that this process can be really extremely small itself. On the way we&amp;rsquo;ll learn to take care about all the necessary steps to reduce the size and how we can optimize our development workflow as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/build-smallest-possible-docker-image/docker-image-minimal2.png&#34; alt=&#34;docker-image-minimal2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/build-smallest-possible-docker-image/docker-image-minimal2.png&#34; alt=&#34;docker-image-minimal2.png&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, let&amp;rsquo;s start the journey&amp;hellip;&lt;/p&gt;
 
@@ -942,17 +942,17 @@ Hello Docker World!
     
     <item>
       <title>Setup Kubernetes on a Raspberry Pi Cluster easily the official way!</title>
-      <link>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</link>
+      <link>https://hypriot.io/post/setup-kubernetes-raspberry-pi-cluster/</link>
       <pubDate>Wed, 11 Jan 2017 14:03:34 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</guid>
+      <guid>https://hypriot.io/post/setup-kubernetes-raspberry-pi-cluster/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; shares the pole position with Docker in the category &amp;ldquo;orchestration solutions for Raspberry Pi cluster&amp;rdquo;.
 However it&amp;rsquo;s setup process has been elaborate – until &lt;a href=&#34;http://blog.kubernetes.io/2016/09/how-we-made-kubernetes-easy-to-install.html&#34;&gt;v1.4 with the kubeadm announcement&lt;/a&gt;.
 With that effort, Kubernetes changed this game completely and can be up and running officially within no time.&lt;/p&gt;
 
 &lt;p&gt;I am very happy to announce that this blog post has been written in collaboration with &lt;a href=&#34;https://github.com/luxas&#34;&gt;Lucas Käldström&lt;/a&gt;, an independent maintainer of Kubernetes (his story is very interesting,  you can read it in a &lt;a href=&#34;https://www.cncf.io/blog/2016/11/29/diversity-scholarship-series-programming-journey-becoming-kubernetes-maintainer&#34;&gt;CNCF blogpost&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -1042,7 +1042,7 @@ $ echo &amp;quot;deb http://apt.kubernetes.io/ kubernetes-xenial main&amp;quot; 
 
 &lt;p&gt;After Kubernetes has been initialized, the last lines of your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To start using your cluster, you need to run (as a regular user):&lt;/p&gt;
 
@@ -1063,7 +1063,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, &lt;strong&gt;we need to setup flannel v0.9.1 as the Pod network driver&lt;/strong&gt;. Do not use &lt;a href=&#34;https://github.com/coreos/flannel/releases/tag/v0.8.0&#34;&gt;v0.8.0&lt;/a&gt; due to a known &lt;a href=&#34;https://github.com/coreos/flannel/issues/773&#34;&gt;bug&lt;/a&gt; that can cause a &lt;code&gt;CrashLoopBackOff&lt;/code&gt; error. Run this &lt;strong&gt;on the master node&lt;/strong&gt;:&lt;/p&gt;
 
@@ -1072,7 +1072,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Your terminal should look like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then wait until all flannel and all other cluster-internal Pods are &lt;code&gt;Running&lt;/code&gt; before you continue:&lt;/p&gt;
 
@@ -1081,7 +1081,7 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;Nice, it seems like they are all &lt;code&gt;Running&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s all for the setup of Kubernetes! Next, let&amp;rsquo;s actually spin up a service on the cluster!&lt;/p&gt;
 
@@ -1108,11 +1108,11 @@ $ export KUBECONFIG=$HOME/admin.conf
 
 &lt;p&gt;You should see three endpoints (= containers) like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s curl one of them to see if the service is up:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The HTML is the response of the service. Good, it&amp;rsquo;s up and running! Next, let&amp;rsquo;s see how we can access it from outside the cluster!&lt;/p&gt;
 
@@ -1159,7 +1159,7 @@ $ kubectl apply -f hypriot-ingress.yaml
 
 &lt;p&gt;Visit the loadbalancing node&amp;rsquo;s IP address in your browser and you should see a nice web page:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you don&amp;rsquo;t see a website there yet, run:&lt;/p&gt;
 
@@ -1222,15 +1222,15 @@ $ kubectl apply -f hypriot-ingress.yaml
     
     <item>
       <title>Setup a simple CI pipeline to build Docker images for ARM</title>
-      <link>https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/</link>
+      <link>https://hypriot.io/post/setup-simple-ci-pipeline-for-arm-images/</link>
       <pubDate>Tue, 10 Jan 2017 07:25:23 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/</guid>
+      <guid>https://hypriot.io/post/setup-simple-ci-pipeline-for-arm-images/</guid>
       <description>&lt;p&gt;Recently I did an experiment: Can we build Docker images for ARM on ordinary cloud CI services that only provide Intel CPU&amp;rsquo;s?&lt;/p&gt;
 
 &lt;p&gt;The idea was to get rid of self hosted CI build agents that you have to care for. If you want to provide an ARM Docker image for an open source project your task is to build it and not to setup and maintain a whole pipeline for it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/setup-simple-ci-pipeline-for-arm-images/github_yaml_arm.png&#34; alt=&#34;GitHub + YAML = ARM Docker image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/setup-simple-ci-pipeline-for-arm-images/github_yaml_arm.png&#34; alt=&#34;GitHub + YAML = ARM Docker image&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -1335,12 +1335,12 @@ script:
     
     <item>
       <title>Docker is supported on the $9 C.H.I.P. computer</title>
-      <link>https://blog.hypriot.com/post/docker-supported-on-chip-computer/</link>
+      <link>https://hypriot.io/post/docker-supported-on-chip-computer/</link>
       <pubDate>Sun, 11 Dec 2016 13:22:15 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/docker-supported-on-chip-computer/</guid>
+      <guid>https://hypriot.io/post/docker-supported-on-chip-computer/</guid>
       <description>&lt;p&gt;I guess you&amp;rsquo;re already knowing, one of the cheapest but powerful ARM boards is the $9 C.H.I.P. computer from Next Thing Co. &lt;a href=&#34;https://twitter.com/nextthingco&#34;&gt;@NextThingCo&lt;/a&gt;. It has an ARMv7 1GHz CPU with 512 MByte of main memory, 4 GByte flash memory as disk storage and is equipped with onboard WiFi and bluetooth as well.
-&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/chip-photo2.jpg&#34; alt=&#34;chip-photo&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/chip-photo2.jpg&#34; alt=&#34;chip-photo&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Some time ago I wrote a detailed blog post about how to &lt;a href=&#34;http://blog.hypriot.com/post/install-docker-on-chip-computer/&#34;&gt;Install Docker 1.12 on the $9 C.H.I.P. computer&lt;/a&gt; with the help of a custom Linux kernel which I built from source for this purpose and included all the necessary kernel modules which are required to run Docker. As an outlook I mentioned that one of the kernel developers from &lt;a href=&#34;https://twitter.com/nextthingco&#34;&gt;@NextThingCo&lt;/a&gt;, namely Wynter Woods &lt;a href=&#34;https://twitter.com/zerotri&#34;&gt;@zerotri&lt;/a&gt;, is working to support Docker officially.&lt;/p&gt;
 
@@ -1348,7 +1348,7 @@ script:
 &lt;strong&gt;Docker is running on the C.H.I.P. with their latest standard kernel!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;
-&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/chip-and-banana.jpg&#34; alt=&#34;chip-and-banana&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/chip-and-banana.jpg&#34; alt=&#34;chip-and-banana&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;short-overview&#34;&gt;Short overview&lt;/h3&gt;
 
@@ -1538,7 +1538,7 @@ fec2773baaec570ba8b6e00296dfd11b4b4768d1b51e574d851968b9225b9d22
 &lt;pre&gt;&lt;code&gt;open http://192.168.2.112
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/first-container-on-chip.jpg&#34; alt=&#34;first-container-on-chip&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/first-container-on-chip.jpg&#34; alt=&#34;first-container-on-chip&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;using-latest-rc-of-docker-engine&#34;&gt;Using latest RC of Docker Engine&lt;/h3&gt;
 
@@ -1607,15 +1607,15 @@ curl -sSL https://get.docker.com | sh
     
     <item>
       <title>Fix Dirty COW on Raspberry Pi the Docker way</title>
-      <link>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</link>
+      <link>https://hypriot.io/post/fix-dirty-cow-on-raspberry-pi/</link>
       <pubDate>Tue, 01 Nov 2016 13:42:20 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</guid>
+      <guid>https://hypriot.io/post/fix-dirty-cow-on-raspberry-pi/</guid>
       <description>&lt;p&gt;Have you seen the latest reports about the Linux kernel security vulnerability called &amp;ldquo;Dirty COW&amp;rdquo;?
 Dirty COW is a &lt;a href=&#34;http://www.theregister.co.uk/2016/10/21/linux_privilege_escalation_hole/&#34;&gt;race condition in Linux&lt;/a&gt; arising from how Copy-On-Write (the COW in the name) is handled by the kernel&amp;rsquo;s memory subsystem&amp;rsquo;s use of private mappings.&lt;/p&gt;
 
 &lt;p&gt;The really dangerous point here is, it can be used to &lt;a href=&#34;http://www.theregister.co.uk/2016/11/01/docker_user_havent_patched_dirty_cow_yet_bad_news/&#34;&gt;escape Docker containers&lt;/a&gt;.
-&lt;img src=&#34;https://blog.hypriot.com/images/fix-dirty-cow-on-raspberry-pi/dirty-cow-001.jpg&#34; alt=&#34;dirty-cow-001&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/fix-dirty-cow-on-raspberry-pi/dirty-cow-001.jpg&#34; alt=&#34;dirty-cow-001&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So, we&amp;rsquo;re encourage you to immediately fix it with upgrading your Linux kernel on the Raspberry Pi !!!&lt;/p&gt;
 
@@ -1831,15 +1831,15 @@ HypriotOS/armv7: pirate@black-pearl in ~
     
     <item>
       <title>Testing High Availability of Docker Swarm on a Raspberry Pi Cluster (Updated)</title>
-      <link>https://blog.hypriot.com/post/high-availability-with-docker/</link>
+      <link>https://hypriot.io/post/high-availability-with-docker/</link>
       <pubDate>Wed, 26 Oct 2016 18:03:34 +0100</pubDate>
       
-      <guid>https://blog.hypriot.com/post/high-availability-with-docker/</guid>
+      <guid>https://hypriot.io/post/high-availability-with-docker/</guid>
       <description>&lt;p&gt;In its release in June this year, Docker announced two exciting news about the Docker Engine: First, the Engine 1.12 comes with built-in high availability features, called &amp;ldquo;Docker Swarm Mode&amp;rdquo;. And second, Docker started providing official support for the ARM architecture.&lt;/p&gt;
 
 &lt;p&gt;These two news combined beg for testing the new capabilities in reality.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/high-availability-testing/high-availability-docker-swarm.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/high-availability-testing/high-availability-docker-swarm.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -1857,7 +1857,7 @@ HypriotOS/armv7: pirate@black-pearl in ~
 
 &lt;p&gt;See how the cluster looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/high-availability-testing/PicoCluster.jpg&#34; alt=&#34;PicoClusterBuilt&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/high-availability-testing/PicoCluster.jpg&#34; alt=&#34;PicoClusterBuilt&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;As software&lt;/strong&gt;, I chose HypriotOS. I also tried Raspbian, but it requires a large system upgrade after the first boot in order to provide all features required by Docker (e.g. VXLAN kernel module). Before and after the system upgrade, I also had to run &lt;a href=&#34;https://github.com/docker/docker/blob/master/contrib/check-config.sh&#34;&gt;Docker&amp;rsquo;s test script&lt;/a&gt; to make sure everything is ok. All of this is not a big deal, but if there is an OS available that comes out of the box with all that Docker needs (and even adds lots of useful optimizations), it simply saves time and provides a hassle-free experience. So I flashed all SD cards with HypriotOS using our &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;flash tool&lt;/a&gt;.&lt;/p&gt;
 
@@ -1865,7 +1865,7 @@ HypriotOS/armv7: pirate@black-pearl in ~
 
 &lt;p&gt;Finally, we have 5 terminals opened, all waiting for commands as you see in the following image. Please don&amp;rsquo;t care about the commands running in each terminal for now.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/high-availability-testing/terminal.png&#34; alt=&#34;Terminator&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/high-availability-testing/terminal.png&#34; alt=&#34;Terminator&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s all to do before getting our hands on Docker itself!&lt;/p&gt;
 
@@ -1953,13 +1953,13 @@ To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; an
     
     <item>
       <title>Deploying an IoT Swarm with Docker Machine</title>
-      <link>https://blog.hypriot.com/post/deploy-swarm-on-chip-with-docker-machine/</link>
+      <link>https://hypriot.io/post/deploy-swarm-on-chip-with-docker-machine/</link>
       <pubDate>Sun, 04 Sep 2016 19:45:58 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/deploy-swarm-on-chip-with-docker-machine/</guid>
+      <guid>https://hypriot.io/post/deploy-swarm-on-chip-with-docker-machine/</guid>
       <description>&lt;p&gt;With the new SwarmMode in Docker 1.12 it is really damn easy to build a Docker Swarm and connect different ARM devices to an IoT cluster.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-flashing1.jpg&#34; alt=&#34;swarm-chip-flashing1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-flashing1.jpg&#34; alt=&#34;swarm-chip-flashing1.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So let&amp;rsquo;s connect a few of the $9 C.H.I.P. computers and a Raspberry Pi Zero all through a WiFi network&amp;hellip;&lt;/p&gt;
 
@@ -1977,7 +1977,7 @@ docker-machine version 0.8.0, build b85aac1
 
 &lt;h4 id=&#34;step-2-prepare-all-c-h-i-p-s-with-docker-machine&#34;&gt;Step 2: Prepare all C.H.I.P.&amp;rsquo;s with Docker Machine&lt;/h4&gt;
 
-&lt;p&gt;In order to connect a couple of C.H.I.P. computers to a Docker Swarm cluster, we have to install Docker 1.12.1 first. This can be done easily by following the steps of my last tutorial &lt;a href=&#34;https://blog.hypriot.com/post/install-docker-on-chip-computer/&#34;&gt;Install Docker 1.12 on the $9 C.H.I.P. computer&lt;/a&gt;. Then we&amp;rsquo;re using the standard Docker Machine from a Mac to attach each C.H.I.P. device via a secured Docker API port and give each device an individual hostname on the network. With the help of Docker Machine it&amp;rsquo;s easier to access all the C.H.I.P. devices we&amp;rsquo;d like to connect to the Swarm cluster from a Mac, Linux or Windows machine.&lt;/p&gt;
+&lt;p&gt;In order to connect a couple of C.H.I.P. computers to a Docker Swarm cluster, we have to install Docker 1.12.1 first. This can be done easily by following the steps of my last tutorial &lt;a href=&#34;https://hypriot.io/post/install-docker-on-chip-computer/&#34;&gt;Install Docker 1.12 on the $9 C.H.I.P. computer&lt;/a&gt;. Then we&amp;rsquo;re using the standard Docker Machine from a Mac to attach each C.H.I.P. device via a secured Docker API port and give each device an individual hostname on the network. With the help of Docker Machine it&amp;rsquo;s easier to access all the C.H.I.P. devices we&amp;rsquo;d like to connect to the Swarm cluster from a Mac, Linux or Windows machine.&lt;/p&gt;
 
 &lt;p&gt;Here are the basic steps we have to follow for each single C.H.I.P. computer:&lt;/p&gt;
 
@@ -1989,7 +1989,7 @@ docker-machine version 0.8.0, build b85aac1
 &lt;/ol&gt;
 
 &lt;p&gt;Flashing the C.H.I.P. computer in FEL mode with UART console cable attached: &lt;br&gt;
-&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-flashing2.jpg&#34; alt=&#34;swarm-chip-flashing2.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-flashing2.jpg&#34; alt=&#34;swarm-chip-flashing2.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As soon as we&amp;rsquo;ve installed our first C.H.I.P. with Docker we&amp;rsquo;ll use its IP address and run &lt;code&gt;docker-machine create&lt;/code&gt; and let&amp;rsquo;s do some Docker magic and we have secured the network access to its Docker Engine easily. In this command I&amp;rsquo;m using the flag &lt;code&gt;--debug&lt;/code&gt; to get a more verbose output, so you can see all the details whats going on in the background, but you can omit this flag for the remaining C.H.I.P.&amp;rsquo;s.&lt;/p&gt;
 
@@ -2183,7 +2183,7 @@ This node joined a swarm as a worker.
 &lt;h4 id=&#34;step-6-attach-an-additional-pi-zero-as-swarm-worker&#34;&gt;Step 6: Attach an additional Pi Zero as Swarm worker&lt;/h4&gt;
 
 &lt;p&gt;But we&amp;rsquo;re not limited in using only one kind of ARM devices for our Swarm cluster. So I&amp;rsquo;d like to add a different device, a Raspberry Pi Zero which is equipped with a &lt;a href=&#34;https://twitter.com/redbearlab&#34;&gt;RedBear IoT pHAT&lt;/a&gt; for WiFi/Bluetooth connectivity.
-&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-pi-zero.jpg&#34; alt=&#34;swarm-chip-pi-zero.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-pi-zero.jpg&#34; alt=&#34;swarm-chip-pi-zero.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here you can see that using &lt;a href=&#34;https://github.com/hypriot/image-builder-rpi&#34;&gt;HypriotOS for RPi&lt;/a&gt; and the Hypriot &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;flash tool&lt;/a&gt; it&amp;rsquo;s damn easy to create another ARM device with Docker 1.12.1 and attach it via WiFi to our network.&lt;/p&gt;
 
@@ -2271,12 +2271,12 @@ agglzv8ju0diwpd665nbhdtti    swarm-chip06   Ready   Active
 ctggddtwrg0ybrwpa52heaz9c    swarm-chip02   Ready   Active        Reachable
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-node-ls.jpg&#34; alt=&#34;swarm-chip-node-ls.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-node-ls.jpg&#34; alt=&#34;swarm-chip-node-ls.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;the-result-a-mixed-iot-swarm-running-docker-1-12&#34;&gt;THE RESULT: a mixed IoT Swarm running Docker 1.12&lt;/h3&gt;
 
 &lt;p&gt;This is our newly created Swarm cluster, built with an USB power supply from Anker, 6x C.H.I.P. computers and a lonely Raspberry Pi Zero - all devices attached through a WiFi network and running Docker 1.12.1 with SwarmMode: &lt;br&gt;
-&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-complete-cluster.jpg&#34; alt=&#34;swarm-chip-complete-cluster.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-complete-cluster.jpg&#34; alt=&#34;swarm-chip-complete-cluster.jpg&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;next-steps&#34;&gt;Next steps&lt;/h3&gt;
 
@@ -2293,12 +2293,12 @@ ctggddtwrg0ybrwpa52heaz9c    swarm-chip02   Ready   Active        Reachable
     
     <item>
       <title>Install Docker 1.12 on the $9 C.H.I.P. computer</title>
-      <link>https://blog.hypriot.com/post/install-docker-on-chip-computer/</link>
+      <link>https://hypriot.io/post/install-docker-on-chip-computer/</link>
       <pubDate>Sat, 03 Sep 2016 22:53:12 +0200</pubDate>
       
-      <guid>https://blog.hypriot.com/post/install-docker-on-chip-computer/</guid>
+      <guid>https://hypriot.io/post/install-docker-on-chip-computer/</guid>
       <description>&lt;p&gt;Did you see the successfully launch of a really cheap ARM board for $9 only - the C.H.I.P. computer? It has an ARMv7 CPU with 512 MByte of main memory, 4 GByte flash memory as disk storage and is equipped with onboard WiFi and bluetooth as well.
-&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/chip-and-banana.jpg&#34; alt=&#34;chip-and-banana&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/chip-and-banana.jpg&#34; alt=&#34;chip-and-banana&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With these awesome features built-in it would be really a great device to run Docker containers if only the recent Linux kernel 4.4  has the correct modules included, but it doesn&amp;rsquo;t - what a bummer!&lt;/p&gt;
 
@@ -2306,7 +2306,7 @@ ctggddtwrg0ybrwpa52heaz9c    swarm-chip02   Ready   Active        Reachable
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/chip-photo.jpg&#34; alt=&#34;chip-photo&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/chip-photo.jpg&#34; alt=&#34;chip-photo&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
 
@@ -2330,7 +2330,7 @@ ctggddtwrg0ybrwpa52heaz9c    swarm-chip02   Ready   Active        Reachable
 &lt;h4 id=&#34;step-1-flash-the-latest-available-firmware&#34;&gt;Step 1: Flash the latest available firmware&lt;/h4&gt;
 
 &lt;p&gt;Use a Chrome browser and flash the latest firmware and OS on your C.H.I.P. computer. For detailed instructions go to the appropriate web site at &lt;a href=&#34;http://flash.getchip.com/&#34;&gt;http://flash.getchip.com/&lt;/a&gt;.
-&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/flash-getchip-com.jpg&#34; alt=&#34;flash-getchip-com&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/flash-getchip-com.jpg&#34; alt=&#34;flash-getchip-com&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To run Docker on the C.H.I.P. we&amp;rsquo;re using the OS image for &lt;code&gt;Debian Headless 4.4&lt;/code&gt;, which is a server installation without any GUI and thus it&amp;rsquo;s quite smaller is size, so we do have more space left for running apps and Docker containers.&lt;/p&gt;
 
@@ -2349,7 +2349,7 @@ New offset 0x27400000
 *****************[ FLASHING DONE ]*****************
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/chip-successfully-flashed.jpg&#34; alt=&#34;chip-successfully-flashed&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/chip-successfully-flashed.jpg&#34; alt=&#34;chip-successfully-flashed&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;step-2-connect-to-the-c-h-i-p-via-usb-or-uart-console-cable&#34;&gt;Step 2: Connect to the C.H.I.P. via USB or UART console cable&lt;/h4&gt;
 
@@ -2633,7 +2633,7 @@ fec2773baaec570ba8b6e00296dfd11b4b4768d1b51e574d851968b9225b9d22
 &lt;pre&gt;&lt;code&gt;open http://192.168.2.112
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/install-docker-on-chip-computer/first-container-on-chip.jpg&#34; alt=&#34;first-container-on-chip&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/install-docker-on-chip-computer/first-container-on-chip.jpg&#34; alt=&#34;first-container-on-chip&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Additional tip:&lt;/strong&gt;&lt;/p&gt;
 
