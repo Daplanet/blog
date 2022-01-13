@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Announcements on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://hypriot.io/categories/announcements/index.xml</link>
+    <description>Recent content in Announcements on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://hypriot.io/categories/announcements/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2022 - A New Hope as Pirates take to the cyber seas again!</title>
+      <link>https://hypriot.io/post/a-new-home/</link>
+      <pubDate>Thu, 13 Jan 2022 20:01:09 +0000</pubDate>
+      
+      <guid>https://hypriot.io/post/a-new-home/</guid>
+      <description>&lt;p&gt;#Hypriot #raspberrypi and #docker users rejoice! Hypriot Linux and blog is back online as &lt;a href=&#34;http://hypriot.io/&#34;&gt;http://hypriot.io/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/new-hope/banner.png&#34; alt=&#34;Da Planet Security&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;We here at Da Planet Security absolutely love the community that&amp;rsquo;s built up around this and have been supporting the project in the background for a while. Our team has reached out to the original devs to take on stewardship of Hypriot. Over the past few months there has been a lot of work going on behind the scenes to upgrade the project as we fork and work to maintain what already exists. The new repos already live at &lt;a href=&#34;https://github.com/daplanet?q=hypriot&amp;amp;type=all&#34;&gt;https://github.com/daplanet?q=hypriot&amp;amp;type=all&lt;/a&gt; and rolling updates will continue to move forward along with several cloud native improvements.&lt;/p&gt;
+
+&lt;p&gt;We thank you as a community for your continued support of Hypriot.&lt;/p&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;D. Spencer &lt;a href=&#34;https://angel.co/denzuko&#34;&gt;@denzuko&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
