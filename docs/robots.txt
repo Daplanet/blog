@@ -1,5 +1,5 @@
-# blog.hypriot.com/
+# hypriot.io/
 
 # Disallow crawling of all content
-User-agent: *
-Disallow:
+#User-agent: *
+#Disallow:

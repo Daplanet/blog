@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Docker Pirates ARMed with explosive stuff"
 theme = "hyde"
 watch = "false"
+destination = "docs"
 
 [params]
   Description = "Roaming the seven seas in search for golden container plunder."
@@ -48,5 +49,5 @@ watch = "false"
     name = "DONATE"
     pre = "<i class='fa fa-heart'></i>"
     weight = -60
-    identifier = "doonate"
-    url = "https://blog.hypriot.com/post/donation-liberapay-support-contribute/"
+    identifier = "donate"
+    url = "https://hypriot.io/post/donation-liberapay-support-contribute/"
