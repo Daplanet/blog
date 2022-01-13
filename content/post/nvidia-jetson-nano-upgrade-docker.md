@@ -9,7 +9,7 @@ Categories = ["Docker","Nvidia","Jetson","Nano","ARM","64bit","ARM64","AARCH64",
 
 +++
 
-In our last blogposts about the [NVIDIA Jetson Nano Developer Kit - Introduction](https://blog.hypriot.com/post/nvidia-jetson-nano-intro/) and [NVIDIA Jetson Nano - Install Docker Compose](https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/) we digged into the brand-new **NVIDIA Jetson Nano Developer Kit** and we know, that Docker 18.06.1-CE is already installed, but...
+In our last blogposts about the [NVIDIA Jetson Nano Developer Kit - Introduction](https://hypriot.io/post/nvidia-jetson-nano-intro/) and [NVIDIA Jetson Nano - Install Docker Compose](https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/) we digged into the brand-new **NVIDIA Jetson Nano Developer Kit** and we know, that Docker 18.06.1-CE is already installed, but...
 
 ![jetson-desktop-login.jpg](/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg)
 

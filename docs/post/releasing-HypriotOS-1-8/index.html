@@ -141,7 +141,7 @@ sudo mv flash /usr/local/bin/flash
 
 <p>with password &ldquo;hypriot&rdquo;.</p>
 
-<p>If you want the Raspberry Pi to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit <code>/boot/user-data</code> of the SD card and have a look at <a href="https://blog.hypriot.com/faq/#wifi">our FAQ</a>. Alternatively, checkout the parameters of the <a href="https://github.com/hypriot/flash">Hypriot flash tool</a> that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:</p>
+<p>If you want the Raspberry Pi to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit <code>/boot/user-data</code> of the SD card and have a look at <a href="https://hypriot.io/faq/#wifi">our FAQ</a>. Alternatively, checkout the parameters of the <a href="https://github.com/hypriot/flash">Hypriot flash tool</a> that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:</p>
 
 <pre><code>flash -n myHOSTNAME -u wifi.yml https://github.com/hypriot/image-builder-rpi/releases/download/v1.8.0/hypriotos-rpi-v1.8.0.img.zip
 </code></pre>

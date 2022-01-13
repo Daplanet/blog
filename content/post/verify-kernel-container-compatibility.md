@@ -85,7 +85,7 @@ $ ./check-config.sh kernel.config
 
 ### Verify the Linux Kernel on NVIDIA Jetson Nano DevKit
 
-As a real life example let's now verify the Linux kernel of the brand-new Jetson Nano DevKit from NVIDIA. I already wrote a blogpost about how to install Linux for the Nano board, see here [NVIDIA Jetson Nano Developer Kit - Introduction](https://blog.hypriot.com/post/nvidia-jetson-nano-intro/).
+As a real life example let's now verify the Linux kernel of the brand-new Jetson Nano DevKit from NVIDIA. I already wrote a blogpost about how to install Linux for the Nano board, see here [NVIDIA Jetson Nano Developer Kit - Introduction](https://hypriot.io/post/nvidia-jetson-nano-intro/).
 
 First we'll check the Linux kernel version and we can see, it's a current LTS kernel 4.9.
 ```bash

@@ -8,7 +8,7 @@ Categories = ["Docker","Nvidia","Jetson","Nano","ARM","64bit","ARM64","AARCH64",
 
 +++
 
-In our last blogpost [NVIDIA Jetson Nano Developer Kit - Introduction](https://blog.hypriot.com/post/nvidia-jetson-nano-intro/) we digged into the brand-new **NVIDIA Jetson Nano Developer Kit** and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.
+In our last blogpost [NVIDIA Jetson Nano Developer Kit - Introduction](https://hypriot.io/post/nvidia-jetson-nano-intro/) we digged into the brand-new **NVIDIA Jetson Nano Developer Kit** and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.
 
 ![Jetson-Nano-Upacked.jpg](/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg)
 

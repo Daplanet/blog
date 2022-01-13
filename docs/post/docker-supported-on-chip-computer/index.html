@@ -86,7 +86,7 @@
     <p>I guess you&rsquo;re already knowing, one of the cheapest but powerful ARM boards is the $9 C.H.I.P. computer from Next Thing Co. <a href="https://twitter.com/nextthingco">@NextThingCo</a>. It has an ARMv7 1GHz CPU with 512 MByte of main memory, 4 GByte flash memory as disk storage and is equipped with onboard WiFi and bluetooth as well.
 <img src="/images/install-docker-on-chip-computer/chip-photo2.jpg" alt="chip-photo" /></p>
 
-<p>Some time ago I wrote a detailed blog post about how to <a href="http://blog.hypriot.com/post/install-docker-on-chip-computer/">Install Docker 1.12 on the $9 C.H.I.P. computer</a> with the help of a custom Linux kernel which I built from source for this purpose and included all the necessary kernel modules which are required to run Docker. As an outlook I mentioned that one of the kernel developers from <a href="https://twitter.com/nextthingco">@NextThingCo</a>, namely Wynter Woods <a href="https://twitter.com/zerotri">@zerotri</a>, is working to support Docker officially.</p>
+<p>Some time ago I wrote a detailed blog post about how to <a href="http://hypriot.io/post/install-docker-on-chip-computer/">Install Docker 1.12 on the $9 C.H.I.P. computer</a> with the help of a custom Linux kernel which I built from source for this purpose and included all the necessary kernel modules which are required to run Docker. As an outlook I mentioned that one of the kernel developers from <a href="https://twitter.com/nextthingco">@NextThingCo</a>, namely Wynter Woods <a href="https://twitter.com/zerotri">@zerotri</a>, is working to support Docker officially.</p>
 
 <p>Kernel development and testing takes time and finally here it is!<br>
 <strong>Docker is running on the C.H.I.P. with their latest standard kernel!</strong></p>
@@ -98,15 +98,15 @@
 
 <p>With the new Docker-enabled Linux kernel for the C.H.I.P. it&rsquo;s really easy to install and use Docker on these tiny cute ARM devices. Basically you just have to update/upgrade to the latest software packages through the standard <code>apt</code> package management commands, have to install Docker and you&rsquo;re good to go.</p>
 
-<p>As I&rsquo;ve already covered all these steps in detail in my post <a href="http://blog.hypriot.com/post/install-docker-on-chip-computer/">Install Docker 1.12 on the $9 C.H.I.P. computer</a>, we can take a shortcut and I&rsquo;m explaining only the new and shorter steps.</p>
+<p>As I&rsquo;ve already covered all these steps in detail in my post <a href="http://hypriot.io/post/install-docker-on-chip-computer/">Install Docker 1.12 on the $9 C.H.I.P. computer</a>, we can take a shortcut and I&rsquo;m explaining only the new and shorter steps.</p>
 
 <h3 id="necessary-steps-to-install-docker">Necessary steps to install Docker</h3>
 
 <ol>
-<li>Flash the latest available firmware (see <a href="http://blog.hypriot.com/post/install-docker-on-chip-computer/">last post</a>)</li>
-<li>Connect to the C.H.I.P. via USB or UART console cable (see <a href="http://blog.hypriot.com/post/install-docker-on-chip-computer/">last post</a>)</li>
-<li>Configure WiFi connection (see <a href="http://blog.hypriot.com/post/install-docker-on-chip-computer/">last post</a>)</li>
-<li>Configure SSH to access the C.H.I.P. (see <a href="http://blog.hypriot.com/post/install-docker-on-chip-computer/">last post</a>)</li>
+<li>Flash the latest available firmware (see <a href="http://hypriot.io/post/install-docker-on-chip-computer/">last post</a>)</li>
+<li>Connect to the C.H.I.P. via USB or UART console cable (see <a href="http://hypriot.io/post/install-docker-on-chip-computer/">last post</a>)</li>
+<li>Configure WiFi connection (see <a href="http://hypriot.io/post/install-docker-on-chip-computer/">last post</a>)</li>
+<li>Configure SSH to access the C.H.I.P. (see <a href="http://hypriot.io/post/install-docker-on-chip-computer/">last post</a>)</li>
 <li>Checking the OS and Linux kernel version</li>
 <li>Upgrade the Linux kernel and operating system</li>
 <li>Install the Docker Engine the official way</li>

@@ -44,7 +44,7 @@ and change the line with `hostname:`
 hostname: black-pearl
 ```
 
-At the first boot the device comes up with the new hostname. See more details about the `user-data` file in the blog post [Bootstrapping a Cloud with Cloud-Init and HypriotOS](https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/).
+At the first boot the device comes up with the new hostname. See more details about the `user-data` file in the blog post [Bootstrapping a Cloud with Cloud-Init and HypriotOS](https://hypriot.io/post/cloud-init-cloud-on-hypriot-x64/).
 After the first boot you can change the hostname as usual on any Linux box.
 
 **See also our [sample cloud-init configuration files](https://github.com/hypriot/flash/tree/master/sample) for more inspiration.**

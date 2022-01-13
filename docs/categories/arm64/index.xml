@@ -14,7 +14,7 @@
       <pubDate>Mon, 22 Apr 2019 08:44:52 +0200</pubDate>
       
       <guid>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</guid>
-      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
+      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
 
@@ -313,7 +313,7 @@ For more examples and ideas, visit:
       <pubDate>Sat, 20 Apr 2019 09:51:52 +0200</pubDate>
       
       <guid>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</guid>
-      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
+      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
@@ -833,7 +833,7 @@ Live Restore Enabled: false
 
 &lt;h3 id=&#34;starting-a-docker-container-for-arm&#34;&gt;Starting a Docker Container for ARM&lt;/h3&gt;
 
-&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://blog.hypriot.com/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
+&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://hypriot.io/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker pull hypriot/rpi-busybox-httpd
 Using default tag: latest
@@ -900,7 +900,7 @@ ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …
 &lt;p&gt;Things may come to those who wait, but only the things left by those who hustle.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;Dieter Reuter&lt;/a&gt; really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn&amp;rsquo;t a single man army, the rest of the &lt;a href=&#34;http://blog.hypriot.com/crew/&#34;&gt;Docker Pirates&lt;/a&gt; over at &lt;a href=&#34;http://blog.hypriot.com/&#34;&gt;Hypriot&lt;/a&gt; have been doing some awesome things as well!&lt;/p&gt;
+&lt;p&gt;Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;Dieter Reuter&lt;/a&gt; really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn&amp;rsquo;t a single man army, the rest of the &lt;a href=&#34;http://hypriot.io/crew/&#34;&gt;Docker Pirates&lt;/a&gt; over at &lt;a href=&#34;http://hypriot.io/&#34;&gt;Hypriot&lt;/a&gt; have been doing some awesome things as well!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/cloud-init/brown-airplanes.jpg&#34; alt=&#34;airplanes&#34; /&gt;
 &lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/horiavarlan/5019447085/in/photolist-8DxYK8-6RFbEf-6RFfrw-6RLCGd-6RAH6n-6RF9gf-6RATnx-6RGCKM-6RB7L2-6REXqA-6T4VEQ-6RBeKg-brFbp6-6RAZU8-6RGwNk-6RAiLD-6RBgp6-6RLAvm-6RBbwM-6RAE5e-6RLJVj-6RLFdN-6RBsmr-6RFxxw-6RLJrY-6RFvGJ-6RFtZS-6REvrf-6RENUY-6RFwCC-6RGBEn-6RGz9n-6RFpb3-6RFzo1-if9tn-9NF66y-84UZy9-6RFew9-6RFq2m-6RLHWJ-6T4Wd9-9NChKc-6RAZ5V-9NCiK8-6T5Lbf-6RAUfp-6RBhb6-9NF3UW-9NF979-9NFaFW&#34;&gt;Horia Varlan&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;

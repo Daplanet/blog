@@ -24,7 +24,7 @@
 
 &lt;h3 id=&#34;analyzing-the-linux-kernel&#34;&gt;Analyzing the Linux Kernel&lt;/h3&gt;
 
-&lt;p&gt;In my last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/verify-kernel-container-compatibility/&#34;&gt;Verify your Linux Kernel for Container Compatibility&lt;/a&gt;, I already shared all the details how you can easily verify the Linux kernel for all Container related kernel settings. So, this first part of analyzing the capabilities of the stock Linux kernel 4.9.x provided by NVIDIA is already done and documented. And this was an easy task as well, so everyone who&amp;rsquo;s interested in these details can repeat the task at his/her own device.&lt;/p&gt;
+&lt;p&gt;In my last blogpost &lt;a href=&#34;https://hypriot.io/post/verify-kernel-container-compatibility/&#34;&gt;Verify your Linux Kernel for Container Compatibility&lt;/a&gt;, I already shared all the details how you can easily verify the Linux kernel for all Container related kernel settings. So, this first part of analyzing the capabilities of the stock Linux kernel 4.9.x provided by NVIDIA is already done and documented. And this was an easy task as well, so everyone who&amp;rsquo;s interested in these details can repeat the task at his/her own device.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s recap what we did found. Especially there is one important setting which will be used for networking. This feature called &amp;ldquo;IPVLAN&amp;rdquo;, is required for Docker Swarm mode and it&amp;rsquo;s also used for networking in Kubernetes and k3s.&lt;/p&gt;
 
@@ -355,7 +355,7 @@ CONFIG_ARM64_PAGE_SHIFT=12
 
 &lt;h3 id=&#34;verify-the-linux-kernel-on-nvidia-jetson-nano-devkit&#34;&gt;Verify the Linux Kernel on NVIDIA Jetson Nano DevKit&lt;/h3&gt;
 
-&lt;p&gt;As a real life example let&amp;rsquo;s now verify the Linux kernel of the brand-new Jetson Nano DevKit from NVIDIA. I already wrote a blogpost about how to install Linux for the Nano board, see here &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As a real life example let&amp;rsquo;s now verify the Linux kernel of the brand-new Jetson Nano DevKit from NVIDIA. I already wrote a blogpost about how to install Linux for the Nano board, see here &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;First we&amp;rsquo;ll check the Linux kernel version and we can see, it&amp;rsquo;s a current LTS kernel 4.9.&lt;/p&gt;
 
@@ -636,7 +636,7 @@ $
       <pubDate>Mon, 22 Apr 2019 08:44:52 +0200</pubDate>
       
       <guid>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</guid>
-      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
+      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
 
@@ -935,7 +935,7 @@ For more examples and ideas, visit:
       <pubDate>Sat, 20 Apr 2019 09:51:52 +0200</pubDate>
       
       <guid>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</guid>
-      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
+      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
@@ -1455,7 +1455,7 @@ Live Restore Enabled: false
 
 &lt;h3 id=&#34;starting-a-docker-container-for-arm&#34;&gt;Starting a Docker Container for ARM&lt;/h3&gt;
 
-&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://blog.hypriot.com/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
+&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://hypriot.io/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker pull hypriot/rpi-busybox-httpd
 Using default tag: latest

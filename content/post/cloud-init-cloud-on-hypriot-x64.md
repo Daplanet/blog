@@ -12,7 +12,7 @@ social_sharing = "yes"
 
 > Things may come to those who wait, but only the things left by those who hustle.
 
-Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, [Dieter Reuter](https://twitter.com/Quintus23M) really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn't a single man army, the rest of the [Docker Pirates](http://blog.hypriot.com/crew/) over at [Hypriot](http://blog.hypriot.com/) have been doing some awesome things as well!
+Over the last year, a lot has happened in the Raspberry Pi and Docker communities, there are Docker Captains helping lead the charge, one of those, [Dieter Reuter](https://twitter.com/Quintus23M) really has been pushing the cause for ARM64 support with both Raspberry Pi 3 and LinuxKit. He isn't a single man army, the rest of the [Docker Pirates](http://hypriot.io/crew/) over at [Hypriot](http://hypriot.io/) have been doing some awesome things as well!
 
 ![airplanes](/images/cloud-init/brown-airplanes.jpg)
 <div style="text-align:right; font-size: smaller">Image courtesy of [Horia Varlan](https://www.flickr.com/photos/horiavarlan/5019447085/in/photolist-8DxYK8-6RFbEf-6RFfrw-6RLCGd-6RAH6n-6RF9gf-6RATnx-6RGCKM-6RB7L2-6REXqA-6T4VEQ-6RBeKg-brFbp6-6RAZU8-6RGwNk-6RAiLD-6RBgp6-6RLAvm-6RBbwM-6RAE5e-6RLJVj-6RLFdN-6RBsmr-6RFxxw-6RLJrY-6RFvGJ-6RFtZS-6REvrf-6RENUY-6RFwCC-6RGBEn-6RGz9n-6RFpb3-6RFzo1-if9tn-9NF66y-84UZy9-6RFew9-6RFq2m-6RLHWJ-6T4Wd9-9NChKc-6RAZ5V-9NCiK8-6T5Lbf-6RAUfp-6RBhb6-9NF3UW-9NF979-9NFaFW)</div>

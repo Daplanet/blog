@@ -14,7 +14,7 @@
       <pubDate>Mon, 22 Apr 2019 08:44:52 +0200</pubDate>
       
       <guid>https://hypriot.io/post/nvidia-jetson-nano-upgrade-docker/</guid>
-      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
+      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
 
@@ -313,7 +313,7 @@ For more examples and ideas, visit:
       <pubDate>Sat, 20 Apr 2019 09:51:52 +0200</pubDate>
       
       <guid>https://hypriot.io/post/nvidia-jetson-nano-install-docker-compose/</guid>
-      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
+      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://hypriot.io/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://hypriot.io/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
 
@@ -833,7 +833,7 @@ Live Restore Enabled: false
 
 &lt;h3 id=&#34;starting-a-docker-container-for-arm&#34;&gt;Starting a Docker Container for ARM&lt;/h3&gt;
 
-&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://blog.hypriot.com/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
+&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://hypriot.io/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker pull hypriot/rpi-busybox-httpd
 Using default tag: latest

@@ -24,7 +24,7 @@
 
 &lt;h3 id=&#34;analyzing-the-linux-kernel&#34;&gt;Analyzing the Linux Kernel&lt;/h3&gt;
 
-&lt;p&gt;In my last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/verify-kernel-container-compatibility/&#34;&gt;Verify your Linux Kernel for Container Compatibility&lt;/a&gt;, I already shared all the details how you can easily verify the Linux kernel for all Container related kernel settings. So, this first part of analyzing the capabilities of the stock Linux kernel 4.9.x provided by NVIDIA is already done and documented. And this was an easy task as well, so everyone who&amp;rsquo;s interested in these details can repeat the task at his/her own device.&lt;/p&gt;
+&lt;p&gt;In my last blogpost &lt;a href=&#34;https://hypriot.io/post/verify-kernel-container-compatibility/&#34;&gt;Verify your Linux Kernel for Container Compatibility&lt;/a&gt;, I already shared all the details how you can easily verify the Linux kernel for all Container related kernel settings. So, this first part of analyzing the capabilities of the stock Linux kernel 4.9.x provided by NVIDIA is already done and documented. And this was an easy task as well, so everyone who&amp;rsquo;s interested in these details can repeat the task at his/her own device.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s recap what we did found. Especially there is one important setting which will be used for networking. This feature called &amp;ldquo;IPVLAN&amp;rdquo;, is required for Docker Swarm mode and it&amp;rsquo;s also used for networking in Kubernetes and k3s.&lt;/p&gt;
 

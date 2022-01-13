@@ -71,7 +71,7 @@ sudo mv flash /usr/local/bin/flash
 
 &lt;h3 id=&#34;flash-with-wi-fi-settings-for-pi-zero-pi-3-pi-4&#34;&gt;Flash with Wi-Fi settings for Pi Zero / Pi 3 / Pi 4&lt;/h3&gt;
 
-&lt;p&gt;If you want the Raspberry Pi Zero (or Pi 3 or Pi 4) to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit &lt;code&gt;/boot/user-data&lt;/code&gt; of the SD card and have a look at &lt;a href=&#34;https://blog.hypriot.com/faq/#wifi&#34;&gt;our FAQ&lt;/a&gt;. Alternatively, checkout the parameters of the &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;Hypriot flash tool&lt;/a&gt; that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:&lt;/p&gt;
+&lt;p&gt;If you want the Raspberry Pi Zero (or Pi 3 or Pi 4) to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit &lt;code&gt;/boot/user-data&lt;/code&gt; of the SD card and have a look at &lt;a href=&#34;https://hypriot.io/faq/#wifi&#34;&gt;our FAQ&lt;/a&gt;. Alternatively, checkout the parameters of the &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;Hypriot flash tool&lt;/a&gt; that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;flash -n myHOSTNAME -u wifi.yml https://github.com/hypriot/image-builder-rpi/releases/download/v1.11.0/hypriotos-rpi-v1.11.0.img.zip
 &lt;/code&gt;&lt;/pre&gt;
@@ -147,7 +147,7 @@ sudo mv flash /usr/local/bin/flash
 
 &lt;h3 id=&#34;flash-with-wi-fi-settings-for-pi-zero&#34;&gt;Flash with Wi-Fi settings for Pi Zero&lt;/h3&gt;
 
-&lt;p&gt;If you want the Raspberry Pi Zero (or Pi 3) to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit &lt;code&gt;/boot/user-data&lt;/code&gt; of the SD card and have a look at &lt;a href=&#34;https://blog.hypriot.com/faq/#wifi&#34;&gt;our FAQ&lt;/a&gt;. Alternatively, checkout the parameters of the &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;Hypriot flash tool&lt;/a&gt; that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:&lt;/p&gt;
+&lt;p&gt;If you want the Raspberry Pi Zero (or Pi 3) to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit &lt;code&gt;/boot/user-data&lt;/code&gt; of the SD card and have a look at &lt;a href=&#34;https://hypriot.io/faq/#wifi&#34;&gt;our FAQ&lt;/a&gt;. Alternatively, checkout the parameters of the &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;Hypriot flash tool&lt;/a&gt; that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;flash -n myHOSTNAME -u wifi.yml https://github.com/hypriot/image-builder-rpi/releases/download/v1.10.0/hypriotos-rpi-v1.10.0.img.zip
 &lt;/code&gt;&lt;/pre&gt;

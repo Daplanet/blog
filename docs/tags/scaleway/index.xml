@@ -608,7 +608,7 @@ This is the hard evidence that we are truely working on ARM hardware and Scalewa
 &lt;p&gt;The last thing we need to check is if we really have a working Docker installation:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# dpkg -l | grep docker
-ii  docker-hypriot                   1.9.1-1                         armhf        Docker for ARM devices, compiled and packaged by http://blog.hypriot.com
+ii  docker-hypriot                   1.9.1-1                         armhf        Docker for ARM devices, compiled and packaged by http://hypriot.io
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Well, this aleady looks promising. Seems we also do have a Hypriot Docker running here, too. Nice. :)&lt;/p&gt;

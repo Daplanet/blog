@@ -68,7 +68,7 @@ ssh pirate@black-pearl.local
 
 with password "hypriot".
 
-If you want the Raspberry Pi to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit `/boot/user-data` of the SD card and have a look at [our FAQ](https://blog.hypriot.com/faq/#wifi). Alternatively, checkout the parameters of the [Hypriot flash tool](https://github.com/hypriot/flash) that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:
+If you want the Raspberry Pi to connect directly to your Wi-Fi after boot, change the hostname of the Raspberry Pi and more, edit `/boot/user-data` of the SD card and have a look at [our FAQ](https://hypriot.io/faq/#wifi). Alternatively, checkout the parameters of the [Hypriot flash tool](https://github.com/hypriot/flash) that also allows you to define your own cloud-init user-data template file which will be copied onto the SD image for you:
 
 ```
 flash -n myHOSTNAME -u wifi.yml https://github.com/hypriot/image-builder-rpi/releases/download/v1.8.0/hypriotos-rpi-v1.8.0.img.zip
