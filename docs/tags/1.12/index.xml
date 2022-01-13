@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1.12 on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/1.12/index.xml</link>
+    <description>Recent content in 1.12 on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/1.12/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Swarm Machines or Having fun with Docker Machine and the new Docker Swarm orchestration</title>
+      <link>https://blog.hypriot.com/post/swarm-machines-or-having-fun-with-docker-machine-and-the-new-docker-swarm-orchestration/</link>
+      <pubDate>Tue, 21 Jun 2016 13:49:00 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/swarm-machines-or-having-fun-with-docker-machine-and-the-new-docker-swarm-orchestration/</guid>
+      <description>&lt;p&gt;In the last couple of days there were some users on our Gitter channel having problems accessing their Raspberry Pi&amp;rsquo;s with HypriotOS via Docker Machine.
+As we have not yet written how that works I thought I would do a short blog post on how to use Docker Machine with HypriotOS.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s not all. Yesterday when I watched the DockerCon Keynote Livestream of the new Docker orchestration I wondered how Docker Machine and the new orchestration would work together.&lt;/p&gt;
+
+&lt;p&gt;So just for the fun of it I decided I will explore that a bit, too.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-machine/swarm_machines.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;
+&lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/thewakingdragon/&#34;&gt;Brent M&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;I am using the latest Docker4Mac with Docker on my notebook and three Raspberry Pi&amp;rsquo;s with HypriotOS 0.8 as hosts for my remote Docker Engines.&lt;/p&gt;
+
+&lt;p&gt;The Docker version on the notebook and on the Pi&amp;rsquo;s is 1.12 RC1. Having the lastest Docker 1.12 is not necessary for the part about Docker Machine, but it is for the part about the new Docker orchestration.&lt;/p&gt;
+
+&lt;h2 id=&#34;docker-machine&#34;&gt;Docker Machine&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/machine/&#34;&gt;Docker Machine&lt;/a&gt; is used to control remote Docker-Engines as if they were locally installed.&lt;/p&gt;
+
+&lt;p&gt;That is very convenient in many cases, for instance if you have set up a Docker host with the help of Amazon AWS or Microsoft Azure and you can access it only remotely.
+In that case you do not have to establish a SSH connection first in order to work with a specific Docker Engine.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s not all - Docker Machine also helps if there is no Docker-Engine present on a remote host.&lt;/p&gt;
+
+&lt;p&gt;With the help of Docker Machine it is very easy to install and configure a new Docker Engine.&lt;/p&gt;
+
+&lt;p&gt;Both in case of an existing or a new Docker Engine Docker Machine reconfigures the Engine to make it availabe via a HTTP network socket.
+To ensure that only authorized clients can connect to the remote Docker Engine Docker Machine also sets up everything that is needed for &lt;a href=&#34;https://docs.docker.com/engine/security/https/&#34;&gt;securing the communication with TLS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To remotely manage my Pi&amp;rsquo;s with Docker Machine I first need to copy my SSH public key to the remote host.
+If you do not have a SSH key pair you need to &lt;a href=&#34;https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key&#34;&gt;generate one first&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Transfering your public key to a remote host is easily done with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh-copy-id pirate@pi3.local
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command configures the remote host &amp;lsquo;pi3.local&amp;rsquo; in a way that I can access this host via SSH with my default SSH key (~/.ssh/id_rsa).&lt;/p&gt;
+
+&lt;p&gt;We can test this now by executing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh pirate@pi3.local ls -lah
+total 32K
+drwxr-xr-x 3 pirate pirate 4.0K Jun 21 12:01 .
+drwxr-xr-x 3 root   root   4.0K May 17 22:43 ..
+-rw------- 1 pirate pirate  116 Jun 21 12:01 .bash_history
+-rw-r--r-- 1 pirate pirate  220 Oct 18  2014 .bash_logout
+-rw-r--r-- 1 pirate pirate 2.5K May 17 22:42 .bash_prompt
+-rw-r--r-- 1 pirate pirate  570 May 17 22:42 .bashrc
+-rw-r--r-- 1 pirate pirate  314 May 17 22:42 .profile
+drwx------ 2 pirate pirate 4.0K Jun 21 12:09 .ssh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command establishes a SSH connection to the host &amp;lsquo;pi3.local&amp;rsquo; and executes &amp;lsquo;ls -lah&amp;rsquo;. If you can see a similar output everything is OK.&lt;/p&gt;
+
+&lt;p&gt;Next we need to add our &amp;lsquo;pi3.local&amp;rsquo; host to the list of hosts that are managed by Docker Machine.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see if we already have some existing hosts that are managed by Docker Machine.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-machine ls
+NAME   ACTIVE   DRIVER    STATE     URL                          SWARM   DOCKER        ERRORS
+pi1    -        generic   Running   tcp://192.168.178.171:2376           v1.12.0-rc1
+pi2    -        generic   Running   tcp://192.168.178.24:2376            v1.12.0-rc1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And indeed we have two hosts that are already managed by Docker Machine.&lt;/p&gt;
+
+&lt;p&gt;Adding another one is easy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-machine create --driver generic --generic-ip-address=192.168.178.59 --generic-ssh-key=/Users/govindaf/.ssh/id_rsa --generic-ssh-user=pirate --engine-storage-driver=overlay pi3
+Running pre-create checks...
+Creating machine...
+(pi3) Importing SSH key...
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Waiting for SSH to be available...
+Detecting the provisioner...
+Provisioning with debian...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Checking connection to Docker...
+Docker is up and running!
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env pi3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output looks good. Let&amp;rsquo;s dissect this command a bit to understand what it does.&lt;/p&gt;
+
+&lt;p&gt;We are using the &amp;lsquo;create&amp;rsquo; subcommand of Docker Machine to create a new host that is managed by Docker Machine.
+We are also using the &amp;lsquo;generic&amp;rsquo; driver that allows us to communicate with our Raspberry Pi&amp;rsquo;s via SSH.&lt;/p&gt;
+
+&lt;p&gt;For this we need to tell Docker Machine some SSH connection details like the IP address of our target host, the SSH user and the location of our private SSH key.&lt;/p&gt;
+
+&lt;p&gt;The IP address of our Pi can be easily obtained by running&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ping -c1 pi3.local
+PING pi3.local (192.168.178.59): 56 data bytes
+64 bytes from 192.168.178.59: icmp_seq=0 ttl=64 time=1.926 ms
+
+--- pi3.local ping statistics ---
+1 packets transmitted, 1 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 1.926/1.926/1.926/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is important that we provide the absolute path to our private SSH key with the option &amp;lsquo;generic-ssh-key&amp;rsquo;. A relative path did not work for me.&lt;/p&gt;
+
+&lt;p&gt;Furthermore we need to tell Docker Machine which user it should use for the SSH connection.
+The default here is the &amp;lsquo;root&amp;rsquo; user. With HypriotOS we can only use an unprivileged user which is why we need to provide the &amp;lsquo;generic-ssh-user&amp;rsquo; option.&lt;/p&gt;
+
+&lt;p&gt;Last but no least we need to tell Machine to use the &amp;lsquo;overlay&amp;rsquo; filesystem for the configuration of the Docker Engine which is the default with HypriotOS.
+Without this option Docker Machine would try to use &amp;lsquo;aufs&amp;rsquo; which would fail miserably.&lt;/p&gt;
+
+&lt;p&gt;Alright, let&amp;rsquo;s see if we now have a third host under our Machine control:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-machine ls
+NAME   ACTIVE   DRIVER    STATE     URL                          SWARM   DOCKER        ERRORS
+pi1    -        generic   Running   tcp://192.168.178.171:2376           v1.12.0-rc1
+pi3    -        generic   Running   tcp://192.168.178.59:2376            v1.12.0-rc1
+pi2    -        generic   Running   tcp://192.168.178.24:2376            v1.12.0-rc1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yeah - we do.&lt;/p&gt;
+
+&lt;p&gt;Sometimes you might get SSH timeout errors when setting up another host with Docker-Machine.
+If this is the case make sure you did not forget to set up your SSH public key with the remote host first.&lt;/p&gt;
+
+&lt;p&gt;Sometimes when Docker Machine tries to add a new host it happens that it is stuck halfway with an error.
+In those cases the best course of action is often to remove the host first and add it again later.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-machine rm pi3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s assume all went well and we now have a list of host under remote control. How do you work with those now?&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s were the Docker Machine &amp;lsquo;env&amp;rsquo; subcommand comes into play.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker-machine env pi3
+export DOCKER_TLS_VERIFY=&amp;quot;1&amp;quot;
+export DOCKER_HOST=&amp;quot;tcp://192.168.178.59:2376&amp;quot;
+export DOCKER_CERT_PATH=&amp;quot;/Users/govindaf/.docker/machine/machines/pi3&amp;quot;
+export DOCKER_MACHINE_NAME=&amp;quot;pi3&amp;quot;
+# Run this command to configure your shell:
+# eval $(docker-machine env pi3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The env command outputs a bunch of environment variables that control to which Docker instance our local Docker binary is talking to.
+Per default the &amp;lsquo;docker&amp;rsquo; command only talks to our local Docker Engine - for instance on our notebook - but by exporting those environment variables this changes fundamentally.&lt;/p&gt;
+
+&lt;p&gt;The easiest way to export the necessary variables is by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ eval $(docker-machine env pi3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now everything I do with the &amp;lsquo;docker&amp;rsquo; command runs against the Docker Engine of my &amp;lsquo;pi3&amp;rsquo; host.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s check if that is true:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker info
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 27
+Server Version: 1.12.0-rc1
+Storage Driver: overlay
+ Backing Filesystem: extfs
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge null host overlay
+Swarm: inactive
+Runtimes: default
+Default Runtime: default
+Security Options:
+Kernel Version: 4.4.10-hypriotos-v7+
+Operating System: Raspbian GNU/Linux 8 (jessie)
+OSType: linux
+Architecture: armv7l
+CPUs: 4
+Total Memory: 925.4 MiB
+Name: pi3
+ID: 5DYT:MHTS:4JQK:KNGB:FYZI:EFG4:YIPZ:2WJR:VW5Y:KLPJ:WXCX:S3CG
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+WARNING: No cpuset support
+Labels:
+ provider=generic
+Insecure Registries:
+ 127.0.0.0/8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see with the &amp;lsquo;Name&amp;rsquo; attribute, we are really working on host &amp;lsquo;pi3&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Changing to another host is also easy.&lt;/p&gt;
+
+&lt;p&gt;Just repeat the command from above and replace the hostname with another:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ eval $(docker-machine env pi2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;docker-machine-and-docker-swarm-mode&#34;&gt;Docker Machine and Docker Swarm Mode&lt;/h2&gt;
+
+&lt;p&gt;In the past Docker Machine allowed to set up a Docker Swarm cluster with a &lt;a href=&#34;https://docs.docker.com/machine/reference/create/&#34;&gt;number of options&lt;/a&gt; for the &amp;lsquo;create&amp;rsquo; subcommand.&lt;/p&gt;
+
+&lt;p&gt;With Docker 1.12 we now how a much more powerful version of Swarm that is directly integrated into Docker.
+This feature is called Docker Swarm Mode and you can find some inital documentation about it &lt;a href=&#34;https://docs.docker.com/engine/swarm/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I could not find any specifics on how to use it together with Docker Machine. So there might be better ways of how to deal with it than what I am going to show you now.&lt;/p&gt;
+
+&lt;p&gt;Assuming we have three fresh hosts that are managed by Docker Machine, we need to tell Docker to initialize a new Swarm cluster first.&lt;/p&gt;
+
+&lt;p&gt;We can execute the necessary command on any of our hosts.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ eval $(docker-machine env pi1)
+$ docker swarm init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command create a Docker Swarm cluster with one node. This first node automatically becomes a Swarm Manager Node.&lt;/p&gt;
+
+&lt;p&gt;The output of &amp;lsquo;docker info&amp;rsquo; shows us what role our current Docker Engine plays in regard to Swarm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker info
+...
+Swarm: active
+ NodeID: efyap0lxrttld19djs3ygtuac
+ IsManager: Yes
+ Managers: 1
+ Nodes: 1
+ CACertHash: sha256:9a29dafb3f6f600b64e8ec7a421fd6386f938de623a3a479ca56229b22a6b680
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There is also another command that is able to show us which nodes are part of our Swarm cluster:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker node ls
+ID                           NAME  MEMBERSHIP  STATUS  AVAILABILITY  MANAGER STATUS
+efyap0lxrttld19djs3ygtuac *  pi1   Accepted    Ready   Active        Leader
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK. Time to add two more nodes.&lt;/p&gt;
+
+&lt;p&gt;First we need to switch our Docker environment with Docker Machine. Afterwards we join the existing Swarm cluster with the next node.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ eval $(docker-machine env pi2)
+$ docker swarm join pi1:2377
+This node joined a Swarm as a worker.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks promising. Let&amp;rsquo;s see what our &amp;lsquo;docker node ls&amp;rsquo; command has to say:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker node ls
+Error response from daemon: this node is not participating as a Swarm manager
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What&amp;rsquo;s that?&lt;/p&gt;
+
+&lt;p&gt;Obviously we are only able to use the &amp;lsquo;node&amp;rsquo; subcommand from a Swarm Manager node and not from a Swarm Worker node.
+So ignoring this for the moment let&amp;rsquo;s add the last node, too.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ eval $(docker-machine env pi3)
+$ docker swarm join pi1:2377
+This node joined a Swarm as a worker.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s switch back to our original Swarm Manager node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ eval $(docker-machine env pi1)
+$ docker node ls
+ID                           NAME  MEMBERSHIP  STATUS  AVAILABILITY  MANAGER STATUS
+3cgg9qfo6nk77zisgrst1333n    pi2   Accepted    Ready   Active
+6lezwd8vplgcdmxyhswbc1cvp    pi3   Accepted    Ready   Active
+efyap0lxrttld19djs3ygtuac *  pi1   Accepted    Ready   Active        Leader
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see we have sucessfully set up a Docker Swarm Cluster with three nodes.&lt;/p&gt;
+
+&lt;p&gt;With the help of Docker Machine this was really easy and straightforward as we only had to switch our Docker environment to work on individual nodes.&lt;/p&gt;
+
+&lt;p&gt;So as a last treat for you and to be able to show another screenshot let&amp;rsquo;s start a small webserver in our Swarm cluster:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker service create --name hypriot-httpd -p 8080:80 --replicas 6 hypriot/rpi-busybox-httpd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command creates a Docker Swarm service that consists of six running httpd containers that are spread equally across the three nodes of our Swarm cluster.&lt;/p&gt;
+
+&lt;p&gt;Seeing is believing so let&amp;rsquo;s check this again by using the &amp;lsquo;docker service task&amp;rsquo; sub sub command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker service tasks hypriot-httpd
+ID                         NAME             SERVICE        IMAGE                      LAST STATE         DESIRED STATE  NODE
+14ywlwfix019b95oizce0hgd2  hypriot-httpd.1  hypriot-httpd  hypriot/rpi-busybox-httpd  Running 6 minutes  Running        pi1
+60k55m336zq04rke696m848w1  hypriot-httpd.2  hypriot-httpd  hypriot/rpi-busybox-httpd  Running 6 minutes  Running        pi3
+55sl8zwi1v8om3pvtb0zscf8d  hypriot-httpd.3  hypriot-httpd  hypriot/rpi-busybox-httpd  Running 6 minutes  Running        pi2
+105gbhovh5p3zmwpqaeg3hprd  hypriot-httpd.4  hypriot-httpd  hypriot/rpi-busybox-httpd  Running 6 minutes  Running        pi3
+8her9l13z78g9mjdrkovs9d46  hypriot-httpd.5  hypriot-httpd  hypriot/rpi-busybox-httpd  Running 6 minutes  Running        pi2
+5xwwxuvbwsr7pmomg91cnf08y  hypriot-httpd.6  hypriot-httpd  hypriot/rpi-busybox-httpd  Running 6 minutes  Running        pi1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On a Mac we now can open the website that is served by this service with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ open http://$(docker-machine ip pi1):8080
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We are then rewarded with this neat little website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-machine/hypriot-http.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hope this tour was fun and gave you a feeling for the power that comes with Docker Machine.&lt;/p&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share the news about this release on Twitter, Facebook or Google+.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile__&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>More Microservices Bliss with Docker 1.12 and Swarm only</title>
+      <link>https://blog.hypriot.com/post/more-microservice-bliss-with-docker-1-12/</link>
+      <pubDate>Mon, 20 Jun 2016 21:49:00 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/more-microservice-bliss-with-docker-1-12/</guid>
+      <description>&lt;p&gt;A couple of days ago I wrote a &lt;a href=&#34;https://blog.hypriot.com/post/microservices-bliss-with-docker-and-traefik/&#34;&gt;blog post&lt;/a&gt; about how easy it is to get a microservice application up and running with Docker and a HTTP proxy called Traefik.
+I explained how awesome Traefik is because it makes complex setups with HAProxy, Registrator, Consul, etc. a thing of the past.&lt;/p&gt;
+
+&lt;p&gt;I really thought it couldn&amp;rsquo;t get much easier. Oh boy - was I wrong!&lt;/p&gt;
+
+&lt;p&gt;Today as part of the Docker opening keynote Docker demostrated an evolution of Docker Swarm that simplifies this whole scenario even more.
+It makes setting up a Docker Swarm Cluster a really simple and straigtforward task.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see how this new thing works&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/more-microservices/swarm.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;
+&lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/thewakingdragon/&#34;&gt;Brent M&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;If you remember the example from my last post - it consisted of a microservice application made of a frontend and a couple of backend services.
+The frontend was a Traefik HTTP proxy that routed the requests to the backend services.
+And the backend for the sake of simplicity was just a simple Go-based HTTP webserver that returned the ID of the containers it was running within.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/traefik/microsservice_example_end.jpg&#34; alt=&#34;Traffic&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The new Docker Swarm removes the need for a separate HTTP proxy in front of our application containers.
+The architecture from above is now slimmed down considerably and looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/more-microservices/architecture_with_swarm.jpg&#34; alt=&#34;With Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Less moving parts - that is great!&lt;/p&gt;
+
+&lt;p&gt;Still we get built-in loadbalancing to our backend services. We even can access those services from every node in our cluster.
+Docker Swarm has a kind of built-in mesh routing integrated that takes care of routing requests to the appropriate backend containers.&lt;/p&gt;
+
+&lt;p&gt;With all the new functionality one could assume that setting up a Docker Swarm cluster got even more complicated than before.
+But to the contrary - it got much easier - and that by leaps and bounds.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t believe me? Just follow along.&lt;/p&gt;
+
+&lt;p&gt;As you might have guessed, we are doing this on Raspberry Pi cluster again.
+I am using a homegrown version of Docker 1.12 that I installed on my Raspberry Pi.
+Hopefully when Docker 1.12 is not a release candidate anymore we will have a version for you ready, too.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see what we have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker version
+Client:
+ Version:      1.12.0-rc1
+ API version:  1.24
+ Go version:   go1.6.2
+ Git commit:   1f136c1-unsupported
+ Built:        Wed Jun 15 15:35:51 2016
+ OS/Arch:      linux/arm
+
+Server:
+ Version:      1.12.0-rc1
+ API version:  1.24
+ Go version:   go1.6.2
+ Git commit:   1f136c1-unsupported
+ Built:        Wed Jun 15 15:35:51 2016
+ OS/Arch:      linux/arm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Great. Docker 1.12 RC1 is ready. We should have everything we need to get started.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see if we can find out if we have same new features hidden in our Docker CLI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker
+Usage: docker [OPTIONS] COMMAND [arg...]
+       docker [ --help | -v | --version ]
+
+A self-sufficient runtime for containers.
+    ...
+    service   Manage Docker services
+    ...
+    stats     Display a live stream of container(s) resource usage statistics
+    ...
+    swarm     Manage Docker Swarm
+    ...
+    update    Update configuration of one or more containers
+
+Run &#39;docker COMMAND --help&#39; for more information on a command.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I removed the lines of the command output that have not changed compared to the previous release. What remains though is still pretty interesting&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;We now seem to have a &amp;lsquo;docker swarm&amp;rsquo; command.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see what it is all about&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker swarm
+
+Usage:  docker swarm COMMAND
+
+Manage Docker Swarm
+
+Options:
+      --help   Print usage
+
+Commands:
+  init        Initialize a Swarm.
+  join        Join a Swarm as a node and/or manager.
+  update      update the Swarm.
+  leave       Leave a Swarm.
+  inspect     Inspect the Swarm
+
+Run &#39;docker swarm COMMAND --help&#39; for more information on a command.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So &amp;lsquo;Initialize a Swarm.&amp;rsquo; seems to be exactly what we want. Let&amp;rsquo;s start with this one.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker swarm init
+Swarm initialized: current node (1njlvzi9rk2syv3xojw217o0g) is now a manager.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that we have a Swarm manger node running it is time to add some more nodes to the cluster.&lt;br /&gt;
+And it is really simple as well.&lt;/p&gt;
+
+&lt;p&gt;Just go to another node of your cluster and execute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi1 $ docker swarm join pi6:2377
+This node joined a Swarm as a worker.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this command we basically just tell new nodes that they should join the Swarm Manager node on which we created the inital Swarm cluster.
+In the background Docker Swarm now does some work for us.&lt;/p&gt;
+
+&lt;p&gt;For instance it sets up encrypted communication channels between the cluster nodes. We do not need to manage TLS certificates on our own.&lt;/p&gt;
+
+&lt;p&gt;Everybody who knows how involved it could be to get a Docker Swarm cluster up running in the past should realize how easy it is now.&lt;/p&gt;
+
+&lt;p&gt;Still we are not yet finished.&lt;/p&gt;
+
+&lt;p&gt;A &amp;lsquo;docker info&amp;rsquo; on our Swarm Manager node reveals some interesting tidbits.
+Again I removed the uninteresting parts for brevity.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker info
+...
+Swarm: active
+ NodeID: 1njlvzi9rk2syv3xojw217o0g
+ IsManager: Yes
+ Managers: 1
+ Nodes: 2
+ CACertHash: sha256:de4e2bff3b63700aad01df97bbe0397f131aabed5fabb7732283f044472323fc
+...
+Kernel Version: 4.4.10-hypriotos-v7+
+Operating System: Raspbian GNU/Linux 8 (jessie)
+OSType: linux
+Architecture: armv7l
+CPUs: 4
+Total Memory: 925.4 MiB
+Name: pi6
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see we now have a new &amp;lsquo;Swarm&amp;rsquo; part in the &amp;lsquo;docker info&amp;rsquo; output.
+It tells us that our current node is a Swarm Manager node and that the cluster is composed of two cluster nodes in total.&lt;/p&gt;
+
+&lt;p&gt;On our second node it looks a bit different as it is not a Manager node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Swarm: active
+ NodeID: 3fmwt4taurwxczr2icboojz8g
+ IsManager: No
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Until now we just have an interesting, but still very empty Swarm cluster.
+Let&amp;rsquo;s change that.&lt;/p&gt;
+
+&lt;p&gt;Before we start let me introduce you to the concept of a service that is also new abstraction with Docker 1.12.
+You might have seen a hint of it already in the output of the Docker command above.
+Yes, it is the &amp;lsquo;docker service&amp;rsquo; command that I am talking about.
+A Docker service is basically just a bit of software running in a container that offers its &amp;lsquo;service&amp;rsquo; to the outside world and runs on a Swarm cluster.&lt;/p&gt;
+
+&lt;p&gt;Such a service can consist of just one container or of multiple containers.
+In the latter case we get high availability and/or loadbalancing for our service out of the box.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create such a service based on our &amp;lsquo;whoami&amp;rsquo; image from my last blog post.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker service create --name whoami -p 80:8000 hypriot/rpi-whoami
+buy0q65lw7nshm76kvy5imxk3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With the help of the &amp;lsquo;docker swarm ls&amp;rsquo; command we can check the status of our new service.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker service ls
+ID            NAME    SCALE  IMAGE               COMMAND
+buy0q65lw7ns  whoami  1      hypriot/rpi-whoami
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s check if we can request the index page from our whoami container by sending I http request via curl to the ip of eth0 network interface.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ curl http://192.168.178.24
+I&#39;m 1b6df814c654
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And it is working. Awesome!&lt;/p&gt;
+
+&lt;p&gt;Those who followed along with keen eyes will have noticed the &amp;lsquo;SCALE&amp;rsquo; part in the header line of the &amp;lsquo;docker swarm ls&amp;rsquo; command.
+It seems as we can scale our service somehow.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker service scale whoami=5
+whoami scaled to 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK. Let&amp;rsquo;s check what we have now:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker service ls
+ID            NAME    SCALE  IMAGE               COMMAND
+buy0q65lw7ns  whoami  5      hypriot/rpi-whoami
+
+root@pi6 $ for i in {1..5}; do curl http://192.168.178.24; done
+I&#39;m 8db1657e8517
+I&#39;m e1863a2be88d
+I&#39;m 1b6df814c654
+I&#39;m 8db1657e8517
+I&#39;m e1863a2be88d
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is pretty neat.&lt;/p&gt;
+
+&lt;p&gt;But this is not just way more simple than the old Swarm, it also feels much more snappier and faster when executing commands.
+And remember I am working on Raspberry Pi&amp;rsquo;s and not on a beefy server like you would propably work on.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see how this looks from the perspective of an individual Docker engine.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi6 $ docker ps
+CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
+e1863a2be88d        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             2 minutes ago       Up 2 minutes        8000/tcp            whoami.4.0lg12zndbal72exqe08r9wvpg
+8db1657e8517        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             2 minutes ago       Up 2 minutes        8000/tcp            whoami.5.5z6mvsrdy73m5w24icgsqc8i2
+1b6df814c654        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             8 minutes ago       Up 8 minutes        8000/tcp            whoami.1.bg4qlpiye6h6uxyf8cmkwuh52
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see from the five containers that were started three reside on &amp;lsquo;pi6&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see if we can find the rest:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi1 docker ps
+CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
+db411a119c0a        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             6 minutes ago       Up 6 minutes        8000/tcp            whoami.2.2tf7yhmx9haol7e2b7xib2emj
+0a4bf32fa9c4        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             6 minutes ago       Up 6 minutes        8000/tcp            whoami.3.2r6mm091c2ybr0f9jz4qaxw9k
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So what happens when I just leave the Swarm cluster on &amp;lsquo;pi1&amp;rsquo;?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@pi1 docker swarm leave
+Node left the default swarm.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now I should be two containers short, right?&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see what we have on our remaining node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker ps
+CONTAINER ID        IMAGE                       COMMAND             CREATED             STATUS              PORTS               NAMES
+58620e3d533c        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             46 seconds ago      Up 43 seconds       8000/tcp            whoami.2.cgc4e2ixulc2f3ehr4laoursg
+acc9b523f434        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             46 seconds ago      Up 43 seconds       8000/tcp            whoami.3.67bhlo3nwgehthi3bg5bfdzue
+e1863a2be88d        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             8 minutes ago       Up 8 minutes        8000/tcp            whoami.4.0lg12zndbal72exqe08r9wvpg
+8db1657e8517        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             8 minutes ago       Up 8 minutes        8000/tcp            whoami.5.5z6mvsrdy73m5w24icgsqc8i2
+1b6df814c654        hypriot/rpi-whoami:latest   &amp;quot;/http&amp;quot;             15 minutes ago      Up 14 minutes       8000/tcp            whoami.1.bg4qlpiye6h6uxyf8cmkwuh52
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What we witnessed here is the same what would have happened if we just had a failing &amp;lsquo;pi1&amp;rsquo; node.
+All the containers that were running on node &amp;lsquo;pi1&amp;rsquo; were migrated to the remaining cluster nodes automatically.
+That&amp;rsquo;s pretty impressive.&lt;/p&gt;
+
+&lt;p&gt;So to recap what we just did:&lt;br /&gt;
+We created a small dynamic microservice applications with just the plain Docker.
+Docker Swarm is now integrated into the Docker-Engine instead of being a separate piece of software.
+In many cases this makes a separate proxy for the backend services of your application obsolete. No more nginx, HAProxy or Traefik. Sorry to see you go&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Despite having fewer moving parts we now have additional load balancing and high availability features built-in.
+I am really looking forward to find out what else there is in store with the new Docker Swarm and how it works together with Docker Compose.&lt;/p&gt;
+
+&lt;p&gt;But that&amp;rsquo;s a story for another day&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share the news about this release on Twitter, Facebook or Google+.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile__&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

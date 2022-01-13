@@ -1,0 +1,1834 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/releasing-HypriotOS-1-11/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</loc>
+    <lastmod>2019-04-28T08:48:50-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</loc>
+    <lastmod>2019-04-27T10:48:50-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</loc>
+    <lastmod>2019-04-20T09:51:52+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</loc>
+    <lastmod>2019-04-19T14:16:25+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/releasing-HypriotOS-1-10/</loc>
+    <lastmod>2019-02-24T16:01:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/donation-liberapay-support-contribute/</loc>
+    <lastmod>2018-05-29T16:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/releasing-HypriotOS-1-8/</loc>
+    <lastmod>2018-03-27T16:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/cloud-init-cloud-on-hypriot-x64/</loc>
+    <lastmod>2017-10-29T00:14:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/dockerconaustin2017/</loc>
+    <lastmod>2017-04-20T14:30:34-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</loc>
+    <lastmod>2017-03-02T11:28:42+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</loc>
+    <lastmod>2017-02-22T09:18:35+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/setup-simple-ci-pipeline-for-arm-images/</loc>
+    <lastmod>2017-01-10T07:25:23+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-supported-on-chip-computer/</loc>
+    <lastmod>2016-12-11T13:22:15+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/fix-dirty-cow-on-raspberry-pi/</loc>
+    <lastmod>2016-11-01T13:42:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/new-docker-ui-portainer/</loc>
+    <lastmod>2016-10-31T15:18:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/high-availability-with-docker/</loc>
+    <lastmod>2016-10-26T18:03:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/deploy-swarm-on-chip-with-docker-machine/</loc>
+    <lastmod>2016-09-04T19:45:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/install-docker-on-chip-computer/</loc>
+    <lastmod>2016-09-03T22:53:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/releasing-HypriotOS-1-0/</loc>
+    <lastmod>2016-08-21T12:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/building-docker-directly-on-a-raspberry-pi/</loc>
+    <lastmod>2016-07-31T15:24:03+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/swarm-machines-or-having-fun-with-docker-machine-and-the-new-docker-swarm-orchestration/</loc>
+    <lastmod>2016-06-21T13:49:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/more-microservice-bliss-with-docker-1-12/</loc>
+    <lastmod>2016-06-20T21:49:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-was-well-received-at-piandmore/</loc>
+    <lastmod>2016-06-13T09:21:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/microservices-bliss-with-docker-and-traefik/</loc>
+    <lastmod>2016-06-07T09:15:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/talk_ict_2016_international_conference_telecommunications/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/making-of-hypriotos/</loc>
+    <lastmod>2016-05-25T18:03:32+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/hypriotos-barbossa-for-raspberry-pi-3/</loc>
+    <lastmod>2016-05-25T03:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/close-encounters-of-the-third-kind/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/your-number-one-source-for-docker-on-arm/</loc>
+    <lastmod>2016-03-28T22:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/first-touch-down-with-docker-for-mac/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-birthday-party-review/</loc>
+    <lastmod>2016-03-24T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/lets-build-a-pi-docker-picocluster/</loc>
+    <lastmod>2016-03-23T18:40:04+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-birthday-party-announcement/</loc>
+    <lastmod>2016-03-21T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/setting-up-100-nodes-jenkins-cluster-with-docker-swarm-in-less-than-10-minutes/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-on-arm-workshops/</loc>
+    <lastmod>2016-03-17T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/clearfog-pro-part-2-lets-run-docker/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-sensor-fu-on-a-raspberry-pi/</loc>
+    <lastmod>2016-03-15T23:02:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/introducing-the-clearfog-pro-router-board/</loc>
+    <lastmod>2016-03-14T23:38:42+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/traffic-light/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/exciting-docker-swarm-experiments-in-the-hypriot-cluster-lab/</loc>
+    <lastmod>2016-03-10T23:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/how-to-setup-rpi-docker-swarm/</loc>
+    <lastmod>2016-03-08T17:27:58+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/new-hypriotos-berry-with-rpi3-support/</loc>
+    <lastmod>2016-03-07T09:03:23+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/run-docker-rpi3-with-wifi/</loc>
+    <lastmod>2016-03-05T16:04:12+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/getting-docker-running-on-a-high-density-armv8-server-from-hisilicon/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/test-build-and-package-docker-for-arm-the-official-way/</loc>
+    <lastmod>2016-02-05T16:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/the-pine-a64-is-about-to-become=the-cheapest-ARM-64-bit-platform-to-run-Docker/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/how-to-get-docker-working-on-your-favourite-arm-board-with-hypriotos/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/first_docker_meetup_university_bamberg/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/how-to-compile-go-on-arm/</loc>
+    <lastmod>2015-12-31T18:47:24+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/getting-docker-running-on-a-highend-arm-gaming-console-for-fun-and-profit/</loc>
+    <lastmod>2015-12-28T09:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/introducing-hypriot-cluster-lab-docker-clustering-as-easy-as-it-gets/</loc>
+    <lastmod>2015-12-08T15:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/family_arm_hardware_for_docker_more_children/</loc>
+    <lastmod>2015-12-07T19:55:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/just-in-time-for-DockerCon-EU-a-shipload-of-new-Docker-ARM-goodies/</loc>
+    <lastmod>2015-11-15T21:40:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/a-touch-of-magic-controlling-kitematic-with-a-touch-display-on-the-raspberry-pi/</loc>
+    <lastmod>2015-10-12T00:15:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/get-your-all-in-one-docker-playground-now-hypriotos-reloaded/</loc>
+    <lastmod>2015-10-07T17:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/rc2-jessie-with-brand-new-kernel-and-docker-and-display-support/</loc>
+    <lastmod>2015-09-28T21:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/rc1-jessie-with-brand-new-kernel-and-docker/</loc>
+    <lastmod>2015-09-10T21:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/kitematic-meets-windows-docker/</loc>
+    <lastmod>2015-09-09T00:07:37+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/port_dockerfiles_to_arm/</loc>
+    <lastmod>2015-08-26T02:55:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/access_your_raspberry_pi_from_the_internet/</loc>
+    <lastmod>2015-08-06T09:55:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/moving-docker-from-wheezy-to-jessie/</loc>
+    <lastmod>2015-07-27T20:37:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/let-docker-swarm-all-over-your-raspberry-pi-cluster/</loc>
+    <lastmod>2015-07-03T00:30:45+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/static-website-generation-on-steriods-with-docker/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/run-your-own-github-like-service-with-docker/</loc>
+    <lastmod>2015-06-27T22:19:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/dockercon2015/</loc>
+    <lastmod>2015-06-24T01:30:34+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/</loc>
+    <lastmod>2015-05-15T20:16:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/</loc>
+    <lastmod>2015-05-15T20:16:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/</loc>
+    <lastmod>2015-05-15T20:16:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/getting-started-with-docker-and-windows-on-the-raspberry-pi/</loc>
+    <lastmod>2015-05-15T20:16:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/brand-new-getting-started-guide/</loc>
+    <lastmod>2015-05-15T12:35:44+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-1-6-is-finally-released-into-the-wild/</loc>
+    <lastmod>2015-04-16T22:06:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/connect-kitematic-to-external-docker-engine/</loc>
+    <lastmod>2015-04-15T06:35:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/drive-neopixels-in-docker/</loc>
+    <lastmod>2015-04-14T13:25:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/lets-get-physical/</loc>
+    <lastmod>2015-04-09T16:49:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-compose-nodejs-haproxy/</loc>
+    <lastmod>2015-04-06T00:18:47+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/docker-1-dot-6-release-candidate-ready-for-arm/</loc>
+    <lastmod>2015-03-31T20:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm/</loc>
+    <lastmod>2015-03-30T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/moved-from-posthaven-to-hugo/</loc>
+    <lastmod>2015-03-27T22:52:37+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/legal_notice/</loc>
+    <lastmod>2015-03-13T19:31:57+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/heavily-armed-after-major-upgrade-raspberry-pi-with-docker-1-dot-5-0/</loc>
+    <lastmod>2015-03-03T22:09:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/hypriot-on-the-docker-website/</loc>
+    <lastmod>2015-02-15T22:09:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/kick-ass-raspberry-pi-2-having-a-forbidden-love-affair-with-docker-1-dot-4-1/</loc>
+    <lastmod>2015-02-08T22:09:33+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/1/index.12/</loc>
+    <lastmod>2016-06-21T13:49:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/64bit/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/64bit/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/aarch64/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/aarch64/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/arm/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/arm/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/arm-server/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/arm-server/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/arm64/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/arm64/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/armada/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/armada/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/armv8/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/armv8/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/bamberg/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/bamberg/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/bee42/</loc>
+    <lastmod>2017-03-02T11:28:42+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/bee42/</loc>
+    <lastmod>2017-03-02T11:28:42+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/birthday/</loc>
+    <lastmod>2016-03-24T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/blog/</loc>
+    <lastmod>2015-03-27T22:52:37+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/blog/</loc>
+    <lastmod>2015-03-27T22:52:37+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/blogging/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/blogging/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/brussels/</loc>
+    <lastmod>2016-03-17T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/build/</loc>
+    <lastmod>2016-02-05T16:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/build/</loc>
+    <lastmod>2016-02-05T16:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/chip/</loc>
+    <lastmod>2016-12-11T13:22:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/chip/</loc>
+    <lastmod>2016-12-11T13:22:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/clearfog-pro/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/clearfog-pro/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/cloud-computing/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/cloud-computing/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/cloud-init/</loc>
+    <lastmod>2017-10-29T00:14:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/cluster/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/cluster/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/cluster-lab/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/clustering/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/clustering/</loc>
+    <lastmod>2017-01-11T14:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/compatibility/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/compatibility/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/compose/</loc>
+    <lastmod>2015-04-16T22:06:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/conference/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/conference/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/consul/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/container/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/container/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/dht11/</loc>
+    <lastmod>2016-03-15T23:02:30+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/dht22/</loc>
+    <lastmod>2016-03-15T23:02:30+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/dirtycow/</loc>
+    <lastmod>2016-11-01T13:42:20+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/dirtycow/</loc>
+    <lastmod>2016-11-01T13:42:20+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker-birthday/</loc>
+    <lastmod>2016-03-24T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker-birthday-party/</loc>
+    <lastmod>2016-03-24T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker-compose/</loc>
+    <lastmod>2016-06-20T21:49:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker-compose/</loc>
+    <lastmod>2015-04-16T22:06:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker-for-mac/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker-for-mac/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker-for-windows/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker-for-windows/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker-image/</loc>
+    <lastmod>2015-08-26T02:55:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker-machine/</loc>
+    <lastmod>2015-04-15T06:35:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/docker-swarm/</loc>
+    <lastmod>2016-06-21T13:49:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/docker-swarm/</loc>
+    <lastmod>2015-07-03T00:30:45+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/dockercon/</loc>
+    <lastmod>2017-04-20T14:30:34-06:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/dockercon-2015/</loc>
+    <lastmod>2015-06-24T01:30:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/dockercon-2017/</loc>
+    <lastmod>2017-04-20T14:30:34-06:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/dockercon-eu/</loc>
+    <lastmod>2015-11-15T21:40:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/dockercon2015/</loc>
+    <lastmod>2015-06-24T01:30:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/dockerfile/</loc>
+    <lastmod>2015-08-26T02:55:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/downloads/</loc>
+    <lastmod>2016-03-28T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/downloads/</loc>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/drone/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/drone/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/electronics/</loc>
+    <lastmod>2015-04-14T13:25:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/eletronics/</loc>
+    <lastmod>2015-04-09T16:49:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/external/</loc>
+    <lastmod>2017-10-29T00:14:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/faq/</loc>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/fault-tolerance/</loc>
+    <lastmod>2016-10-26T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/fault-tolerance/</loc>
+    <lastmod>2016-10-26T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/getting-started/</loc>
+    <lastmod>2015-05-15T12:35:44+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/getting_started/</loc>
+    <lastmod>2015-05-15T20:16:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/git/</loc>
+    <lastmod>2015-06-27T22:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/git/</loc>
+    <lastmod>2015-06-27T22:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/github/</loc>
+    <lastmod>2015-06-27T22:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/gitlab/</loc>
+    <lastmod>2015-06-27T22:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/go/</loc>
+    <lastmod>2015-12-31T18:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/go/</loc>
+    <lastmod>2015-12-31T18:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/gogs/</loc>
+    <lastmod>2015-06-27T22:19:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/golang/</loc>
+    <lastmod>2015-12-31T18:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/golang/</loc>
+    <lastmod>2015-12-31T18:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/gpio/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/gpio/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hardkernel/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hardkernel/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hardware/</loc>
+    <lastmod>2015-12-07T19:55:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hardware/</loc>
+    <lastmod>2015-04-14T13:25:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/high-availability/</loc>
+    <lastmod>2016-10-26T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/high-availability/</loc>
+    <lastmod>2016-10-26T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hisilicon/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hisilicon/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/huawei/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/huawei/</loc>
+    <lastmod>2016-03-01T15:59:56+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hugo/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hugo/</loc>
+    <lastmod>2015-06-30T09:03:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hyper-v/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hyper-v/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hypriot/</loc>
+    <lastmod>2015-12-28T09:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hypriot/</loc>
+    <lastmod>2015-12-28T09:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hypriot-cluster-lab/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hypriot-cluster-lab/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/hypriotos/</loc>
+    <lastmod>2016-11-01T13:42:20+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/hypriotos/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/infrastructure/</loc>
+    <lastmod>2015-08-06T09:55:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/internet-of-things/</loc>
+    <lastmod>2015-08-26T02:55:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/iot/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/iot/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/ipvlan/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/ipvlan/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/jenkins/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/jetson/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/jetson/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/k3s/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/k3s/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/k8s/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/k8s/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/kernel/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/kernel/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/kitematic/</loc>
+    <lastmod>2015-10-12T00:15:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/kitematic/</loc>
+    <lastmod>2015-10-12T00:15:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/kubernetes/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/kubernetes/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/led/</loc>
+    <lastmod>2015-04-09T16:49:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/led/</loc>
+    <lastmod>2015-04-14T13:25:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/linux/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/linux/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/mac/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/mac/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/machine/</loc>
+    <lastmod>2016-09-04T19:45:58+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/machine/</loc>
+    <lastmod>2016-09-04T19:45:58+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/marvell/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/marvell/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/meetup/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/meetup/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/microservice/</loc>
+    <lastmod>2016-06-07T09:15:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/microservices/</loc>
+    <lastmod>2016-06-20T21:49:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/microsoft/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/microsoft/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/nano/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/nano/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/neopixels/</loc>
+    <lastmod>2015-04-14T13:25:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/netherlands/</loc>
+    <lastmod>2016-03-17T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/networking/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/networking/</loc>
+    <lastmod>2019-05-04T03:57:21+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/nextthingco/</loc>
+    <lastmod>2016-12-11T13:22:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/nextthingco/</loc>
+    <lastmod>2016-12-11T13:22:15+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/nvidia/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/nvidia/</loc>
+    <lastmod>2019-04-22T08:44:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/nvidia-shieldtv/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/nvidia-shieldtv/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/odroid/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/odroid/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/odroid-c1/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/odroid-c1/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/open-vswitch/</loc>
+    <lastmod>2015-03-30T00:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/osx/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/osx/</loc>
+    <lastmod>2016-03-27T18:30:29+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/package/</loc>
+    <lastmod>2016-02-05T16:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/packagecloud/index.io/</loc>
+    <lastmod>2016-03-28T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/packages/</loc>
+    <lastmod>2016-03-28T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/party/</loc>
+    <lastmod>2016-03-24T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/pi/</loc>
+    <lastmod>2016-03-15T23:02:30+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/piandmore/</loc>
+    <lastmod>2016-06-13T09:21:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/picocluster/</loc>
+    <lastmod>2016-03-23T18:40:04+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/picocluster/</loc>
+    <lastmod>2016-03-23T18:40:04+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/pine/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/pine/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/pine-a64/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/pine-a64/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/pine-a64&#43;/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/pine-a64&#43;/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/pine64/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/pine64/</loc>
+    <lastmod>2016-01-25T23:55:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/crew/</loc>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/post/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/publicity/</loc>
+    <lastmod>2015-02-15T22:09:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/python/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/python/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/raspberry-pi/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/raspberry-pi/</loc>
+    <lastmod>2019-07-25T06:31:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/raspberry-pi-jam/</loc>
+    <lastmod>2016-06-13T09:21:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/raspberry_pi/</loc>
+    <lastmod>2016-10-31T15:18:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/raspberry_pi/</loc>
+    <lastmod>2016-10-31T15:18:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/raspbian/</loc>
+    <lastmod>2016-11-01T13:42:20+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/raspbian/</loc>
+    <lastmod>2016-11-01T13:42:20+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/release/</loc>
+    <lastmod>2015-04-16T22:06:11+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/repository/</loc>
+    <lastmod>2016-03-28T22:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/rpi-64/</loc>
+    <lastmod>2017-10-29T00:14:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/scaleway/</loc>
+    <lastmod>2016-03-20T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/scaleway/</loc>
+    <lastmod>2016-02-05T16:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/sensors/</loc>
+    <lastmod>2016-03-15T23:02:30+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/shieldtv/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/shieldtv/</loc>
+    <lastmod>2016-01-18T16:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/solidrun/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/solidrun/</loc>
+    <lastmod>2016-03-16T18:14:02+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/speaker/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/speaker/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/swarm/</loc>
+    <lastmod>2016-09-04T19:45:58+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/swarm/</loc>
+    <lastmod>2016-09-04T19:45:58+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/swarm-mode/</loc>
+    <lastmod>2016-06-21T13:49:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/talk/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/talk/</loc>
+    <lastmod>2016-06-06T18:03:34+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/test/</loc>
+    <lastmod>2016-02-05T16:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/traefik/</loc>
+    <lastmod>2016-06-07T09:15:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/traefik/</loc>
+    <lastmod>2016-06-07T09:15:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/traffic-light/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/traffic-light/</loc>
+    <lastmod>2016-03-13T17:31:10+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/travis/</loc>
+    <lastmod>2017-01-10T07:25:23+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/travis/</loc>
+    <lastmod>2017-01-10T07:25:23+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/twitter/</loc>
+    <lastmod>2015-02-15T22:09:33+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/university/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/university/</loc>
+    <lastmod>2016-01-15T21:47:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/vagrant/</loc>
+    <lastmod>2016-03-10T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/vagrant/</loc>
+    <lastmod>2016-03-10T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/virtualbox/</loc>
+    <lastmod>2016-03-10T23:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/windows/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/windows/</loc>
+    <lastmod>2016-03-29T17:20:34+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/wiringpi/</loc>
+    <lastmod>2016-03-15T23:02:30+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/tags/workshop/</loc>
+    <lastmod>2016-03-17T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.hypriot.com/categories/workshop/</loc>
+    <lastmod>2016-03-17T00:00:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

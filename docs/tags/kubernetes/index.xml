@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/kubernetes/index.xml</link>
+    <description>Recent content in Kubernetes on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
+      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;analyzing-the-linux-kernel&#34;&gt;Analyzing the Linux Kernel&lt;/h3&gt;
+
+&lt;p&gt;In my last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/verify-kernel-container-compatibility/&#34;&gt;Verify your Linux Kernel for Container Compatibility&lt;/a&gt;, I already shared all the details how you can easily verify the Linux kernel for all Container related kernel settings. So, this first part of analyzing the capabilities of the stock Linux kernel 4.9.x provided by NVIDIA is already done and documented. And this was an easy task as well, so everyone who&amp;rsquo;s interested in these details can repeat the task at his/her own device.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s recap what we did found. Especially there is one important setting which will be used for networking. This feature called &amp;ldquo;IPVLAN&amp;rdquo;, is required for Docker Swarm mode and it&amp;rsquo;s also used for networking in Kubernetes and k3s.&lt;/p&gt;
+
+&lt;h3 id=&#34;building-your-own-linux-kernel&#34;&gt;Building your own Linux Kernel&lt;/h3&gt;
+
+&lt;p&gt;Anyway, even when we&amp;rsquo;d like to include or change only a single kernel setting, we have to customize the kernel configuration and have to compile and build our own Linux kernel. This is typically a common task for a desktop Linux system, but can be pretty ugly and cumbersome if you have to build the kernel for an Embedded Device.&lt;/p&gt;
+
+&lt;p&gt;When we look back to all the other NVIDIA Jetson boards, like the TK1, TX1 and TX2, this requires a second Linux machine, running Ubuntu 14.04 or 16.04 on an Intel CPU. Then setting up a complete build system for cross-compiling and all these stuff. Honestly, this is a well-known approach for an Embedded Developer, but the good thing now for the Jetson Nano DevKit this is not required any more.&lt;/p&gt;
+
+&lt;p&gt;Here the good news: you can customize and build your own Linux kernel directly on the Jetson Nano DevKit! You only need an internet connection and some time to perform all steps on your own. BTW, and this is another chance to learn something new.&lt;/p&gt;
+
+&lt;h3 id=&#34;preparing-the-build-environment&#34;&gt;Preparing the Build Environment&lt;/h3&gt;
+
+&lt;p&gt;Before we&amp;rsquo;re able to compile the Linux kernel on the Jetson Nano, we have to make sure we do have all required build tools installed. Here is all it takes, with a fast internet connection this is done within a few minutes only.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get update
+$ sudo apt-get install -y libncurses5-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;download-linux-kernel-sources-for-jetson-nano&#34;&gt;Download Linux Kernel Sources for Jetson Nano&lt;/h3&gt;
+
+&lt;p&gt;Next, we&amp;rsquo;ll need to find and download the sources for the Linux kernel for the Jetson Nano DevKit directly from the NVIDIA website. The current version as writing this blogpost is NVIDIA Linux4Tegra Release r32.1 or short L4T 32.1. Just follow this link &lt;a href=&#34;https://developer.nvidia.com/embedded/linux-tegra&#34;&gt;https://developer.nvidia.com/embedded/linux-tegra&lt;/a&gt; and select at topic &amp;ldquo;32.1 Driver Details&amp;rdquo; the referenced download link for &amp;ldquo;Jetson Nano&amp;rdquo;, &amp;ldquo;SOURCES&amp;rdquo; and &amp;ldquo;BSP Sources&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;We can also directly download this package to the Jetson Nano. But please be aware that this download link can change over time, so verify it carefully.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd
+$ mkdir -p nano-bsp-sources
+$ cd nano-bsp-sources
+$ wget https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jetson-nano/BSP/Jetson-Nano-public_sources.tbz2
+$ ls -alh Jetson-Nano-public_sources.tbz2
+-rw-rw-r-- 1 pirate pirate 133M Mar 16 06:46 Jetson-Nano-public_sources.tbz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now extract the kernel source package &amp;ldquo;kernel_src.tbz2&amp;rdquo; from the downloaded file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ tar xvf Jetson-Nano-public_sources.tbz2 public_sources/kernel_src.tbz2
+$ mv public_sources/kernel_src.tbz2 ~/
+$ cd
+$ ls -alh ~/kernel_src.tbz2
+-rw-r--r-- 1 pirate pirate 117M Mar 13 08:45 /home/pirate/kernel_src.tbz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may now free some disk space and remove all the downloads, as we don&amp;rsquo;t need it any more.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ rm -fr ~/nano-bsp-sources/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Last step, please extract the kernel source tree.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd
+$ tar xvf ./kernel_src.tbz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;compile-the-default-linux-kernel&#34;&gt;Compile the default Linux Kernel&lt;/h3&gt;
+
+&lt;p&gt;Cool, we have now all the Linux kernel source tree for the Jetson Nano DevKit downloaded and extracted.&lt;/p&gt;
+
+&lt;p&gt;As the next step, I&amp;rsquo;d recommend to first compile the default unmodified kernel in order to verify that we do have all the build dependencies installed and this way, we&amp;rsquo;ll also get familiar with the kernel compiling.&lt;/p&gt;
+
+&lt;p&gt;Before we can start the compile job, we have to make sure to use the correct kernel configuration file. This file &amp;ldquo;.config&amp;rdquo; is missing in the provided kernel source tree, but we can directly get it from our running Linux kernel on the Jetson Nano. This .config file can be found as kernel file at &amp;ldquo;/proc/config.gz&amp;rdquo; in a compressed form.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/kernel/kernel-4.9
+$ zcat /proc/config.gz &amp;gt; .config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s verify the content of the Linux kernel .config file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~/kernel/kernel-4.9$ head -10 .config
+#
+# Automatically generated file; DO NOT EDIT.
+# Linux/arm64 4.9.140 Kernel Configuration
+#
+CONFIG_ARM64=y
+CONFIG_64BIT=y
+CONFIG_ARCH_PHYS_ADDR_T_64BIT=y
+CONFIG_MMU=y
+CONFIG_DEBUG_RODATA=y
+CONFIG_ARM64_PAGE_SHIFT=12
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, it&amp;rsquo;s a Kernel Configuration for Linux kernel version 4.9.140 and for ARM 64-bit architecture.&lt;/p&gt;
+
+&lt;p&gt;Start the kernel compile job. As we do have 4x cores available on the Nano, we&amp;rsquo;d like to keep the CPU busy and using 5x parallel compile tasks.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ make prepare
+$ make modules_prepare
+
+# Use 5x parallel compile tasks
+# Compile kernel as an image file
+$ time make -j5 Image
+...
+real	28m13,235s
+user	91m48,700s
+sys	7m46,240s
+
+# List newly compiled kernel image
+$ ls -alh arch/arm64/boot/Image
+-rw-rw-r-- 1 pirate pirate 33M May  4 00:14 arch/arm64/boot/Image
+
+# Compile all kernel modules
+$ time make -j5 modules
+...
+real	29m15,621s
+user	92m41,176s
+sys	8m18,404s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-our-newly-built-linux-kernel-and-modules&#34;&gt;Install our newly built Linux Kernel and Modules&lt;/h3&gt;
+
+&lt;p&gt;After these pretty long compile jobs for generating our own Linux kernel and kernel modules, we are ready to install the kernel and verify if it&amp;rsquo;s able to boot correctly. Therefore we should make a backup of the old kernel first, then install the new kernel and also install all newly built kernel modules.&lt;/p&gt;
+
+&lt;p&gt;Before we install the new kernel and boot the Jetson Nano, let&amp;rsquo;s check the default Linux kernel version. Then we can compare it later to our own kernel.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarch64 aarch64 aarch64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is also a ASCIINEMA recording of a &lt;code&gt;check-config.sh&lt;/code&gt; verification done with the default kernel.
+&lt;a href=&#34;https://asciinema.org/a/244237?t=0:44&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/244237.svg&#34; alt=&#34;asciicast&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As we can see, we do have a Linux kernel version &amp;ldquo;4.9.140-tegra&amp;rdquo;. This one was compiled at &amp;ldquo;Wed Mar 13 00:32:22 PDT 2019&amp;rdquo; and it&amp;rsquo;s the default kernel provided by NVIDIA for the Jetson Nano.&lt;/p&gt;
+
+&lt;p&gt;Now, install our new kernel and kernel modules.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Backup the old kernel image file
+$ sudo cp /boot/Image /boot/Image.original
+
+# Install modules and kernel image
+$ cd ~/kernel/kernel-4.9
+$ sudo make modules_install
+$ sudo cp arch/arm64/boot/Image /boot/Image
+
+# Verify the kernel images
+pirate@jetson-nano:~/kernel/kernel-4.9$ ls -alh /boot/Image*
+-rw-r--r-- 1 root root 33M May  4 00:55 /boot/Image
+-rw-r--r-- 1 root root 33M May  4 00:49 /boot/Image.original
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, reboot the Nano and check the kernel again.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140 #1 SMP PREEMPT Sat May 4 00:12:56 CEST 2019 aarch64 aarch64 aarch64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, our newly compiled kernel is working. The kernel version has changed to &amp;ldquo;4.9.140&amp;rdquo;, note the missing trailing &amp;ldquo;-tegra&amp;rdquo; which indicates this build is a custom build. And the compile date/time has also changed to &amp;ldquo;Sat May 4 00:12:56 CEST 2019&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hint:&lt;/strong&gt; Please remember, every time you do change a kernel setting and compile a new kernel, you have to install the kernel image file AND the kernel modules.&lt;/p&gt;
+
+&lt;h3 id=&#34;customizing-the-linux-kernel-configuration&#34;&gt;Customizing the Linux Kernel Configuration&lt;/h3&gt;
+
+&lt;p&gt;When it comes to the point to modify or customize the Linux kernel configuration, then this can get pretty complicated when you don&amp;rsquo;t know where to start. First of all, it&amp;rsquo;s a very bad idea to edit the .config file directly with an editor. Please, NEVER DO THIS - seriously!&lt;/p&gt;
+
+&lt;p&gt;The correct way to customize the kernel .config file is, to use the right tooling. One tool which is already built-in and available even in your bash shell (works also via ssh), is the tool &lt;code&gt;menuconfig&lt;/code&gt;. Therefore we already installed the build dependency &amp;ldquo;libncurses5-dev&amp;rdquo; at the beginning.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to go into all details on how to use &lt;code&gt;menuconfig&lt;/code&gt;, therefore here are the basic commands to start it and then I did recorded an ASCIINEMA to change the setting for &amp;ldquo;IPVLAN&amp;rdquo;. I think then you&amp;rsquo;ll should get a good idea how this works.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Backup the kernel config
+$ cd ~/kernel/kernel-4.9
+$ cp .config kernel.config.original
+
+$ make menuconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ASCIINEMA recording on how to include the &amp;ldquo;IPVLAN&amp;rdquo; kernel setting.
+&lt;a href=&#34;https://asciinema.org/a/244246?t=1:15&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/244246.svg&#34; alt=&#34;asciicast&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally let&amp;rsquo;s re-compile the kernel and the kernel modules and install them, like we did before.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/kernel/kernel-4.9
+
+# Prepare the kernel build
+$ make prepare
+$ make modules_prepare
+
+# Compile kernel image and kernel modules
+$ time make -j5 Image
+$ time make -j5 modules
+
+# Install modules and kernel image
+$ sudo make modules_install
+$ sudo cp arch/arm64/boot/Image /boot/Image
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reboot the Nano and check the kernel again.&lt;/p&gt;
+
+&lt;h3 id=&#34;fast-forward-fully-container-optimized-kernel-configuration&#34;&gt;Fast Forward - Fully Container Optimized Kernel Configuration&lt;/h3&gt;
+
+&lt;p&gt;As you have learned here in this tutorial, you&amp;rsquo;re now able to apply more and more settings to your kernel configuration. But this will take some time for sure.&lt;/p&gt;
+
+&lt;p&gt;In order to save you a lot of time and efforts, I&amp;rsquo;ve already optimized the Linux kernel in all details. Here you can find a public &lt;a href=&#34;https://gist.githubusercontent.com/DieterReuter/a7d07445c9d62b45d9151c22b446c59b/&#34;&gt;Gist at Github&lt;/a&gt; with my resulting kernel .config. You can download it directly to your Nano and compile your own Linux kernel with this configuration.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Download the fully container optimized kernel configuration file
+$ cd ~/kernel/kernel-4.9
+$ wget https://gist.githubusercontent.com/DieterReuter/a7d07445c9d62b45d9151c22b446c59b/raw/6decc91cc764ec0be8582186a34f60ea83fa89db/kernel.config.fully-container-optimized 
+$ cp kernel.config.fully-container-optimized .config
+
+# Prepare the kernel build
+$ make prepare
+$ make modules_prepare
+
+# Compile kernel image and kernel modules
+$ time make -j5 Image
+$ time make -j5 modules
+
+# Install modules and kernel image
+$ sudo make modules_install
+$ sudo cp arch/arm64/boot/Image /boot/Image
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, reboot the Nano and check the kernel again.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140 #2 SMP PREEMPT Sat May 4 02:17:23 CEST 2019 aarch64 aarch64 aarch64 GNU/Linux
+
+pirate@jetson-nano:~$ ls -al /boot/Image*
+-rw-r--r-- 1 root root 34381832 May  4 03:13 /boot/Image
+-rw-r--r-- 1 root root 34048008 May  4 00:49 /boot/Image.original
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ASCIINEMA recording of the final run of &lt;code&gt;check-config.sh&lt;/code&gt; with the fully optimized kernel for running Containers on the Jetson Nano DevKit.
+&lt;a href=&#34;https://asciinema.org/a/244250?t=1:13&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/244250.svg&#34; alt=&#34;asciicast&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;As you could learn with this short, but highly technical tutorial, you&amp;rsquo;re able to compile your own customized Linux kernel directly on the Jetson Nano DevKit without the need of an additional and maybe expensiv development machine. All can be done within an hour or two, and you have now the ability to change kernel settings whenever you want to. Just customize the kernel .config file, compile a new kernel and kernel modules and install it on your Nano.&lt;/p&gt;
+
+&lt;p&gt;This way you&amp;rsquo;re now able to optimize the kernel for all your needs. For running Containers on the Nano with the help of Docker, Kubernetes or k3s, you&amp;rsquo;re now well prepared and know how to do this by yourself.&lt;/p&gt;
+
+&lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
+
+&lt;p&gt;Finally, May the 4th be with You!
+&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Setup Kubernetes on a Raspberry Pi Cluster easily the official way!</title>
+      <link>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</link>
+      <pubDate>Wed, 11 Jan 2017 14:03:34 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; shares the pole position with Docker in the category &amp;ldquo;orchestration solutions for Raspberry Pi cluster&amp;rdquo;.
+However it&amp;rsquo;s setup process has been elaborate – until &lt;a href=&#34;http://blog.kubernetes.io/2016/09/how-we-made-kubernetes-easy-to-install.html&#34;&gt;v1.4 with the kubeadm announcement&lt;/a&gt;.
+With that effort, Kubernetes changed this game completely and can be up and running officially within no time.&lt;/p&gt;
+
+&lt;p&gt;I am very happy to announce that this blog post has been written in collaboration with &lt;a href=&#34;https://github.com/luxas&#34;&gt;Lucas Käldström&lt;/a&gt;, an independent maintainer of Kubernetes (his story is very interesting,  you can read it in a &lt;a href=&#34;https://www.cncf.io/blog/2016/11/29/diversity-scholarship-series-programming-journey-becoming-kubernetes-maintainer&#34;&gt;CNCF blogpost&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/raspberry-pi-cluster.png&#34; alt=&#34;SwarmClusterHA&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;why-kubernetes&#34;&gt;Why Kubernetes?&lt;/h2&gt;
+
+&lt;p&gt;As shown in my recent &lt;a href=&#34;http://www.slideshare.net/MathiasRenner/high-availability-performance-of-kubernetes-and-docker-swarm-on-a-raspberry-pi-cluster/&#34;&gt;talk&lt;/a&gt;, there are many software suites available to manage a cluster of computers. There is Kubernetes, Docker Swarm, Mesos, OpenStack, Hadoop YARN, Nomad&amp;hellip; just to name a few.&lt;/p&gt;
+
+&lt;p&gt;However, at Hypriot we have always been in love with tiny devices. So when working with an orchestrator, the maximum power we wanna use is what&amp;rsquo;s provided by a Raspberry Pi. Why? We have IoT networks in mind that will hold a large share in tomorrow&amp;rsquo;s IT infrastructure. At their edges, the power required for large orchestrators simply is not available.&lt;/p&gt;
+
+&lt;p&gt;This boundary of resources leads to several requirements that need to be checked before we start getting our hands dirty with an orchestrator:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Lightweight:&lt;/strong&gt; Software should be fit on a Raspberry Pi or smaller. As proofed in my talk mentioned above, Kubernetes painlessly runs on a Raspberry Pi.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ARM compatible:&lt;/strong&gt; Since the ARM CPU architecture is designed for low energy consumption but still able to deliver a decent portion of power, the Raspberry Pi runs an ARM CPU. Thanks to Lucas, Kubernetes is ARM compatible.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;General purpose:&lt;/strong&gt; Hadoop or Apache Spark are great for data analysis. But what if your use case changes? We prefer general purpose software that allows to run &lt;strong&gt;anything&lt;/strong&gt;. Kubernetes uses a container runtime (with Docker as the 100% supported runtime for the time being) that allows to run whatever you want.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production ready:&lt;/strong&gt; Since we compare Kubernetes against a production ready Docker suite, let&amp;rsquo;s be fair and only choose equivalents. Kubernetes itself is production ready, and while the ARM port has some small issues, it&amp;rsquo;s working exactly as expected when going the official kubeadm route, which also will mature with time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, Kubernetes seems to be a compelling competitor to Docker Swarm. Let&amp;rsquo;s get our hands on it!&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;wait-what-about-kubernetes-on-arm&#34;&gt;Wait – what about &lt;em&gt;Kubernetes-on-ARM&lt;/em&gt;?&lt;/h2&gt;
+
+&lt;p&gt;If you followed the discussion of Kubernetes on ARM for some time, you probably know about Lucas&amp;rsquo; project &lt;a href=&#34;https://github.com/luxas/kubernetes-on-arm&#34;&gt;kubernetes-on-ARM&lt;/a&gt;. Since the beginning of the movement to bring Kubernetes on ARM in 2015, this project has always been the most stable and updated.&lt;/p&gt;
+
+&lt;p&gt;However, during 2016, Lucas&amp;rsquo; contributions have successfully been merged into official Kubernetes repositories, such that there is no point any more for using the kubernetes-on-ARM project.
+In fact, the features of that project are far behind of what&amp;rsquo;s now implemented in the official repos, &lt;strong&gt;and that has been Lucas&amp;rsquo; goal from the beginning.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;So if you&amp;rsquo;re up to using Kubernetes, please stick to the official repos now. And as of the kubeadm documentation, &lt;strong&gt;the following setup is considered official for Kubernetes on ARM.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;at-first-flash-hypriotos-on-your-sd-cards&#34;&gt;At first: Flash HypriotOS on your SD cards&lt;/h2&gt;
+
+&lt;p&gt;As hardware, take at least two Raspberry Pis and make sure they are connected to each other and to the Internet.&lt;/p&gt;
+
+&lt;p&gt;First, we need an operating system. Download and flash &lt;a href=&#34;https://github.com/hypriot/image-builder-rpi/releases&#34;&gt;HypriotOS&lt;/a&gt;. The fastest way to download and flash HypriotOS on your SD cards is by using our &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;flash tool&lt;/a&gt; like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;flash --hostname node01 https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Provision all Raspberry Pis you have like this and boot them up.&lt;/p&gt;
+
+&lt;p&gt;Afterwards, SSH into the Raspberry Pis with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh pirate@node01.local
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The password &lt;code&gt;hypriot&lt;/code&gt; will grant you access.&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;install-kubernetes&#34;&gt;Install Kubernetes&lt;/h2&gt;
+
+&lt;p&gt;The installation requires root privileges. Retrieve them by&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo su -
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To install Kubernetes and its dependencies, only some commands are required.
+First, trust the kubernetes APT key and add the official APT Kubernetes repository on every node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+$ echo &amp;quot;deb http://apt.kubernetes.io/ kubernetes-xenial main&amp;quot; &amp;gt; /etc/apt/sources.list.d/kubernetes.list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; and then just install &lt;code&gt;kubeadm&lt;/code&gt; on every node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ apt-get update &amp;amp;&amp;amp; apt-get install -y kubeadm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After the previous command has been finished, initialize Kubernetes on the &lt;strong&gt;master node&lt;/strong&gt; with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubeadm init --pod-network-cidr 10.244.0.0/16
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It is important that you add the &lt;code&gt;--pod-network-cidr&lt;/code&gt; command as given here, because we will use &lt;a href=&#34;https://coreos.com/flannel/docs/latest/&#34;&gt;flannel&lt;/a&gt;. Read the next notes about flannel if you wanna know why.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Some notes about flannel&lt;/strong&gt;: We picked flannel here because that’s the only available solution for ARM at the moment (this is subject to change in the future though).&lt;/p&gt;
+
+&lt;p&gt;flannel can use and is using in this example the Kubernetes API to store metadata about the Pod CIDR allocations, and therefore we need to tell &lt;em&gt;Kubernetes&lt;/em&gt; first which subnet we want to use. The subnet we chose here is somehow fixed, because the &lt;a href=&#34;https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml#L25&#34;&gt;flannel configuration file&lt;/a&gt; that we&amp;rsquo;ll use later in this guide predefines the equivalent subnet. Of course, you can adapt both.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you are connected via WIFI instead of Ethernet, add &lt;code&gt;--apiserver-advertise-address=&amp;lt;wifi-ip-address&amp;gt;&lt;/code&gt; as parameter to &lt;code&gt;kubeadm init&lt;/code&gt; in order to publish Kubernetes&amp;rsquo; API via WiFi. Feel free to explore the other options that exist for &lt;code&gt;kubeadm init&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;After Kubernetes has been initialized, the last lines of your terminal should look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/init.png&#34; alt=&#34;init&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To start using your cluster, you need to run (as a regular user):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo cp /etc/kubernetes/admin.conf $HOME/
+$ sudo chown $(id -u):$(id -g) $HOME/admin.conf
+$ export KUBECONFIG=$HOME/admin.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, as told by that output, let all other nodes join the cluster via the given &lt;code&gt;kubeadm join&lt;/code&gt; command. It will look something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubeadm join --token=bb14ca.e8bbbedf40c58788 192.168.0.34
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After some seconds, you should see all nodes in your cluster when executing the following &lt;strong&gt;on the master node&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl get nodes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your terminal should look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/get-nodes.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, &lt;strong&gt;we need to setup flannel v0.9.1 as the Pod network driver&lt;/strong&gt;. Do not use &lt;a href=&#34;https://github.com/coreos/flannel/releases/tag/v0.8.0&#34;&gt;v0.8.0&lt;/a&gt; due to a known &lt;a href=&#34;https://github.com/coreos/flannel/issues/773&#34;&gt;bug&lt;/a&gt; that can cause a &lt;code&gt;CrashLoopBackOff&lt;/code&gt; error. Run this &lt;strong&gt;on the master node&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -sSL https://rawgit.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml | sed &amp;quot;s/amd64/arm/g&amp;quot; | kubectl create -f -
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your terminal should look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/flannel.png&#34; alt=&#34;k8S&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then wait until all flannel and all other cluster-internal Pods are &lt;code&gt;Running&lt;/code&gt; before you continue:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl get po --all-namespaces
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nice, it seems like they are all &lt;code&gt;Running&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-namespaces.png&#34; alt=&#34;show-namespaces&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for the setup of Kubernetes! Next, let&amp;rsquo;s actually spin up a service on the cluster!&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;test-your-setup-with-a-tiny-service&#34;&gt;Test your setup with a tiny service&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start a simple service so see if the cluster actually can publish a service:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl run hypriot --image=hypriot/rpi-busybox-httpd --replicas=3 --port=80
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command starts set of containers called &lt;strong&gt;hypriot&lt;/strong&gt; from the image &lt;strong&gt;hypriot/rpi-busybox-httpd&lt;/strong&gt; and defines the port the container listens on at &lt;strong&gt;80&lt;/strong&gt;. The service will be &lt;strong&gt;replicated with 3 containers&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, expose the Pods in the above created Deployment in a Service with a stable name and IP:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl expose deployment hypriot --port 80
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Great! Now, let&amp;rsquo;s check if all three desired containers are up and running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl get endpoints hypriot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see three endpoints (= containers) like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/show-endpoints.png&#34; alt=&#34;show-endpoints&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s curl one of them to see if the service is up:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/curl-service.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The HTML is the response of the service. Good, it&amp;rsquo;s up and running! Next, let&amp;rsquo;s see how we can access it from outside the cluster!&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;finally-access-your-service-from-outside-the-cluster&#34;&gt;Finally access your service from outside the cluster&lt;/h2&gt;
+
+&lt;p&gt;We will now deploy an example Ingress Controller to manage incoming requests from the outside world onto our tiny service. Also, in this example we we&amp;rsquo;ll use &lt;a href=&#34;https://traefik.io&#34;&gt;Traefik&lt;/a&gt; as load balancer. Read the following notes if you wanna know more about Ingress and Traefik.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;In contrast to Docker Swarm, Kubernetes itself does not provide an option to define a specific port that you can use to access a service&lt;/strong&gt;. According to Lucas this is an important design decision; routing of incoming requests should be handled by a third party, such as a load balancer or a webserver, but not by the core product. The core Kubernetes should be lean and extensible, and encourage others to build tools on top of it for their specific needs.&lt;/p&gt;
+
+&lt;p&gt;Regarding load balancers in front of a cluster, there is &lt;a href=&#34;http://kubernetes.io/docs/user-guide/ingress/&#34;&gt;the Ingress API object&lt;/a&gt; and some sample &lt;a href=&#34;https://github.com/kubernetes/ingress&#34;&gt;Ingress Controllers&lt;/a&gt;. Ingress is a built-in way of exposing Services to the outside world via an Ingress Controller that anyone can build. An &lt;em&gt;Ingress rule&lt;/em&gt; defines how traffic should flow from the node the Ingress controller runs on to services inside of the cluster.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s deploy traefik as load balancer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl apply -f https://raw.githubusercontent.com/hypriot/rpi-traefik/master/traefik-k8s-example.yaml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Label the node you want to be the load balancer. Then the Traefik Ingress Controller will land on the node you specified. Run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl label node &amp;lt;load balancer-node&amp;gt; nginx-controller=traefik
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lastly, create an Ingress object that makes Traefik load balance traffic on port &lt;code&gt;80&lt;/code&gt; to the &lt;code&gt;hypriot&lt;/code&gt; service:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat &amp;gt; hypriot-ingress.yaml &amp;lt;&amp;lt;EOF
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hypriot
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hypriot
+          servicePort: 80
+EOF
+$ kubectl apply -f hypriot-ingress.yaml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Visit the loadbalancing node&amp;rsquo;s IP address in your browser and you should see a nice web page:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kubernetes-setup-cluster/hypriot-website.png&#34; alt=&#34;curl-service&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t see a website there yet, run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl get pods
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; and make sure all hypriot Pods are in the &lt;code&gt;Running&lt;/code&gt; state.&lt;/p&gt;
+
+&lt;p&gt;Wait until you see that all Pods are running, and a nice Hypriot website should appear!&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;tear-down-the-cluster&#34;&gt;Tear down the cluster&lt;/h2&gt;
+
+&lt;p&gt;If you wanna reset the whole cluster to the state after a fresh install, just run this on each node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubeadm reset
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In addition, it is recommended to delete some additional files &lt;a href=&#34;http://stackoverflow.com/questions/41359224/kubernetes-failed-to-setup-network-for-pod-after-executed-kubeadm-reset/41372829#41372829&#34;&gt;as it is mentioned here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;optional-deploy-the-kubernetes-dashboard&#34;&gt;Optional: Deploy the Kubernetes dashboard&lt;/h2&gt;
+
+&lt;p&gt;The dashboard is a wonderful interface to visualize the state of the cluster. Start it with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard-arm.yaml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit the kubernetes-dashboard service to use &lt;code&gt;type: ClusterIP&lt;/code&gt; to &lt;code&gt;type: NodePort&lt;/code&gt;, see &lt;a href=&#34;https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above&#34;&gt;Accessing Kubernetes Dashboard&lt;/a&gt; for more details.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl -n kube-system edit service kubernetes-dashboard
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The following command provides the port that the dashboard is exposed at on every node with the NodePort function of Services, which is another way to expose your Services to the outside of your cluster:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ kubectl -n kube-system get service kubernetes-dashboard -o template --template=&amp;quot;{{ (index .spec.ports 0).nodePort }}&amp;quot; | xargs echo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you can checkout the dashboard on any node&amp;rsquo;s IP address on that port! Make sure to use &lt;code&gt;https&lt;/code&gt; when accessing the dashboard, for example if running on port &lt;code&gt;31657&lt;/code&gt; access it at &lt;code&gt;https://node:31657&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Newer versions of the Kubernetes Dashboard require either a &lt;code&gt;Kubeconfig&lt;/code&gt; or &lt;code&gt;Token&lt;/code&gt; to view information on the dashboard. &lt;a href=&#34;https://github.com/kubernetes/dashboard/wiki/Access-control#introduction&#34;&gt;Bearer tokens&lt;/a&gt; are recommended to setup proper permissions for a user, but to test the &lt;code&gt;replicaset-controller-token&lt;/code&gt; Token may be used to test.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;kubectl -n kube-system describe secret `kubectl -n kube-system get secret | grep replicaset-controller-token | awk &#39;{print $1}&#39;` | grep token: | awk &#39;{print $2}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;you-like-a-follow-up&#34;&gt;You like a follow-up?&lt;/h2&gt;
+
+&lt;p&gt;It was our goal to show that Kubernetes indeed works well on ARM (and ARM 64-bit!). For more examples including the AMD64 platform, check out the &lt;a href=&#34;http://kubernetes.io/docs/getting-started-guides/kubeadm/&#34;&gt;official kubeadm documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We might follow-up this blog post with a more in-depth post about the current and planned state of Kubernetes officially on ARM and more, so stay tuned and tell Lucas if that&amp;rsquo;s something you&amp;rsquo;re interested in reading.&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/MathiasRenner&#34;&gt;Mathias Renner&lt;/a&gt; and &lt;a href=&#34;https://twitter.com/kubernetesonarm&#34;&gt;Lucas Käldström&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Introducing Hypriot Cluster Lab: Docker clustering as easy as it gets</title>
+      <link>https://blog.hypriot.com/post/introducing-hypriot-cluster-lab-docker-clustering-as-easy-as-it-gets/</link>
+      <pubDate>Tue, 08 Dec 2015 15:30:00 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/introducing-hypriot-cluster-lab-docker-clustering-as-easy-as-it-gets/</guid>
+      <description>&lt;p&gt;Today we wanna share something with you that we have been working on for the last couple of weeks. And we are pretty exited about it, too.
+It is based on our beloved &lt;a href=&#34;https://blog.hypriot.com/post/get-your-all-in-one-docker-playground-now-hypriotos-reloaded/&#34;&gt;HypriotOS&lt;/a&gt; and makes it dead simple to build Docker clusters.&lt;/p&gt;
+
+&lt;p&gt;Until now it was not exactly easy to get started with Docker clustering.
+You would have needed specific knowledge and lots of time to manually configure the cluster and its individual nodes.&lt;/p&gt;
+
+&lt;p&gt;Well, that&amp;rsquo;s now a thing of the past.&lt;/p&gt;
+
+&lt;p&gt;May we introduce to you the newest member of the Hypriot family: &lt;strong&gt;The Hypriot Cluster Lab!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cluster-lab-release-v01/cluster_lab.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;With the &lt;strong&gt;Hypriot Cluster Lab&lt;/strong&gt; it is just a matter of minutes to set up your own personal Docker cluster.
+All you need is a couple of Raspberry Pi&amp;rsquo;s - 3, 5, 30 or even 100 - it is up to you - and our Hypriot Cluster Lab SD card image.&lt;/p&gt;
+
+&lt;p&gt;We designed the Cluster Lab to be completely self-configuring, so there is nothing to configure or to set up.
+Basically you just need to download our Cluster Lab SD card image and flash it onto a number of SD cards.
+Then ensure that all your Pi&amp;rsquo;s have network connectivity, insert the SD cards and switch on power.
+Everything else is taken care of automatically by our Cluster Lab.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Docker Clustering as easy as it gets!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When we started out to develop the Cluster Lab we wanted to be able to create complex Raspberry Pi based clusters with an arbitrary number of nodes.
+We wanted to directly jump to deploying all kind of interesting services on top of the cluster instead of being concerned with setting up the cluster itself.&lt;/p&gt;
+
+&lt;p&gt;And well - we managed to pull this off by combining a number of great technologies.
+For instance &lt;strong&gt;Avahi&lt;/strong&gt; for announcing/managing who is a master and who is a slave node in the cluster. &lt;strong&gt;VLAN&lt;/strong&gt; for isolating the cluster network from other existing networks.
+&lt;strong&gt;DHCP&lt;/strong&gt; for automatically assigning IP addresses to slave nodes in the cluster network. &lt;strong&gt;Consul&lt;/strong&gt; as a service registry and key-value-store.
+And of course a number of other Docker related technologies that we already provide in HypriotOS: &lt;strong&gt;Docker Engine&lt;/strong&gt;, &lt;strong&gt;Swarm&lt;/strong&gt; and &lt;strong&gt;Compose&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;These technologies work together seamlessly and form what we call the Hypriot Cluster Lab. On top of it we are now able to easily deploy all kind of cluster services.
+We have a number of ideas where this can come in handy in the future! Think Kubernetes for instance or Redis cluster.&lt;/p&gt;
+
+&lt;p&gt;The Cluster Lab is still a bit rough around the edges and is more technology preview than production ready software, but we think it demonstrates the basic use case very well and shows the potential.
+So for the coming weeks we want to gather feedback and make it more polished and resilient.
+After that our main goal is to make it possible that all kind of cluster scenarios can be deployed on top of the Cluster Lab with just one command.
+We want to make this possible by providing a kind of plugin-mechanism so that the community can help us in enabling many more interesting cluster use cases.&lt;/p&gt;
+
+&lt;p&gt;The main reason that makes us really excited about the Cluster Lab, is that we think that there is great potential in using it as an educational tool in schools, universities or in commercial trainings.
+It can be used to teach about Linux, Networking, Clustering, Microservices and so much more!&lt;/p&gt;
+
+&lt;p&gt;And with the latest member of the Raspberry Pi family - the &lt;a href=&#34;http://swag.raspberrypi.org/collections/pi-zero/products/pi-zero&#34;&gt;Pi Zero&lt;/a&gt; - it got really cheap to have your own cluster. For about 50 bucks you are able to have a two to three node physical cluster.
+And believe us - having physical nodes and being able to pull the network or power to simulate different cluster scenarios makes all the difference.
+Working with &lt;strong&gt;real hardware&lt;/strong&gt; compared to a virtual environment (e.g. Vagrant) &lt;strong&gt;has a certain raw and primal feel about it&lt;/strong&gt; that we really like. :)&lt;/p&gt;
+
+&lt;p&gt;So enough talking - let&amp;rsquo;s get our hands dirty - shall we?&lt;/p&gt;
+
+&lt;h3 id=&#34;prerequisites-or-what-you-gonna-need-to-follow-along&#34;&gt;Prerequisites or what you gonna need to follow along&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;at least two &lt;strong&gt;Raspberry Pi&amp;rsquo;s&lt;/strong&gt;: Model 1 or 2 - both will do&lt;/li&gt;
+&lt;li&gt;for each Raspberry Pi a &lt;strong&gt;power supply&lt;/strong&gt;, a &lt;strong&gt;MicroSD card&lt;/strong&gt; and a &lt;strong&gt;network cable&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;a &lt;strong&gt;network switch&lt;/strong&gt; that is somehow connected to the Internet and a DHCP server; both is usually provided by your typical off-the-shelf home router&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Additionally, the switch should not filter IEEE 802.1Q VLAN flags out of network packets. Usually this feature is provided even by cheap switches. If you wanna be safe, go through a small test to figure this out. The test is &lt;a href=&#34;https://github.com/hypriot/cluster-lab/blob/master/README.md#troubleshooting&#34;&gt;listed here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;download-flash-boot-enjoy&#34;&gt;Download. Flash. Boot. Enjoy!&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; &lt;strong&gt;Download&lt;/strong&gt; the Hypriot Cluster Lab SD card image (hypriot_20160121-235123_clusterlab.img.zip).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Flash the image to your SD cards your way or use &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;our funky flash script&lt;/a&gt; which makes flashing the SD cards so much easier.&lt;/p&gt;
+
+&lt;p&gt;Another advantage of our flash script is that it also allows you to give your cluster nodes unique hostnames:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ flash --hostname cl-master http://downloads.hypriot.com/hypriot_20160121-235123_clusterlab.img.zip
+$ flash --hostname cl-node-1 http://downloads.hypriot.com/hypriot_20160121-235123_clusterlab.img.zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; Put the freshly flashed SD cards in each node&amp;rsquo;s SD card slot.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; Power on &lt;strong&gt;only one&lt;/strong&gt; node. This node will automatically become the master node of the cluster. It might take up to two minutes until the master node is fully functional.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; Find out the IP address of your master node. One way to do this is via &lt;a href=&#34;https://nmap.org/&#34;&gt;nmap&lt;/a&gt; and is described &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-and-linux-on-the-raspberry-pi/#ensure-everything-works:8814904f208dcaade82991443c7514e0&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6.&lt;/strong&gt; Use the IP (from step 5) or the hostname (from step 2) to point your browser to &lt;code&gt;http://{IP or hostname of the master node}:8500&lt;/code&gt;. In our case &lt;code&gt;http://cl-master:8500&lt;/code&gt; opens the Consul web interface and our cluster master node is displayed:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cluster-lab-release-v01/consul_cl_master.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;7.&lt;/strong&gt; Power on all the remaining cluster nodes only if step 5 was successful. After about 2 minutes you should see the rest of them being listed in the Consul web interface, too.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cluster-lab-release-v01/consul_cl_master_and_nodes.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The last step makes the cluster fully operational and we are now able to work with the cluster in earnest.&lt;/p&gt;
+
+&lt;h3 id=&#34;babysteps-with-our-cluster-lab&#34;&gt;Babysteps with our Cluster Lab&lt;/h3&gt;
+
+&lt;p&gt;Congratulations, you got your Hypriot Cluster Lab up and running! That was easy, wasn&amp;rsquo;t it?&lt;/p&gt;
+
+&lt;p&gt;The Cluster Lab is using &lt;a href=&#34;https://docs.docker.com/swarm/&#34;&gt;Docker Swarm&lt;/a&gt; for managing Docker containers on the nodes that make up the cluster.
+Docker Swarm will distribute containers based on different distribution &lt;a href=&#34;https://docs.docker.com/swarm/scheduler/strategy/&#34;&gt;strategies&lt;/a&gt; to individual nodes.
+Per default Docker Swarm uses the &lt;em&gt;spread&lt;/em&gt; strategy to evenly distribute container on cluster nodes.&lt;/p&gt;
+
+&lt;p&gt;Working with Docker Swarm is easy. To start we first need to log into our cluster master:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ssh root@cl-master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There we can use the Docker Client to connect to the Swarm Manager instance. We do that by providing the &amp;lsquo;-H&amp;rsquo; flag to the &lt;code&gt;docker&lt;/code&gt; command.
+This enables the Docker client to use the Docker Remote API for accessing the Swarm Manager.&lt;/p&gt;
+
+&lt;p&gt;To display some basic info about the Swarm Cluster run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 info
+Containers: 7
+Images: 6
+Role: primary
+Strategy: spread
+Filters: health, port, dependency, affinity, constraint
+Nodes: 3
+ cl-master: 192.168.200.1:2375
+  └ Containers: 3
+  └ Reserved CPUs: 0 / 4
+  └ Reserved Memory: 0 B / 971.8 MiB
+  └ Labels: executiondriver=native-0.2, kernelversion=4.1.12-hypriotos-v7+, operatingsystem=Raspbian GNU/Linux 8 (jessie), storagedriver=overlay
+ cl-node-1: 192.168.200.115:2375
+  └ Containers: 2
+  └ Reserved CPUs: 0 / 4
+  └ Reserved Memory: 0 B / 971.8 MiB
+  └ Labels: executiondriver=native-0.2, kernelversion=4.1.12-hypriotos-v7+, operatingsystem=Raspbian GNU/Linux 8 (jessie), storagedriver=overlay
+ cl-node-2: 192.168.200.113:2375
+  └ Containers: 2
+  └ Reserved CPUs: 0 / 4
+  └ Reserved Memory: 0 B / 971.8 MiB
+  └ Labels: executiondriver=native-0.2, kernelversion=4.1.12-hypriotos-v7+, operatingsystem=Raspbian GNU/Linux 8 (jessie), storagedriver=overlay
+CPUs: 12
+Total Memory: 2.84
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Instead of the hostname &lt;code&gt;cl-master&lt;/code&gt; one can also use the IP address that is always fixed for the cluster master node: 192.168.200.1.&lt;/p&gt;
+
+&lt;p&gt;Ok - it seems our Swarm cluster is truly up and running.&lt;/p&gt;
+
+&lt;p&gt;Time to get a little bit more daring.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s spin up a web interface for managing our nodes called &lt;a href=&#34;https://github.com/crosbymichael/dockerui&#34;&gt;DockerUI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker -H cl-master:2378 run -d -p 9000:9000 --env=&amp;quot;constraint:node==cl-master&amp;quot; --name dockerui hypriot/rpi-dockerui -e http://192.168.200.1:2378
+51f2eb09ab48540eb4a052bbe07644487c3a0b29ca44a6217ea6aebf17b3df0c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The most interesting part here is the env parameter &lt;code&gt;--env=&amp;quot;constraint:node==cl-master&amp;quot;&lt;/code&gt; which tells the Swarm Manager that we want to start our new container on the &lt;strong&gt;cl-master&lt;/strong&gt; node.
+Without that the new container would be started by Docker Swarm on one of the nodes according to the &lt;em&gt;spread&lt;/em&gt; strategy.
+By using the &amp;lsquo;constraint:node&amp;rsquo; label we are able to control on which node a container gets started.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s open the DockerUI with the following URL: &lt;code&gt;http://cl-master:9000&lt;/code&gt;.
+If everything did work you should now see an overview of your running containers similar to this one:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/cluster-lab-release-v01/dockerui.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Back to the command line we can see the same result by using the &lt;code&gt;docker ps&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 ps
+CONTAINER ID        IMAGE                                                              COMMAND                  CREATED             STATUS              PORTS                          NAMES
+51f2eb09ab48        hypriot/rpi-dockerui                                               &amp;quot;./dockerui -e http:/&amp;quot;   12 minutes ago      Up 12 minutes       192.168.200.1:9000-&amp;gt;9000/tcp   cl-master/dockerui
+fca75c6b759a        hypriot/rpi-consul                                                 &amp;quot;/consul agent -serve&amp;quot;   About an hour ago   Up About an hour                                   cl-node-2/bin_consul_1
+4bfa58ed2a07        hypriot/rpi-swarm                                                  &amp;quot;/swarm join --advert&amp;quot;   About an hour ago   Up About an hour    2375/tcp                       cl-node-2/bin_swarm_1
+ec61f8f5d766        hypriot/rpi-consul                                                 &amp;quot;/consul agent -serve&amp;quot;   About an hour ago   Up About an hour                                   cl-node-1/bin_consul_1
+75c7cb003639        0104b3a10aad7e9a3d38ca4dce652c73d195b87171675c7dbc114ae85a444831   &amp;quot;/swarm join --advert&amp;quot;   About an hour ago   Up About an hour    2375/tcp                       cl-node-1/bin_swarm_1
+df027cd23e69        hypriot/rpi-swarm                                                  &amp;quot;/swarm manage consul&amp;quot;   2 hours ago         Up 2 hours          192.168.200.1:2378-&amp;gt;2375/tcp   cl-master/bin_swarmmanage_1
+f6b11e9e4f07        hypriot/rpi-consul                                                 &amp;quot;/consul agent -serve&amp;quot;   2 hours ago         Up 2 hours                                         cl-master/bin_consul_1
+8658010a4433        hypriot/rpi-swarm                                                  &amp;quot;/swarm join --advert&amp;quot;   2 hours ago         Up 2 hours          2375/tcp                       cl-master/bin_swarm_1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By now you should have gotten the hang of it and come to expect that you can use many of the Docker command line commands with Swarm, too.
+And you are right - you just need to remember to use the &lt;code&gt;-H&lt;/code&gt; flag as part of the Docker command.&lt;/p&gt;
+
+&lt;h3 id=&#34;getting-to-the-grown-up-stuff&#34;&gt;Getting to the grown-up stuff&lt;/h3&gt;
+
+&lt;p&gt;After we did our first babysteps successfully it is now time for some serious grown-up stuff.
+Certainly Docker multi-host networking can be considered serious stuff - don&amp;rsquo;t you think?&lt;/p&gt;
+
+&lt;p&gt;First let&amp;rsquo;s see if we already have any networks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 network ls
+NETWORK ID          NAME                DRIVER
+d88253054dd4        cl-node-1/none      null
+e78f9fc77a31        cl-node-2/bridge    bridge
+12d2cb0e387d        cl-node-2/none      null
+020bdb74ea43        cl-node-1/host      host
+b39702828ebf        cl-node-1/bridge    bridge
+c24764cf7077        cl-master/host      host
+480319fbca22        cl-node-2/host      host
+e5d7f7a69313        cl-master/bridge    bridge
+7153745ef548        cl-master/none      null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These are the networks that are already present by default.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s add our own overlay network:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 network create -d overlay my-net
+54583b74b0c5b678678db18b99a1148049640e3c4e6ac6f5cdfa0938b1399f3a
+HypriotOS: root@cl-master in ~
+$ docker -H cl-master:2378 network ls
+NETWORK ID          NAME                DRIVER
+7153745ef548        cl-master/none      null
+c24764cf7077        cl-master/host      host
+54583b74b0c5        my-net              overlay
+480319fbca22        cl-node-2/host      host
+e5d7f7a69313        cl-master/bridge    bridge
+b39702828ebf        cl-node-1/bridge    bridge
+d88253054dd4        cl-node-1/none      null
+e78f9fc77a31        cl-node-2/bridge    bridge
+12d2cb0e387d        cl-node-2/none      null
+020bdb74ea43        cl-node-1/host      host
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see we now have successfully created our first Docker multi-node overlay network.
+This overlay network is really useful. Any container started in this network can talk to any other container in the network by default.&lt;/p&gt;
+
+&lt;p&gt;In order to see how this works we are going to start two containers on different cluster nodes that will talk to each other.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 run -itd --name=webserver --net=my-net --env=&amp;quot;constraint:node==cl-node-1&amp;quot; hypriot/rpi-nano-httpd
+378ddbe05781360f57f869f9aec7ad4c2cd703047cb5da11a9a7f395501bc533
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Listing the running containers in our cluster we now have:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 ps
+CONTAINER ID        IMAGE                                                              COMMAND                  CREATED             STATUS              PORTS                          NAMES
+378ddbe05781        hypriot/rpi-nano-httpd                                             &amp;quot;/httpd 80&amp;quot;              26 seconds ago      Up 23 seconds       80/tcp                         cl-node-1/webserver
+51f2eb09ab48        hypriot/rpi-dockerui                                               &amp;quot;./dockerui -e http:/&amp;quot;   41 minutes ago      Up 40 minutes       192.168.200.1:9000-&amp;gt;9000/tcp   cl-master/dockerui
+fca75c6b759a        hypriot/rpi-consul                                                 &amp;quot;/consul agent -serve&amp;quot;   About an hour ago   Up About an hour                                   cl-node-2/bin_consul_1
+4bfa58ed2a07        hypriot/rpi-swarm                                                  &amp;quot;/swarm join --advert&amp;quot;   About an hour ago   Up About an hour    2375/tcp                       cl-node-2/bin_swarm_1
+ec61f8f5d766        hypriot/rpi-consul                                                 &amp;quot;/consul agent -serve&amp;quot;   About an hour ago   Up About an hour                                   cl-node-1/bin_consul_1
+75c7cb003639        0104b3a10aad7e9a3d38ca4dce652c73d195b87171675c7dbc114ae85a444831   &amp;quot;/swarm join --advert&amp;quot;   2 hours ago         Up 2 hours          2375/tcp                       cl-node-1/bin_swarm_1
+df027cd23e69        hypriot/rpi-swarm                                                  &amp;quot;/swarm manage consul&amp;quot;   3 hours ago         Up 3 hours          192.168.200.1:2378-&amp;gt;2375/tcp   cl-master/bin_swarmmanage_1
+f6b11e9e4f07        hypriot/rpi-consul                                                 &amp;quot;/consul agent -serve&amp;quot;   3 hours ago         Up 3 hours                                         cl-master/bin_consul_1
+8658010a4433        hypriot/rpi-swarm                                                  &amp;quot;/swarm join --advert&amp;quot;   3 hours ago         Up 3 hours          2375/tcp                       cl-master/bin_swarm_1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Everything so far looks good. So let&amp;rsquo;s get the final piece working by starting a web client that talks to our webserver.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker -H cl-master:2378 run -it --rm --net=my-net --env=&amp;quot;constraint:node==cl-node-2&amp;quot; hypriot/armhf-busybox wget -O- http://webserver/index.html
+Connecting to webserver (10.0.0.2:80)
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Pi armed with Docker by Hypriot&amp;lt;/title&amp;gt;
+  &amp;lt;body style=&amp;quot;width: 100%; background-color: black;&amp;quot;&amp;gt;
+    &amp;lt;div id=&amp;quot;main&amp;quot; style=&amp;quot;margin: 100px auto 0 auto; width: 800px;&amp;quot;&amp;gt;
+      &amp;lt;img src=&amp;quot;pi_armed_with_docker.jpg&amp;quot; alt=&amp;quot;pi armed with docker&amp;quot; style=&amp;quot;width: 800px&amp;quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+-                    100% |*******************************|   304   0:00:00 ETA
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see we have been able to spin up a busybox container on another node.
+We used it to fetch the index.html page with the &lt;code&gt;wget&lt;/code&gt; command from our webserver container.&lt;/p&gt;
+
+&lt;p&gt;The simplicity of this illustrates how powerful Docker networking has become.
+Creating this kind of a setup with - for example &lt;a href=&#34;http://openvswitch.org/&#34;&gt;OpenVSwitch&lt;/a&gt; - was way more complicated in the past.&lt;/p&gt;
+
+&lt;p&gt;It is possible to create far more complex scenarios with our Cluster Lab, but hopefully we were able to demonstrate a bit of the potential it has.
+We will write more about those in some future blog posts.&lt;/p&gt;
+
+&lt;p&gt;Until then we hope that it was fun to follow along and that we could infect you a little bit with our passion for Docker clustering.&lt;/p&gt;
+
+&lt;p&gt;You can find the source code of the Hypriot Cluster Lab at &lt;a href=&#34;https://github.com/hypriot/cluster-lab&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback, discuss this post on &lt;a href=&#34;https://news.ycombinator.com/item?id=10696752&#34;&gt;HackerNews&lt;/a&gt; and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Andreas &amp;amp; Mathias&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

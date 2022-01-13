@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/machine/index.xml</link>
+    <description>Recent content in Machine on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/machine/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploying an IoT Swarm with Docker Machine</title>
+      <link>https://blog.hypriot.com/post/deploy-swarm-on-chip-with-docker-machine/</link>
+      <pubDate>Sun, 04 Sep 2016 19:45:58 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/deploy-swarm-on-chip-with-docker-machine/</guid>
+      <description>&lt;p&gt;With the new SwarmMode in Docker 1.12 it is really damn easy to build a Docker Swarm and connect different ARM devices to an IoT cluster.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-flashing1.jpg&#34; alt=&#34;swarm-chip-flashing1.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s connect a few of the $9 C.H.I.P. computers and a Raspberry Pi Zero all through a WiFi network&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;step-1-install-docker-machine&#34;&gt;Step 1: Install Docker Machine&lt;/h4&gt;
+
+&lt;p&gt;First of all, we need to make sure we do have Docker Machine installed on our local computer. I&amp;rsquo;m using a Mac for this tutorial, but you can use Docker Machine on Linux or Windows too. If not already done, you should install the latest Docker Machine binary following the &lt;a href=&#34;https://docs.docker.com/machine/install-machine/&#34;&gt;Install Docker Machine&lt;/a&gt; instructions.&lt;/p&gt;
+
+&lt;p&gt;You can easily check the version of Docker Machine with the following command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine --version
+docker-machine version 0.8.0, build b85aac1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;step-2-prepare-all-c-h-i-p-s-with-docker-machine&#34;&gt;Step 2: Prepare all C.H.I.P.&amp;rsquo;s with Docker Machine&lt;/h4&gt;
+
+&lt;p&gt;In order to connect a couple of C.H.I.P. computers to a Docker Swarm cluster, we have to install Docker 1.12.1 first. This can be done easily by following the steps of my last tutorial &lt;a href=&#34;https://blog.hypriot.com/post/install-docker-on-chip-computer/&#34;&gt;Install Docker 1.12 on the $9 C.H.I.P. computer&lt;/a&gt;. Then we&amp;rsquo;re using the standard Docker Machine from a Mac to attach each C.H.I.P. device via a secured Docker API port and give each device an individual hostname on the network. With the help of Docker Machine it&amp;rsquo;s easier to access all the C.H.I.P. devices we&amp;rsquo;d like to connect to the Swarm cluster from a Mac, Linux or Windows machine.&lt;/p&gt;
+
+&lt;p&gt;Here are the basic steps we have to follow for each single C.H.I.P. computer:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;flash C.H.I.P. and install Docker 1.12.1&lt;/li&gt;
+&lt;li&gt;detect the IP address and use Docker Machine&lt;/li&gt;
+&lt;li&gt;restart Avahi daemon or reboot C.H.I.P.&lt;/li&gt;
+&lt;li&gt;check the device connectivity via network and Docker API&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Flashing the C.H.I.P. computer in FEL mode with UART console cable attached: &lt;br&gt;
+&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-flashing2.jpg&#34; alt=&#34;swarm-chip-flashing2.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As soon as we&amp;rsquo;ve installed our first C.H.I.P. with Docker we&amp;rsquo;ll use its IP address and run &lt;code&gt;docker-machine create&lt;/code&gt; and let&amp;rsquo;s do some Docker magic and we have secured the network access to its Docker Engine easily. In this command I&amp;rsquo;m using the flag &lt;code&gt;--debug&lt;/code&gt; to get a more verbose output, so you can see all the details whats going on in the background, but you can omit this flag for the remaining C.H.I.P.&amp;rsquo;s.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CHIP_IP_ADDRESS=192.168.2.112
+CHIP_NODENAME=swarm-chip01
+
+docker-machine --debug create \
+  --driver=generic \
+  --engine-storage-driver=overlay \
+  --generic-ip-address=$CHIP_IP_ADDRESS \
+  $CHIP_NODENAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After successfully running this command, the C.H.I.P. device is attached to Docker Machine.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ls --filter name=swarm*
+NAME           ACTIVE   DRIVER    STATE     URL                        SWARM   DOCKER    ERRORS
+swarm-chip01   -        generic   Running   tcp://192.168.2.112:2376           v1.12.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On the C.H.I.P. itself you can see that the hostname has changed. So let&amp;rsquo;s check this in detail to get a better understanding what&amp;rsquo;s happening behind the scene. Now we&amp;rsquo;re using some Docker Machine fu to connect to the device.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip01
+root@swarm-chip01:~#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The hostname has changed to &lt;code&gt;swarm-chip01&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@chip:~# cat /etc/hostname
+swarm-chip01
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And so there is a new local loopback address included as &lt;code&gt;127.0.1.1 swarm-chip01&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@chip:~# cat /etc/hosts
+127.0.0.1      	chip
+127.0.0.1      	localhost
+::1    		localhost ip6-localhost ip6-loopback
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+127.0.1.1 swarm-chip01
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s check if we can reach the C.H.I.P. from the network with its new hostname.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ping -c 3 swarm-chip01.local
+ping: cannot resolve swarm-chip01.local: Unknown host
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately the Avahi service discovery daemon didn&amp;rsquo;t changed the hostname, so we have to restart it manually to get the changes in order to reach the C.H.I.P. with it&amp;rsquo;s new hostname from the WiFi network. Alternatively we can just reboot the C.H.I.P. to activate these changes. So let&amp;rsquo;s do it through Docker Machine.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip01 systemctl restart avahi-daemon.service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And check with ping again.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ping -c 3 swarm-chip01.local
+PING swarm-chip01.local (192.168.2.112): 56 data bytes
+64 bytes from 192.168.2.112: icmp_seq=0 ttl=64 time=105.129 ms
+64 bytes from 192.168.2.112: icmp_seq=1 ttl=64 time=3.529 ms
+64 bytes from 192.168.2.112: icmp_seq=2 ttl=64 time=48.178 ms
+
+--- swarm-chip01.local ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 3.529/52.279/105.129/41.579 ms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now it&amp;rsquo;s up to you to repeat these steps for all the remaining C.H.I.P. devices. After some time you should be ready and having a list of devices connected to Docker Machine. I&amp;rsquo;ve done this with six C.H.I.P.&amp;rsquo;s, and one of them is an Alpha unit which works exactly the same way without any differences.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ls --filter name=swarm*
+NAME            ACTIVE   DRIVER    STATE     URL                        SWARM   DOCKER    ERRORS
+swarm-chip01    -        generic   Running   tcp://192.168.2.112:2376           v1.12.1
+swarm-chip02    -        generic   Running   tcp://192.168.2.116:2376           v1.12.1
+swarm-chip03    -        generic   Running   tcp://192.168.2.117:2376           v1.12.1
+swarm-chip04    -        generic   Running   tcp://192.168.2.118:2376           v1.12.1
+swarm-chip05    -        generic   Running   tcp://192.168.2.120:2376           v1.12.1
+swarm-chip06    -        generic   Running   tcp://192.168.2.104:2376           v1.12.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;step-3-initialize-the-swarm-create-a-swarm-manager&#34;&gt;Step 3: Initialize the Swarm, create a Swarm manager&lt;/h4&gt;
+
+&lt;p&gt;As soon as all the C.H.I.P.&amp;rsquo;s are prepared we are able to initiate a Swarm cluster. We are creating a Swarm manager first and then we can attach the other C.H.I.P.&amp;rsquo;s as additional Swarm managers or Swarm workers pretty easily. All the steps to form a Swarm cluster are literally a single command per device only!&lt;/p&gt;
+
+&lt;p&gt;With this command the Swarm will be initialized.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip01 docker swarm init
+Swarm initialized: current node (8174iszkmn4u4wwjogam8bsrw) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-4utgsw8ed9a0cyxx86yygqvzt \
+    192.168.2.112:2377
+
+To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; and follow the instructions.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we do have our first Swarm manager running.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip01 docker node ls
+ID                           HOSTNAME      STATUS  AVAILABILITY  MANAGER STATUS
+8174iszkmn4u4wwjogam8bsrw *  swarm-chip01  Ready   Active        Leader
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;step-4-set-up-swarm-for-high-availability-attach-more-swarm-managers&#34;&gt;Step 4: Set up Swarm for high-availability, attach more Swarm managers&lt;/h4&gt;
+
+&lt;p&gt;In order to build a high-availability Swarm cluster, we like to join two additional Swarm managers. So, first we have to ask the Swarm Leader for an access token to join new Swarm managers. You have to know that the complete control traffic between Swarm nodes is secured by default.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip01 docker swarm join-token manager
+To add a manager to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-beiuuzahvn9f7c1q42irqzncb \
+    192.168.2.112:2377
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this given command we can now join the nodes &lt;code&gt;swarm-chip02&lt;/code&gt; and &lt;code&gt;swarm-chip02&lt;/code&gt; as Swarm managers with a single command for each of the nodes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip02 \
+  docker swarm join \
+  --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-beiuuzahvn9f7c1q42irqzncb \
+  192.168.2.112:2377
+This node joined a swarm as a manager.
+
+docker-machine ssh swarm-chip03 \
+  docker swarm join \
+  --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-beiuuzahvn9f7c1q42irqzncb \
+  192.168.2.112:2377
+This node joined a swarm as a manager.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Swarm status and the list of all Swarm nodes can be determined by asking any of the three Swarm managers.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip01 docker node ls
+ID                           HOSTNAME      STATUS  AVAILABILITY  MANAGER STATUS
+1qelz3ttd54mh8fb57hf67ff1    swarm-chip03  Ready   Active        Reachable
+8174iszkmn4u4wwjogam8bsrw *  swarm-chip01  Ready   Active        Leader
+ctggddtwrg0ybrwpa52heaz9c    swarm-chip02  Ready   Active        Reachable
+OSX: dieter@DietersMacBookPro in ~/code/github/hypriot/blog on deploy-swarm-on-chip-with-docker-machine
+
+docker-machine ssh swarm-chip02 docker node ls
+ID                           HOSTNAME      STATUS  AVAILABILITY  MANAGER STATUS
+1qelz3ttd54mh8fb57hf67ff1    swarm-chip03  Ready   Active        Reachable
+8174iszkmn4u4wwjogam8bsrw    swarm-chip01  Ready   Active        Leader
+ctggddtwrg0ybrwpa52heaz9c *  swarm-chip02  Ready   Active        Reachable
+OSX: dieter@DietersMacBookPro in ~/code/github/hypriot/blog on deploy-swarm-on-chip-with-docker-machine
+
+docker-machine ssh swarm-chip03 docker node ls
+ID                           HOSTNAME      STATUS  AVAILABILITY  MANAGER STATUS
+1qelz3ttd54mh8fb57hf67ff1 *  swarm-chip03  Ready   Active        Reachable
+8174iszkmn4u4wwjogam8bsrw    swarm-chip01  Ready   Active        Leader
+ctggddtwrg0ybrwpa52heaz9c    swarm-chip02  Ready   Active        Reachable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;step-5-let-s-grow-the-swarm-attach-all-swarm-workers&#34;&gt;Step 5: Let&amp;rsquo;s grow the Swarm, attach all Swarm workers&lt;/h4&gt;
+
+&lt;p&gt;Now it&amp;rsquo;s time to join our remaining C.H.I.P. devices as Swarm workers to our Swarm cluster. For this purpose we just pick the token from the initial Swarm creation command. But if we can&amp;rsquo;t remember we can just ask one of the Swarm managers for the access token with the command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip02 docker swarm join-token worker
+To add a worker to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-4utgsw8ed9a0cyxx86yygqvzt \
+    192.168.2.116:2377
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s join our workers one by one now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip04 \
+  docker swarm join \
+  --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-4utgsw8ed9a0cyxx86yygqvzt \
+  192.168.2.112:2377
+This node joined a swarm as a worker.
+
+docker-machine ssh swarm-chip05 \
+  docker swarm join \
+  --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-4utgsw8ed9a0cyxx86yygqvzt \
+  192.168.2.112:2377
+This node joined a swarm as a worker.
+
+docker-machine ssh swarm-chip06 \
+  docker swarm join \
+  --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-4utgsw8ed9a0cyxx86yygqvzt \
+  192.168.2.112:2377
+This node joined a swarm as a worker.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As a result we have joined all of the six C.H.I.P. devices to the Swarm cluster, three as Swarm managers and three as Swarm workers.&lt;/p&gt;
+
+&lt;h4 id=&#34;step-6-attach-an-additional-pi-zero-as-swarm-worker&#34;&gt;Step 6: Attach an additional Pi Zero as Swarm worker&lt;/h4&gt;
+
+&lt;p&gt;But we&amp;rsquo;re not limited in using only one kind of ARM devices for our Swarm cluster. So I&amp;rsquo;d like to add a different device, a Raspberry Pi Zero which is equipped with a &lt;a href=&#34;https://twitter.com/redbearlab&#34;&gt;RedBear IoT pHAT&lt;/a&gt; for WiFi/Bluetooth connectivity.
+&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-pi-zero.jpg&#34; alt=&#34;swarm-chip-pi-zero.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here you can see that using &lt;a href=&#34;https://github.com/hypriot/image-builder-rpi&#34;&gt;HypriotOS for RPi&lt;/a&gt; and the Hypriot &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;flash tool&lt;/a&gt; it&amp;rsquo;s damn easy to create another ARM device with Docker 1.12.1 and attach it via WiFi to our network.&lt;/p&gt;
+
+&lt;p&gt;Flash the SD card, and power up the Raspberry Pi Zero.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;flash -n swarm-raspi01 -s &amp;quot;WLAN-R46VFR&amp;quot; -p &amp;quot;************&amp;quot; https://github.com/hypriot/image-builder-rpi/releases/download/v1.0.0/hypriotos-rpi-v1.0.0.img.zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Determine the IP address of the Pi Zero.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ping -c 3 swarm-raspi01.local
+PING swarm-raspi01.local (192.168.2.119): 56 data bytes
+64 bytes from 192.168.2.119: icmp_seq=0 ttl=64 time=617.658 ms
+64 bytes from 192.168.2.119: icmp_seq=1 ttl=64 time=26.326 ms
+64 bytes from 192.168.2.119: icmp_seq=2 ttl=64 time=1187.048 ms
+
+--- swarm-raspi01.local ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 26.326/610.344/1187.048/473.891 ms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Prepare SSH access to the Pi Zero, use username=&lt;code&gt;pirate&lt;/code&gt; and password=&lt;code&gt;hypriot&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh-keygen -R 192.168.2.119
+ssh-copy-id pirate@192.168.2.119
+ssh pirate@192.168.2.119
+uname -a
+Linux swarm-raspi01 4.4.15-hypriotos+ #2 PREEMPT Mon Jul 25 09:18:11 UTC 2016 armv6l GNU/Linux
+exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Login and install a fix on the Pi so we can use the standard Docker Machine binary.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh pirate@192.168.2.119
+curl -sSL https://github.com/DieterReuter/arm-docker-fixes/raw/master/001-fix-docker-machine-1.8.0-create-for-arm/apply-fix-001.sh | bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Back on our Mac we are able to run Docker Machine and attach the Raspi. As you can see, we do use another flag &lt;code&gt;--generic-ssh-user=pirate&lt;/code&gt; because we&amp;rsquo;re using a different username instead of the default &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;RASPI_IP_ADDRESS=192.168.2.119
+RASPI_NODENAME=swarm-raspi01
+
+docker-machine --debug create \
+  --driver=generic \
+  --engine-storage-driver=overlay \
+  --generic-ip-address=$RASPI_IP_ADDRESS \
+  --generic-ssh-user=pirate \
+  $RASPI_NODENAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After a few minutes only, the Raspberry Pi Zero can be accessed through Docker Machine with the exactly same methods and commands like the C.H.I.P. devices.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ls --filter name=swarm*
+NAME            ACTIVE   DRIVER    STATE     URL                        SWARM   DOCKER    ERRORS
+swarm-chip01    -        generic   Running   tcp://192.168.2.112:2376           v1.12.1
+swarm-chip02    -        generic   Running   tcp://192.168.2.116:2376           v1.12.1
+swarm-chip03    -        generic   Running   tcp://192.168.2.117:2376           v1.12.1
+swarm-chip04    -        generic   Running   tcp://192.168.2.118:2376           v1.12.1
+swarm-chip05    -        generic   Running   tcp://192.168.2.120:2376           v1.12.1
+swarm-chip06    -        generic   Running   tcp://192.168.2.104:2376           v1.12.1
+swarm-raspi01   -        generic   Running   tcp://192.168.2.119:2376           v1.12.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we join our last Swarm worker, a lonely Raspberry Pi Zero running HypriotOS 1.0.1 and Docker 1.12.1, to the Swarm cluster.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-raspi01 \
+  docker swarm join \
+  --token SWMTKN-1-2olhigqvrmxkbby00qarokzdd6cmy0ovak6fst77y4qnec4ufv-4utgsw8ed9a0cyxx86yygqvzt \
+  192.168.2.112:2377
+This node joined a swarm as a worker.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;step-7-check-the-complete-swarm&#34;&gt;Step 7: Check the complete Swarm&lt;/h4&gt;
+
+&lt;p&gt;With the &lt;code&gt;docker node ls&lt;/code&gt; command issued on any of the Swarm managers we can list all the Swarm nodes, get their roles and status shown in the printed output on our terminal window.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-machine ssh swarm-chip03 docker node ls
+ID                           HOSTNAME       STATUS  AVAILABILITY  MANAGER STATUS
+1qelz3ttd54mh8fb57hf67ff1 *  swarm-chip03   Ready   Active        Reachable
+3inlk62a6l3afqp570nnus12f    swarm-raspi01  Ready   Active
+7jvz6c8a852rve1r21fordkfa    swarm-chip04   Ready   Active
+8174iszkmn4u4wwjogam8bsrw    swarm-chip01   Ready   Active        Leader
+91ee08vkwuh3f6yelc4ci46se    swarm-chip05   Ready   Active
+agglzv8ju0diwpd665nbhdtti    swarm-chip06   Ready   Active
+ctggddtwrg0ybrwpa52heaz9c    swarm-chip02   Ready   Active        Reachable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-node-ls.jpg&#34; alt=&#34;swarm-chip-node-ls.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;the-result-a-mixed-iot-swarm-running-docker-1-12&#34;&gt;THE RESULT: a mixed IoT Swarm running Docker 1.12&lt;/h3&gt;
+
+&lt;p&gt;This is our newly created Swarm cluster, built with an USB power supply from Anker, 6x C.H.I.P. computers and a lonely Raspberry Pi Zero - all devices attached through a WiFi network and running Docker 1.12.1 with SwarmMode: &lt;br&gt;
+&lt;img src=&#34;https://blog.hypriot.com/images/deploy-swarm-on-chip-with-docker-machine/swarm-chip-complete-cluster.jpg&#34; alt=&#34;swarm-chip-complete-cluster.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;next-steps&#34;&gt;Next steps&lt;/h3&gt;
+
+&lt;p&gt;With this hardware setup we&amp;rsquo;ve now built a network of seven ARM devices for IoT which are all connected through WiFi. All the control traffic between the nodes are secured be default and can be centrally controlled through the Swarm managers and we can connect them securely from a local computer via Docker Machine. The ARM boards can be spread out in your house and can run different tasks as Docker containers&amp;hellip; but these details I&amp;rsquo;d like to cover in a future blog post.&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Connecting Kitematic to an external Docker Engine running on a Raspberry Pi</title>
+      <link>https://blog.hypriot.com/post/connect-kitematic-to-external-docker-engine/</link>
+      <pubDate>Wed, 15 Apr 2015 06:35:55 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/connect-kitematic-to-external-docker-engine/</guid>
+      <description>&lt;p&gt;In this post we show you the first steps how easy it is using Kitematic to control a Docker engine running on a Raspberry Pi. Finally we demostrate in a small screencast how to run an unbelievable amount of 101 web servers on a single Raspberry Pi 2.
+&lt;/p&gt;
+
+&lt;h3 id=&#34;intro-and-background&#34;&gt;Intro and Background&lt;/h3&gt;
+
+&lt;p&gt;At Hypriot we recently built and released our own OS image to run the Docker Engine on a low-cost Raspberry Pi and labeled it HypriotOS.  A user can download this pre-compiled Raspbian based SD card image, which includes a Linux 3.18.10 kernel with all Docker related kernel options included, and Docker 1.5.0 is already enabled with Overlay filesystem.  Just download, extract, flash to a SD card and boot your Raspberry Pi - and within minutes you have Docker up and running and you can instantly start using it.&lt;/p&gt;
+
+&lt;p&gt;You can read more details and find the download links in our blog post &lt;a href=&#34;https://blog.hypriot.com/heavily-armed-after-major-upgrade-raspberry-pi-with-docker-1-dot-5-0&#34;&gt;Heavily ARMed after major upgrade: Raspberry Pi with Docker 1.5.0&lt;/a&gt; and recently updated post &lt;a href=&#34;https://blog.hypriot.com/post/hypriotos-back-again-with-docker-on-arm/&#34;&gt;HypriotOS: Back Again and Better then Ever&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As developers and geeks, we&amp;rsquo;re really comfortable using SSH and a bash shell to control the Docker CLI.  It&amp;rsquo;s also not a problem to connect a Linux or Mac OSX host via a native Docker CLI over the network, even a Windows client works well.  But what about the normal end users?  Wouldn&amp;rsquo;t it be great to have a more convinient way to use a graphical frontend via web or a specific app.  A GUI would be really cool, but this would take a long time to develop.&lt;/p&gt;
+
+&lt;h3 id=&#34;kitematic-to-the-rescue&#34;&gt;Kitematic to the Rescue&lt;/h3&gt;
+
+&lt;p&gt;Even the fact that our OS image works pretty much out of the box, and everybody can use Docker within minutes we&amp;rsquo;ve received a lot of feedback, whether we could build and deliver a graphical application to control Docker and deploying apps/containers with it.  And here comes Kitematic to the rescue - what a great timing.  We&amp;rsquo;ve just read the announcement on the Docker blog and were extremely impressed but also a little bit frustrated, it&amp;rsquo;s only meant to be used on a Mac running it&amp;rsquo;s own Boot2Docker VM through a newly created Docker Machine.&lt;/p&gt;
+
+&lt;p&gt;We were fascinated immediately about the simplicity and the seamless GUI, instantly installing Kitematic on a MacBookPro and it was running within 10 minutes only.  Really impressed and hooked!  Another 15 minutes later, we had cloned the source code repo from GitHub, then a &amp;ldquo;npm install&amp;rdquo; and a &amp;ldquo;npm start&amp;rdquo; and WOW, we&amp;rsquo;re running our personal dev version!  And we even were able to create our own Mac App with a &amp;ldquo;npm run release&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Imagine now what could be even better for an end user?  What if we could use Kitematic to control a remote Docker Host running on that cute little Raspberry Pi.&lt;/p&gt;
+
+&lt;h3 id=&#34;connecting-the-dots&#34;&gt;Connecting the Dots&lt;/h3&gt;
+
+&lt;p&gt;We quickly read through the docs and studied the source code and found out that Kitematic is based upon Docker Machine to control the backend Docker Host, hey cool - that&amp;rsquo;s the key.  Within a couple of hours we had the first rough hack and were able to actively control a Raspberry Pi 2 running Docker 1.5.0 with a brand new graphical user interface.  Just selecting one of our favorite Docker Images from the Docker Hub and pushed it seamlessly to a RPi!&lt;br /&gt;
+&lt;img src=&#34;https://blog.hypriot.com/images/kitematic/rpi-docker-images-at-the-hub.png&#34; alt=&#34;image1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But until now, it was just a hack and far away from being used in production or by end users.  All settings were done with some source code changes within Kitematic itself.&lt;/p&gt;
+
+&lt;p&gt;Here are the details of that quick hack.  You only have to change these three lines in &lt;code&gt;src/Docker.js&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;16:      protocol: &#39;http&#39;,
+17:      host: 192.168.2.114,
+18:      port: 2375,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Just use an unencrypted connection for the first step, change the protocol from &lt;code&gt;https&lt;/code&gt; to &lt;code&gt;http&lt;/code&gt;, use the IP address of the Raspberry Pi, and don&amp;rsquo;t forget to change the port number to &lt;code&gt;2375&lt;/code&gt;.  With the last change, Kitematic don&amp;rsquo;t use any cert or key file to connect to the remote Docker Host.&lt;/p&gt;
+
+&lt;p&gt;For the next day we scheduled a short online meeting with Mike from Kitematic, and to our surprise the whole team joined us, including Jeff and Sean.  Everybody was so happy and surprised how easy we could merge both ideas and concepts together.  Right now, we&amp;rsquo;re able to offer a Docker optimized OS for the Raspberry Pi which one could install and use within a few minutes only, and within the same amount of time, installing the app from Kitematic to control your Raspberry Pi with a great user experience.&lt;/p&gt;
+
+&lt;h3 id=&#34;switch-to-a-better-system-design&#34;&gt;Switch to a better System Design&lt;/h3&gt;
+
+&lt;p&gt;Thanks to the fact, that Kitematic uses Docker Machine under the hood to connect to it&amp;rsquo;s Docker VM, it must be able to use this concept for a better system design to communicate with an external Docker Host.  Our first try was just looking for a standard driver available which supports our needs.  We quickly tested the &lt;code&gt;none&lt;/code&gt; driver and were able to control the Raspberry Pi from within Docker Machine.  For this case it was necessary to reconfigure Docker to use a TLS encrypted connection.  But we had absolute no luck to get it work together with Kitematic.&lt;/p&gt;
+
+&lt;p&gt;Ok, let&amp;rsquo;s dig deeper and just use the Docker Machine GitHub repo to get familiar with the driver concept.  And learn what has to be done, to build your own Docker Machine Driver specifically for connecting a Docker Engine running on an external Linux machine.  Within a day only, we got it working, our very first driver implementation for Docker Machine.  Our goal was to keep it super-simple and ready-to-use together with Kitematic, and hopefully don&amp;rsquo;t change anything within the app&amp;rsquo;s source code.&lt;/p&gt;
+
+&lt;p&gt;All changes are already documented in a few pull-requests which are available for further improvement and testing.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hypriot/kitematic/pull/1&#34;&gt;hypriot/kitematic#1, Connect to externel docker host through docker-machine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hypriot/machine/pull/1&#34;&gt;hypriot/machine#1, Add driver &amp;lsquo;hypriot&amp;rsquo;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To use this improved Kitematic version from Hypriot, you have to clone the GitHub repo &lt;a href=&#34;https://github.com/hypriot/kitematic/tree/connect-to-externel-docker-host&#34;&gt;hypriot/kitematic&lt;/a&gt;, use the branch &lt;code&gt;connect-to-externel-docker-host&lt;/code&gt; and build it with &amp;ldquo;npm run install&amp;rdquo;, it will also download and use our specifically built version of Docker Machine with the &lt;code&gt;hypriot&lt;/code&gt; driver included.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kitematic/Kitematic-and-HypriotOS-just-works.png&#34; alt=&#34;image2&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;mission-accomplished&#34;&gt;Mission accomplished&lt;/h3&gt;
+
+&lt;p&gt;At the end, we&amp;rsquo;ve now built our own basic Docker Machine driver for the HypriotOS to use it for controlling a Raspberry Pi with the Kitematic app, and we&amp;rsquo;ll improve it over the next few days and weeks to get it production ready.  To our surprise, we only had to change a single line of code within Kitematic itself.&lt;/p&gt;
+
+&lt;p&gt;Here is a short 4 minute screencast to demonstrate the running system as &lt;a href=&#34;https://www.youtube.com/watch?v=yHytb1k3TfM&#34;&gt;Docker Kitematic controls Raspberry Pi 2 running Docker 1.5.0&lt;/a&gt;. Watch out the number of web servers we started simultaneously on the Raspberry Pi 2, all as separate Docker containers. Can you imagine how cool this Linux container technology from Docker is, even on such a small device?&lt;/p&gt;
+
+&lt;p&gt;And the best thing is, it could be used to connect any other external Docker Host to Kitematic, not only the Raspberry Pi.  In the PR we included a short description how to connect an already running Boot2Docker VM to Kitematic.  And if anyone is interested to help, please feel free to join.  As soon as we&amp;rsquo;re done with the development we&amp;rsquo;ll create an upstream PR to get the changes back into Kitematic and Docker Machine.&lt;/p&gt;
+
+&lt;h3 id=&#34;next-steps&#34;&gt;Next Steps&lt;/h3&gt;
+
+&lt;p&gt;We do have a lot of things on our roadmap, maybe too much to share in this blog post.  Here are at least the next important things we&amp;rsquo;re planing:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;new Linux kernel 3.18.10 (DONE)&lt;/li&gt;
+&lt;li&gt;support for Open vSwitch (we&amp;rsquo;d love to use SocketPlane on the RPi) (DONE)
+
+&lt;ul&gt;
+&lt;li&gt;include kernel options for Open vSwitch (DONE)&lt;/li&gt;
+&lt;li&gt;natively compiled packages for Open vSwitch (DONE)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;support for Docker Machine (WIP)
+
+&lt;ul&gt;
+&lt;li&gt;production ready driver for HypriotOS and the Raspberry Pi&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;support for Docker Compose (WIP)&lt;/li&gt;
+&lt;li&gt;support for Docker Swarm (WIP)&lt;/li&gt;
+&lt;li&gt;&amp;hellip; (depending on user feedback)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kitematic/pi_armed_with_docker.jpg&#34; alt=&#34;image3&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;send-us-your-feedback-please&#34;&gt;Send us your Feedback, please!&lt;/h3&gt;
+
+&lt;p&gt;We really love feedback and would like to get some new ideas and thoughts from all of you.  So, if you&amp;rsquo;re liking our ideas and the way to find and break the limits, please send us your comments via email, twitter or drop us a line.  We&amp;rsquo;d be more than happy to answer and talk directly to share our experiences.&lt;/p&gt;
+
+&lt;h4 id=&#34;note&#34;&gt;Note&lt;/h4&gt;
+
+&lt;p&gt;This post was originally posted at the &lt;a href=&#34;http://blog.kitematic.com&#34;&gt;Kitematic Blog&lt;/a&gt;, and is slightly updated to recent download links and version numbers.&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash;
+Dieter Reuter&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

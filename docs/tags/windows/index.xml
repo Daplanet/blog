@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/windows/index.xml</link>
+    <description>Recent content in Windows on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Close Encounters of the Third Kind, or Microsoft Windows meets Docker ARM Containers for IoT</title>
+      <link>https://blog.hypriot.com/post/close-encounters-of-the-third-kind/</link>
+      <pubDate>Tue, 29 Mar 2016 17:20:34 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/close-encounters-of-the-third-kind/</guid>
+      <description>&lt;p&gt;Running an ARM-based Docker container for IoT applications directly on Microsoft Windows
+looks like an unbelievable &lt;strong&gt;extraterrestrial technology&lt;/strong&gt; from outer space.&lt;/p&gt;
+
+&lt;p&gt;This cannot be true, it must be a fake, right?&lt;br /&gt;
+Or, is this maybe just a &lt;strong&gt;cheap magic trick&lt;/strong&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/close-encounters-of-the-third-kind/docker4win-arm-webpage.jpg&#34; alt=&#34;Docker for Windows&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nope, believe me, that&amp;rsquo;s really true&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;behind-the-scenes&#34;&gt;Behind the scenes&lt;/h2&gt;
+
+&lt;p&gt;As I showed in my last blog post about the &lt;a href=&#34;https://blog.hypriot.com/post/first-touch-down-with-docker-for-mac/&#34;&gt;First Touch Down with Docker for Mac&lt;/a&gt;,
+&amp;ldquo;Docker for Mac&amp;rdquo; uses an Alpine Linux VM under the hood with the capability of emulating
+ARM binaries on Intel CPUs. Because of &amp;ldquo;Docker for Windows&amp;rdquo; uses exactly the same
+Alpine Linux in a Hyper-V virtual machine, this should work on Windows 10, too.&lt;/p&gt;
+
+&lt;p&gt;The only problem here is, that the bind-mounting of a single binary doesn&amp;rsquo;t work
+right now on Windows. I guess this will be fixed in a later release for sure. But
+we can easily prepare an ARM-based Docker container to make the magic happen.&lt;/p&gt;
+
+&lt;p&gt;We just have to put the &lt;a href=&#34;https://en.wikipedia.org/wiki/QEMU&#34;&gt;QEMU&lt;/a&gt; emulator binary
+into the Docker container, and as long as we
+place it at the correct path &lt;code&gt;/usr/bin/qemu-arm-static&lt;/code&gt;, this should work. The easiest
+way to include the binary to the correct folder is to create a tar archive and use
+the ADD command in the Dockerfile.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;tar vtf qemu-arm-static.tar
+drwxr-xr-x  0 dieter staff       0 Mar 28 18:34 usr/
+drwxr-xr-x  0 dieter staff       0 Mar 28 18:34 usr/bin/
+-rwxr-xr-x  0 dieter staff 2899840 Mar 28 18:34 usr/bin/qemu-arm-static
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM hypriot/rpi-busybox-httpd
+ADD qemu-arm-static.tar /
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this easy preparation we&amp;rsquo;re able to start an ARM-based Docker container on
+Windows 10 with two steps only.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1:&lt;/strong&gt; Create the modified Docker image&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker build -t rpi-busybox-httpd .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Start the QEMU-enabled Docker container&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d -p 80:80 rpi-busybox-httpd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here in this screenshot you can see all the necessary steps we need, there is really
+nothing else to do.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/close-encounters-of-the-third-kind/docker4win-arm-container.jpg&#34; alt=&#34;Docker for Windows&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Voilà&lt;/strong&gt; - that was the magic trick which can be applied to almost all ARM-based Docker
+images to make them run in &amp;ldquo;Docker for Windows&amp;rdquo; and &amp;ldquo;Docker for Mac&amp;rdquo; even on an Intel-based
+CPU architecture.&lt;/p&gt;
+
+&lt;h2 id=&#34;watch-the-results&#34;&gt;Watch the results&lt;/h2&gt;
+
+&lt;p&gt;&amp;ldquo;Docker for Windows&amp;rdquo; publishes the Docker Engine network with the local network name
+&lt;code&gt;docker&lt;/code&gt;. Thus to access the ARM web server, which is running inside of a Linux container,
+ we just have to point our preferred web browser to &lt;code&gt;http://docker/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/close-encounters-of-the-third-kind/docker4win-arm-webpage2.jpg&#34; alt=&#34;Docker for Windows&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Docker for Windows&amp;rdquo; uses Windows native hypervisor Hyper-V&lt;/li&gt;
+&lt;li&gt;the Docker Engine is running in a tiny Alpine Linux VM&lt;/li&gt;
+&lt;li&gt;ARM-based Docker containers can be easily enabled with QEMU emulator&lt;/li&gt;
+&lt;li&gt;Docker works great on Windows 10&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Are you curious now and want to get in touch with &amp;ldquo;Docker for Windows&amp;rdquo; by yourself?
+Then you should register for the Docker BETA program at &lt;a href=&#34;https://beta.docker.com&#34;&gt;https://beta.docker.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Kitematic meets Windows Docker</title>
+      <link>https://blog.hypriot.com/post/kitematic-meets-windows-docker/</link>
+      <pubDate>Wed, 09 Sep 2015 00:07:37 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/kitematic-meets-windows-docker/</guid>
+      <description>&lt;p&gt;I just want to share some screenshots with you. Today I have played with Kitematic on a Windows Server 2016 TP3 and made it talk to the Windows Docker Engine. Yes, no VirtualBox in between. Just starting native Windows Containers from the Kitematic interface.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kitematic-meets-windows-docker/kitematic-win2016tp3.png-shadow.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A closer look at the left column shows a running &lt;strong&gt;mongo&lt;/strong&gt; container. Yes, I know, you cannot pull docker images with the Windows Docker Engine at the moment. But I have built a mongo Docker image for Windows with this &lt;a href=&#34;https://github.com/StefanScherer/dockerfiles-windows/blob/master/mongo/3.0/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt; and created the container by pressing the &lt;strong&gt;Create&lt;/strong&gt; button in the Kitematic UI.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kitematic-meets-windows-docker/kitematic-mongo.png-shadow.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And to show that this is no fake you can see some windows paths in the container logs view:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/kitematic-meets-windows-docker/kitematic-list.png-shadow.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for now.&lt;/p&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Stefan&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to get Docker running on your Raspberry Pi using Windows</title>
+      <link>https://blog.hypriot.com/getting-started-with-docker-and-windows-on-the-raspberry-pi/</link>
+      <pubDate>Fri, 15 May 2015 20:16:11 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/getting-started-with-docker-and-windows-on-the-raspberry-pi/</guid>
+      <description>
+
+&lt;p&gt;This guide shows you how to get Docker running on your Raspberry Pi using a &lt;strong&gt;Windows workstation&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If you have not read the getting started guide about Docker on the Raspberry Pi yet you might wanna check it out first: &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device&#34;&gt;Getting started on your ARM device&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The &lt;strong&gt;hardware&lt;/strong&gt; you gonna need to follow along is a Raspberry Pi 1 or 2 and one SD card.
+If you are going to use a Raspberry 2 you will have to use a microSD card - otherwise a normal SD card is sufficient.
+We recommend a size of at least 4 GB.&lt;/p&gt;
+
+&lt;p&gt;The SD card contains all the software which we are going to use on our Raspberry Pi.
+With software we basically mean two things: first an operating system for your Raspberry Pi and second the software you as user would like to use - e.g. a browser or a word processing program.
+In our case the software we wanna use is Docker.&lt;/p&gt;
+
+&lt;p&gt;We - from Hypriot - created a preconfigured &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;SD card image&lt;/a&gt; which contains everything you need to run Docker on your Raspberry Pi.
+To use the image you first have to download and transfer it to your SD card. Transferring an image to an SD card is often referred to as &lt;em&gt;flashing&lt;/em&gt;.
+Afterwards you just have to insert the flashed SD card into your Raspberry Pi and start it up.&lt;/p&gt;
+
+&lt;p&gt;For this tutorial you will need to install four applications which we are going to use later. Please follow the download links and install them. Note the installation remarks.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;Application&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.7-zip.de&#34;&gt;7-Zip&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;For extracting the compressed SD card image. &lt;/br&gt; &lt;em&gt;Make sure you choose the download file that fits your workstations&amp;rsquo;s architecture (x32 vs. x64)!&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://sourceforge.net/projects/win32diskimager/&#34;&gt;Win32 Disk Imager&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;For flashing the SD card image to the SD card. &lt;/br&gt; &lt;em&gt;During installation you will find a checkbox called &amp;ldquo;Start Pcap-Service at startup&amp;rdquo;. We recommend to disable it.&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe&#34;&gt;Putty&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;For establishing a connection to the Raspberry Pi &lt;/br&gt; &lt;em&gt;Just download it. No installation needed.&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://sourceforge.net/projects/nmap.mirror/?source=typ_redirect&#34;&gt;Zenmap&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;For identifying the IP address of your Raspberry Pi&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;download-the-hypriot-docker-sd-card-image&#34;&gt;Download the Hypriot Docker SD card image&lt;/h3&gt;
+
+&lt;p&gt;Download our latest SD card image from the &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;download page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next go to your &lt;strong&gt;Download&lt;/strong&gt; folder and extract the downloaded zip file by right-clicking on the file and then clicking on &lt;strong&gt;7-zip&lt;/strong&gt; -&amp;gt; &lt;strong&gt;extract here&amp;hellip;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;After 7-zip is finished with extracting you will have a file with a &lt;strong&gt;.img&lt;/strong&gt; extension.
+In the next step we will flash this file onto your SD card.&lt;/p&gt;
+
+&lt;h3 id=&#34;flash-the-downloaded-image-to-your-sd-card&#34;&gt;Flash the downloaded image to your SD card&lt;/h3&gt;
+
+&lt;p&gt;To start the flashing process right-click on the &lt;em&gt;Win32 Disk Imager&lt;/em&gt; application which we installed earlier and click on &lt;em&gt;Run as administrator&lt;/em&gt;. You will see a window asking for permissions. Grant them.&lt;/p&gt;
+
+&lt;p&gt;Now, with the &lt;em&gt;Win32 Disk Imager&lt;/em&gt;&amp;rsquo;s window opened, click on the blue folder icon and choose the Hypriot SD card image in your &lt;em&gt;Download&lt;/em&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;Next to the blue folder button, you will find a dropdown menu in which you can select your SD card.
+To double check the device letter open your Windows Explorer and locate the SD card drive.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/image-writer-opened.png&#34; alt=&#34;image-writer&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally click on &lt;strong&gt;write&lt;/strong&gt; which will flash the SD card image to the SD card.&lt;/p&gt;
+
+&lt;p&gt;Upon completion close &lt;em&gt;Win32 Disk Imager&lt;/em&gt; and eject the SD card before removing it from its slot.
+In order to eject the SD card use the &lt;em&gt;secure eject&lt;/em&gt; function in the menu next to your system clock.
+This is usually in the very bottom right corner of your screen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/eject-sd-card.png&#34; alt=&#34;eject-sd&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;start-your-raspberry-pi-with-the-sd-card&#34;&gt;Start your Raspberry Pi with the SD card&lt;/h3&gt;
+
+&lt;p&gt;Boot your Raspberry Pi by&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;connecting the Raspberry Pi to your local network via an ethernet cable&lt;/li&gt;
+&lt;li&gt;putting the SD card into the designated slot&lt;/li&gt;
+&lt;li&gt;plugging in the power adapter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After finishing the last step your Raspberry Pi will boot and the LEDs should start blinking.
+The very first boot will take one to three minutes as the file system will be resized.&lt;/p&gt;
+
+&lt;h3 id=&#34;ensure-everything-works&#34;&gt;Ensure everything works&lt;/h3&gt;
+
+&lt;p&gt;To check if Docker is actually running we need to log into the Raspberry Pi via &lt;em&gt;PuTTY&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;To do this we need to find out the IP address of your Raspberry Pi first.
+This can be done with &lt;em&gt;Zenmap&lt;/em&gt; which we installed earlier.&lt;/p&gt;
+
+&lt;p&gt;After starting &lt;em&gt;Zenmap&lt;/em&gt; look for the field &lt;em&gt;Command&lt;/em&gt;.
+Type the following command into this field but replace the IP address in front of &lt;code&gt;/24&lt;/code&gt; with your own and hit &lt;em&gt;Enter&lt;/em&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nmap -sP 192.168.0.100/24
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As a result you should see this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/zenmap-scan-result.PNG&#34; alt=&#34;zenmap-scan-result&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Zenmap&lt;/em&gt; list all active hosts within your local network.
+In order to find the Raspberry Pi click the button &lt;em&gt;filter hosts&lt;/em&gt; at the bottom of the &lt;em&gt;Zenmap&lt;/em&gt; and type in &lt;em&gt;black&lt;/em&gt;.
+Now the first line of the list should show the IP address of your Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/zenmap-with-filter-with-marker.png&#34; alt=&#34;zenmap-with-filter-with-marker&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since we now know where to find the Raspberry Pi within your network it is time to start &lt;em&gt;PuTTY&lt;/em&gt; to establish a SSH connection to your Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;After starting &lt;em&gt;PuTTY&lt;/em&gt; type in the IP address we determined into the field &lt;em&gt;Host Name&lt;/em&gt;. With a click on the button &lt;em&gt;Open&lt;/em&gt; the connection will be established.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/putty-window-settings.png&#34; alt=&#34;Screenshot-putty-login&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the new window which just opened type &lt;code&gt;pirate&lt;/code&gt; as login name and hit &lt;em&gt;Enter&lt;/em&gt;. Next you will be asked for a password. Type &lt;code&gt;hypriot&lt;/code&gt; and hit &lt;em&gt;Enter&lt;/em&gt; again.&lt;/p&gt;
+
+&lt;p&gt;If everything went fine you should now see the &lt;em&gt;HypriotOS&lt;/em&gt; command line prompt waiting for your input. It should look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/putty-window-login.png&#34; alt=&#34;putty-window-login&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally to check if the Docker service is running type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker info
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output of the &lt;code&gt;docker info&lt;/code&gt; command should look similar to:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/windows-screenies/putty-window-docker-info.png&#34; alt=&#34;docker-info&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations! You have succeeded in getting Docker running on your Raspberry Pi!&lt;/strong&gt; :)&lt;/p&gt;
+
+&lt;p&gt;You are now ready to continue your exploration of Docker with our &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device#going-wild-with-docker-what-can-you-actually-do-with-it:397c66ef19f9f061b6711d2e296cb276&#34;&gt;Getting Started Guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Have fun!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

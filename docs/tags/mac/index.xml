@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/mac/index.xml</link>
+    <description>Recent content in Mac on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>First Touch Down with Docker for Mac</title>
+      <link>https://blog.hypriot.com/post/first-touch-down-with-docker-for-mac/</link>
+      <pubDate>Sun, 27 Mar 2016 18:30:29 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/first-touch-down-with-docker-for-mac/</guid>
+      <description>&lt;p&gt;A few days ago, Docker has announced a closed BETA program for their new
+applications &amp;ldquo;Docker for Mac&amp;rdquo; and &amp;ldquo;Docker for Windows&amp;rdquo;. These apps are meant to
+simplify the usage of Docker containers for every developer even more. They try
+to lower the barrier to install and use Docker on your desktop and laptop computers
+for both Mac and Windows users.&lt;/p&gt;
+
+&lt;p&gt;As soon as I received the first rumors that there is a special feature built-in,
+which should also simplify the developers workflow for IoT applications, I was getting
+totally thrilled and registered immediately for the BETA program. It was really hard
+to wait for, but luckily I&amp;rsquo;ve received an email with my BETA invitation and access
+token within a few hours only.&lt;/p&gt;
+
+&lt;p&gt;Here I&amp;rsquo;d like to give you a first insight view how to install and use &amp;ldquo;Docker for Mac&amp;rdquo;
+with a basic walk-through on my MacBook Pro running the very latest OS X 10.11.4.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-copy-app.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, please join me on this journey&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;access-to-the-beta-program&#34;&gt;Access to the BETA program&lt;/h2&gt;
+
+&lt;p&gt;You can easily register to the Docker BETA program at &lt;a href=&#34;https://beta.docker.com&#34;&gt;https://beta.docker.com&lt;/a&gt;. Once
+you&amp;rsquo;re logged in with your Docker ID (which is literally your Docker Hub user account)
+you can apply for testing &amp;ldquo;Docker for Mac&amp;rdquo; and &amp;ldquo;Docker for Windows&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-apply-for-beta.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As this is a closed BETA, you&amp;rsquo;ll get on a waiting list and hopefully will be selected
+soon. So, please be patient until you&amp;rsquo;ll receive an invitation email with some more
+detailed instructions and a personal access key.&lt;/p&gt;
+
+&lt;p&gt;For this blog post, I&amp;rsquo;ll show you how easy it is to install and use Docker on OS X.
+And I guess, we&amp;rsquo;ll write another post later for all the curious Windows users,  too.&lt;/p&gt;
+
+&lt;h2 id=&#34;download-and-install-docker-for-mac&#34;&gt;Download and install &amp;ldquo;Docker for Mac&amp;rdquo;&lt;/h2&gt;
+
+&lt;p&gt;When you&amp;rsquo;re selected for the BETA, you&amp;rsquo;ll receive an email titled &amp;ldquo;Docker Private Beta&amp;rdquo;
+with a link to the download page and an access key.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-download-page.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Download the installer package called &amp;ldquo;Docker.dmg&amp;rdquo; to your Mac and double click it,
+drag and drop the &amp;ldquo;Docker beta&amp;rdquo; app to your Applications folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-copy-app.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, from your Lauchpad you can start the &amp;ldquo;Docker beta&amp;rdquo; app directly the first time
+and you can begin right away using Docker on your Mac.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-start-app.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you start the BETA Docker app the first time you&amp;rsquo;ll be asked to enter your
+personal invite token.
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-install-01-insert-key.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Token has been accepted.
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-install-02-key-accepted.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Docker app needs to additionally install a network helper and requests for privileges
+to do so.
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-install-03-request-privileges.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Enter your credentials to grant privileged access.
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-install-04-grant-privileges.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Success, the Docker app is installed and you can easily find and access it by
+clicking on the little neat whale icon.
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-install-05-tray-icon.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;using-docker-for-mac-the-first-time&#34;&gt;Using &amp;ldquo;Docker for Mac&amp;rdquo; the first time&lt;/h2&gt;
+
+&lt;p&gt;To use Docker we&amp;rsquo;ll just start a terminal window and use the Docker CLI to access
+the local Docker Engine.&lt;/p&gt;
+
+&lt;p&gt;First, get the version of the Docker command:
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-run-docker-01-dash-v.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Determine the versions of the Docker Client and the Docker Engine:
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-run-docker-02-version.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Display some more detailed informations about the installed Docker software:
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-run-docker-03-info.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;let-s-start-a-real-docker-container&#34;&gt;Let&amp;rsquo;s start a real Docker container&lt;/h2&gt;
+
+&lt;p&gt;First, we&amp;rsquo;ll check how our host operating system looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uname -a
+Darwin demo.local 15.4.0 Darwin Kernel Version 15.4.0: Fri Feb 26 22:08:05 PST 2016; root:xnu-3248.40.184~3/RELEASE_X86_64 x86_64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As already expected we see our host OS is OS X or &lt;code&gt;Darwin&lt;/code&gt; with a kernel version &lt;code&gt;15.4.0&lt;/code&gt;. Our CPU architecture is &lt;code&gt;x86_64&lt;/code&gt;, which indicates that we&amp;rsquo;re running on an Intel-based
+64-bit CPU.&lt;/p&gt;
+
+&lt;p&gt;Second, let&amp;rsquo;s start a basic Linux container and here we&amp;rsquo;re using a Debian standard distro
+for now. This will take a few second because the Docker Engine has to fetch/download
+the Docker image &lt;code&gt;debian&lt;/code&gt; from the Docker Hub.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run --rm -ti debian
+Unable to find image &#39;debian:latest&#39; locally
+latest: Pulling from library/debian
+fdd5d7827f33: Pull complete
+a3ed95caeb02: Pull complete
+Digest: sha256:e7d38b3517548a1c71e41bffe9c8ae6d6d29546ce46bf62159837aad072c90aa
+Status: Downloaded newer image for debian:latest
+root@9473484ea965:/#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, we now do have an interactive bash prompt within a running Debian
+Linux container.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@9473484ea965:/# uname -a
+Linux 9473484ea965 4.1.19 #1 SMP Sun Mar 20 22:13:39 UTC 2016 x86_64 GNU/Linux
+
+root@9473484ea965:/# cat /etc/os-release
+PRETTY_NAME=&amp;quot;Debian GNU/Linux 8 (jessie)&amp;quot;
+NAME=&amp;quot;Debian GNU/Linux&amp;quot;
+VERSION_ID=&amp;quot;8&amp;quot;
+VERSION=&amp;quot;8 (jessie)&amp;quot;
+ID=debian
+HOME_URL=&amp;quot;http://www.debian.org/&amp;quot;
+SUPPORT_URL=&amp;quot;http://www.debian.org/support&amp;quot;
+BUG_REPORT_URL=&amp;quot;https://bugs.debian.org/&amp;quot;
+root@9473484ea965:/#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I&amp;rsquo;d like to start a really tiny Linux container next, which starts even
+faster than Debian. Alpine Linux is meant to be super-small and it brings a lot
+of advantages into the container world, too.&lt;/p&gt;
+
+&lt;p&gt;Starting an interactive Alpine container is pretty much the same as Debian, but we
+have to use a Bourne shell instead of bash.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run --rm -ti alpine sh
+Unable to find image &#39;alpine:latest&#39; locally
+latest: Pulling from library/alpine
+4d06f2521e4f: Pull complete
+Digest: sha256:7739b19a213f3a0aa8dacbd5898c8bd467e6eaf71074296a3d75824e76257396
+Status: Downloaded newer image for alpine:latest
+/ #
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, this container is running on the same kernel version like before, but
+uses a completely different Linux distribution.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/ # uname -a
+Linux 411883bd07d3 4.1.19 #1 SMP Sun Mar 20 22:13:39 UTC 2016 x86_64 Linux
+
+/ # cat /etc/os-release
+NAME=&amp;quot;Alpine Linux&amp;quot;
+ID=alpine
+VERSION_ID=3.3.1
+PRETTY_NAME=&amp;quot;Alpine Linux v3.3&amp;quot;
+HOME_URL=&amp;quot;http://alpinelinux.org&amp;quot;
+BUG_REPORT_URL=&amp;quot;http://bugs.alpinelinux.org&amp;quot;
+/ #
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s look at the details of these both Docker containers. Both are complete
+Linux systems, but with a substantial difference in size.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+alpine              latest              70c557e50ed6        3 weeks ago         4.798 MB
+debian              latest              f50f9524513f        3 weeks ago         125.1 MB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alpine Linux is damn small in size and thus the Docker images built upon Alpine
+are extremely small as well, and much faster to download. Another major advantage is the
+security model of Alpine Linux, which reduces the attack surface dramatically and
+provides faster and easier security updates as well.&lt;/p&gt;
+
+&lt;p&gt;This experiment with &amp;ldquo;Docker for Mac&amp;rdquo; clearly demonstrates that we can run Linux
+commands inside Docker containers with a Linux OS and a recent kernel version 4.1.19. This is indeed different to our host operating system OS X.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s pure Docker container magic: running a Linux container seamlessly on our
+development machine, here on a MacBook Pro (Retina, 15-inch, Mid 2014).&lt;/p&gt;
+
+&lt;h2 id=&#34;the-magic-behind-the-scenes&#34;&gt;The Magic behind the scenes&lt;/h2&gt;
+
+&lt;p&gt;As I&amp;rsquo;ve shown you in the screenshots above, our host operating system, where the Docker
+Client is running, is &lt;code&gt;darwin/amd64&lt;/code&gt; or OS X, but the Docker Engine runs on &lt;code&gt;linux/amd64&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Maybe you&amp;rsquo;re wondering how this even can be possible, right?&lt;br /&gt;
+The answer is quite easy, &amp;ldquo;Docker for Mac&amp;rdquo; is shipping it&amp;rsquo;s own lightweight hypervisor
+called &lt;a href=&#34;http://www.xhyve.org/&#34;&gt;xhyve&lt;/a&gt;, which itself is a port of the BSD hypervisor
+&lt;a href=&#34;http://www.bhyve.org/&#34;&gt;bhyve&lt;/a&gt; to OS X.&lt;/p&gt;
+
+&lt;p&gt;The engineers at Docker have greatly enhanced xhyve to enable an optimized usage
+to efficiently run Docker containers on OS X. Inside of the xhyve hypervisor,
+the Docker Engine is running in a tiny small Linux VM, which is based upon the
+&lt;a href=&#34;http://www.alpinelinux.org&#34;&gt;Alpine Linux&lt;/a&gt; distribution. With this great combination
+of outstanding technologies we as users get the feeling to run Docker containers
+natively on our Mac.&lt;/p&gt;
+
+&lt;p&gt;Honestly, there are even more great technical details packed into the new &amp;ldquo;Docker for Mac&amp;rdquo;
+release, but we&amp;rsquo;ll keep them for a later more advanced technical blog post.&lt;/p&gt;
+
+&lt;h2 id=&#34;there-is-another-big-arm-surprise&#34;&gt;There is another big ARM surprise&lt;/h2&gt;
+
+&lt;p&gt;With the public announcement of &amp;ldquo;Docker for Mac&amp;rdquo;, I received an &lt;a href=&#34;https://twitter.com/avsm/status/713010884596080640&#34;&gt;Easter Egg tweet&lt;/a&gt; from one
+of the Docker engineers, Anil Madhavapeddy, that they&amp;rsquo;ve just included another cool
+feature, which attracts me most. He promised I could even run the Docker images, which
+I built for an IoT device like a Raspberry Pi on my Mac now!&lt;/p&gt;
+
+&lt;p&gt;No way, that sounds to good to be true. And mainly because the Raspberry Pi uses
+an ARM CPU, which cannot be executed on an Intel-based Mac, right?&lt;/p&gt;
+
+&lt;p&gt;To test this, I&amp;rsquo;ll select one of my most famous Docker containers:
+the webserver I&amp;rsquo;ve presented at DockerCon 2015 San Francisco, CA, last year in June (more details can be found in a dedicated blog post about the &lt;a href=&#34;https://blog.hypriot.com/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Ok, here we go. Let&amp;rsquo;s run an ARM container on a Mac:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-arm-container-01.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, it doesn&amp;rsquo;t work that way&amp;hellip;&lt;br /&gt;
+&amp;hellip;hmmm, but maybe with some more magic Docker spells it could be done.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-arm-container-02.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And this is where all the magic happens. We&amp;rsquo;re just bind-mounting a special binary
+into our original ARM-based container. Again, we don&amp;rsquo;t change the original Docker
+image to get this done. In the end we are really able to run an ARM container,
+which was built on a Raspberry Pi, now on an Intel-based Mac - just with the help
+of some &lt;a href=&#34;https://twitter.com/quintus23m/status/713523016836231171&#34;&gt;fantastic Docker fu&lt;/a&gt;
+embedded in &amp;ldquo;Docker for Mac&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-arm-container-05.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As a last proof, we check with &lt;code&gt;docker ps&lt;/code&gt; that we&amp;rsquo;re running the original ARM container from June 2015:
+&lt;img src=&#34;https://blog.hypriot.com/images/first-touch-down-with-docker-for-mac/docker4mac-arm-container-04.jpg&#34; alt=&#34;Docker for Mac&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is possible because the Docker engineers have already included the Linux kernel support
+for &lt;code&gt;binfmt_misc&lt;/code&gt; into &amp;ldquo;Docker for Mac&amp;rdquo;. And as long as there is the right Qemu interpreter
+&lt;code&gt;qemu-arm-static&lt;/code&gt; (which is an Intel binary itself) placed in the ARM container,
+this container can be executed, or better emulated, even on a foreign CPU architecture.&lt;/p&gt;
+
+&lt;p&gt;Now I can clearly imagine to use &amp;ldquo;Docker for Mac&amp;rdquo; as part of a new Docker-centric workflow
+to build IoT containers directly on my Mac. Development and testing can be done fast and
+efficiently on the developers machine and then deploying and running the IoT containers
+on the target device. A few months ago such an idea has sound pretty crazy and unbelievable -
+but now it&amp;rsquo;s coming true soon.&lt;/p&gt;
+
+&lt;p&gt;Special thanks to Anil, Justin and all the other great guys at the Docker engineering
+team to make this magic true.&lt;/p&gt;
+
+&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
+
+&lt;p&gt;After this first and fast walk-through, I guess you&amp;rsquo;re even more curious and you&amp;rsquo;d
+like to use &amp;ldquo;Docker for Mac&amp;rdquo; by yourself. So in the meantime I&amp;rsquo;ll just summarize the
+key points what impressed me most about this great new release.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;installing &amp;ldquo;Docker for Mac&amp;rdquo; was pretty easy and slick&lt;/li&gt;
+&lt;li&gt;a single &lt;code&gt;.dmg&lt;/code&gt; media with 90 MByte only&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Docker for Mac&amp;rdquo; is a real native OS X application&lt;/li&gt;
+&lt;li&gt;there are absolutely no other external resources or dependencies to install&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Docker for Mac&amp;rdquo; integrates perfectly into your development workflow&lt;/li&gt;
+&lt;li&gt;downloading, installing and running the first Docker container takes a few minutes only&lt;/li&gt;
+&lt;li&gt;for tiny containers, Alpine Linux is one of the best Linux distros&lt;/li&gt;
+&lt;li&gt;ARM IoT containers can be developed and run even on a Mac&lt;/li&gt;
+&lt;li&gt;&amp;hellip;much more will be revealed in later blog posts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to get Docker running on your Raspberry Pi using Mac OS X</title>
+      <link>https://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/</link>
+      <pubDate>Fri, 15 May 2015 20:16:11 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/getting-started-with-docker-and-mac-on-the-raspberry-pi/</guid>
+      <description>
+
+&lt;p&gt;This guide shows you how to get Docker running on your Raspberry Pi using a &lt;strong&gt;Mac OS X workstation&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If you have not read the getting started guide about Docker on the Raspberry Pi yet you might wanna check it out first: &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device&#34;&gt;Getting started with Docker on your ARM Device&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We tried to make this guide as concise as possible. Make sure that you know the basics about the command line and you should be ready to go.
+If you don&amp;rsquo;t you can learn the basics in &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/an-introduction-to-the-linux-terminal&#34;&gt;An Introduction to the Linux Terminal&lt;/a&gt; and come back afterwards.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;hardware&lt;/strong&gt; you gonna need to follow along is a Raspberry Pi 1 or 2 and one SD card.
+If you are going to use a Raspberry 2 you will have to use a microSD card - otherwise a normal SD card is sufficient.
+We recommend a size of at least 4 GB.&lt;/p&gt;
+
+&lt;p&gt;The SD card contains all the software which we are going to use on our Raspberry Pi.
+With software we basically mean two things: first an operating system for your Raspberry Pi and second the software you as user would like to use - e.g. a browser or a word processing program.
+In our case the software we wanna use is Docker.&lt;/p&gt;
+
+&lt;p&gt;We - from Hypriot - created a preconfigured &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;SD card image&lt;/a&gt; which contains everything you need to run Docker on your Raspberry Pi.
+To use the image you first have to download and transfer it to your SD card. Transferring an image to an SD card is often referred to as &lt;em&gt;flashing&lt;/em&gt;.
+Afterwards you just have to insert the flashed SD card into your Raspberry Pi and start it up.&lt;/p&gt;
+
+&lt;h3 id=&#34;download-the-hypriot-docker-sd-card-image&#34;&gt;Download the Hypriot Docker SD card image&lt;/h3&gt;
+
+&lt;p&gt;Download our latest SD card image from the &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;download page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After the download is completed open a terminal window. To do this press &lt;strong&gt;CMD&lt;/strong&gt; + &lt;strong&gt;Whitespace&lt;/strong&gt; and type &lt;em&gt;terminal&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now we will extract the downloaded zip file. Go to your &lt;em&gt;Download&lt;/em&gt; folder first by typing&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/Downloads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now extract the zip file with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;unzip hypriotos-rpi-201???.img.zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After the file is unzipped you will have a new file with an &lt;strong&gt;.img&lt;/strong&gt; extension.
+In the next step we will flash this file onto your SD card.&lt;/p&gt;
+
+&lt;h3 id=&#34;flash-the-downloaded-image-to-your-sd-card&#34;&gt;Flash the downloaded image to your SD card&lt;/h3&gt;
+
+&lt;p&gt;First put your SD card into the computer. Then in the terminal type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diskutil list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see a list of all your disks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/mac-screenies/diskutil-list.png&#34; alt=&#34;disktuil-list&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now identify the SD card. Look at the fourth column which shows the size of the devices of your workstation.
+One item in the list should have a size that is very close to the size of your SD card.
+From there get the identifier which is shown in the first column.
+Here the identifier is &lt;code&gt;/dev/disk5&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now unmount the SD card. Make sure to replace &lt;code&gt;/dev/disk5&lt;/code&gt; with the identifier of your sd card.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;diskutil unmountdisk /dev/disk5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As a result you should see&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/mac-screenies/unmount.png&#34; alt=&#34;Screenshot unmounted&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we are ready to flash the SD card. We are going to use the &lt;code&gt;dd&lt;/code&gt; command for this.&lt;/p&gt;
+
+&lt;p&gt;Before you execute the command below, make sure to&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;replace the parameter after &lt;code&gt;if=&lt;/code&gt; with the path to the downloaded image&lt;/li&gt;
+&lt;li&gt;replace the parameter after &lt;code&gt;of=&lt;/code&gt; with the identifier of your SD card. Make sure you put a &lt;code&gt;r&lt;/code&gt; in front of &lt;code&gt;disk&lt;/code&gt; as you can see in the example&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo dd if=hypriotos-rpi-201???.img of=/dev/rdisk5 bs=1m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While this command is executed you won&amp;rsquo;t get any information about its progress.
+Depending on your hardware and the performance of your SD card it can take up to five minutes to flash the image.
+When the &lt;code&gt;dd&lt;/code&gt; is finished, you should get an output like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/mac-screenies/dd-success.png&#34; alt=&#34;after-dd-success&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally unmount the SD card again in the same way as before.&lt;/p&gt;
+
+&lt;h3 id=&#34;start-your-raspberry-pi-with-the-sd-card&#34;&gt;Start your Raspberry Pi with the SD card&lt;/h3&gt;
+
+&lt;p&gt;Boot your Raspberry Pi by&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;connecting the Raspberry Pi to your local network via an ethernet cable&lt;/li&gt;
+&lt;li&gt;putting the SD card into the designated slot&lt;/li&gt;
+&lt;li&gt;plugging in the power adapter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After finishing the last step your Raspberry Pi will boot and the LEDs should start blinking.
+The very first boot will take one to three minutes as the file system will be resized.&lt;/p&gt;
+
+&lt;h3 id=&#34;ensure-everything-works&#34;&gt;Ensure everything works&lt;/h3&gt;
+
+&lt;p&gt;To check if Docker is actually running we need to log into the Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;To do this we need to find out the IP address of your Raspberry Pi first.
+If you are not sure what the IP-Address of your PI is, there are different ways of finding it out.
+One way is to use the &lt;code&gt;nmap&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;First identify the IP address of your own workstation. Type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ipconfig getifaddr en1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it does not report back an IP address, you are probably connected via cable to your network. Try &lt;code&gt;en0&lt;/code&gt; instead of &lt;code&gt;en1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As you can see in the following screenshot our IP address is &lt;code&gt;192.168.0.101&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/mac-screenies/own-ip-address.png&#34; alt=&#34;own-ip-address&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then replace the IP address in front of the &lt;code&gt;/24&lt;/code&gt; with yours and type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nmap -sP 192.168.0.100/24 | grep black-pearl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output of the &lt;code&gt;nmap&lt;/code&gt; command should show you the IP address of your Raspberry Pi.
+If you get a blank line without an IP address your Raspberry Pi is probably not connected to the network.
+Or there is a problem with the SD card which prevents the Raspberry Pi from booting.&lt;/p&gt;
+
+&lt;p&gt;After you found out the IP address establish a connection to the Raspberry Pi with the ssh command.
+Replace the IP address after the &lt;code&gt;@&lt;/code&gt; with the one of your Raspberry Pi.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh pirate@192.168.178.10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you are asked for the password type &lt;code&gt;hypriot&lt;/code&gt; and hit &lt;em&gt;Enter&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first time you establish the connection you will be asked if you are sure that you want to connect to the Raspberry Pi - answer with &lt;code&gt;yes&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If everything went fine you should now see the &lt;em&gt;HypriotOS&lt;/em&gt; command line prompt waiting for your input.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/mac-screenies/hypriot-ssh-prompt-after-login.png&#34; alt=&#34;hypriot-ssh-prompt-after-login&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally check if the Docker Service is running by typing&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker info
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The output of the &lt;code&gt;docker info&lt;/code&gt; command should look similar to:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/blog_post_getting-started/mac-screenies/docker-info.png&#34; alt=&#34;docker-info&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations! You have succeeded in getting Docker running on your Raspberry Pi!&lt;/strong&gt; :)&lt;/p&gt;
+
+&lt;p&gt;You are now ready to continue your exploration of Docker with our &lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device#going-wild-with-docker-what-can-you-actually-do-with-it:397c66ef19f9f061b6711d2e296cb276&#34;&gt;Getting Started Guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Have fun!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

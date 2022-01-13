@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Container on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/container/index.xml</link>
+    <description>Recent content in Container on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/container/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>NVIDIA Jetson Nano - Docker optimized Linux Kernel</title>
+      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</link>
+      <pubDate>Sat, 04 May 2019 03:57:21 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-build-kernel-docker-optimized/</guid>
+      <description>&lt;p&gt;Despite the fact that the NVIDIA Jetson Nano DevKit comes with Docker Engine preinstalled and you can run containers just out-of-the-box on this great AI and Robotics enabled board, there are still some important kernel settings missing to run Docker Swarm mode, Kubernetes or k3s correctly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-whale.jpg&#34; alt=&#34;jetson-nano-board-docker-whale.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s try to fix this&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;analyzing-the-linux-kernel&#34;&gt;Analyzing the Linux Kernel&lt;/h3&gt;
+
+&lt;p&gt;In my last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/verify-kernel-container-compatibility/&#34;&gt;Verify your Linux Kernel for Container Compatibility&lt;/a&gt;, I already shared all the details how you can easily verify the Linux kernel for all Container related kernel settings. So, this first part of analyzing the capabilities of the stock Linux kernel 4.9.x provided by NVIDIA is already done and documented. And this was an easy task as well, so everyone who&amp;rsquo;s interested in these details can repeat the task at his/her own device.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s recap what we did found. Especially there is one important setting which will be used for networking. This feature called &amp;ldquo;IPVLAN&amp;rdquo;, is required for Docker Swarm mode and it&amp;rsquo;s also used for networking in Kubernetes and k3s.&lt;/p&gt;
+
+&lt;h3 id=&#34;building-your-own-linux-kernel&#34;&gt;Building your own Linux Kernel&lt;/h3&gt;
+
+&lt;p&gt;Anyway, even when we&amp;rsquo;d like to include or change only a single kernel setting, we have to customize the kernel configuration and have to compile and build our own Linux kernel. This is typically a common task for a desktop Linux system, but can be pretty ugly and cumbersome if you have to build the kernel for an Embedded Device.&lt;/p&gt;
+
+&lt;p&gt;When we look back to all the other NVIDIA Jetson boards, like the TK1, TX1 and TX2, this requires a second Linux machine, running Ubuntu 14.04 or 16.04 on an Intel CPU. Then setting up a complete build system for cross-compiling and all these stuff. Honestly, this is a well-known approach for an Embedded Developer, but the good thing now for the Jetson Nano DevKit this is not required any more.&lt;/p&gt;
+
+&lt;p&gt;Here the good news: you can customize and build your own Linux kernel directly on the Jetson Nano DevKit! You only need an internet connection and some time to perform all steps on your own. BTW, and this is another chance to learn something new.&lt;/p&gt;
+
+&lt;h3 id=&#34;preparing-the-build-environment&#34;&gt;Preparing the Build Environment&lt;/h3&gt;
+
+&lt;p&gt;Before we&amp;rsquo;re able to compile the Linux kernel on the Jetson Nano, we have to make sure we do have all required build tools installed. Here is all it takes, with a fast internet connection this is done within a few minutes only.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get update
+$ sudo apt-get install -y libncurses5-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;download-linux-kernel-sources-for-jetson-nano&#34;&gt;Download Linux Kernel Sources for Jetson Nano&lt;/h3&gt;
+
+&lt;p&gt;Next, we&amp;rsquo;ll need to find and download the sources for the Linux kernel for the Jetson Nano DevKit directly from the NVIDIA website. The current version as writing this blogpost is NVIDIA Linux4Tegra Release r32.1 or short L4T 32.1. Just follow this link &lt;a href=&#34;https://developer.nvidia.com/embedded/linux-tegra&#34;&gt;https://developer.nvidia.com/embedded/linux-tegra&lt;/a&gt; and select at topic &amp;ldquo;32.1 Driver Details&amp;rdquo; the referenced download link for &amp;ldquo;Jetson Nano&amp;rdquo;, &amp;ldquo;SOURCES&amp;rdquo; and &amp;ldquo;BSP Sources&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;We can also directly download this package to the Jetson Nano. But please be aware that this download link can change over time, so verify it carefully.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd
+$ mkdir -p nano-bsp-sources
+$ cd nano-bsp-sources
+$ wget https://developer.download.nvidia.com/embedded/L4T/r32_Release_v1.0/jetson-nano/BSP/Jetson-Nano-public_sources.tbz2
+$ ls -alh Jetson-Nano-public_sources.tbz2
+-rw-rw-r-- 1 pirate pirate 133M Mar 16 06:46 Jetson-Nano-public_sources.tbz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now extract the kernel source package &amp;ldquo;kernel_src.tbz2&amp;rdquo; from the downloaded file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ tar xvf Jetson-Nano-public_sources.tbz2 public_sources/kernel_src.tbz2
+$ mv public_sources/kernel_src.tbz2 ~/
+$ cd
+$ ls -alh ~/kernel_src.tbz2
+-rw-r--r-- 1 pirate pirate 117M Mar 13 08:45 /home/pirate/kernel_src.tbz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may now free some disk space and remove all the downloads, as we don&amp;rsquo;t need it any more.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ rm -fr ~/nano-bsp-sources/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Last step, please extract the kernel source tree.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd
+$ tar xvf ./kernel_src.tbz2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;compile-the-default-linux-kernel&#34;&gt;Compile the default Linux Kernel&lt;/h3&gt;
+
+&lt;p&gt;Cool, we have now all the Linux kernel source tree for the Jetson Nano DevKit downloaded and extracted.&lt;/p&gt;
+
+&lt;p&gt;As the next step, I&amp;rsquo;d recommend to first compile the default unmodified kernel in order to verify that we do have all the build dependencies installed and this way, we&amp;rsquo;ll also get familiar with the kernel compiling.&lt;/p&gt;
+
+&lt;p&gt;Before we can start the compile job, we have to make sure to use the correct kernel configuration file. This file &amp;ldquo;.config&amp;rdquo; is missing in the provided kernel source tree, but we can directly get it from our running Linux kernel on the Jetson Nano. This .config file can be found as kernel file at &amp;ldquo;/proc/config.gz&amp;rdquo; in a compressed form.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/kernel/kernel-4.9
+$ zcat /proc/config.gz &amp;gt; .config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s verify the content of the Linux kernel .config file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~/kernel/kernel-4.9$ head -10 .config
+#
+# Automatically generated file; DO NOT EDIT.
+# Linux/arm64 4.9.140 Kernel Configuration
+#
+CONFIG_ARM64=y
+CONFIG_64BIT=y
+CONFIG_ARCH_PHYS_ADDR_T_64BIT=y
+CONFIG_MMU=y
+CONFIG_DEBUG_RODATA=y
+CONFIG_ARM64_PAGE_SHIFT=12
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, it&amp;rsquo;s a Kernel Configuration for Linux kernel version 4.9.140 and for ARM 64-bit architecture.&lt;/p&gt;
+
+&lt;p&gt;Start the kernel compile job. As we do have 4x cores available on the Nano, we&amp;rsquo;d like to keep the CPU busy and using 5x parallel compile tasks.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ make prepare
+$ make modules_prepare
+
+# Use 5x parallel compile tasks
+# Compile kernel as an image file
+$ time make -j5 Image
+...
+real	28m13,235s
+user	91m48,700s
+sys	7m46,240s
+
+# List newly compiled kernel image
+$ ls -alh arch/arm64/boot/Image
+-rw-rw-r-- 1 pirate pirate 33M May  4 00:14 arch/arm64/boot/Image
+
+# Compile all kernel modules
+$ time make -j5 modules
+...
+real	29m15,621s
+user	92m41,176s
+sys	8m18,404s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Nano CPU&amp;rsquo;s are pretty busy while compiling the kernel and kernel modules.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-compile-kernel.jpg&#34; alt=&#34;jetson-nano-board-compile-kernel.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The build/compile job will take around 60 minutes in total, but the good thing is, all happens directly on your Jetson Nano DevKit. No other expensive equipment is required at all, just an internet connection and some of your time.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-our-newly-built-linux-kernel-and-modules&#34;&gt;Install our newly built Linux Kernel and Modules&lt;/h3&gt;
+
+&lt;p&gt;After these pretty long compile jobs for generating our own Linux kernel and kernel modules, we are ready to install the kernel and verify if it&amp;rsquo;s able to boot correctly. Therefore we should make a backup of the old kernel first, then install the new kernel and also install all newly built kernel modules.&lt;/p&gt;
+
+&lt;p&gt;Before we install the new kernel and boot the Jetson Nano, let&amp;rsquo;s check the default Linux kernel version. Then we can compare it later to our own kernel.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarch64 aarch64 aarch64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is also a ASCIINEMA recording of a &lt;code&gt;check-config.sh&lt;/code&gt; verification done with the default kernel.
+&lt;a href=&#34;https://asciinema.org/a/244237?t=0:44&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/244237.svg&#34; alt=&#34;asciicast&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As we can see, we do have a Linux kernel version &amp;ldquo;4.9.140-tegra&amp;rdquo;. This one was compiled at &amp;ldquo;Wed Mar 13 00:32:22 PDT 2019&amp;rdquo; and it&amp;rsquo;s the default kernel provided by NVIDIA for the Jetson Nano.&lt;/p&gt;
+
+&lt;p&gt;Now, install our new kernel and kernel modules.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Backup the old kernel image file
+$ sudo cp /boot/Image /boot/Image.original
+
+# Install modules and kernel image
+$ cd ~/kernel/kernel-4.9
+$ sudo make modules_install
+$ sudo cp arch/arm64/boot/Image /boot/Image
+
+# Verify the kernel images
+pirate@jetson-nano:~/kernel/kernel-4.9$ ls -alh /boot/Image*
+-rw-r--r-- 1 root root 33M May  4 00:55 /boot/Image
+-rw-r--r-- 1 root root 33M May  4 00:49 /boot/Image.original
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, reboot the Nano and check the kernel again.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140 #1 SMP PREEMPT Sat May 4 00:12:56 CEST 2019 aarch64 aarch64 aarch64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, our newly compiled kernel is working. The kernel version has changed to &amp;ldquo;4.9.140&amp;rdquo;, note the missing trailing &amp;ldquo;-tegra&amp;rdquo; which indicates this build is a custom build. And the compile date/time has also changed to &amp;ldquo;Sat May 4 00:12:56 CEST 2019&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hint:&lt;/strong&gt; Please remember, every time you do change a kernel setting and compile a new kernel, you have to install the kernel image file AND the kernel modules.&lt;/p&gt;
+
+&lt;h3 id=&#34;customizing-the-linux-kernel-configuration&#34;&gt;Customizing the Linux Kernel Configuration&lt;/h3&gt;
+
+&lt;p&gt;When it comes to the point to modify or customize the Linux kernel configuration, then this can get pretty complicated when you don&amp;rsquo;t know where to start. First of all, it&amp;rsquo;s a very bad idea to edit the .config file directly with an editor. Please, NEVER DO THIS - seriously!&lt;/p&gt;
+
+&lt;p&gt;The correct way to customize the kernel .config file is, to use the right tooling. One tool which is already built-in and available even in your bash shell (works also via ssh), is the tool &lt;code&gt;menuconfig&lt;/code&gt;. Therefore we already installed the build dependency &amp;ldquo;libncurses5-dev&amp;rdquo; at the beginning.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to go into all details on how to use &lt;code&gt;menuconfig&lt;/code&gt;, therefore here are the basic commands to start it and then I did recorded an ASCIINEMA to change the setting for &amp;ldquo;IPVLAN&amp;rdquo;. I think then you&amp;rsquo;ll should get a good idea how this works.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Backup the kernel config
+$ cd ~/kernel/kernel-4.9
+$ cp .config kernel.config.original
+
+$ make menuconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ASCIINEMA recording on how to include the &amp;ldquo;IPVLAN&amp;rdquo; kernel setting.
+&lt;a href=&#34;https://asciinema.org/a/244246?t=1:15&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/244246.svg&#34; alt=&#34;asciicast&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally let&amp;rsquo;s re-compile the kernel and the kernel modules and install them, like we did before.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd ~/kernel/kernel-4.9
+
+# Prepare the kernel build
+$ make prepare
+$ make modules_prepare
+
+# Compile kernel image and kernel modules
+$ time make -j5 Image
+$ time make -j5 modules
+
+# Install modules and kernel image
+$ sudo make modules_install
+$ sudo cp arch/arm64/boot/Image /boot/Image
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reboot the Nano and check the kernel again.&lt;/p&gt;
+
+&lt;h3 id=&#34;fast-forward-fully-container-optimized-kernel-configuration&#34;&gt;Fast Forward - Fully Container Optimized Kernel Configuration&lt;/h3&gt;
+
+&lt;p&gt;As you have learned here in this tutorial, you&amp;rsquo;re now able to apply more and more settings to your kernel configuration. But this will take some time for sure.&lt;/p&gt;
+
+&lt;p&gt;In order to save you a lot of time and efforts, I&amp;rsquo;ve already optimized the Linux kernel in all details. Here you can find a public &lt;a href=&#34;https://gist.githubusercontent.com/DieterReuter/a7d07445c9d62b45d9151c22b446c59b/&#34;&gt;Gist at Github&lt;/a&gt; with my resulting kernel .config. You can download it directly to your Nano and compile your own Linux kernel with this configuration.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Download the fully container optimized kernel configuration file
+$ cd ~/kernel/kernel-4.9
+$ wget https://gist.githubusercontent.com/DieterReuter/a7d07445c9d62b45d9151c22b446c59b/raw/6decc91cc764ec0be8582186a34f60ea83fa89db/kernel.config.fully-container-optimized 
+$ cp kernel.config.fully-container-optimized .config
+
+# Prepare the kernel build
+$ make prepare
+$ make modules_prepare
+
+# Compile kernel image and kernel modules
+$ time make -j5 Image
+$ time make -j5 modules
+
+# Install modules and kernel image
+$ sudo make modules_install
+$ sudo cp arch/arm64/boot/Image /boot/Image
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, reboot the Nano and check the kernel again.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140 #2 SMP PREEMPT Sat May 4 02:17:23 CEST 2019 aarch64 aarch64 aarch64 GNU/Linux
+
+pirate@jetson-nano:~$ ls -al /boot/Image*
+-rw-r--r-- 1 root root 34381832 May  4 03:13 /boot/Image
+-rw-r--r-- 1 root root 34048008 May  4 00:49 /boot/Image.original
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ASCIINEMA recording of the final run of &lt;code&gt;check-config.sh&lt;/code&gt; with the fully optimized kernel for running Containers on the Jetson Nano DevKit.
+&lt;a href=&#34;https://asciinema.org/a/244250?t=1:13&#34;&gt;&lt;img src=&#34;https://asciinema.org/a/244250.svg&#34; alt=&#34;asciicast&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Result: An almost perfect Linux kernel to run Containers on the NVIDIA Jetson Nano!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/jetson-nano-board-docker-running2.jpg&#34; alt=&#34;jetson-nano-board-docker-running2.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;As you could learn with this short, but highly technical tutorial, you&amp;rsquo;re able to compile your own customized Linux kernel directly on the Jetson Nano DevKit without the need of an additional and maybe expensiv development machine. All can be done within an hour or two, and you have now the ability to change kernel settings whenever you want to. Just customize the kernel .config file, compile a new kernel and kernel modules and install it on your Nano.&lt;/p&gt;
+
+&lt;p&gt;This way you&amp;rsquo;re now able to optimize the kernel for all your needs. For running Containers on the Nano with the help of Docker, Kubernetes or k3s, you&amp;rsquo;re now well prepared and know how to do this by yourself.&lt;/p&gt;
+
+&lt;p&gt;Once the Linux kernel is fully optimized with all important Container related kernel settings, you can run Docker Swarm mode, Kubernetes and k3s with all features on that great ARM board from NVIDIA.&lt;/p&gt;
+
+&lt;p&gt;Finally, May the 4th be with You!
+&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-build-kernel-docker-optimized/may-the-4th-be-with-you.jpg&#34; alt=&#34;may-the-4th-be-with-you.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Verify your Linux Kernel for Container Compatibility</title>
+      <link>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</link>
+      <pubDate>Sun, 28 Apr 2019 08:48:50 -0700</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/verify-kernel-container-compatibility/</guid>
+      <description>&lt;p&gt;Are you sure whether your Linux kernel is able to run Containers in an optimal way, or if there are still some missing kernel settings which will lead to some strange issues in the future?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/400px-NewTux.svg.png&#34; alt=&#34;400px-NewTux.svg.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Normally you don&amp;rsquo;t have to bother about this question. When you&amp;rsquo;re using Docker and Containers on a modern Linux system or on a public cloud offering, this has been already optimized by the Linux distribution or your cloud provider. But when you start using Containers on Embedded Devices you should verify this carefully.&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s learn how easy it is to verify it by yourself&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;how-can-i-verify-the-linux-kernel-for-container-compatibility&#34;&gt;How can I verify the Linux Kernel for Container Compatibility?&lt;/h3&gt;
+
+&lt;p&gt;Typically this is really an easy task, as soon as you know the right tools.&lt;/p&gt;
+
+&lt;p&gt;For running Containers you&amp;rsquo;ll need some basic settings applied to your Linux kernel. Some settings are mandatory and some others are optional and only used for specific use cases. But let&amp;rsquo;s see how we can use the right tools.&lt;/p&gt;
+
+&lt;p&gt;At the Docker open source project you can find a great bash script which does all these tests on your Linux kernel configuration and tells you within a few seconds all the required details. The script is able to read the kernel config live from a running kernel or directly from a kernel .config file as well. Now you can imagine you can verify the container compatibility also from a remote device.&lt;/p&gt;
+
+&lt;h4 id=&#34;download-check-config-sh-script&#34;&gt;Download &lt;code&gt;check-config.sh&lt;/code&gt; script&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;rsquo;s download the bash script &lt;a href=&#34;https://github.com/moby/moby/blob/master/contrib/check-config.sh&#34;&gt;check-config.sh&lt;/a&gt; directly from the Moby project (yes, this is the new name for the Docker open source project).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ wget https://github.com/moby/moby/raw/master/contrib/check-config.sh
+$ chmod +x check-config.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;verify-the-linux-kernel-directly&#34;&gt;Verify the Linux Kernel directly&lt;/h4&gt;
+
+&lt;p&gt;If you have your Linux system available you can download and run the script directly without any parameters.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./check-config.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you&amp;rsquo;ll get a detailled output with all kernel settings which are important for running containers.&lt;/p&gt;
+
+&lt;p&gt;If you want to verify a kernel from a remote system, you could also first extract the Linux kernel config on this system and analyse it later.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# extract the .config from a running kernel
+$ zcat /proc/config.gz &amp;gt; kernel.config
+
+$ ls -al kernel.config
+-rw-rw-r-- 1 pirate pirate 165739 Apr 28 07:26 kernel.config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Hint:&lt;/strong&gt; On some Linux systems like Raspbian for the Raspberry Pi, the kernel .config is only available as a kernel module. Then you have to load the module first, using the command &lt;code&gt;sudo modprobe configs&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;verify-the-linux-kernel-from-a-config-file&#34;&gt;Verify the Linux Kernel from a .config file&lt;/h4&gt;
+
+&lt;p&gt;The kernel .config is a readable configuration file which is used to compile a new Linux kernel. Typically it will get embedded into your new kernel and therefore you can read it from the running kernel. It&amp;rsquo;s available as a file at &lt;code&gt;/proc/config.gz&lt;/code&gt; in a compressed form, so we have to use &lt;code&gt;zcat&lt;/code&gt; to extract the .config file in clear text.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ zcat /proc/config.gz | head -10
+#
+# Automatically generated file; DO NOT EDIT.
+# Linux/arm64 4.9.140 Kernel Configuration
+#
+CONFIG_ARM64=y
+CONFIG_64BIT=y
+CONFIG_ARCH_PHYS_ADDR_T_64BIT=y
+CONFIG_MMU=y
+CONFIG_DEBUG_RODATA=y
+CONFIG_ARM64_PAGE_SHIFT=12
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, let&amp;rsquo;s run the &lt;code&gt;check-config.sh&lt;/code&gt; script again and read all kernel configs from the file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./check-config.sh kernel.config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;verify-the-linux-kernel-on-nvidia-jetson-nano-devkit&#34;&gt;Verify the Linux Kernel on NVIDIA Jetson Nano DevKit&lt;/h3&gt;
+
+&lt;p&gt;As a real life example let&amp;rsquo;s now verify the Linux kernel of the brand-new Jetson Nano DevKit from NVIDIA. I already wrote a blogpost about how to install Linux for the Nano board, see here &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First we&amp;rsquo;ll check the Linux kernel version and we can see, it&amp;rsquo;s a current LTS kernel 4.9.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarch64 aarch64 aarch64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s run the &lt;code&gt;check-config.sh&lt;/code&gt; script on the Nano and determine all the Container related kernel settings. We&amp;rsquo;ll get the complete output as colored text. From the screenshots here we can clearly see which of the required and optional kernel settings are already applied for the Nano&amp;rsquo;s Linux kernel.&lt;/p&gt;
+
+&lt;p&gt;In the first section &amp;ldquo;Generally Necessary&amp;rdquo; all the mandatory kernel settings are listed, and for the Nano this is completely green, all is perfect.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano1.jpg&#34; alt=&#34;kernel-checkconfig-nano1.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then in the second section &amp;ldquo;Optional Features&amp;rdquo; we can see that most Container related settings are applied, but a few are missing.&lt;/p&gt;
+
+&lt;p&gt;Not all of these are really important to have, but when we look into the &amp;ldquo;Network Drivers&amp;rdquo; I would recommend to include all in the kernel to avoid issues. For example, if you want to use Docker Swarm mode you have to know that &lt;code&gt;CONFIG_IPVLAN&lt;/code&gt; is mandatory - this kernel can&amp;rsquo;t run Swarm mode correctly!&lt;/p&gt;
+
+&lt;p&gt;For &amp;ldquo;Storage Drivers&amp;rdquo; you can typically ignore the missing settings for &lt;code&gt;aufs&lt;/code&gt; and &lt;code&gt;zfs&lt;/code&gt; as long as you don&amp;rsquo;t required to use these, same is true for &lt;code&gt;devicemapper&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/verify-kernel-container-compatibility/kernel-checkconfig-nano2.jpg&#34; alt=&#34;kernel-checkconfig-nano2.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here I&amp;rsquo;d also like to present the output as pure ASCII text so you can easily analyse (search, copy&amp;amp;paste) it later.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ ./check-config.sh
+info: reading kernel config from /proc/config.gz ...
+
+Generally Necessary:
+- cgroup hierarchy: properly mounted [/sys/fs/cgroup]
+- CONFIG_NAMESPACES: enabled
+- CONFIG_NET_NS: enabled
+- CONFIG_PID_NS: enabled
+- CONFIG_IPC_NS: enabled
+- CONFIG_UTS_NS: enabled
+- CONFIG_CGROUPS: enabled
+- CONFIG_CGROUP_CPUACCT: enabled
+- CONFIG_CGROUP_DEVICE: enabled
+- CONFIG_CGROUP_FREEZER: enabled
+- CONFIG_CGROUP_SCHED: enabled
+- CONFIG_CPUSETS: enabled
+- CONFIG_MEMCG: enabled
+- CONFIG_KEYS: enabled
+- CONFIG_VETH: enabled (as module)
+- CONFIG_BRIDGE: enabled
+- CONFIG_BRIDGE_NETFILTER: enabled (as module)
+- CONFIG_NF_NAT_IPV4: enabled (as module)
+- CONFIG_IP_NF_FILTER: enabled (as module)
+- CONFIG_IP_NF_TARGET_MASQUERADE: enabled (as module)
+- CONFIG_NETFILTER_XT_MATCH_ADDRTYPE: enabled (as module)
+- CONFIG_NETFILTER_XT_MATCH_CONNTRACK: enabled (as module)
+- CONFIG_NETFILTER_XT_MATCH_IPVS: enabled (as module)
+- CONFIG_IP_NF_NAT: enabled (as module)
+- CONFIG_NF_NAT: enabled (as module)
+- CONFIG_NF_NAT_NEEDED: enabled
+- CONFIG_POSIX_MQUEUE: enabled
+
+Optional Features:
+- CONFIG_USER_NS: enabled
+- CONFIG_SECCOMP: enabled
+- CONFIG_CGROUP_PIDS: enabled
+- CONFIG_MEMCG_SWAP: enabled
+- CONFIG_MEMCG_SWAP_ENABLED: enabled
+    (cgroup swap accounting is currently enabled)
+- CONFIG_BLK_CGROUP: enabled
+- CONFIG_BLK_DEV_THROTTLING: enabled
+- CONFIG_IOSCHED_CFQ: enabled
+- CONFIG_CFQ_GROUP_IOSCHED: missing
+- CONFIG_CGROUP_PERF: enabled
+- CONFIG_CGROUP_HUGETLB: missing
+- CONFIG_NET_CLS_CGROUP: enabled
+- CONFIG_CGROUP_NET_PRIO: enabled
+- CONFIG_CFS_BANDWIDTH: enabled
+- CONFIG_FAIR_GROUP_SCHED: enabled
+- CONFIG_RT_GROUP_SCHED: enabled
+- CONFIG_IP_NF_TARGET_REDIRECT: missing
+- CONFIG_IP_VS: enabled (as module)
+- CONFIG_IP_VS_NFCT: enabled
+- CONFIG_IP_VS_PROTO_TCP: missing
+- CONFIG_IP_VS_PROTO_UDP: missing
+- CONFIG_IP_VS_RR: enabled (as module)
+- CONFIG_EXT4_FS: enabled
+- CONFIG_EXT4_FS_POSIX_ACL: enabled
+- CONFIG_EXT4_FS_SECURITY: enabled
+- Network Drivers:
+  - &amp;quot;overlay&amp;quot;:
+    - CONFIG_VXLAN: enabled
+      Optional (for encrypted networks):
+      - CONFIG_CRYPTO: enabled
+      - CONFIG_CRYPTO_AEAD: enabled
+      - CONFIG_CRYPTO_GCM: enabled
+      - CONFIG_CRYPTO_SEQIV: enabled
+      - CONFIG_CRYPTO_GHASH: enabled
+      - CONFIG_XFRM: enabled
+      - CONFIG_XFRM_USER: enabled
+      - CONFIG_XFRM_ALGO: enabled
+      - CONFIG_INET_ESP: missing
+      - CONFIG_INET_XFRM_MODE_TRANSPORT: enabled
+  - &amp;quot;ipvlan&amp;quot;:
+    - CONFIG_IPVLAN: missing
+  - &amp;quot;macvlan&amp;quot;:
+    - CONFIG_MACVLAN: enabled (as module)
+    - CONFIG_DUMMY: enabled
+  - &amp;quot;ftp,tftp client in container&amp;quot;:
+    - CONFIG_NF_NAT_FTP: enabled (as module)
+    - CONFIG_NF_CONNTRACK_FTP: enabled (as module)
+    - CONFIG_NF_NAT_TFTP: enabled (as module)
+    - CONFIG_NF_CONNTRACK_TFTP: enabled (as module)
+- Storage Drivers:
+  - &amp;quot;aufs&amp;quot;:
+    - CONFIG_AUFS_FS: missing
+  - &amp;quot;btrfs&amp;quot;:
+    - CONFIG_BTRFS_FS: enabled (as module)
+    - CONFIG_BTRFS_FS_POSIX_ACL: enabled
+  - &amp;quot;devicemapper&amp;quot;:
+    - CONFIG_BLK_DEV_DM: enabled
+    - CONFIG_DM_THIN_PROVISIONING: missing
+  - &amp;quot;overlay&amp;quot;:
+    - CONFIG_OVERLAY_FS: enabled (as module)
+  - &amp;quot;zfs&amp;quot;:
+    - /dev/zfs: missing
+    - zfs command: missing
+    - zpool command: missing
+
+Limits:
+- /proc/sys/kernel/keys/root_maxkeys: 1000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;With these easy steps we&amp;rsquo;ve covered in this short blogpost, you&amp;rsquo;re now able to verify if the Linux kernel you&amp;rsquo;re using is able to run Docker, containerd, Kubernetes or k3s in an optimal way.&lt;/p&gt;
+
+&lt;p&gt;Just keep this in mind whenever you&amp;rsquo;re discovering some strange errors with your Container Run-Time on a new Linux system. This is especially important when you run Containers on an Embedded Device. We&amp;rsquo;ve discovered a lot of missing kernel settings in the early days with the Raspberry Pi. Even today the Raspberry Pi kernel which comes with the default Raspbian is not fully optimized to run Containers, therefore the image built from HypriotOS is still a better alternative when you wish to run Containers on these devices.&lt;/p&gt;
+
+&lt;p&gt;And even when Docker runs out-of-the-box on a brandnew device like it does on the Jetson Nano, it&amp;rsquo;s always a good idea to verify the Linux kernel - prior to get into some strange errors.&lt;/p&gt;
+
+&lt;p&gt;In a later blogpost we&amp;rsquo;ll optimize the stock Linux kernel for the brand-new NVIDIA Jetson Nano DevKit and we&amp;rsquo;ll show you how to build your own customized kernel for this great board.&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker Engine on Intel Linux runs Arm Containers</title>
+      <link>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</link>
+      <pubDate>Sat, 27 Apr 2019 10:48:50 -0700</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/docker-intel-runs-arm-containers/</guid>
+      <description>&lt;p&gt;Did you read the latest news from Docker about their newly announced technology partnership together with Arm, &lt;a href=&#34;https://twitter.com/Docker/status/1121054608795688963&#34;&gt;&amp;ldquo;Docker and Arm Partner to Deliver Frictionless Cloud-Native Software Development and Delivery Model for Cloud, Edge, and IoT&amp;rdquo;&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/arm-docker-logo.jpg&#34; alt=&#34;arm-docker-logo.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is really a great ground-breaking news, as it will enable an improved development workflow. Build and test all your Arm containers on your Intel-based laptop or workstation. These new Arm capabilities will be available in &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;Docker Desktop&lt;/a&gt; products from Docker, both for MacOs and Windows, and for Docker’s commercial enterprise offerings. First technical details and roadmap will be announced next week at &lt;a href=&#34;https://www.docker.com/dockercon/&#34;&gt;DockerCon 2019&lt;/a&gt; in San Francisco, so please stay tuned.&lt;/p&gt;
+
+&lt;p&gt;But wait, what about all the users who are directly working on a pure Linux environment? Well, here is the good news, the basic technology you need is already available and ready-to-use for you.&lt;/p&gt;
+
+&lt;p&gt;Yes, you could use it right away! Let&amp;rsquo;s start it now&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;run-an-arm-container-with-docker-engine-on-intel&#34;&gt;Run an Arm Container with Docker Engine on Intel&lt;/h3&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to hold you back and bore you with a lot of background details, so I&amp;rsquo;m going to show you how easy it is today.&lt;/p&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s start with a default Docker Engine installed on an Intel-based Linux system. For the sake of simplicity I&amp;rsquo;d like to show it directly on the &lt;a href=&#34;https://www.katacoda.com&#34;&gt;Katacoda Training Platform&lt;/a&gt;, then you are able to replay it without spending too much time. It just takes you a few seconds to spin up a complete Linux Docker environment, just a few click away.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1:&lt;/strong&gt; Start the &lt;a href=&#34;https://www.katacoda.com/contino/courses/docker/basics&#34;&gt;Docker Tutorial&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Next you have to click on &amp;ldquo;START SCENARIO&amp;rdquo; and the Linux Docker environment is ready for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-start.jpg&#34; alt=&#34;katacoda-docker-tutorial-start.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Run an Arm-based Container&lt;/p&gt;
+
+&lt;p&gt;In the bottom right box you&amp;rsquo;ll find a Linux Terminal window where you can issue your CLI commands. It&amp;rsquo;s a real Linux bash shell you can control through your browser and Docker is already installed on this machine.&lt;/p&gt;
+
+&lt;p&gt;As soon as we try to start an Arm-based Docker container,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -it dieterreuter/alpine-arm64:3.9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we&amp;rsquo;ll get an cryptic error message &lt;code&gt;exec user process caused &amp;quot;exec format error&amp;quot;&lt;/code&gt;, which basically tells us that this Docker Image tries to start a binary/executable which can&amp;rsquo;t be run on the provided Intel processor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm1.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm1.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 3:&lt;/strong&gt; Run the magic command to enable Arm/Arm64 on Intel&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run --rm --privileged hypriot/qemu-register
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This registers a few Qemu emulators inside of our Linux kernel with the help of the &lt;code&gt;binfmt&lt;/code&gt; tool. This instructs the Linux loader to start the specific Qemu emulator program to run the binary/executable if it&amp;rsquo;s not based on Intel. Here we register &lt;code&gt;/qemu-arm&lt;/code&gt; for Arm 32-bit and &lt;code&gt;/qemu-aarch64&lt;/code&gt; for Arm 64-bit.&lt;/p&gt;
+
+&lt;p&gt;Just to be precise, these emulators will be registered through a privileged Docker container. This is possible for all Linux kernel versions 4.9 and later. The emulators will be uploaded into memory, registered in the kernel and stay there persistent until you reboot your machine. This means you don&amp;rsquo;t have to change anything inside of your Docker Images, all magic will be done by the Linux kernel on the host system!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run --rm --privileged hypriot/qemu-register
+Unable to find image &#39;hypriot/qemu-register:latest&#39; locally
+latest: Pulling from hypriot/qemu-register
+fc1a6b909f82: Pull complete
+247c87d40120: Pull complete
+1e300bd4bcdc: Pull complete
+79c54222eda0: Pull complete
+7d0efdace32f: Pull complete
+Digest: sha256:17931ba1f5362c6fbf7f364b32bec7e06e0c376571a9e3b2849dea18ce887c91
+Status: Downloaded newer image for hypriot/qemu-register:latest
+---
+Installed interpreter binaries:
+-rwxr-xr-x    3 root     root       6192520 Apr 27 17:17 /qemu-aarch64
+-rwxr-xr-x    4 root     root       5606984 Apr 27 17:17 /qemu-arm
+-rwxr-xr-x    2 root     root       5987464 Apr 27 17:17 /qemu-ppc64le
+---
+Registered interpreter=qemu-aarch64
+enabled
+interpreter /qemu-aarch64
+flags: OCF
+offset 0
+magic 7f454c460201010000000000000000000200b700
+mask ffffffffffffff00fffffffffffffffffeffffff
+---
+Registered interpreter=qemu-arm
+enabled
+interpreter /qemu-arm
+flags: OCF
+offset 0
+magic 7f454c4601010100000000000000000002002800
+mask ffffffffffffff00fffffffffffffffffeffffff
+---
+Registered interpreter=qemu-ppc64le
+enabled
+interpreter /qemu-ppc64le
+flags: OCF
+offset 0
+magic 7f454c4602010100000000000000000002001500
+mask ffffffffffffff00fffffffffffffffffeffff00
+---
+$
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 4:&lt;/strong&gt; Run an Arm-based Container successfully on Intel&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s start the same Arm-based Docker container again, but this time it actually works successfully.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -it dieterreuter/alpine-arm64:3.9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-intel-runs-arm-containers/katacoda-docker-tutorial-runarm2.jpg&#34; alt=&#34;katacoda-docker-tutorial-runarm2.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When we run the command &lt;code&gt;uname -a&lt;/code&gt; it tell us, we&amp;rsquo;re running a Linux kernel 4.14.29 on Arm 64-bit architecture indicated as &lt;code&gt;aarch64&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;SUCCESS, our Arm 64-bit Docker Container even works on Intel CPU&amp;rsquo;s !!!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt; The source code of this magic registration Docker Image is fully open source and can be found at &lt;a href=&#34;https://github.com/hypriot/qemu-register&#34;&gt;https://github.com/hypriot/qemu-register&lt;/a&gt;. I also updated it today to the latest available Qemu 4.0.0 release.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;As you could see, it&amp;rsquo;s damn easy to configure your Intel-based Linux Docker Engine to run 32 or 64-bit Arm Containers in an emulation mode seemlessly. As long as you run a recent Linux kernel 4.9 or later it just works.&lt;/p&gt;
+
+&lt;p&gt;Basically this is the same emulation technology how &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;Docker Desktop&lt;/a&gt; is doing this behind the scenes on MacOS and Windows. BTW, this binfmt feature is already built-in in Docker Desktop since about April 2017.&lt;/p&gt;
+
+&lt;p&gt;In the end it&amp;rsquo;s possible for a user to develop, build and test his/her Arm-based Docker Containers easily on a Intel-based Linux machine. And with the upcoming new features built-in into the Docker Engine this multi-architecture development workflow will get better and better over time.&lt;/p&gt;
+
+&lt;p&gt;For Linux users we can use at least all these basic features. And for Mac and Windows users, Docker will present an even better user experience, so stay tuned for &lt;a href=&#34;https://www.docker.com/dockercon/&#34;&gt;DockerCon 2019&lt;/a&gt; in San Francisco next week.&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NVIDIA Jetson Nano - Upgrade Docker Engine</title>
+      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</link>
+      <pubDate>Mon, 22 Apr 2019 08:44:52 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-upgrade-docker/</guid>
+      <description>&lt;p&gt;In our last blogposts about the &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; and &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/&#34;&gt;NVIDIA Jetson Nano - Install Docker Compose&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we know, that Docker 18.06.1-CE is already installed, but&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-docker-ce/jetson-desktop-login.jpg&#34; alt=&#34;jetson-desktop-login.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But, this isn&amp;rsquo;t the latest available version of the Docker Engine. So, I&amp;rsquo;d like to point you to a few different options on how to upgrade the Docker Engine to the very latest available version for the NVIDIA Jetson Nano.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;check-the-current-docker-version&#34;&gt;Check the current Docker Version&lt;/h3&gt;
+
+&lt;p&gt;For this tutorial I&amp;rsquo;m starting again with a freshly flashed SD card image.&lt;/p&gt;
+
+&lt;p&gt;Flashing from macOS just takes a few minutes with the Hypriot flash utility, which can be found here &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;https://github.com/hypriot/flash&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ time flash --device /dev/disk2 jetson-nano-sd-r32.1-2019-03-18.img
+
+Is /dev/disk2 correct? y
+Unmounting /dev/disk2 ...
+Unmount of all volumes on disk2 was successful
+Unmount of all volumes on disk2 was successful
+Flashing jetson-nano-sd-r32.1-2019-03-18.img to /dev/rdisk2 ...
+12.0GiB 0:03:40 [55.8MiB/s] [=======================================================================================&amp;gt;] 100%
+0+196608 records in
+0+196608 records out
+12884901888 bytes transferred in 220.275160 secs (58494575 bytes/sec)
+Mounting Disk
+
+real	3m47.866s
+user	0m1.648s
+sys	0m30.921s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next we have to attach a computer monitor via HDMI cable, mouse and keyboard and of course an Ethernet cable in order to get an internet connect. Now connecting to a micro-USB power supply and follow the instruction on the screen to perform the initial setup of the NVIDIA Jetson Nano Developer Kit. This will take around 5 to 10 minutes and we do have a new Ubuntu 18.04 desktop running on that nice 64bit ARM Cortex-A57 developer board.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pro-Tip on using Docker client:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;As we have seen in the last blogpost, we have to use sudo when we&amp;rsquo;re calling a docker command in the shell. This can be easily resolved, we only have to issue the following command ones.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo usermod -aG docker pirate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, log out and log in again or just start a new shell and we don&amp;rsquo;t have to use sudo any more for our docker commands.&lt;/p&gt;
+
+&lt;p&gt;Show the current version of the Docker Engine installed on the Nano.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker version
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.1
+ Git commit:        e68fc7a
+ Built:             Fri Jan 25 14:35:17 2019
+ OS/Arch:           linux/arm64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.1
+  Git commit:       e68fc7a
+  Built:            Thu Jan 24 10:49:48 2019
+  OS/Arch:          linux/arm64
+  Experimental:     false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And here we see the version &lt;code&gt;18.06.1-ce&lt;/code&gt; of the Docker Engine, which is installed on the Nano SD card image &lt;code&gt;jetson-nano-sd-r32.1-2019-03-18.img&lt;/code&gt;. And yes, this is by far not the latest nor the securest available version at all.&lt;/p&gt;
+
+&lt;h3 id=&#34;upgrade-docker-engine&#34;&gt;Upgrade Docker Engine&lt;/h3&gt;
+
+&lt;p&gt;As we&amp;rsquo;ve seen in the previous section, the installed Docker Engine version is 18.06.01-ce. Now let&amp;rsquo;s verify if there is already a newer version available.&lt;/p&gt;
+
+&lt;p&gt;We can just use the apt utility from the Ubuntu package manager to determine the installed versions of any of the installed software packages. Here on Ubuntu 18.04 the Docker Engine is installed through the &lt;code&gt;docker.io&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ apt list --installed | grep docker.io
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+docker.io/bionic-security,now 18.06.1-0ubuntu1.2~18.04.1 arm64 [installed,upgradable to: 18.09.2-0ubuntu1~18.04.1]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can see the newer Docker version 18.09.2 is already available in the Ubuntu repository, so we&amp;rsquo;re going to upgrade the software package &lt;code&gt;docker.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo apt-get --only-upgrade install docker.io
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the end we were able to upgrade the Docker Engine to the very latest version which is provided by the Ubuntu repository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker version
+Client:
+ Version:           18.09.2
+ API version:       1.39
+ Go version:        go1.10.4
+ Git commit:        6247962
+ Built:             Tue Feb 26 23:51:35 2019
+ OS/Arch:           linux/arm64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.09.2
+  API version:      1.39 (minimum version 1.12)
+  Go version:       go1.10.4
+  Git commit:       6247962
+  Built:            Wed Feb 13 00:24:14 2019
+  OS/Arch:          linux/arm64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally we have upgraded the Docker Engine to version 18.09.2. Please keep in mind, this version of the Docker Engine is provided by the Ubuntu repository. Maybe there is even a newer version available directly from the Docker open source project.&lt;/p&gt;
+
+&lt;h3 id=&#34;recommendation-install-official-docker-engine-ce&#34;&gt;Recommendation: Install official Docker Engine CE&lt;/h3&gt;
+
+&lt;p&gt;For this step I can truely recommend to use the official Docker documentation for the Community Edition. For installing Docker Engine CE on Ubuntu you can directly follow the detailled steps at &lt;a href=&#34;https://docs.docker.com/install/linux/docker-ce/ubuntu/&#34;&gt;https://docs.docker.com/install/linux/docker-ce/ubuntu/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As you can see later, Docker Engine CE is also available for ARM 64bit on Ubuntu 18.04 LTS. It&amp;rsquo;s not too complicated to set it up, just follow the installation steps in this documentation and within a few minutes you have installed the official Docker Engine!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1:&lt;/strong&gt; Uninstall old versions&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get remove docker docker-engine docker.io containerd runc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2:&lt;/strong&gt; Set up the repository&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 1. Update the apt package index:
+$ sudo apt-get update
+
+# 2. Install packages to allow apt to use a repository over HTTPS:
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+# 3. Add Docker’s official GPG key:
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+$ sudo apt-key fingerprint 0EBFCD88
+pub   rsa4096 2017-02-22 [SCEA]
+      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid           [ unknown] Docker Release (CE deb) &amp;lt;docker@docker.com&amp;gt;
+sub   rsa4096 2017-02-22 [S]
+
+# 4. Use the following command to set up the stable repository:
+#    here select the commands for &amp;quot;arm64&amp;quot;
+$ sudo add-apt-repository \
+   &amp;quot;deb [arch=arm64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Alternatively you can also select the &amp;quot;edge&amp;quot; channel for the very latest version
+$ sudo add-apt-repository \
+   &amp;quot;deb [arch=arm64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   edge&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 3:&lt;/strong&gt; Install Docker CE&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 1. Update the apt package index.
+$ sudo apt-get update
+
+# 2. Install the latest version of Docker CE and containerd
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# 3. Add user &amp;quot;pirate&amp;quot; to the group &amp;quot;docker&amp;quot;, so we don&#39;t need sudo
+$ sudo usermod -aG docker pirate
+# Now logout and login again
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 4:&lt;/strong&gt; Show the installed Docker Engine version&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker version
+Client:
+ Version:           18.09.5
+ API version:       1.39
+ Go version:        go1.10.8
+ Git commit:        e8ff056
+ Built:             Thu Apr 11 04:48:27 2019
+ OS/Arch:           linux/arm64
+ Experimental:      false
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          18.09.5
+  API version:      1.39 (minimum version 1.12)
+  Go version:       go1.10.8
+  Git commit:       e8ff056
+  Built:            Thu Apr 11 04:11:17 2019
+  OS/Arch:          linux/arm64
+  Experimental:     false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 5:&lt;/strong&gt; Run the &lt;code&gt;docker info&lt;/code&gt; command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker info
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 18.09.5
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+ Supports d_type: true
+ Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge host macvlan null overlay
+ Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version: bb71b10fd8f58240ca47fbb579b9d1028eea7c84
+runc version: 2b18fe1d885ee5083ef9f0838fee39b62d653e30
+init version: fec3683
+Security Options:
+ seccomp
+  Profile: default
+Kernel Version: 4.9.140-tegra
+Operating System: Ubuntu 18.04.2 LTS
+OSType: linux
+Architecture: aarch64
+CPUs: 4
+Total Memory: 3.868GiB
+Name: jetson-nano
+ID: 4JER:EIWM:QFNF:6N2C:YUW3:YES2:RSP5:Z4D2:7PKI:YAOT:G5O7:5N25
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+ 127.0.0.0/8
+Live Restore Enabled: false
+Product License: Community Engine
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 6:&lt;/strong&gt;  Start first Docker container&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker run hello-world
+Unable to find image &#39;hello-world:latest&#39; locally
+latest: Pulling from library/hello-world
+3b4173355427: Pull complete
+Digest: sha256:92695bc579f31df7a63da6922075d0666e565ceccad16b59c3374d2cf4e8e50e
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &amp;quot;hello-world&amp;quot; image from the Docker Hub.
+    (arm64v8)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-docker-ce/jetson-desktop-docker-ce.jpg&#34; alt=&#34;jetson-desktop-docker-ce.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;As you could see, on the Jetson Nano DevKit there is already a version of the Docker Engine installed and it&amp;rsquo;s maintained by the Ubuntu project. But this is not the latest version available and it will not get updated fast enough to include all important security fixes in time.&lt;/p&gt;
+
+&lt;p&gt;Therefore I&amp;rsquo;d like to strongly recommend to use the Docker Engine CE from the official Docker project. It&amp;rsquo;s well maintained and updated in time. All installation steps and options are also extremely well documented at &lt;a href=&#34;https://docs.docker.com/install/linux/docker-ce/ubuntu/&#34;&gt;https://docs.docker.com/install/linux/docker-ce/ubuntu/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;And in case you need more help or having some technical questions about running Docker on an ARM 64bit system like the NVIDIA Jetson Nano, there is an &lt;code&gt;arm&lt;/code&gt; Slack channel available for you at the &lt;a href=&#34;https://dockercommunity.slack.com/messages/C2293P89Y&#34;&gt;DockerCommunity Slack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NVIDIA Jetson Nano - Install Docker Compose</title>
+      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</link>
+      <pubDate>Sat, 20 Apr 2019 09:51:52 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-install-docker-compose/</guid>
+      <description>&lt;p&gt;In our last blogpost &lt;a href=&#34;https://blog.hypriot.com/post/nvidia-jetson-nano-intro/&#34;&gt;NVIDIA Jetson Nano Developer Kit - Introduction&lt;/a&gt; we digged into the brand-new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt; and we did found out, that Docker 18.06.1-CE is already pre-installed on this great ARM board.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Today, I want to share some more details on how you can easily install Docker Compose on the Jetson Nano.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;install-docker-compose&#34;&gt;Install Docker Compose&lt;/h3&gt;
+
+&lt;p&gt;Sadly, there is no binary of &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker Compose&lt;/a&gt; available we could install directly on an ARM 64bit board like the NVIDIA Jetson Nano. If we are looking at the official GitHub release page for Docker Compose &lt;a href=&#34;https://github.com/docker/compose/releases/tag/1.24.0&#34;&gt;https://github.com/docker/compose/releases/tag/1.24.0&lt;/a&gt; there are only binaries provided for Intel x86-64 based operating systems like Linux, macOS and Windows - but nothing for ARM 32bit or 64bit systems.&lt;/p&gt;
+
+&lt;p&gt;This isn&amp;rsquo;t too bad, because Docker Compose is based upon Python and maybe it&amp;rsquo;s easier to install if Python is already available on our board. So, let&amp;rsquo;s check this out the easy way.&lt;/p&gt;
+
+&lt;h3 id=&#34;docker-compose-is-based-upon-python&#34;&gt;Docker Compose is based upon Python&lt;/h3&gt;
+
+&lt;p&gt;First, check out if Python is already available on the Jetson Nano. As we have a complete Ubuntu 18.04 LTS desktop operation system this is very likely. But let&amp;rsquo;s verify it directly on a shell running on the Nano. This can be done from the desktop terminal app or via a SSH shell.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ python --version
+Python 2.7.15rc1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK, this looks pretty promising. We do have the Python version 2.7.15rc1 already installed on the Nano.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s try to install Docker Compose via Python PIP. So, first we need to install Python PIP itself.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# first, we have to install Python PIP
+$ sudo apt-get update -y
+$ sudo apt-get install -y curl
+$ curl -sSL https://bootstrap.pypa.io/get-pip.py | sudo python
+
+# verify the installed Python PIP version
+pirate@jetson-nano:~$ pip --version
+pip 19.0.3 from /usr/local/lib/python2.7/dist-packages/pip (python 2.7)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s try to install Docker Compose via Python PIP. Here we&amp;rsquo;re going to pin the latest version of Docker Compose, which is 1.24.0 of the time of writing this blogpost.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install Docker Compose via pip
+export DOCKER_COMPOSE_VERSION=1.24.0
+sudo pip install docker-compose==&amp;quot;${DOCKER_COMPOSE_VERSION}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But this will throw a lot of error messages because it seems we do miss some required build dependencies. If you&amp;rsquo;re interested here are the full details.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ curl -sSL https://bootstrap.pypa.io/get-pip.py | sudo python
+DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won&#39;t be maintained after that date. A future version of pip will drop support for Python 2.7.
+The directory &#39;/home/pirate/.cache/pip/http&#39; or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo&#39;s -H flag.
+The directory &#39;/home/pirate/.cache/pip&#39; or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo&#39;s -H flag.
+Collecting pip
+  Downloading https://files.pythonhosted.org/packages/d8/f3/413bab4ff08e1fc4828dfc59996d721917df8e8583ea85385d51125dceff/pip-19.0.3-py2.py3-none-any.whl (1.4MB)
+    100% |████████████████████████████████| 1.4MB 843kB/s
+Collecting setuptools
+  Downloading https://files.pythonhosted.org/packages/c8/b0/cc6b7ba28d5fb790cf0d5946df849233e32b8872b6baca10c9e002ff5b41/setuptools-41.0.0-py2.py3-none-any.whl (575kB)
+    100% |████████████████████████████████| 583kB 761kB/s
+Collecting wheel
+  Downloading https://files.pythonhosted.org/packages/96/ba/a4702cbb6a3a485239fbe9525443446203f00771af9ac000fa3ef2788201/wheel-0.33.1-py2.py3-none-any.whl
+Installing collected packages: pip, setuptools, wheel
+Successfully installed pip-19.0.3 setuptools-41.0.0 wheel-0.33.1
+pirate@jetson-nano:~$ pip --version
+pip 19.0.3 from /usr/local/lib/python2.7/dist-packages/pip (python 2.7)
+
+pirate@jetson-nano:~$ export DOCKER_COMPOSE_VERSION=1.24.0
+pirate@jetson-nano:~$ sudo pip install docker-compose==&amp;quot;${DOCKER_COMPOSE_VERSION}&amp;quot;
+DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won&#39;t be maintained after that date. A future version of pip will drop support for Python 2.7.
+The directory &#39;/home/pirate/.cache/pip/http&#39; or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo&#39;s -H flag.
+The directory &#39;/home/pirate/.cache/pip&#39; or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo&#39;s -H flag.
+Collecting docker-compose==1.24.0
+  Downloading https://files.pythonhosted.org/packages/51/56/5745e66b33846e92a8814466c163f165a26fadad8b33afe381e8b6c3f652/docker_compose-1.24.0-py2.py3-none-any.whl (134kB)
+    100% |████████████████████████████████| 143kB 2.3MB/s
+Collecting cached-property&amp;lt;2,&amp;gt;=1.2.0 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/3b/86/85c1be2e8db9e13ef9a350aecd6dea292bd612fa288c2f40d035bb750ded/cached_property-1.5.1-py2.py3-none-any.whl
+Collecting docopt&amp;lt;0.7,&amp;gt;=0.6.1 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/a2/55/8f8cab2afd404cf578136ef2cc5dfb50baa1761b68c9da1fb1e4eed343c9/docopt-0.6.2.tar.gz
+Collecting jsonschema&amp;lt;3,&amp;gt;=2.5.1 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/77/de/47e35a97b2b05c2fadbec67d44cfcdcd09b8086951b331d82de90d2912da/jsonschema-2.6.0-py2.py3-none-any.whl
+Collecting backports.ssl-match-hostname&amp;gt;=3.5; python_version &amp;lt; &amp;quot;3.5&amp;quot; (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/ff/2b/8265224812912bc5b7a607c44bf7b027554e1b9775e9ee0de8032e3de4b2/backports.ssl_match_hostname-3.7.0.1.tar.gz
+Requirement already satisfied: six&amp;lt;2,&amp;gt;=1.3.0 in /usr/lib/python2.7/dist-packages (from docker-compose==1.24.0) (1.11.0)
+Collecting ipaddress&amp;gt;=1.0.16; python_version &amp;lt; &amp;quot;3.3&amp;quot; (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/fc/d0/7fc3a811e011d4b388be48a0e381db8d990042df54aa4ef4599a31d39853/ipaddress-1.0.22-py2.py3-none-any.whl
+Collecting requests!=2.11.0,!=2.12.2,!=2.18.0,&amp;lt;2.21,&amp;gt;=2.6.1 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/ff/17/5cbb026005115301a8fb2f9b0e3e8d32313142fe8b617070e7baad20554f/requests-2.20.1-py2.py3-none-any.whl (57kB)
+    100% |████████████████████████████████| 61kB 2.8MB/s
+Collecting texttable&amp;lt;0.10,&amp;gt;=0.9.0 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/02/e1/2565e6b842de7945af0555167d33acfc8a615584ef7abd30d1eae00a4d80/texttable-0.9.1.tar.gz
+Collecting dockerpty&amp;lt;0.5,&amp;gt;=0.4.1 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/8d/ee/e9ecce4c32204a6738e0a5d5883d3413794d7498fe8b06f44becc028d3ba/dockerpty-0.4.1.tar.gz
+Collecting enum34&amp;lt;2,&amp;gt;=1.0.4; python_version &amp;lt; &amp;quot;3.4&amp;quot; (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/c5/db/e56e6b4bbac7c4a06de1c50de6fe1ef3810018ae11732a50f15f62c7d050/enum34-1.1.6-py2-none-any.whl
+Collecting PyYAML&amp;lt;4.3,&amp;gt;=3.10 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/9e/a3/1d13970c3f36777c583f136c136f804d70f500168edc1edea6daa7200769/PyYAML-3.13.tar.gz (270kB)
+    100% |████████████████████████████████| 276kB 2.9MB/s
+Collecting websocket-client&amp;lt;1.0,&amp;gt;=0.32.0 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/29/19/44753eab1fdb50770ac69605527e8859468f3c0fd7dc5a76dd9c4dbd7906/websocket_client-0.56.0-py2.py3-none-any.whl (200kB)
+    100% |████████████████████████████████| 204kB 3.2MB/s
+Collecting docker[ssh]&amp;lt;4.0,&amp;gt;=3.7.0 (from docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/48/68/c3afca1a5aa8d2997ec3b8ee822a4d752cf85907b321f07ea86888545152/docker-3.7.2-py2.py3-none-any.whl (134kB)
+    100% |████████████████████████████████| 143kB 3.5MB/s
+Collecting functools32; python_version == &amp;quot;2.7&amp;quot; (from jsonschema&amp;lt;3,&amp;gt;=2.5.1-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/c5/60/6ac26ad05857c601308d8fb9e87fa36d0ebf889423f47c3502ef034365db/functools32-3.2.3-2.tar.gz
+Collecting urllib3&amp;lt;1.25,&amp;gt;=1.21.1 (from requests!=2.11.0,!=2.12.2,!=2.18.0,&amp;lt;2.21,&amp;gt;=2.6.1-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/df/1c/59cca3abf96f991f2ec3131a4ffe72ae3d9ea1f5894abe8a9c5e3c77cfee/urllib3-1.24.2-py2.py3-none-any.whl (131kB)
+    100% |████████████████████████████████| 133kB 3.2MB/s
+Collecting chardet&amp;lt;3.1.0,&amp;gt;=3.0.2 (from requests!=2.11.0,!=2.12.2,!=2.18.0,&amp;lt;2.21,&amp;gt;=2.6.1-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/bc/a9/01ffebfb562e4274b6487b4bb1ddec7ca55ec7510b22e4c51f14098443b8/chardet-3.0.4-py2.py3-none-any.whl (133kB)
+    100% |████████████████████████████████| 143kB 3.5MB/s
+Collecting idna&amp;lt;2.8,&amp;gt;=2.5 (from requests!=2.11.0,!=2.12.2,!=2.18.0,&amp;lt;2.21,&amp;gt;=2.6.1-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/4b/2a/0276479a4b3caeb8a8c1af2f8e4355746a97fab05a372e4a2c6a6b876165/idna-2.7-py2.py3-none-any.whl (58kB)
+    100% |████████████████████████████████| 61kB 5.8MB/s
+Collecting certifi&amp;gt;=2017.4.17 (from requests!=2.11.0,!=2.12.2,!=2.18.0,&amp;lt;2.21,&amp;gt;=2.6.1-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/60/75/f692a584e85b7eaba0e03827b3d51f45f571c2e793dd731e598828d380aa/certifi-2019.3.9-py2.py3-none-any.whl (158kB)
+    100% |████████████████████████████████| 163kB 353kB/s
+Collecting docker-pycreds&amp;gt;=0.4.0 (from docker[ssh]&amp;lt;4.0,&amp;gt;=3.7.0-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/f5/e8/f6bd1eee09314e7e6dee49cbe2c5e22314ccdb38db16c9fc72d2fa80d054/docker_pycreds-0.4.0-py2.py3-none-any.whl
+Collecting paramiko&amp;gt;=2.4.2; extra == &amp;quot;ssh&amp;quot; (from docker[ssh]&amp;lt;4.0,&amp;gt;=3.7.0-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/cf/ae/94e70d49044ccc234bfdba20114fa947d7ba6eb68a2e452d89b920e62227/paramiko-2.4.2-py2.py3-none-any.whl (193kB)
+    100% |████████████████████████████████| 194kB 3.2MB/s
+Collecting pyasn1&amp;gt;=0.1.7 (from paramiko&amp;gt;=2.4.2; extra == &amp;quot;ssh&amp;quot;-&amp;gt;docker[ssh]&amp;lt;4.0,&amp;gt;=3.7.0-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/7b/7c/c9386b82a25115cccf1903441bba3cbadcfae7b678a20167347fa8ded34c/pyasn1-0.4.5-py2.py3-none-any.whl (73kB)
+    100% |████████████████████████████████| 81kB 3.2MB/s
+Collecting bcrypt&amp;gt;=3.1.3 (from paramiko&amp;gt;=2.4.2; extra == &amp;quot;ssh&amp;quot;-&amp;gt;docker[ssh]&amp;lt;4.0,&amp;gt;=3.7.0-&amp;gt;docker-compose==1.24.0)
+  Downloading https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz (42kB)
+    100% |████████████████████████████████| 51kB 8.4MB/s
+  Installing build dependencies ... error
+  Complete output from command /usr/bin/python /usr/local/lib/python2.7/dist-packages/pip install --ignore-installed --no-user --prefix /tmp/pip-build-env-qwOdIW/overlay --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- setuptools wheel &amp;quot;cffi&amp;gt;=1.1; python_implementation != &#39;PyPy&#39;&amp;quot;:
+  DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won&#39;t be maintained after that date. A future version of pip will drop support for Python 2.7.
+  The directory &#39;/home/pirate/.cache/pip/http&#39; or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo&#39;s -H flag.
+  The directory &#39;/home/pirate/.cache/pip&#39; or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo&#39;s -H flag.
+  Collecting setuptools
+    Downloading https://files.pythonhosted.org/packages/c8/b0/cc6b7ba28d5fb790cf0d5946df849233e32b8872b6baca10c9e002ff5b41/setuptools-41.0.0-py2.py3-none-any.whl (575kB)
+  Collecting wheel
+    Downloading https://files.pythonhosted.org/packages/96/ba/a4702cbb6a3a485239fbe9525443446203f00771af9ac000fa3ef2788201/wheel-0.33.1-py2.py3-none-any.whl
+  Collecting cffi&amp;gt;=1.1
+    Downloading https://files.pythonhosted.org/packages/93/1a/ab8c62b5838722f29f3daffcc8d4bd61844aa9b5f437341cc890ceee483b/cffi-1.12.3.tar.gz (456kB)
+  Collecting pycparser (from cffi&amp;gt;=1.1)
+    Downloading https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz (158kB)
+  Installing collected packages: setuptools, wheel, pycparser, cffi
+    Running setup.py install for pycparser: started
+      Running setup.py install for pycparser: finished with status &#39;done&#39;
+    Running setup.py install for cffi: started
+      Running setup.py install for cffi: finished with status &#39;error&#39;
+      Complete output from command /usr/bin/python -u -c &amp;quot;import setuptools, tokenize;__file__=&#39;/tmp/pip-install-XfNg4G/cffi/setup.py&#39;;f=getattr(tokenize, &#39;open&#39;, open)(__file__);code=f.read().replace(&#39;\r\n&#39;, &#39;\n&#39;);f.close();exec(compile(code, __file__, &#39;exec&#39;))&amp;quot; install --record /tmp/pip-record-lpvT6b/install-record.txt --single-version-externally-managed --prefix /tmp/pip-build-env-qwOdIW/overlay --compile:
+      Package libffi was not found in the pkg-config search path.
+      Perhaps you should add the directory containing `libffi.pc&#39;
+      to the PKG_CONFIG_PATH environment variable
+      No package &#39;libffi&#39; found
+      Package libffi was not found in the pkg-config search path.
+      Perhaps you should add the directory containing `libffi.pc&#39;
+      to the PKG_CONFIG_PATH environment variable
+      No package &#39;libffi&#39; found
+      Package libffi was not found in the pkg-config search path.
+      Perhaps you should add the directory containing `libffi.pc&#39;
+      to the PKG_CONFIG_PATH environment variable
+      No package &#39;libffi&#39; found
+      Package libffi was not found in the pkg-config search path.
+      Perhaps you should add the directory containing `libffi.pc&#39;
+      to the PKG_CONFIG_PATH environment variable
+      No package &#39;libffi&#39; found
+      Package libffi was not found in the pkg-config search path.
+      Perhaps you should add the directory containing `libffi.pc&#39;
+      to the PKG_CONFIG_PATH environment variable
+      No package &#39;libffi&#39; found
+      running install
+      running build
+      running build_py
+      creating build
+      creating build/lib.linux-aarch64-2.7
+      creating build/lib.linux-aarch64-2.7/cffi
+      copying cffi/ffiplatform.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/vengine_gen.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/setuptools_ext.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/verifier.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/backend_ctypes.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/vengine_cpy.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/pkgconfig.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/recompiler.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/api.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/cparser.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/__init__.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/cffi_opcode.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/error.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/lock.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/model.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/commontypes.py -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/_cffi_include.h -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/parse_c_type.h -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/_embedding.h -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      copying cffi/_cffi_errors.h -&amp;gt; build/lib.linux-aarch64-2.7/cffi
+      running build_ext
+      building &#39;_cffi_backend&#39; extension
+      creating build/temp.linux-aarch64-2.7
+      creating build/temp.linux-aarch64-2.7/c
+      aarch64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -Wdate-time -D_FORTIFY_SOURCE=2 -g -fdebug-prefix-map=/build/python2.7-ytvI67/python2.7-2.7.15~rc1=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -DUSE__THREAD -DHAVE_SYNC_SYNCHRONIZE -I/usr/include/ffi -I/usr/include/libffi -I/usr/include/python2.7 -c c/_cffi_backend.c -o build/temp.linux-aarch64-2.7/c/_cffi_backend.o
+      c/_cffi_backend.c:15:10: fatal error: ffi.h: No such file or directory
+       #include &amp;lt;ffi.h&amp;gt;
+                ^~~~~~~
+      compilation terminated.
+      error: command &#39;aarch64-linux-gnu-gcc&#39; failed with exit status 1
+
+      ----------------------------------------
+  Command &amp;quot;/usr/bin/python -u -c &amp;quot;import setuptools, tokenize;__file__=&#39;/tmp/pip-install-XfNg4G/cffi/setup.py&#39;;f=getattr(tokenize, &#39;open&#39;, open)(__file__);code=f.read().replace(&#39;\r\n&#39;, &#39;\n&#39;);f.close();exec(compile(code, __file__, &#39;exec&#39;))&amp;quot; install --record /tmp/pip-record-lpvT6b/install-record.txt --single-version-externally-managed --prefix /tmp/pip-build-env-qwOdIW/overlay --compile&amp;quot; failed with error code 1 in /tmp/pip-install-XfNg4G/cffi/
+
+  ----------------------------------------
+Command &amp;quot;/usr/bin/python /usr/local/lib/python2.7/dist-packages/pip install --ignore-installed --no-user --prefix /tmp/pip-build-env-qwOdIW/overlay --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- setuptools wheel &amp;quot;cffi&amp;gt;=1.1; python_implementation != &#39;PyPy&#39;&amp;quot;&amp;quot; failed with error code 1 in None
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After some investigation we&amp;rsquo;re able to identify the missing build dependencies and here are the required commands to install it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# install Docker Compose build dependencies for Ubuntu 18.04 on aarch64
+$ sudo apt-get install -y libffi-dev
+$ sudo apt-get install -y python-openssl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-docker-compose-via-python-pip&#34;&gt;Install Docker Compose via Python PIP&lt;/h3&gt;
+
+&lt;p&gt;TL;DR These are all commands you need to install Docker Compose on a freshly installed NVIDIA Jetson Nano.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1, install Python PIP
+$ sudo apt-get update -y
+$ sudo apt-get install -y curl
+$ curl -sSL https://bootstrap.pypa.io/get-pip.py | sudo python
+
+# step 2, install Docker Compose build dependencies for Ubuntu 18.04 on aarch64
+$ sudo apt-get install -y libffi-dev
+$ sudo apt-get install -y python-openssl
+
+# step 3, install latest Docker Compose via pip
+$ export DOCKER_COMPOSE_VERSION=1.24.0
+$ sudo pip install docker-compose==&amp;quot;${DOCKER_COMPOSE_VERSION}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Finally we have the latest available Docker Compose version 1.24.0 installed on the NVIDIA Jetson Nano. It just takes a few minutes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker-compose version
+docker-compose version 1.24.0, build 0aa5906
+docker-py version: 3.7.2
+CPython version: 2.7.15rc1
+OpenSSL version: OpenSSL 1.1.0g  2 Nov 2017
+
+pirate@jetson-nano:~$ docker-compose --version
+docker-compose version 1.24.0, build 0aa5906
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;another-pro-tip-on-using-docker-command-line-interface&#34;&gt;Another Pro-Tip on using Docker command line interface&lt;/h3&gt;
+
+&lt;p&gt;As we have seen in the last blogpost, we have to use sudo when we&amp;rsquo;re calling a docker command in the shell. This can be easy resolved, we only have to issue the following command ones.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo usermod -aG docker pirate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, log out and log in again or just start a new shell and we don&amp;rsquo;t have to use sudo any more for our docker commands.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ docker version
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.1
+ Git commit:        e68fc7a
+ Built:             Fri Jan 25 14:35:17 2019
+ OS/Arch:           linux/arm64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.1
+  Git commit:       e68fc7a
+  Built:            Thu Jan 24 10:49:48 2019
+  OS/Arch:          linux/arm64
+  Experimental:     false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NVIDIA Jetson Nano Developer Kit - Introduction</title>
+      <link>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</link>
+      <pubDate>Fri, 19 Apr 2019 14:16:25 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/nvidia-jetson-nano-intro/</guid>
+      <description>&lt;p&gt;Let me introduce the brand new &lt;strong&gt;NVIDIA Jetson Nano Developer Kit&lt;/strong&gt;, which is basically a quad-core 64bit ARM Cortex-A57 CPU with 128 GPU cores - suitable for all kinds of maker ideas: AI, Robotics, and of course for running Docker Containers&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Box.jpg&#34; alt=&#34;Jetson-Nano-Box.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;unboxing&#34;&gt;Unboxing&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s unbox the board and do the initial configuration&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Upacked.jpg&#34; alt=&#34;Jetson-Nano-Upacked.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When opening the box we&amp;rsquo;ll find the board itself and a short getting started flyer which heads us to the NVIDIA website &lt;a href=&#34;https://NVIDIA.com/JetsonNano-Start&#34;&gt;https://NVIDIA.com/JetsonNano-Start&lt;/a&gt; where we can find all basic information about the new DevKit.&lt;/p&gt;
+
+&lt;p&gt;Please note, there are no other parts included in the DevKit. So, in order to use the DevKit you&amp;rsquo;ll need some additional accessories:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;MicroSD card (at least 16GByte)&lt;/li&gt;
+&lt;li&gt;Monitor with HDMI or DisplayPort connector&lt;/li&gt;
+&lt;li&gt;HDMI or DisplayPort cable to connect to the monitor&lt;/li&gt;
+&lt;li&gt;USB Keyboard and Mouse&lt;/li&gt;
+&lt;li&gt;Micro-USB power supply (5V, 2Amps for 10 watts)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h3&gt;
+
+&lt;p&gt;Following the official documentation &lt;a href=&#34;https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit&#34;&gt;Getting Started With Jetson Nano Developer Kit&lt;/a&gt; we have to download and flash the SD card. I don&amp;rsquo;t want to repeat these basic steps here, because it&amp;rsquo;s covered in great detail directy in the official NVIDIA tutorial &lt;a href=&#34;https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write&#34;&gt;Write Image to the microSD Card&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When downloading the SD card image, please be aware this one isn&amp;rsquo;t small at all. The download is a zipped image file of 5 GByte of compressed data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ls -alh jetson-nano-sd-r32.1-2019-03-18.zip
+-rw-r--r--@ 1 dieter  staff   5.3G Mar 15 22:49 jetson-nano-sd-r32.1-2019-03-18.zip 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The SD card image is a huge 12 GByte data blob. I would strongly recommend to use a SD card size with at least 32 GByte, with the recommended 16 GByte minimum you won&amp;rsquo;t get really happy. So, please do yourself a favour and get a 32 or 64 GByte SD card.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ls -alh jetson-nano-sd-r32.1-2019-03-18.img
+-rwxr-xr-x  1 dieter  staff    12G Mar 15 19:19 jetson-nano-sd-r32.1-2019-03-18.img
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For flashing the SD card image you could also use the Hypriot &lt;code&gt;flash&lt;/code&gt; tool, which can be found here &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;https://github.com/hypriot/flash&lt;/a&gt;. That&amp;rsquo;s exactly what I did from macOS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ flash --device /dev/disk2 jetson-nano-sd-r32.1-2019-03-18.img
+
+Is /dev/disk2 correct? y
+Unmounting /dev/disk2 ...
+Unmount of all volumes on disk2 was successful
+Unmount of all volumes on disk2 was successful
+Flashing jetson-nano-sd-r32.1-2019-03-18.img to /dev/rdisk2 ...
+Password:
+12.0GiB 0:03:58 [51.6MiB/s] [=======================================================================================&amp;gt;] 100%
+0+196608 records in
+0+196608 records out
+12884901888 bytes transferred in 234.213296 secs (55013537 bytes/sec)
+Mounting Disk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now our SD card is flashed with the latest image version, which is from March 18th 2019 as of time of this writing. But before using the SD card to boot up the NVIDIA Jetson Nano device, let&amp;rsquo;s have a short look at what&amp;rsquo;s on the SD card. Please, re-insert the SD card and list the current partitions. On macOS it looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ diskutil list /dev/disk2
+/dev/disk2 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *64.0 GB    disk2
+   1:           Linux Filesystem                         12.9 GB    disk2s1
+   2:           Linux Filesystem                         131.1 KB   disk2s2
+   3:           Linux Filesystem                         458.8 KB   disk2s3
+   4:           Linux Filesystem                         589.8 KB   disk2s4
+   5:           Linux Filesystem                         65.5 KB    disk2s5
+   6:           Linux Filesystem                         196.6 KB   disk2s6
+   7:           Linux Filesystem                         589.8 KB   disk2s7
+   8:           Linux Filesystem                         65.5 KB    disk2s8
+   9:           Linux Filesystem                         655.4 KB   disk2s9
+  10:           Linux Filesystem                         458.8 KB   disk2s10
+  11:           Linux Filesystem                         131.1 KB   disk2s11
+  12:           Linux Filesystem                         81.9 KB    disk2s12
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK, we&amp;rsquo;ll find at least 12 different partitions from NVIDIA. Currently we don&amp;rsquo;t look into all the details, maybe we can do this as part of a future blog post. For now we just know, 12 partitions are here and therefore flashing should be successful.&lt;/p&gt;
+
+&lt;h3 id=&#34;initial-configuration&#34;&gt;Initial Configuration&lt;/h3&gt;
+
+&lt;p&gt;For &lt;a href=&#34;https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup&#34;&gt;Setup and First Boot&lt;/a&gt; of the NVIDIA Jetson Nano DevKit you need to attach a computer display, mouse and keyboard. All these steps are well documented at the NVIDIA web site, just following the prior hyperlink.&lt;/p&gt;
+
+&lt;p&gt;Then power up the board with the Micro-USB power supply and follow the tutorial. This procedure will take a few minutes and then you&amp;rsquo;ll have a fully configured desktop system up and running which is based upon Ubuntu 18.04 LTS.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/Jetson-Nano-Board-Closeup.jpg&#34; alt=&#34;Jetson-Nano-Board-Closeup.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As I already said, the initial configuration of the Nano board has to be done interactively with the help of a computer monitor, mouse and keyboard. It&amp;rsquo;s really straight forward and consists of the following steps and settings. I also did a short video of this initial setup, so it&amp;rsquo;s maybe a little bit easier for you to follow.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Settings:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Accept NVIDIA End User License Agreements: YES&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select system language: ENGLISH&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select keyboard layout: ENGLISH (US)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select location/timezone: BERLIN&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set username: pirate&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set computer name: jetson-nano&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set password: hypriot&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;[Here is the video link: NVIDIA-Jetson-Nano&amp;ndash;Initial-Setup &lt;strong&gt;Coming soon!&lt;/strong&gt;]&lt;/p&gt;
+
+&lt;p&gt;At the end we login with the defined username &amp;ldquo;pirate&amp;rdquo; and get this nice Ubuntu desktop on our computer monitor. Yes, it&amp;rsquo;s really a fully Linux desktop system running on a 64bit ARM Cortex A57 board with 4 GByte of memory!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop.jpg&#34; alt=&#34;jetson-desktop.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;running-docker&#34;&gt;Running Docker&lt;/h3&gt;
+
+&lt;p&gt;TL;DR &lt;strong&gt;Docker is running out-of-the-box on the NVIDIA Jetson Nano board!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;[Here is the video link: NVIDIA-Jetson-Nano&amp;ndash;Running-Docker &lt;strong&gt;Coming soon!&lt;/strong&gt;]&lt;/p&gt;
+
+&lt;p&gt;As soon as the Jetson Nano board is configured and attached with an ethernet network cable, we can also discover it on the network with ping. Just use the computer name you defined. Here I used &lt;code&gt;jetson-nano&lt;/code&gt;, or you have to add &lt;code&gt;.local&lt;/code&gt;, this depends on your router setup. But just trying both it&amp;rsquo;s easy to do.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ping -c 3 jetson-nano
+PING jetson-nano.lan (192.168.7.158): 56 data bytes
+64 bytes from 192.168.7.158: icmp_seq=0 ttl=64 time=1.786 ms
+64 bytes from 192.168.7.158: icmp_seq=1 ttl=64 time=1.954 ms
+64 bytes from 192.168.7.158: icmp_seq=2 ttl=64 time=2.227 ms
+
+--- jetson-nano.lan ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 1.786/1.989/2.227/0.182 ms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ping -c 3 jetson-nano.local
+PING jetson-nano.local (192.168.7.158): 56 data bytes
+64 bytes from 192.168.7.158: icmp_seq=0 ttl=64 time=1.338 ms
+64 bytes from 192.168.7.158: icmp_seq=1 ttl=64 time=2.198 ms
+64 bytes from 192.168.7.158: icmp_seq=2 ttl=64 time=1.964 ms
+
+--- jetson-nano.local ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 1.338/1.833/2.198/0.363 ms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First, I&amp;rsquo;m going to check the kernel version.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ uname -a
+Linux jetson-nano 4.9.140-tegra #1 SMP PREEMPT Wed Mar 13 00:32:22 PDT 2019 aarch64 aarch64 aarch64 GNU/Linux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We do have a LTS 4.9 kernel available on the Jetson Nano, which is pretty OK for running Docker and Containers.&lt;/p&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s check if there is already a Docker Engine preinstalled.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker version
+[sudo] password for pirate:
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.1
+ Git commit:        e68fc7a
+ Built:             Fri Jan 25 14:35:17 2019
+ OS/Arch:           linux/arm64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.1
+  Git commit:       e68fc7a
+  Built:            Thu Jan 24 10:49:48 2019
+  OS/Arch:          linux/arm64
+  Experimental:     false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And show what details we&amp;rsquo;ll get from a &lt;code&gt;docker info&lt;/code&gt; command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker info
+Containers: 2
+ Running: 2
+ Paused: 0
+ Stopped: 0
+Images: 1
+Server Version: 18.06.1-ce
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+ Supports d_type: true
+ Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge host macvlan null overlay
+ Log: awslogs fluentd gcplogs gelf journald json-file logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version:  (expected: 468a545b9edcd5932818eb9de8e72413e616e86e)
+runc version: N/A (expected: 69663f0bd4b60df09991c08812a60108003fa340)
+init version: v0.18.0 (expected: fec3683b971d9c3ef73f284f176672c44b448662)
+Security Options:
+ seccomp
+  Profile: default
+Kernel Version: 4.9.140-tegra
+Operating System: Ubuntu 18.04.2 LTS
+OSType: linux
+Architecture: aarch64
+CPUs: 4
+Total Memory: 3.868GiB
+Name: jetson-nano
+ID: CR66:D4BV:6TQC:GI4I:CXLP:EQMK:NK2P:FUFM:OATD:5F6M:J657:LU5T
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+ 127.0.0.0/8
+Live Restore Enabled: false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is another screenshot directly from the Jetson Nano desktop with running the &lt;code&gt;docker version&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop-docker.jpg&#34; alt=&#34;jetson-desktop-docker.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;starting-a-docker-container-for-arm&#34;&gt;Starting a Docker Container for ARM&lt;/h3&gt;
+
+&lt;p&gt;Pull a first Docker Image which should run on ARM, here I&amp;rsquo;m going to use a Docker Image I did created almost four years ago for the Raspberry Pi and showcased live on stage at DockerCon 2015 in San Francisco, see &lt;a href=&#34;https://blog.hypriot.com/post/dockercon2015/&#34;&gt;Hypriot-Demo and challenge at DockerCon 2015&lt;/a&gt;. As this is an 32bit ARM image, let&amp;rsquo;s see if it works out-of-the-box on this brandnew Jetson Nano board.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker pull hypriot/rpi-busybox-httpd
+Using default tag: latest
+latest: Pulling from hypriot/rpi-busybox-httpd
+c74a9c6a645f: Already exists
+6f1938f6d8ae: Already exists
+e1347d4747a6: Already exists
+a3ed95caeb02: Already exists
+Digest: sha256:c00342f952d97628bf5dda457d3b409c37df687c859df82b9424f61264f54cd1
+Status: Image is up to date for hypriot/rpi-busybox-httpd:latest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Docker Image is pulled directly from Docker Hub and we can have a closer look, it&amp;rsquo;s pretty small in size with 2.16MByte only and it is already 3 years old.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+hypriot/rpi-busybox-httpd   latest              fbd9685c5ffc        3 years ago         2.16MB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s see how it runs on the Jetson Nano.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pirate@jetson-nano:~$ sudo docker run -d -p 8000:80 hypriot/rpi-busybox-httpd
+ed6e7838c9af3f73e6f7129e7c38bf369bb9a33aa67a3b160b1f1c6c7251b2b2
+
+pirate@jetson-nano:~$ sudo docker ps
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                  NAMES
+ed6e7838c9af        hypriot/rpi-busybox-httpd   &amp;quot;/bin/busybox httpd …&amp;quot;   8 seconds ago       Up 7 seconds        0.0.0.0:8000-&amp;gt;80/tcp   laughing_lalande
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Opening up a web browser with the URL &lt;code&gt;http://192.168.7.158:8000&lt;/code&gt; and we should see the web page served by our Docker container running on the NVIDIA Jetson Nano.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/docker-container-webpage.jpg&#34; alt=&#34;docker-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is another screenshot directly from the Jetson Nano desktop and a Chromium browser window which is showing our webpage served from the Docker container.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/nvidia-jetson-nano-intro/jetson-desktop-container-webpage.jpg&#34; alt=&#34;jetson-desktop-container-webpage.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SUCCESS:&lt;/strong&gt; Docker Engine 18.06.1-CE is preinstalled on the brandnew NVIDIA Jetson Nano board and even old 32bit ARM Docker Images are running easily!&lt;/p&gt;
+
+&lt;h3 id=&#34;recap&#34;&gt;Recap&lt;/h3&gt;
+
+&lt;p&gt;As you can see, there is already a fully running version of the Docker Engine preinstalled on the official SD card image for the NVIDIA Jetson Nano board. The Linux kernel 4.9.x has all the basic features enabled to run containers locally.&lt;/p&gt;
+
+&lt;p&gt;So, Docker just works out-of-the-box and you are able to use Docker Images right away. Even 32bit Docker images are able to run on this board because it&amp;rsquo;s based upon an ARM Cortex A57 CPU and this one is capable to run 64bit and 32bit ARM instructions.&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more general details about the NVIDIA Jetson Nano Developer Kit, please visit the JetsonHacks website at &lt;a href=&#34;https://www.jetsonhacks.com/2019/03/25/nvidia-jetson-nano-developer-kit/&#34;&gt;https://www.jetsonhacks.com/2019/03/25/nvidia-jetson-nano-developer-kit/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Building a 64bit Docker OS for the Raspberry Pi 3</title>
+      <link>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</link>
+      <pubDate>Thu, 02 Mar 2017 11:28:42 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/building-a-64bit-docker-os-for-rpi3/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m happy to announce the start of a &amp;ldquo;short&amp;rdquo; workshop were I&amp;rsquo;m going through all the steps to build a complete 64bit operating system for the Raspberry Pi 3. This 64bit HypriotOS is mainly focused on running Docker containers easily on this popular DIY and IoT device.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e6/Raspberry-Pi-3-Flat-Top.jpg&#34; alt=&#34;Raspi3-Image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You&amp;rsquo;ll see that I&amp;rsquo;m using Docker heavily for each and every build step, because it really helps us a lot to run a local build with &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker-for-Mac&lt;/a&gt; or later on the cloud build servers at &lt;a href=&#34;https://travis-ci.org&#34;&gt;Travis CI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-workshop.jpg&#34; alt=&#34;bee42-workshop.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This workshop is sponsored by &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bee42solutions&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @bee42solutions&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;background-and-contents&#34;&gt;Background and Contents&lt;/h3&gt;
+
+&lt;p&gt;As you may already know, a complete Linux operating system consists of several important building blocks and I&amp;rsquo;d like to show you how to build all of these step by step.&lt;/p&gt;
+
+&lt;p&gt;For this purpose I&amp;rsquo;m not going to reinvent the wheel and so I&amp;rsquo;ll reuse all of the existing parts which are already published by the Raspberry Pi Organisation, by the Debian Linux project and will add some more glue code.&lt;/p&gt;
+
+&lt;p&gt;At the end you should have learned how to build all the necessary parts and how to automatically create a finished SD card image which could be flashed on an empty SD card. Then boot your Raspberry Pi 3 with and in less than a minute you have a fully running Docker Engine on a Debian-based 64bit Linux OS.&lt;/p&gt;
+
+&lt;p&gt;Here is a short overview of the contents of the workshop:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Part 1: Bootloader&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Part 2: Kernel&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Part 3: Root filesystem&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Part 4: SD Card Image&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, that&amp;rsquo;s enough for explaining the background of this workshop. For more informations please follow along the details I&amp;rsquo;ll publish on the coming tweets at Twitter and in the GitHub repos until all the parts of this workshop are finished and available as OpenSource.&lt;/p&gt;
+
+&lt;p&gt;Please be aware that this OS is in a development phase and far from being perfect. So you are encouraged to help me with reporting issues and filing pull-requests to add features and fix bugs.&lt;/p&gt;
+
+&lt;h3 id=&#34;further-links&#34;&gt;Further Links&lt;/h3&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to publish all the details and steps to build the new operating system in a public GitHub repo. All other details and necessary GitHub repos will be linked here in this section as a future reference.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Workshop Repo&lt;/strong&gt; &lt;a href=&#34;https://github.com/dieterreuter/workshop-raspberrypi-64bit-os&#34;&gt;https://github.com/dieterreuter/workshop-raspberrypi-64bit-os&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So please stay tuned, this link list will be extended over the next few days.&lt;/p&gt;
+
+&lt;h3 id=&#34;acknowledgments&#34;&gt;Acknowledgments&lt;/h3&gt;
+
+&lt;p&gt;Please follow along the detailed tweets about this workshop via&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt; &lt;a href=&#34;https://twitter.com/Quintus23M&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @Quintus23M&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt; &lt;a href=&#34;https://twitter.com/HypriotTweets&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @HypriotTweets&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/bee42solutions&#34;&gt;@bee42solutions&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bee42solutions&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34;&gt;Follow @bee42solutions&lt;/a&gt;&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Special thanks goes to &lt;a href=&#34;http://bee42.com&#34;&gt;bee42 solutions&lt;/a&gt; for giving me the time to work on this awesome topic to build a complete Docker-enabled 64bit OS for the Raspberry Pi 3.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/building-a-64bit-docker-os-for-rpi3/bee42-logo.jpg&#34; alt=&#34;bee42-logo.jpg&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s build the smallest possible Docker image</title>
+      <link>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</link>
+      <pubDate>Wed, 22 Feb 2017 09:18:35 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/build-smallest-possible-docker-image/</guid>
+      <description>&lt;p&gt;Imagine what happens if we&amp;rsquo;re starting to use Docker containers on IoT devices. On small and slow devices with limited system resources and connected via a damn slow network connection we do have to care differently on how to build and ship our apps. In these circumstances it pays off and it&amp;rsquo;s absolutely essential to optimize our applications and the resulting Docker images for size.&lt;/p&gt;
+
+&lt;p&gt;SIZE DOES MATTER&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/build-smallest-possible-docker-image/docker-image-minimal.png&#34; alt=&#34;docker-image-minimal.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we&amp;rsquo;re doing it right we&amp;rsquo;ll get a lot of benefits such as blasting fast download speed for updating to a new or more secured version. On wireless networks we are also reducing the costs for data transfers as well.&lt;/p&gt;
+
+&lt;p&gt;According to my &lt;a href=&#34;https://twitter.com/quintus23m/status/834132186211180544&#34;&gt;tweet&lt;/a&gt; I&amp;rsquo;d like to start a new Docker challenge:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How small is the smallest Docker image we could build, which prints a &amp;ldquo;Hello Docker World!&amp;rdquo;?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;Sometimes developing directly on an IoT device can be pretty hard or nearly impossible due to the lack of enough system resources. These resources can be the amount of memory, disk space or CPU capacity - or it can be just a limited network connectivity over a low-bandwith 64kbit/sec wireless network.&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s assume we do have a Raspberry Pi already deployed in the field and this IoT device has such a low-bandwidth network connection. We&amp;rsquo;re preparing our developing system to run on a bare-metal cloud server and we are transfering our build artefacts as ready-to-run Docker images regularly with each and every new release in a DevOps driven manner. For this reason we&amp;rsquo;d like to speed up the deployment with minimized Docker image sizes.&lt;/p&gt;
+
+&lt;p&gt;Wait, I thought a Docker image can be pretty heavy with up to 1 GByte or even larger? Well, that could happen if we&amp;rsquo;re packing a whole Operating System like Ubuntu or Debian into our Docker images. But as we&amp;rsquo;re building an IoT application we should take care about that situation. A Docker image can instead be build with an app consisting of a statically linked binary and when we start it as a Docker container it will run a single Linux process only.&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-our-app-in-arm-assembly&#34;&gt;Creating our App in ARM assembly&lt;/h3&gt;
+
+&lt;p&gt;TL;DR all the source code and build instructions can be found in this public &lt;a href=&#34;https://github.com/DieterReuter/dockerchallenge-smallest-image&#34;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here is my starting example of an assembly program which just prints a single static text string. It is written in ARM assembly language and should be compiled into a really small binary we can run on any ARMv7 device.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat hello.S
+.data
+msg:
+    .ascii      &amp;quot;Hello Docker World!\n&amp;quot;
+len = . - msg
+
+.text
+
+.globl _start
+_start:
+    /* syscall write(int fd, const void *buf, size_t count) */
+    mov     %r0, $1     /* fd -&amp;gt; stdout */
+    ldr     %r1, =msg   /* buf -&amp;gt; msg */
+    ldr     %r2, =len   /* count -&amp;gt; len(msg) */
+    mov     %r7, $4     /* write is syscall #4 */
+    swi     $0          /* invoke syscall */
+
+    /* syscall exit(int status) */
+    mov     %r0, $0     /* status -&amp;gt; 0 */
+    mov     %r7, $1     /* exit is syscall #1 */
+    swi     $0          /* invoke syscall */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s compile and link it as a static program&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ as -o hello.o hello.S
+$ ld -s -o hello hello.o
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Show details about the binary&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ file hello
+hello: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, stripped
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now as we do have our app as a single binary program, we can build our smallest Docker image easily from scratch. This new Docker image consists only our binary and nothing else of other components at all. But you have to know this only works if the binary is statically linked and has all necessary tools baked in.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat Dockerfile.armhf
+FROM scratch
+ADD hello /hello
+CMD [&amp;quot;/hello&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Building the Docker image&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker build -t dieterreuter/hello -f Dockerfile.armhf .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;starting-point&#34;&gt;Starting point&lt;/h3&gt;
+
+&lt;p&gt;With all the details I&amp;rsquo;ve shown above in this blog post I finally built a first super-small Docker image with an indicated size of 452 Bytes only.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker images
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+dieterreuter/hello           latest              b961df9c849e        27 hours ago        452 B
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Starting this Docker container on a Raspberry Pi (or another ARMv7 machine) will print the requested text string.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker run dieterreuter/hello
+Hello Docker World!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Well, if you&amp;rsquo;re working with &lt;a href=&#34;https://docs.docker.com/docker-for-mac/&#34;&gt;Docker-for-Mac&lt;/a&gt; or &lt;a href=&#34;https://docs.docker.com/docker-for-windows/&#34;&gt;Docker-for-Windows&lt;/a&gt; you should try to run this command, too. I guess you&amp;rsquo;ll be surprised what happens on your Intel based system when you start this Docker container which is containing an ARM binary. But this is a topic for another future blog post.&lt;/p&gt;
+
+&lt;h3 id=&#34;challenge-details&#34;&gt;Challenge details&lt;/h3&gt;
+
+&lt;p&gt;There are not many rules for this challenge, but let&amp;rsquo;s give you some hints:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;the Docker image should output the text &amp;ldquo;Hello Docker World!&amp;rdquo; on the console&lt;/li&gt;
+&lt;li&gt;we measure the size of the Docker image with &lt;code&gt;docker images&lt;/code&gt; or &lt;code&gt;docker image ls&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;feel free to use a CPU architecture of your choice: Intel, ARMv7, ARMv8/AARCH64, &amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Please publish your results on DockerHub, source codes on GitHub and tweet about it on Twitter with the hashtag #DockerChallenge. The goal of this challenge is to get familiar with the techniques to build minimal sized Docker images not only for IoT use cases, to understand the fact that a Docker container can be just a single process, and that this process can be really extremely small itself. On the way we&amp;rsquo;ll learn to take care about all the necessary steps to reduce the size and how we can optimize our development workflow as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/build-smallest-possible-docker-image/docker-image-minimal2.png&#34; alt=&#34;docker-image-minimal2.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s start the journey&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;feedback-please&#34;&gt;Feedback, please&lt;/h3&gt;
+
+&lt;p&gt;As always use the comments below to give us feedback and share it on Twitter or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Please send us your feedback on our &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;Gitter channel&lt;/a&gt; or tweet your thoughts and ideas on this project at &lt;a href=&#34;https://twitter.com/HypriotTweets&#34;&gt;@HypriotTweets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dieter &lt;a href=&#34;https://twitter.com/Quintus23M&#34;&gt;@Quintus23M&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

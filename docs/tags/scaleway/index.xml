@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scaleway on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/scaleway/index.xml</link>
+    <description>Recent content in Scaleway on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/scaleway/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setting up 100 nodes Jenkins cluster with Docker Swarm in less than 10 minutes</title>
+      <link>https://blog.hypriot.com/post/setting-up-100-nodes-jenkins-cluster-with-docker-swarm-in-less-than-10-minutes/</link>
+      <pubDate>Sun, 20 Mar 2016 23:00:00 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/setting-up-100-nodes-jenkins-cluster-with-docker-swarm-in-less-than-10-minutes/</guid>
+      <description>&lt;p&gt;A week ago Scaleway announced their new C2 server. I was so excited to see that they were introducing new ARM C2 servers with 8 CPUs and 32 GB of RAM. Wow!
+Not until I logged in and did &lt;code&gt;lscpu&lt;/code&gt; did I realize that those servers were &amp;ldquo;just&amp;rdquo; Intel Atom servers.&lt;/p&gt;
+
+&lt;p&gt;A bit disappointed I thought what to do now? In my enthusiasm I had spun up 3 servers with 82 GB of RAM and 24 CPUs.
+Still with my thoughts firmly rooted in the &lt;a href=&#34;https://blog.docker.com/2016/03/swarmweek-join-your-first-swarm/&#34;&gt;Docker #SwarmWeek&lt;/a&gt; I could not resist to find out how easy it would be to set up a Swarm Cluster on those servers.&lt;/p&gt;
+
+&lt;p&gt;But a Swarm Cluster on its own is like a container ship without any containers - so I decided to run a Jenkins Cluster on top of the Swarm Cluster.&lt;/p&gt;
+
+&lt;p&gt;You might not believe me, but I was able to set up a 100 node Jenkins Cluster in less than 10 minutes.
+And you can do that, too.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/100-nodes-jenkins/scaleway.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;There are couple of reasons why it was so simple.&lt;/p&gt;
+
+&lt;h2 id=&#34;meet-the-new-scaleway-c2-servers&#34;&gt;Meet the new Scaleway C2 servers&lt;/h2&gt;
+
+&lt;p&gt;The first reason is that I was using the new Scaleway Cloud servers.&lt;/p&gt;
+
+&lt;p&gt;You might think &amp;ldquo;well, just ordinary cloudservers like those Amazon EC2 instances&amp;rdquo;, but the Scaleway offering is really quite different.
+By buying a Scaleway server you get access to real hardware that only belongs to you. It is not a virtual machine running on shared hardware.
+Still you have all the flexibilty of an - say Amazon EC2 instance - you can start and stop the instance on demand and pay as you go on an hourly rate.
+Furthermore you can completely control the Scaleway servers with an API and a great command line interface.&lt;/p&gt;
+
+&lt;p&gt;Did I already talk about the pricing model?&lt;/p&gt;
+
+&lt;p&gt;As the Scaleway offering feels quite similar to Amazons AWS EC2 offering I looked for an instance type that was more or less comparable to the top model from Scaleway.
+I ended up with an &lt;a href=&#34;http://www.ec2instances.info/?selected=m4.2xlarge&#34;&gt;m4.2xlarge instance type&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;Product&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;CPU&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;RAM&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Hourly Price&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Price per Month&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Amazon EC2 m4.2xlarge&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;8 vCore&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;32 GB&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;€ 0,5059&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;€ 364,24&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Scaleway Baremetal C2L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;8 Core&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;32 GB&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;€ 0,0333&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;€ 23,99&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;As you can see the EC2 instance costs roughly 15 times what the Scaleway server costs.
+Even if those two offerings are not 100% comparable I find the pricing of the Scaleway server very impressive.&lt;/p&gt;
+
+&lt;p&gt;After introducing the new Scaleway C2 server let&amp;rsquo;s get started by setting up a couple of the C2 servers.&lt;/p&gt;
+
+&lt;p&gt;If you do not have an account with Scaleway you need to &lt;a href=&#34;https://cloud.scaleway.com/#/signup&#34;&gt;sign up&lt;/a&gt; with them first.
+Afterwards you can use the &lt;a href=&#34;https://github.com/scaleway/scaleway-cli&#34;&gt;Scaleway Command Line Interface&lt;/a&gt; to create the servers.&lt;/p&gt;
+
+&lt;p&gt;Download the latest version for your operating system from the &lt;a href=&#34;https://github.com/scaleway/scaleway-cli/releases/tag/v1.8.0&#34;&gt;release page&lt;/a&gt;.
+For working with the new C2 server you need at the latest version 1.8.0 of the Scaleway CLI.&lt;/p&gt;
+
+&lt;p&gt;For Mac user the easiest way to install it is via &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install scw
+==&amp;gt; Downloading https://homebrew.bintray.com/bottles/scw-1.7.1.mavericks.bottle.tar.gz
+Already downloaded: /Library/Caches/Homebrew/scw-1.7.1.mavericks.bottle.tar.gz
+==&amp;gt; Pouring scw-1.7.1.mavericks.bottle.tar.gz
+==&amp;gt; Caveats
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d
+
+zsh completion has been installed to:
+  /usr/local/share/zsh/site-functions
+==&amp;gt; Summary
+🍺  /usr/local/Cellar/scw/1.7.1: 4 files, 10.7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check if the Scaleway CLI works with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw --version
+scw version v1.7.1, build homebrew
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks good.&lt;/p&gt;
+
+&lt;p&gt;To be able to do anything meaningful with the CLI we need first to log into our account.
+Use the email and password you got when you registered as credentials.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw login
+Login (cloud.scaleway.com): somemail@somewhere.com
+Password:
+Do you want to upload an SSH key ?
+[0] I don&#39;t want to upload a key !
+[3] id_rsa.pub
+Which [id]:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you are asked to upload the public part of your SSH key you should do so.
+This allows us later to securely connect to our Scaleway ARM servers via SSH.&lt;/p&gt;
+
+&lt;p&gt;After a successful login we are now able to interact with our Scaleway account remotely.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s create three servers for our Swarm Cluster.
+The C2 server type is currently in preview which means there is a quota that allows only to spin up a limited number of each instance type.
+So I settled for two C2L and one C2M.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw create --commercial-type=C2L --name=cl-leader Docker
+16ca1b31-f94e-4d6c-be46-ade4641054e4
+
+$ scw create --commercial-type=C2L --name=&amp;quot;cl-follower1&amp;quot; Docker
+16ca1b31-f94e-4d6c-be46-ade4641052e4
+
+$ scw create --commercial-type=C2M --name=&amp;quot;cl-follower2&amp;quot; Docker
+16ca1b31-f94e-4d6c-be46-ade4641053e4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That was easy, right?&lt;/p&gt;
+
+&lt;p&gt;We can list our current servers by using&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw ps
+SERVER ID           IMAGE               COMMAND             CREATED             STATUS              PORTS               NAME
+f20a3a57            Docker_1_10_0                           1 days              running             212.47.235.237      cl-leader
+8cae4fd4            Docker_1_10_0                           1 days              running             163.172.135.05      cl-follower1
+6al5b4e4            Docker_1_10_0                           1 days              running             163.172.135.28      cl-follower2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s check what we have by logging into one of our new servers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw exec cl-leader
+
+root@cl-leader:~# docker info
+root@cl-leader:~# docker info
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 1.10.3
+Storage Driver: aufs
+ Root Dir: /var/lib/docker/aufs
+ Backing Filesystem: extfs
+ Dirs: 0
+ Dirperm1 Supported: true
+Execution Driver: native-0.2
+Logging Driver: json-file
+Plugins:
+ Volume: local
+ Network: bridge null host
+Kernel Version: 4.4.5-docker-1
+Operating System: Ubuntu 15.10
+OSType: linux
+Architecture: x86_64
+CPUs: 8
+Total Memory: 31.34 GiB
+Name: cl-leader
+ID: GUOI:LSEY:LASQ:XACT:M7D2:DVA3:LYLV:5YGT:6M7O:2P7T:5VXX:HKMO
+Labels:
+ provider=scaleway
+Codename:wily
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see we do have up-to-date software:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ubuntu 15.10&lt;/li&gt;
+&lt;li&gt;a  4.4 Linux Kernel&lt;/li&gt;
+&lt;li&gt;Docker 1.10.3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Seems the Scaleway servers are a perfect place to run Docker and we have everything ready to move forward.&lt;/p&gt;
+
+&lt;p&gt;The next step is setting up a private network between those three servers.
+I am going to use a VPN solution called &lt;a href=&#34;https://www.tinc-vpn.org/&#34;&gt;tinc&lt;/a&gt; for that.
+It is a really great peer-to-peer Mesh VPN solution, but basically you can use any VPN solution that works for you.
+I am not going into the details of the tinc configuration now, because I am going to write about it in another blog post soon.&lt;/p&gt;
+
+&lt;p&gt;So after configuring tinc we do have an additional network device on each server that is part of our private tinc network:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;scw exec cl-leader &amp;quot; ip a | grep tun&amp;quot;
+92: tun0: &amp;lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&amp;gt; mtu 1500 qdisc noqueue state UNKNOWN group default qlen 500
+    inet 10.0.0.2/24 scope global tun0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure that you can ping all the other nodes in your private network like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw exec cl-follower1 &amp;quot;ping 10.0.0.2&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That we have the name of tinc network device is important for the configuration of the Hypriot Cluster Lab which we gonna use in the next section.&lt;/p&gt;
+
+&lt;h2 id=&#34;easy-swarming-with-the-hypriot-cluster-lab&#34;&gt;Easy swarming with the Hypriot Cluster Lab&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/hypriot/cluster-lab&#34;&gt;Hypriot Cluster Lab&lt;/a&gt; is the second reason why it is so easy to set up our 100 node Jenkins cluster.
+The Cluster Lab helps us to set up a Docker Swarm Cluster without any manual configuration in minutes.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s configure the Hypriot package repository and install the Hypriot Cluster Lab.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ for server in cl-leader cl-follower1 cl-follower2; do
+  scw exec $server &amp;quot;curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | sudo bash; apt-get install -y hypriot-cluster-lab&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the Cluster Lab itself can be used in different scenarios we still need to configure some settings of the Cluster Lab to make it play nice with a VPN solution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ for server in cl-leader cl-follower1 cl-follower2; do
+  scw exec $server \&amp;quot;sed -i -e &#39;s|ENABLE_VLAN=&amp;quot;true&amp;quot;|ENABLE_VLAN=&amp;quot;false&amp;quot;|g&#39; -e &#39;s|ENABLE_DHCP=&amp;quot;true&amp;quot;|ENABLE_DHCP=&amp;quot;false&amp;quot;|g&#39; -e &#39;s|INTERFACE=&amp;quot;eth0&amp;quot;|INTERFACE=&amp;quot;tun0&amp;quot;|g&#39; /etc/cluster-lab/cluster.conf\&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We are changing the Cluster Lab configuration to disable VLAN and DHCP support and we are also changing the Cluster Lab network interface to &amp;lsquo;tun0&amp;rsquo; which we created with tinc before.
+Those settings ensure that the Cluster Lab uses our private tinc network for all cluster communication. That means also that all the Docker networks are created on top of the encrypted tinc network.&lt;/p&gt;
+
+&lt;p&gt;The last thing we need to adjust is the Avahi daemon configuration. We need to adjust it for the peer-to-peer nature of the tinc network and restart the Avahi daemon:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ for server in cl-leader cl-follower1 cl-follower2; do
+  scw exec $server &amp;quot;sed -i &#39;s|#allow-point-to-point=no|allow-point-to-point=yes|g&#39; /etc/avahi/avahi-daemon.conf; systemctl restart avahi-daemon&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK. Now we are ready to start the Cluster Lab on the leader node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw exec cl-leader &amp;quot;VERBOSE=true cluster-lab start&amp;quot;
+
+Internet Connection
+  [PASS]   tun0 exists
+  [PASS]   tun0 has an ip address
+  [PASS]   Internet is reachable
+  [PASS]   DNS works
+
+Networking
+  [PASS]   tun0 exists
+  [PASS]   Cluster leader is reachable
+  [PASS]   tun0 has exactly one IP
+  [PASS]   tun0 has no local link address
+  [PASS]   Avahi process exists
+  [PASS]   Avahi is using tun0
+
+Docker
+  [PASS]   Docker is running
+  [PASS]   Docker is configured to use Consul as key-value store
+  [PASS]   Docker is configured to listen via tcp at port 2375
+  [PASS]   Docker listens on 10.0.0.2 via tcp at port 2375 (Docker-Engine)
+
+Consul
+  [PASS]   Consul Docker image exists
+  [PASS]   Consul Docker container is running
+  [PASS]   Consul is listening on port 8300
+  [PASS]   Consul is listening on port 8301
+  [PASS]   Consul is listening on port 8302
+  [PASS]   Consul is listening on port 8400
+  [PASS]   Consul is listening on port 8500
+  [PASS]   Consul is listening on port 8600
+  [PASS]   Consul API works
+  [PASS]   Cluster-Node is pingable with IP 10.0.0.3
+  [PASS]   Cluster-Node is pingable with IP 10.0.0.4
+  [PASS]   Cluster-Node is pingable with IP 10.0.0.2
+  [PASS]   No Cluster-Node is in status &#39;failed&#39;
+  [PASS]   Consul is able to talk to Docker-Engine on port 7946 (Serf)
+
+Swarm
+  [PASS]   Swarm-Join Docker container is running
+  [PASS]   Swarm-Manage Docker container is running
+  [PASS]   Number of Swarm and Consul nodes is equal which means our cluster is healthy scw exec cl-leader &amp;quot;VERBOSE=true cluster-lab start&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With the &lt;code&gt;VERBOSE=true&lt;/code&gt; environment variable we tell the Cluster Lab to print out all the self-tests when it starts up.
+If you see any failed tests it is usually a good idea to run a &lt;code&gt;cluster-lab health&lt;/code&gt; command, which does just the self-tests again.
+Usually those should be green now and have only failed the first time because of timing issues.&lt;/p&gt;
+
+&lt;p&gt;If you still have problems check our &lt;a href=&#34;https://github.com/hypriot/cluster-lab#troubleshooting&#34;&gt;trouble shooting&lt;/a&gt; section of the Cluster Lab project.&lt;/p&gt;
+
+&lt;p&gt;It is important that the leader is started up first because the other nodes need him for the self-configuration.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s start the Cluster Lab on the rest of the nodes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ for server in cl-follower1 cl-follower2; do
+  scw exec $server &amp;quot;VERBOSE=true cluster-lab start&amp;quot;
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can now check if our Swarm Cluster is fully functional by running a &lt;code&gt;docker info&lt;/code&gt; against the Docker Swarm port:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw exec cl-leader
+root@cl-leader:~# DOCKER_HOST=tcp://10.0.0.2:2378 docker info
+Containers: 20
+ Running: 9
+ Paused: 0
+ Stopped: 11
+Images: 27
+Role: replica
+Primary: 10.0.0.3:2378
+Strategy: spread
+Filters: health, port, dependency, affinity, constraint
+Nodes: 3
+ cl-follower1: 10.0.0.3:2375
+  └ Status: Healthy
+  └ Containers: 7
+  └ Reserved CPUs: 0 / 8
+  └ Reserved Memory: 0 B / 32.91 GiB
+  └ Labels: executiondriver=native-0.2, hypriot.arch=x86_64, hypriot.hierarchy=follower, kernelversion=4.4.5-docker-1, operatingsystem=Ubuntu 15.10, storagedriver=overlay
+  └ Error: (none)
+  └ UpdatedAt: 2016-03-20T15:07:55Z
+ cl-follower2: 10.0.0.4:2375
+  └ Status: Healthy
+  └ Containers: 7
+  └ Reserved CPUs: 0 / 8
+  └ Reserved Memory: 0 B / 16.4 GiB
+  └ Labels: executiondriver=native-0.2, hypriot.arch=x86_64, hypriot.hierarchy=leader, kernelversion=4.4.5-docker-1, operatingsystem=Ubuntu 15.10, storagedriver=overlay
+  └ Error: (none)
+  └ UpdatedAt: 2016-03-20T15:08:09Z
+ cl-leader: 10.0.0.2:2375
+  └ Status: Healthy
+  └ Containers: 6
+  └ Reserved CPUs: 0 / 8
+  └ Reserved Memory: 0 B / 32.91 GiB
+  └ Labels: executiondriver=native-0.2, hypriot.arch=x86_64, hypriot.hierarchy=follower, kernelversion=4.4.5-docker-1, operatingsystem=Ubuntu 15.10, storagedriver=overlay
+  └ Error: (none)
+  └ UpdatedAt: 2016-03-20T15:07:52Z
+Plugins:
+ Volume:
+ Network:
+Kernel Version: 4.4.5-docker-1
+Operating System: linux
+Architecture: amd64
+CPUs: 24
+Total Memory: 82.22 GiB
+Name: 4b3fd589316c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the &lt;code&gt;docker info&lt;/code&gt; command now runs against the Swarm TCP port we get plenty of information about the Swarm cluster.
+For instance we can see the number of nodes we have as well as the total number of CPUs and RAM we do have in the cluster: 24 CPUs and a whopping amount of 82 GB of RAM.
+That&amp;rsquo;s nice isn&amp;rsquo;t it?&lt;/p&gt;
+
+&lt;h2 id=&#34;starting-a-100-nodes-jenkins-cluster-with-docker-compose&#34;&gt;Starting a 100 Nodes Jenkins cluster with Docker-Compose&lt;/h2&gt;
+
+&lt;p&gt;Ok, now comes the last reason why it is so fast and easy to set up 100 node Jenkins cluster.
+The reason is called &lt;a href=&#34;https://docs.docker.com/compose/&#34;&gt;Docker-Compose&lt;/a&gt; and makes it ridiculous easy to get multi-container applications up and running.&lt;/p&gt;
+
+&lt;p&gt;To use it we need to first install it on our cluster leader node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;scw exec cl-leader &amp;quot;curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` &amp;gt; /usr/local/bin/docker-compose; chmod +x /usr/local/bin/docker-compose&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a file called &amp;ldquo;docker-compose.yml&amp;rdquo; on the cluster leader with the following content:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;version: &amp;quot;2&amp;quot;
+
+networks:
+  jenkins_swarm:
+    driver: overlay
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.2.0/16
+          ip_range: 10.10.2.0/24
+
+services:
+  jenkins:
+    image: csanchez/jenkins-swarm
+    expose:
+      - 8080
+      - 50000
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - jenkins_swarm
+    environment:
+      - &amp;quot;constraint:NODE==cl-leader&amp;quot;
+
+  worker:
+    image: csanchez/jenkins-swarm-slave
+    command: -username jenkins -password jenkins -executors 1
+    networks:
+      - jenkins_swarm
+    environment:
+      - &amp;quot;JENKINS_PORT_8080_TCP_ADDR=jenkins&amp;quot;
+      - &amp;quot;JENKINS_PORT_8080_TCP_PORT=8080&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;: Replace the &amp;lsquo;subnet&amp;rsquo; and &amp;lsquo;ip_range&amp;rsquo; attributes in the file with configuration values that fit your private network configuration.
+This is a Docker-Compose file that describes an overlay network and two services: a Jenkins Master and a Jenkins worker.
+The overlay network will stretch across our Swarm Cluster and runs on top of our private network.
+Because of IP adress conflicts between our private tinc network and the standard network configuration we had to add the &amp;lsquo;ipam&amp;rsquo; part.&lt;/p&gt;
+
+&lt;p&gt;Now we are nearly finished and can start some Jenkins nodes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@cl-leader:~# DOCKER_HOST=tcp://10.0.0.3:2378 docker-compose -p jenkins up -d
+Starting jenkins_jenkins_1
+Starting jenkins_worker_1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here the important part is that the docker-compose command is running against our Swarm Cluster.
+&amp;lsquo;-p&amp;rsquo; option creates a project namespace and the &amp;lsquo;-d&amp;rsquo; option tell Docker-Compose to start the container in the background.
+This command initally created two container: one Jenkins master node and one worker.&lt;/p&gt;
+
+&lt;p&gt;We now need to scale the worker nodes to 99 to finally reach our goal of a 100 nodes Jenkins Cluster.&lt;/p&gt;
+
+&lt;p&gt;And that is really easy with Docker-Compose:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@cl-leader:~# COMPOSE_HTTP_TIMEOUT=180 DOCKER_HOST=tcp://10.0.0.3:2378 docker-compose -p jenkins scale worker=20
+Creating and starting 2 ...
+Creating and starting 3 ...
+Creating and starting 4 ...
+ ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If those twenty nodes are up repeat the command with 40, 60, 80 until you reach 99.
+You could of course go for 99 at once but I experienced errors and timeouts so I prefer to take it slowly.&lt;/p&gt;
+
+&lt;p&gt;To visit the GUI of the Jenkins master server we need to find out the IP address of our cluster leader node.
+We can do that with the &lt;code&gt;inspect&lt;/code&gt; subcommand of the Scaleway CLI:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw inspect leader | grep address
+   &amp;quot;address&amp;quot;: &amp;quot;212.47.225.127&amp;quot;,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So the Jenkins master can be found at: &lt;a href=&#34;http://212.47.225.127:8080&#34;&gt;http://212.47.225.127:8080&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You should see a page similar to&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/100-nodes-jenkins/jenkins01.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And at &lt;a href=&#34;http://212.47.225.127:8080/computer&#34;&gt;http://212.47.225.127:8080/computer&lt;/a&gt; we can find all the slave nodes, too:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/100-nodes-jenkins/jenkins02.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So to wrap it up I can say that the combination of&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the on-demand Scaleway Servers&lt;/li&gt;
+&lt;li&gt;the Hypriot Cluster Lab&lt;/li&gt;
+&lt;li&gt;Docker-Compose&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;allowed me to get the Jenkins Cluster running in a really short time.&lt;/p&gt;
+
+&lt;p&gt;It might not be 10 minutes for you - especially if you first need to set up the Scaleway account and the CLI tool. But if everything is in place it can be done in 5 to 10 minutes.&lt;/p&gt;
+
+&lt;p&gt;Hope you had some fun following along&amp;hellip;.&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile__&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Test, build and package Docker for ARM the official way</title>
+      <link>https://blog.hypriot.com/post/test-build-and-package-docker-for-arm-the-official-way/</link>
+      <pubDate>Fri, 05 Feb 2016 16:00:00 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/test-build-and-package-docker-for-arm-the-official-way/</guid>
+      <description>&lt;p&gt;With the recent release of Docker 1.10.0 it is a good time to talk about &lt;strong&gt;Docker on ARM&lt;/strong&gt;.
+As many of you know our mission is to make Docker (and container technology) a first class citizen on ARM devices.&lt;/p&gt;
+
+&lt;p&gt;With &lt;a href=&#34;http://blog.docker.com/2016/02/docker-1-10/&#34;&gt;Docker 1.10.0&lt;/a&gt; it is finally possible to build &lt;strong&gt;Docker for ARM&lt;/strong&gt; from the offical Docker repository.&lt;/p&gt;
+
+&lt;p&gt;Mind you - not everything that works for x86 is possible for ARM yet, but quite a lot is already working today.
+And it is a first important step towards offical support for Docker on ARM.&lt;/p&gt;
+
+&lt;p&gt;In this blog post I am going to walk you through all the steps that are needed to test, build and package Docker on ARM.
+And as an extra bonus I am showing you how to do this on the most advanced ARM on-demand cloud-platform ever.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/arm-support/scaleway_armserver.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;preparation-first-we-need-suiteable-arm-hardware&#34;&gt;Preparation: First we need suiteable ARM hardware&lt;/h2&gt;
+
+&lt;p&gt;Our friends at Scaleway make it really easy and cheap to get your hands on powerful ARM hardware with their ARM on-demand cloud platform.
+Using an ARM server costs only 0,006 € per hour and you only pay when a server is actually running.&lt;/p&gt;
+
+&lt;p&gt;So what are you waiting for? &lt;a href=&#34;https://cloud.scaleway.com/#/signup&#34;&gt;Sign up&lt;/a&gt; for an account now! :)&lt;/p&gt;
+
+&lt;p&gt;After the registration the next step is to create a new server.
+When creating a new server we need to choose an image. An image is the combination of an operating system and some preinstalled software.
+There are dozens of different images at the &lt;a href=&#34;https://www.scaleway.com/de/imagehub/&#34;&gt;Scaleway ImageHub&lt;/a&gt; to choose from.
+And one is of special interest to us - the &lt;a href=&#34;https://www.scaleway.com/imagehub/docker/&#34;&gt;Docker image&lt;/a&gt;.
+It combines an Ubuntu 15.10 operating system with a Docker 1.9.1 installation.&lt;/p&gt;
+
+&lt;p&gt;Why do we need a Docker installation anyways? Well, because most of the stuff you can do with the Docker repository needs an already running Docker.
+Using the Scaleway Docker image is just a reliable and fast way to get us started.&lt;/p&gt;
+
+&lt;p&gt;OK. Let&amp;rsquo;s actually create the server. This can either be done via &lt;strong&gt;Web-GUI&lt;/strong&gt; or via &lt;strong&gt;commandline&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;strong&gt;Web-GUI&lt;/strong&gt; just select the &amp;ldquo;Server&amp;rdquo; menu entry on the left and click the &amp;ldquo;Create&amp;rdquo;-button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/arm-support/create_server.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the following dialogue choose the &amp;ldquo;Image Hub&amp;rdquo; tab and search for &amp;ldquo;docker&amp;rdquo;.&lt;br /&gt;
+Select the &amp;ldquo;Docker 1.9.1&amp;rdquo; image and you are good.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/arm-support/sw_webgui_choose_an_image.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The same can be done with the &lt;a href=&#34;https://github.com/scaleway/scaleway-cli&#34;&gt;Scaleway Command Line Interface&lt;/a&gt;, too.
+Download the latest version for your operating system from the &lt;a href=&#34;https://github.com/scaleway/scaleway-cli/releases/tag/v1.7.1&#34;&gt;release page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For Mac user the easiest way to install it, is via &lt;a href=&#34;http://brew.sh/&#34;&gt;Homebrew&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install scw
+==&amp;gt; Downloading https://homebrew.bintray.com/bottles/scw-1.7.1.mavericks.bottle.tar.gz
+Already downloaded: /Library/Caches/Homebrew/scw-1.7.1.mavericks.bottle.tar.gz
+==&amp;gt; Pouring scw-1.7.1.mavericks.bottle.tar.gz
+==&amp;gt; Caveats
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d
+
+zsh completion has been installed to:
+  /usr/local/share/zsh/site-functions
+==&amp;gt; Summary
+🍺  /usr/local/Cellar/scw/1.7.1: 4 files, 10.7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check if the Scaleway CLI works with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw --version
+scw version v1.7.1, build homebrew
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks good.&lt;/p&gt;
+
+&lt;p&gt;To be able to do anything meaningful with the CLI we need first to log into our account.
+Use the email and password you got when you registered as credentials for your Scaleway account.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw login
+Login (cloud.scaleway.com): govinda@hypriot.com
+Password:
+Do you want to upload an SSH key ?
+[0] I don&#39;t want to upload a key !
+[3] id_rsa.pub
+Which [id]:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you are asked to upload the public part of your SSH key you should do so.
+This allows us later to securely connect to our Scaleway ARM servers via SSH.&lt;/p&gt;
+
+&lt;p&gt;After a successful login we are now able to interact with our Scaleway account remotely.&lt;/p&gt;
+
+&lt;p&gt;For instance we can now list all our existing servers.&lt;br /&gt;
+If you did not create any servers yet you should get an empty list.&lt;/p&gt;
+
+&lt;p&gt;As you can see, I already have a running server:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scw ps
+SERVER ID           IMAGE               COMMAND             CREATED             STATUS              PORTS               NAME
+1b72r8c7            Docker_1_9_0                            9 days              running             163.152.159.113     scw-07
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With the next command we will create and log into the created server in one step.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;scw exec $(scw start --wait $(scw create docker_1_9_1)) /bin/bash
+root@tender-leavitt:~#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please be patient here as the allocation of a new server can take some time.&lt;/p&gt;
+
+&lt;p&gt;Basically we combined a couple of scw commands into one: First we &lt;code&gt;scw create&lt;/code&gt; a new server, then we &lt;code&gt;scw start&lt;/code&gt; it and afterwards we log into it via &lt;code&gt;scw exec&lt;/code&gt;.
+You can further explore what you can do with the CLI via &lt;code&gt;scw help&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once logged into the server we are dropped to the command line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@tender-leavitt:~#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see this is just a standard Ubuntu 15.10 operating system:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@tender-leavitt:~# uname -a
+Linux tender-leavitt 4.3.3-docker-1 #1 SMP Wed Jan 20 13:31:30 UTC 2016 armv7l armv7l armv7l GNU/Linux
+root@tender-leavitt:~# lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:  Ubuntu 15.10
+Release:  15.10
+Codename: wily
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Did you notice the last part of the &lt;code&gt;uname&lt;/code&gt; output? It shows that we have a &lt;code&gt;armv7l&lt;/code&gt; hardware platform.
+This is the hard evidence that we are truely working on ARM hardware and Scaleway is not cheating us. :)&lt;/p&gt;
+
+&lt;p&gt;The last thing we need to check is if we really have a working Docker installation:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# dpkg -l | grep docker
+ii  docker-hypriot                   1.9.1-1                         armhf        Docker for ARM devices, compiled and packaged by http://blog.hypriot.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Well, this aleady looks promising. Seems we also do have a Hypriot Docker running here, too. Nice. :)&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s check out some more details:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# docker version
+Client:
+ Version:      1.9.1
+ API version:  1.21
+ Go version:   go1.4.3
+ Git commit:   a34a1d5
+ Built:        Fri Nov 20 23:03:02 UTC 2015
+ OS/Arch:      linux/arm
+
+Server:
+ Version:      1.9.1
+ API version:  1.21
+ Go version:   go1.4.3
+ Git commit:   a34a1d5
+ Built:        Fri Nov 20 23:03:02 UTC 2015
+ OS/Arch:      linux/arm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Seems, we now have everthing ready for the second part of this blog post.&lt;/p&gt;
+
+&lt;h2 id=&#34;test-build-and-package-docker-for-arm&#34;&gt;Test, build and package Docker for ARM&lt;/h2&gt;
+
+&lt;p&gt;Congrats, you already finished the difficult part!&lt;/p&gt;
+
+&lt;p&gt;Which means we can now get on to the easy part of testing, building and packing Docker.&lt;br /&gt;
+Sounds to good to be true?&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see.&lt;/p&gt;
+
+&lt;p&gt;First we need to clone the Docker repository:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# git clone https://github.com/docker/docker.git
+Cloning into &#39;docker&#39;...
+remote: Counting objects: 135534, done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 135534 (delta 7), reused 3 (delta 3), pack-reused 135520
+Receiving objects: 100% (135534/135534), 79.57 MiB | 1.61 MiB/s, done.
+Resolving deltas: 100% (90280/90280), done.
+Checking connectivity... done.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Afterwards for all the following steps we need to change into the cloned repository:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cd docker
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Docker team uses a dedicated Docker image (how could it be otherwise) as a base for all development work.
+It is based on the &lt;code&gt;Dockerfile&lt;/code&gt; that you will find in the root directory of the Docker repository.&lt;/p&gt;
+
+&lt;p&gt;With Docker 1.10.0 you will find that there is another Dockerfile present&amp;hellip; one with an &lt;code&gt;.armhf&lt;/code&gt; extension.
+This one is used to build an ARM compatible Docker development image.&lt;/p&gt;
+
+&lt;h3 id=&#34;building-the-docker-development-image&#34;&gt;Building the Docker development image&lt;/h3&gt;
+
+&lt;p&gt;Creating the Docker development image can take a long time as lots of software gets downloaded, compiled and installed.
+The good news is that this is usually only needed once.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;make build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Afterwards we can check if the image was successfully created:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+docker-dev          master              2ac07dec8c9a        14 minutes ago      931.9 MB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If all went well we should now see an image that is named &lt;code&gt;docker-dev&lt;/code&gt;.
+With this out of the way we can now proceed to the next step.&lt;/p&gt;
+
+&lt;h3 id=&#34;testing-docker&#34;&gt;Testing Docker&lt;/h3&gt;
+
+&lt;p&gt;There are two types of tests that we can run: &lt;strong&gt;unit-tests&lt;/strong&gt; and &lt;strong&gt;integration-tests&lt;/strong&gt;.
+To ensure that a certain Docker version really works we need to ensure that all the tests are passing.&lt;/p&gt;
+
+&lt;p&gt;To run the unit-test suite execute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make test-unit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run the integration-test suite execute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make test-integration-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Be aware that running the integration tests can take a really long time. We are speaking of hours here.
+But that time is worth waiting as there are more than 1,100 tests that already work on ARM as well:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;OK: 1168 passed, 41 skipped
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And if you feel particularly daring you can run all tests together with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When all tests are green we might as well go to the next step.&lt;/p&gt;
+
+&lt;h3 id=&#34;building-a-new-docker-binary&#34;&gt;Building a new Docker binary&lt;/h3&gt;
+
+&lt;p&gt;Building a new Docker binary is really fast compared to running the tests.&lt;/p&gt;
+
+&lt;p&gt;Just execute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make binary
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will compile a brand new Docker binary.
+At the end of the compilation &lt;code&gt;make binary&lt;/code&gt; will give you an output similar to this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Created binary: bundles/1.11.0-dev/binary/docker-1.11.0-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this information we can try it out at once:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# bundles/1.11.0-dev/binary/docker-1.11.0-dev version
+Client:
+ Version:      1.11.0-dev
+ API version:  1.23
+ Go version:   go1.4.3
+ Git commit:   18204ea
+ Built:        Fri Feb  5 00:48:09 2016
+ OS/Arch:      linux/arm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This worked out pretty well, too.&lt;/p&gt;
+
+&lt;p&gt;But shipping a plain binary is not very cool, is it?
+So shall we make a Debian package as well?&lt;/p&gt;
+
+&lt;h3 id=&#34;building-a-docker-debian-package&#34;&gt;Building a Docker Debian package&lt;/h3&gt;
+
+&lt;p&gt;The command for creating a Debian package is just another make command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make deb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This first creates a binary and then puts it into a Debian package.&lt;/p&gt;
+
+&lt;p&gt;At the end you gonna find the binary beneath the bundles directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# ls -la bundles/latest/build-deb/debian-jessie
+total 98708
+drwxr-xr-x 2 root root     4096 Feb  5 01:49 .
+drwxr-xr-x 3 root root     4096 Feb  5 01:50 ..
+-rw-r--r-- 1 root root     1704 Feb  5 01:45 docker-engine_1.11.0~dev~git20160204.213112.0.18204ea-0~jessie_armhf.changes
+-rw-r--r-- 1 root root  5405608 Feb  5 01:45 docker-engine_1.11.0~dev~git20160204.213112.0.18204ea-0~jessie_armhf.deb
+-rw-r--r-- 1 root root      812 Feb  5 01:39 docker-engine_1.11.0~dev~git20160204.213112.0.18204ea-0~jessie.dsc
+-rw-r--r-- 1 root root 95641747 Feb  5 01:39 docker-engine_1.11.0~dev~git20160204.213112.0.18204ea-0~jessie.tar.gz
+-rw-r--r-- 1 root root      527 Feb  5 01:25 Dockerfile.build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The resulting package can then be installed with the standard Debian package-management tools.&lt;/p&gt;
+
+&lt;p&gt;By the way - all this is a first example for the upcoming Docker multi-architecture support.
+While Docker ARM support is still only partially there, more is to come soon.&lt;/p&gt;
+
+&lt;p&gt;It is just awesome to see what is already possible today! Stay tuned for more!&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback, discuss this post on &lt;a href=&#34;https://news.ycombinator.com/item?id=11042427&#34;&gt;HackerNews&lt;/a&gt; and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile_&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

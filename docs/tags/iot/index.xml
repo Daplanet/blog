@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Iot on Docker Pirates ARMed with explosive stuff</title>
+    <link>https://blog.hypriot.com/tags/iot/index.xml</link>
+    <description>Recent content in Iot on Docker Pirates ARMed with explosive stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://blog.hypriot.com/tags/iot/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Learning about Cloud Computing with Hypriot Cluster Lab at ICT 2016</title>
+      <link>https://blog.hypriot.com/post/talk_ict_2016_international_conference_telecommunications/</link>
+      <pubDate>Mon, 06 Jun 2016 18:03:34 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/talk_ict_2016_international_conference_telecommunications/</guid>
+      <description>&lt;p&gt;Our cooperation with University of Bamberg pays off once again: We had the chance to present our Hypriot Cluster Lab at &lt;a href=&#34;http://ict-2016.org/&#34;&gt;ICT 2016&lt;/a&gt;, the International Conference on Telecommunications. There, we were able to show the Hypriot Cluster Lab to the attendees, who were mainly scientific researchers from all over the globe.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/ict-2016-greece/ict_logo.jpg&#34; alt=&#34;IoT-requirements&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;We built the Hypriot Cluster Lab as lab environment that allows to easily teach about clustering and cloud computing. At the conference, the Hypriot Cluster Lab piqued lots of interest, so we are confident that it will be used more and more in educational institutions.&lt;/p&gt;
+
+&lt;p&gt;Now, after the show, we are publishing &lt;a href=&#34;http://ict-2016.org/pdf/Demo1.pdf&#34;&gt;the paper&lt;/a&gt; that has been accepted at the conference and the &lt;a href=&#34;https://blog.hypriot.com/images/ict-2016-greece/ICT-Presentation.pdf&#34;&gt;presentation slides&lt;/a&gt;. However, the paper is (intentionally) very brief and the slides are not throughout self-explanatory, so we&amp;rsquo;ve also written down what we&amp;rsquo;ve presented to the audience back in Greece.&lt;/p&gt;
+
+&lt;h2 id=&#34;iot-requires-expansion-to-small&#34;&gt;IoT requires &amp;ldquo;Expansion to small&amp;rdquo;&lt;/h2&gt;
+
+&lt;p&gt;Building cloud computing infrastructures with big servers is well understood. Even large cloud infrastructures powered by container technology are commonly in use. One of the pioneers to mention here is Google with its container-based cloud platform &lt;a href=&#34;http://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, the uprising Internet of Things (IoT) will not allow to equip the edge of the network such as sensor networks in smart home/grid/production environments with big servers only. There, you especially need small devices with less computational power and energy demand. These devices require to be small and cheap enough to install up to several thousands of them in a smart environment, thereby creating sensor networks. For example think of sensor networks on wind farms:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/ict-2016-greece/wind.jpg&#34; alt=&#34;IoT-requirements&#34; /&gt;
+&lt;div style=&#34;padding-left:34.4em; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/ewea/16577911487/in/photolist-rfW8w8-ipD2tM-ipC49q-7d8FqR-ipCNzR-ipC1dU-ipBRBC-ipCGWN-ipCkFm-njeuG6-ipCC31-ipCnPv-ayYLge-ipCJ61-ayYMmc-ipBGVN-ayYHLH-9mZuNi-ayYMzX-oWbzp6-ayYK6n-7ZaHBQ-q8T7wm-az2p4W-8LowiB-az2o8s-ayYJJt-az2p2f-3euhCb-ayYMWD-ayYNgZ-ayYL48-az2riu-6YiWvR-az2qkC-ayYMev-az2rxU-az2on1-ayYK2V-ayYHrz-az2oru-az2ov7-az2oeW-qQMUJN-auVRqy-az2oDm-ayYM8Z-i5kW85-ayYJTV-az2rCE&#34;&gt;European Wind Energy Association&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point, Hypriot Cluster Lab (HCL) comes into play:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;HCL is a proof of concept that building clusters using container technology (in our case: Docker) also works well on small devices, not only on big servers.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This &amp;ldquo;Expansion to Small&amp;rdquo; was the theme of the ICT 2016, which made HCL a perfect fit to the conference&amp;rsquo;s agenda.&lt;/p&gt;
+
+&lt;h2 id=&#34;hcl-makes-a-tangible-iot-like-cluster-affordable&#34;&gt;HCL makes a tangible IoT-like cluster affordable&lt;/h2&gt;
+
+&lt;p&gt;HCL is not only a proof of concept that clustering with container technology on IoT devices works, it also serves a second purpose: It is cheap enough to be used as a learning platform to play with clustering or cloud computing on your desk. The minimal hardware configuration requires three Raspberry Pis plus accessoires, which is affordable for everyone to get their hands on a real, tangible cluster. We&amp;rsquo;ve already seen lecturers, students and pupils getting started on the HCL with different topics related to cloud computing, e.g. playing with micro services or load balancing. Some use cases can be found &lt;a href=&#34;https://github.com/hypriot/rpi-cluster-lab-demos&#34;&gt;in one of our repos here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Even though the HCL is intended to be used as a tool to learn, its containing concepts are applicable for promising IoT software solutions. Comparing IoT&amp;rsquo;s general requirements for hard- and software that I identified in my bachelor thesis (&lt;a href=&#34;https://medium.com/@mathiasrenner/docker-container-virtualization-and-the-internet-of-things-bachelor-thesis-a6bc783b81fa#.f09czsq2e&#34;&gt;details here&lt;/a&gt;) show that many of those aspects are already visible in the HCL:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/ict-2016-greece/iot-requirements.jpg&#34; alt=&#34;IoT-requirements&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;All in all, the conference was an enriching experience. Discussing with scientific researches and professors from many different countries resulted in high-grade feedback and inspirations of how we can further improve the HCL. Particularly interesting were the discussions after some glasses of good, greek wine. They resulted in less high-grade feedback, but much fun instead :)&lt;/p&gt;
+
+&lt;p&gt;Thus, we look forward to attend more conferences. Well, the next conference is already set: In two weeks, three of the Hypriot team (Dieter, Stefan and myself) will attend DockerCon in Seattle, USA! We will give workshops and talks, so we are happy to meet you there! For everyone who won&amp;rsquo;t attend: Stay tuned, we try to share as much as possible via our channels.&lt;/p&gt;
+
+&lt;p&gt;Last but not least, I give special thanks Marcel Großmann (research assistant at University of Bamberg) for his great support. He is not only providing high quality feedback to our work, meanwhile he also contributes to the HCL. Not to mention that he also provides the venue for our Docker Meetups. His continunous support is worth a virtual applause!&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/MathiasRenner&#34;&gt;@MathiasRenner&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Your No. 1 source for Docker on ARM</title>
+      <link>https://blog.hypriot.com/post/your-number-one-source-for-docker-on-arm/</link>
+      <pubDate>Mon, 28 Mar 2016 22:00:00 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/your-number-one-source-for-docker-on-arm/</guid>
+      <description>&lt;p&gt;Besides our &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;Download section&lt;/a&gt; we do have another source for getting the latest and greatest Docker for ARM.&lt;br /&gt;
+It is a debian package repository hosted at &lt;a href=&#34;https://packagecloud.io/&#34;&gt;packagecloud.io&lt;/a&gt; that contains lots of the stuff from our Download section.&lt;/p&gt;
+
+&lt;p&gt;Despite having a package repository for a couple of months now, it seems many people do not know it.
+I guess that&amp;rsquo;s our own fault because we never spoke about it - we only added it to our prepared SD card images. :)
+Installing or updating Docker or other Docker goodies like Docker-Compose from this repository can be done by a simple &lt;code&gt;apt-get install&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this post I gonna show you what you need to know to get started with this repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/packagecloud/packagecloud_io_wide.jpg&#34; alt=&#34;Raspberry Pi Workshop in Brussels&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Packagecloud.io is a really great service for hosting different types of packages (DEBs, RPMs, Ruby Gems).
+You get detailed download/usage statistics and can manage all your packages easily with a Web-GUI or with an API.&lt;/p&gt;
+
+&lt;p&gt;The last point was what convinced us to use packagecloud.io as it allows us to upload our packages directly from our Continuous Integration systems.
+Many popular CI systems offer build-in packagecloud support - for instance Travis or Circle-CI.&lt;/p&gt;
+
+&lt;p&gt;Our packagecloud repository is conveniently named &amp;ldquo;Schatzkiste&amp;rdquo; and supports Debian-based Linux distributions.&lt;/p&gt;
+
+&lt;p&gt;To use it you need to configure &amp;lsquo;apt&amp;rsquo; first by executing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | sudo bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to know what this script does you can look up the &lt;a href=&#34;https://packagecloud.io/Hypriot/Schatzkiste/install&#34;&gt;source of this script&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It installs &amp;lsquo;apt-transport-https&amp;rsquo; for connecting securely to our repository, adds the packagecloud GPG key to &amp;lsquo;apt&amp;rsquo; and then adds our &amp;lsquo;Schatzkiste&amp;rsquo;-repository sources to &amp;lsquo;/etc/apt/sources.list.d/Hypriot_Schatzkiste.list&amp;rsquo;.&lt;br /&gt;
+Afterwards it updates the package sources via &amp;lsquo;apt-get update&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;From there you are ready to search for the latest Docker via&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ apt-cache madison docker-hypriot
+docker-hypriot |   1.10.3-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |   1.10.2-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |   1.10.1-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |   1.10.0-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.9.1-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.9.0-2 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.8.3-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.8.2-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.8.1-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.8.0-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.7.1-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.6.2-2 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.6.2-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.6.1-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.6.0-1 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+docker-hypriot |    1.5.0-7 | https://packagecloud.io/Hypriot/Schatzkiste/debian/ wheezy/main armhf Packages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lsquo;apt-cache madison&amp;rsquo; will list all the available version for package &amp;lsquo;docker-hypriot&amp;rsquo; and as you can see the latest Docker 1.10.3 is already there, too.&lt;/p&gt;
+
+&lt;p&gt;Install it with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ apt-get install docker-hypriot=1.10.3-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So I want to close this blog post with a huge thank you to the packagecloud.io guys as they are hosting our packages for free.&lt;/p&gt;
+
+&lt;p&gt;I highly recommend their service as it can be so tedious and time-consuming to setup your own repository properly - I have been there myself.&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile_&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker on Raspberry Pi Workshop in Brussels</title>
+      <link>https://blog.hypriot.com/post/docker-on-arm-workshops/</link>
+      <pubDate>Thu, 17 Mar 2016 00:00:00 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/docker-on-arm-workshops/</guid>
+      <description>&lt;p&gt;A couple of weeks ago we have been invited by the fine folks over at the Docker User Group in Brussels to help conduct a workshop.
+And of course this workshop was about Docker. Still it was not your ordinary Docker workshop.&lt;/p&gt;
+
+&lt;p&gt;It was special because instead of being a workshop about Docker on big servers it was about Docker on really small ARM devices.
+The very same devices that power the upcoming IoT revolution.&lt;/p&gt;
+
+&lt;p&gt;Turns out it is really amazing what you can do with Docker on those tiny machines.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/docker_workshop.jpg&#34; alt=&#34;Raspberry Pi Workshop in Brussels&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;In this workshop attendees learned how to get started with Docker on their Raspberry Pi&amp;rsquo;s.
+Starting with the basics they soon turned to advanced topics like building a Docker cluster.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What is Raspberry Pi and how is it working&lt;/li&gt;
+&lt;li&gt;How to flash an SD card with HypriotOS&lt;/li&gt;
+&lt;li&gt;How to log in to a Raspberry Pi via SSH or serial console&lt;/li&gt;
+&lt;li&gt;How to do basic stuff with Docker&lt;/li&gt;
+&lt;li&gt;What is different when using Docker on ARM compared to Intel&lt;/li&gt;
+&lt;li&gt;How to build a Docker Cluster with Docker Swarm&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dieter Reuter from our team gave an introductory talk and showed off some of the cool things we did at Hypriot.
+About 70 people attended the workshop and worked in small groups and helped each other to learn new stuff.
+Even days after the event Dieter was still raving about the cool event and the amazing, open-minded and friendly people.&lt;/p&gt;
+
+&lt;p&gt;As you can see from the pictures it was a lot of fun to be there.&lt;/p&gt;
+
+&lt;div class=&#34;gallery clearfix&#34; itemscope itemtype=&#34;http://schema.org/ImageGallery&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;Docker &amp;amp; Raspberry Pi Workshop in Brussels&lt;/div&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/workshop-02.jpeg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;600x450&#34;&gt;
+      &lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/thumbnails/thumb_workshop-02.jpeg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;Dieter giving a talk&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    Dieter giving a talk
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;Hypriot&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/workshop-01.jpeg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;600x450&#34;&gt;
+      &lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/thumbnails/thumb_workshop-01.jpeg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;Hypriot&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/workshop-03.jpeg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;600x450&#34;&gt;
+      &lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/thumbnails/thumb_workshop-03.jpeg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;Hypriot&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/workshop-04.jpeg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;600x450&#34;&gt;
+      &lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/thumbnails/thumb_workshop-04.jpeg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;Hypriot&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/workshop-05.jpeg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;600x450&#34;&gt;
+      &lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/thumbnails/thumb_workshop-05.jpeg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;Hypriot&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+
+
+&lt;figure itemscope itemtype=&#34;http://schema.org/ImageObject&#34;&gt;
+  &lt;a href=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/workshop-06.jpeg&#34; itemprop=&#34;contentUrl&#34; data-size=&#34;600x450&#34;&gt;
+      &lt;img src=&#34;https://blog.hypriot.com/images/raspberry-pi-workshop/thumbnails/thumb_workshop-06.jpeg&#34; itemprop=&#34;thumbnail&#34; alt=&#34;&#34; /&gt;
+  &lt;/a&gt;
+
+
+  &lt;figcaption itemprop=&#34;caption description&#34;&gt;
+    
+    &lt;span itemprop=&#34;copyrightHolder&#34;&gt;Hypriot&lt;/span&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/photoswipe.css&#34;&gt;
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://blog.hypriot.com/css/default-skin/default-skin.css&#34;&gt;
+&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blog.hypriot.com/js/photoswipe-ui-default.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://blog.hypriot.com/js/initphotoswipe.js&#34;&gt;&lt;/script&gt;
+
+
+
+&lt;div class=&#34;pswp&#34; tabindex=&#34;-1&#34; role=&#34;dialog&#34; aria-hidden=&#34;true&#34;&gt;
+
+&lt;div class=&#34;pswp__bg&#34;&gt;&lt;/div&gt;
+
+&lt;div class=&#34;pswp__scroll-wrap&#34;&gt;
+    
+    &lt;div class=&#34;pswp__container&#34;&gt;
+      &lt;div class=&#34;pswp__item&#34;&gt;&lt;/div&gt;
+      &lt;div class=&#34;pswp__item&#34;&gt;&lt;/div&gt;
+      &lt;div class=&#34;pswp__item&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class=&#34;pswp__ui pswp__ui--hidden&#34;&gt;
+    &lt;div class=&#34;pswp__top-bar&#34;&gt;
+      
+      &lt;div class=&#34;pswp__counter&#34;&gt;&lt;/div&gt;
+      &lt;button class=&#34;pswp__button pswp__button--close&#34; title=&#34;Close (Esc)&#34;&gt;&lt;/button&gt;
+      &lt;button class=&#34;pswp__button pswp__button--share&#34; title=&#34;Share&#34;&gt;&lt;/button&gt;
+      &lt;button class=&#34;pswp__button pswp__button--fs&#34; title=&#34;Toggle fullscreen&#34;&gt;&lt;/button&gt;
+      &lt;button class=&#34;pswp__button pswp__button--zoom&#34; title=&#34;Zoom in/out&#34;&gt;&lt;/button&gt;
+      
+      
+      &lt;div class=&#34;pswp__preloader&#34;&gt;
+        &lt;div class=&#34;pswp__preloader__icn&#34;&gt;
+          &lt;div class=&#34;pswp__preloader__cut&#34;&gt;
+            &lt;div class=&#34;pswp__preloader__donut&#34;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;pswp__share-modal pswp__share-modal--hidden pswp__single-tap&#34;&gt;
+      &lt;div class=&#34;pswp__share-tooltip&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class=&#34;pswp__button pswp__button--arrow--left&#34; title=&#34;Previous (arrow left)&#34;&gt;
+    &lt;/button&gt;
+    &lt;button class=&#34;pswp__button pswp__button--arrow--right&#34; title=&#34;Next (arrow right)&#34;&gt;
+    &lt;/button&gt;
+    &lt;div class=&#34;pswp__caption&#34;&gt;
+      &lt;div class=&#34;pswp__caption__center&#34;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;style&gt;
+    .gallery {  }
+    .gallery img { width: 100%; height: auto; }
+    .gallery figure { display: block; float: left; margin: 0 5px 5px 0; width: 200px; }
+    .gallery figcaption { display: none; }
+    .gallery div.title { font-weight: bold; }
+    span[itemprop=&#34;copyrightHolder&#34;] { color : #888; float: right; }
+    span[itemprop=&#34;copyrightHolder&#34;]:before { content: &#34;Foto: &#34;; }
+    img[itemprop=&#34;thumbnail&#34;]{ width: 200px; }
+&lt;/style&gt;
+
+
+&lt;script&gt;initPhotoSwipeFromDOM(&#39;.gallery&#39;);&lt;/script&gt;
+
+
+&lt;p&gt;Special thanks for making the workshop possible need to go to Damien Duportal.
+His workshop presentation can be found &lt;a href=&#34;http://dduportal.github.io/presentations/docker-meetup-brussels-20160210/#1&#34;&gt;here&lt;/a&gt;.
+The example app that was used during the workshop was ported to ARM and can be found &lt;a href=&#34;https://github.com/jmMeessen/rpi-voting-app/commits/master&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We - at the Hypriot team - are really excited to see how more and more people start to see the potential in Docker on ARM.&lt;/p&gt;
+
+&lt;p&gt;Last week I was approached by Bastiaan Schaap from the DevOps Oost-Nederland Meetup Group to help organize a similar workshop.
+It will take place on &lt;strong&gt;June, 1st in Wageningen in the Netherlands&lt;/strong&gt;. You can read more about the agenda on the &lt;a href=&#34;http://www.meetup.com/de-DE/DevOps-OostNL/events/229287742/?eventId=229287742&#34;&gt;Meetup-Website&lt;/a&gt;.
+Make sure to RSVP early as there will only be a limited number of seats available.&lt;/p&gt;
+
+&lt;p&gt;We plan to do some more workshops in the next couple of months. So if you like to see one happen in your area - please come and talk to us.
+We really have a lot of fun organizing and conducting these kind of events and can come up with a ton of different workshop topics.&lt;/p&gt;
+
+&lt;p&gt;So in this sense - hope to see you soon in person.
+Happy ARM hacking until then. :)&lt;/p&gt;
+
+&lt;p&gt;As always, use the comments below to give us feedback and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile__&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker Sensor Fu on a Raspberry Pi</title>
+      <link>https://blog.hypriot.com/post/docker-sensor-fu-on-a-raspberry-pi/</link>
+      <pubDate>Tue, 15 Mar 2016 23:02:30 +0100</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/docker-sensor-fu-on-a-raspberry-pi/</guid>
+      <description>&lt;p&gt;For many people it comes as a surprise that one can access all the hardware of an IoT device from within a Docker container.
+Interestingly enough Docker is a perfect tool for managing and distributing IoT development and production environments.&lt;/p&gt;
+
+&lt;p&gt;To illustrate this use case we are going to create a Docker image that allows us to read the data from a temperature sensor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-sensor-fu-on-a-raspberry-pi/temperature.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;
+&lt;div style=&#34;text-align:right; font-size: smaller&#34;&gt;Image courtesy of &lt;a href=&#34;https://www.flickr.com/photos/tmib/3336410263/in/photolist-65PYwT-hKwdXx-6Gvfse-8sZyde-hKwe8n-bsrVBM-aTuQm-suTVL-4keeLT-9HAaQv-6owaBS-pcKw75-ktYU9-7fCvHx-aMp4hZ-9CJPmM-5kQCwW-9uhoBD-i6h8R-8eACxB-73fGHE-ecUmhW-4ayKHW-coQnPs-x2g2w-qTtWEg-6afv15-7zQM2j-coQoDf-6uLDRM-5srT3L-hpQH9p-q1QZca-9S8ygg-mHCs1e-aZ3SJT-b3ejpi-qvDRpB-mBUjjp-mJTYFr-nhZUoo-6dRUnb-9tuUnt-eMRL2K-6K6ars-dhBwB7-5Cr4jF-5rq6uU-yzubv-q7g6xP&#34;&gt;tmib_seattle&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;To follow along you gonna need:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a Raspberry Pi 1, 2 or 3&lt;/li&gt;
+&lt;li&gt;our HypriotOS &lt;a href=&#34;https://downloads.hypriot.com/hypriot-rpi-20160306-192317.img.zip&#34;&gt;SD card image&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;a DHT22 temperature sensor, which you can buy at &lt;a href=&#34;http://www.amazon.de/gp/product/B00LHJUU1M?psc=1&amp;amp;redirect=true&amp;amp;ref_=oh_aui_detailpage_o02_s00&#34;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;From the hardware side we need to first attach the sensor to our Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-sensor-fu-on-a-raspberry-pi/temperature_sensor.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looking at the picture of the sensor from left to right we need to attach&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the yellow cable to the 3,3V Pin of the RPi (Pin 1)&lt;/li&gt;
+&lt;li&gt;the green cable (data) to one of the many GPIO; here it is GPIO2 (Pin 3)&lt;/li&gt;
+&lt;li&gt;and finally the blue cable to GND (Pin 6)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The information in brackets corresponds to the pin numbers in this &lt;a href=&#34;http://raspi.tv/wp-content/uploads/2013/07/Rev2-GPIO-bold.jpg&#34;&gt;GPIO overview image&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/docker-sensor-fu-on-a-raspberry-pi/sensor_connected_to_pi.jpg&#34; alt=&#34;Docker Swarm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After our hardware is settled we need to look at the software side of things.&lt;/p&gt;
+
+&lt;p&gt;As foundation for our next steps we will use the &lt;a href=&#34;http://wiringpi.com/&#34;&gt;WiringPi&lt;/a&gt; project.
+WiringPi is a library that allows to access the GPIO (General Purpose Input Output) connectors of the Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s put WiringPi into a Docker image, shall we?&lt;/p&gt;
+
+&lt;p&gt;The Dockerfile for this looks like this:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Govinda-Fichtner/1d48543a6b9c2e21b7c1.js?file=Dockerfile.start&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Using this Dockerfile we can now build our image:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker build -t hypriot/wiringpi:latest .
+...
+$ docker images
+REPOSITORY                            TAG                 IMAGE ID            CREATED             SIZE
+hypriot/wiringpi                      latest              599e98bd4c20        30 seconds ago      302.2 MB
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the image has everything that we need to compile software. On top of that it also has the WiringPi libraries on board.&lt;/p&gt;
+
+&lt;p&gt;Next we can run this image to build the software that actually reads the sensor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker run --device /dev/ttyAMA0:/dev/ttyAMA0 --device /dev/mem:/dev/mem --privileged -ti hypriot/wiringpi bash
+root@84f66e14df05:/data#
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To test if we can access the GPIO&amp;rsquo;s we can run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@84f66e14df05:/data# gpio readall
+ +-----+-----+---------+------+---+---Pi 2---+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+ |     |     |    3.3v |      |   |  1 || 2  |   |      | 5v      |     |     |
+ |   2 |   8 |   SDA.1 |   IN | 1 |  3 || 4  |   |      | 5V      |     |     |
+ |   3 |   9 |   SCL.1 |   IN | 1 |  5 || 6  |   |      | 0v      |     |     |
+ |   4 |   7 | GPIO. 7 |   IN | 1 |  7 || 8  | 1 | ALT0 | TxD     | 15  | 14  |
+ |     |     |      0v |      |   |  9 || 10 | 1 | ALT0 | RxD     | 16  | 15  |
+ |  17 |   0 | GPIO. 0 |   IN | 0 | 11 || 12 | 0 | IN   | GPIO. 1 | 1   | 18  |
+ |  27 |   2 | GPIO. 2 |   IN | 0 | 13 || 14 |   |      | 0v      |     |     |
+ |  22 |   3 | GPIO. 3 |   IN | 0 | 15 || 16 | 0 | IN   | GPIO. 4 | 4   | 23  |
+ |     |     |    3.3v |      |   | 17 || 18 | 0 | IN   | GPIO. 5 | 5   | 24  |
+ |  10 |  12 |    MOSI |   IN | 0 | 19 || 20 |   |      | 0v      |     |     |
+ |   9 |  13 |    MISO |   IN | 0 | 21 || 22 | 0 | IN   | GPIO. 6 | 6   | 25  |
+ |  11 |  14 |    SCLK |   IN | 0 | 23 || 24 | 1 | IN   | CE0     | 10  | 8   |
+ |     |     |      0v |      |   | 25 || 26 | 1 | IN   | CE1     | 11  | 7   |
+ |   0 |  30 |   SDA.0 |   IN | 1 | 27 || 28 | 1 | IN   | SCL.0   | 31  | 1   |
+ |   5 |  21 | GPIO.21 |   IN | 1 | 29 || 30 |   |      | 0v      |     |     |
+ |   6 |  22 | GPIO.22 |   IN | 1 | 31 || 32 | 0 | IN   | GPIO.26 | 26  | 12  |
+ |  13 |  23 | GPIO.23 |   IN | 0 | 33 || 34 |   |      | 0v      |     |     |
+ |  19 |  24 | GPIO.24 |   IN | 0 | 35 || 36 | 0 | IN   | GPIO.27 | 27  | 16  |
+ |  26 |  25 | GPIO.25 |   IN | 0 | 37 || 38 | 0 | IN   | GPIO.28 | 28  | 20  |
+ |     |     |      0v |      |   | 39 || 40 | 0 | IN   | GPIO.29 | 29  | 21  |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+---Pi 2---+---+------+---------+-----+-----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So far so good.&lt;/p&gt;
+
+&lt;p&gt;Now we need to clone the source of our sensor reading software:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@84f66e14df05:/data# git clone https://github.com/technion/lol_dht22
+root@84f66e14df05:/data# cd lol_dht22
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To compile the lol_dht22 software we do the usual &lt;code&gt;./configure &amp;amp;&amp;amp; make&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@84f66e14df05:/data/lol_dht22# ./configure
+...
+root@84f66e14df05:/data/lol_dht22# make
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This should produce a small executable that we can now test.&lt;/p&gt;
+
+&lt;p&gt;If you followed the wiring instructions above closely you should now be able to read the temperature:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@84f66e14df05:/data/lol_dht22# ./loldht 8
+Raspberry Pi wiringPi DHT22 reader
+www.lolware.net
+Humidity = 34.00 % Temperature = 22.80 *
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Awesome. We just have been accessing the hardware sensor that is attached to our Pi from inside a Docker container.&lt;/p&gt;
+
+&lt;p&gt;So why is this so exciting? Well, it basically allows us to deploy our sensor reading software easily and reliably to every device that is running a Docker Engine.
+No installation hassle. No dependency hell.&lt;/p&gt;
+
+&lt;p&gt;For that we need to extend our Dockerfile and add&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;RUN git clone https://github.com/technion/lol_dht22
+RUN cd lol_dht22 &amp;amp;&amp;amp; ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; mv ./lol_dht22 /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The finished file looks like this:&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/Govinda-Fichtner/1d48543a6b9c2e21b7c1.js?file=Dockerfile.final&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;After rebuilding the image with this updated Dockerfile we can now run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker run --device /dev/ttyAMA0:/dev/ttyAMA0 --device /dev/mem:/dev/mem --privileged -ti hypriot/wiringpi /loldht 8
+Raspberry Pi wiringPi DHT22 reader
+www.lolware.net
+Data not good, skip
+Humidity = 35.00 % Temperature = 22.00 *C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and it just works&amp;trade;.&lt;/p&gt;
+
+&lt;p&gt;The finished image can be found at the &lt;a href=&#34;https://hub.docker.com/r/hypriot/wiringpi/&#34;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s it. As always, use the comments below to give us feedback and share this post on Twitter, Google or Facebook.&lt;/p&gt;
+
+&lt;p&gt;Govinda &lt;a href=&#34;https://twitter.com/_beagile_&#34;&gt;@_beagile__&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Better be prepared for the ARMed IoT flood and port Docker apps to ARM</title>
+      <link>https://blog.hypriot.com/post/port_dockerfiles_to_arm/</link>
+      <pubDate>Wed, 26 Aug 2015 02:55:55 +0200</pubDate>
+      
+      <guid>https://blog.hypriot.com/post/port_dockerfiles_to_arm/</guid>
+      <description>&lt;p&gt;The great ARMed flood has begun. Especially for the sake of the IoT, every day new tiny devices pop up all around the world. And since most of these devices are build on top of the ARM architecture, with each new device, ARM gets more important compared to the x86 architecture proposed by Intel/AMD. Maybe you even need to run your next app on ARM! Thus better be prepared and port apps to ARM, it&amp;rsquo;s basically just one step to take.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;In comparison to the x86 CPU architecture, ARM supports low power consumption by design, not just as a feature. When thinking of a sensor network at your home, you don&amp;rsquo;t wanna change the battery of all your sensors every week. Well, think of any device that profits from low power consumption, which does not need the CPU power of a sumo wrestler. As with sumo wrestlers, computers cluttered with resources lack the flexibility needed in today&amp;rsquo;s IT, and the resources of their built in x86 CPU often are barely needed.&lt;/p&gt;
+
+&lt;p&gt;Speaking of the number of devices: Some say we will have 20, some say 50 billion connected IoT devices by 2020, where most of them will be ARMed. Well, least let&amp;rsquo;s conclude: It will be a flooding number of them.&lt;/p&gt;
+
+&lt;p&gt;Fair enough, so let&amp;rsquo;s start making apps compatible to ARM. To do so, you only need to make sure that the binaries of your apps are compiled explicitly for the ARM architecture. Thus, porting an app to ARM basically means to change the binaries to ARM compatible ones. Let&amp;rsquo;s do it!&lt;/p&gt;
+
+&lt;h2 id=&#34;get-started-with-docker-for-an-easy-porting-example&#34;&gt;Get started with Docker for an easy porting example&lt;/h2&gt;
+
+&lt;p&gt;Of course, we use &lt;a href=&#34;https://www.docker.com/&#34;&gt;Docker&lt;/a&gt;. And in the world of Docker, apps are described by Dockerfiles, like recipes for making cakes. Thus, when we wanna ARM an app, we only change its recipe, i.e. its Dockerfile. So make sure you know about the commands in Dockerfiles with the help of the &lt;a href=&#34;https://docs.docker.com/reference/builder/&#34;&gt;Dockerfile reference at Docker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;From now on, let&amp;rsquo;s better refer to an app as a &lt;strong&gt;service&lt;/strong&gt; because often a Dockerfile or a docker-compose file is a recipe for a collection of apps which are combined to a service. Thus a service is described by one or many apps.&lt;/p&gt;
+
+&lt;p&gt;In order to directly apply the necessary steps, we go through an example. In this example, we wanna port the &lt;a href=&#34;http://httpd.apache.org/&#34;&gt;Apache webserver&lt;/a&gt; to ARM.&lt;/p&gt;
+
+&lt;p&gt;As hardware for our example, we use a Raspberry Pi, which is one of the most popular ARM devices for developers. Of course, as operating system we use our &lt;a href=&#34;https://blog.hypriot.com/downloads/&#34;&gt;SD Card image&lt;/a&gt; that provides Docker on the Raspberry Pi by just &lt;a href=&#34;https://github.com/hypriot/flash&#34;&gt;flashing it to a SD card and booting it&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;let-s-arm-it&#34;&gt;Let&amp;rsquo;s ARM it!&lt;/h2&gt;
+
+&lt;p&gt;First, search for a Dockerfile that describes the service you wanna ARM. In most cases, Dockerfiles reside on the &lt;a href=&#34;https://hub.docker.com/explore/&#34;&gt;Dockerhub&lt;/a&gt; or on &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When choosing a Dockerfile, make sure you can check the following three prerequisites:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Take the one with the most stars, the most popular one, or the ones tagged with  &amp;ldquo;official&amp;rdquo;. In addition, prefer the less complex ones if possible.&lt;/li&gt;
+&lt;li&gt;Take a Dockerfile that is based on Ubuntu or a Debian based image. To evaluated this, check what&amp;rsquo;s in the Dockerfile after the &lt;code&gt;FROM&lt;/code&gt; command. Any of &lt;code&gt;debian&lt;/code&gt; or &lt;code&gt;ubuntu&lt;/code&gt; is fine.&lt;/li&gt;
+&lt;li&gt;Pay attention to the license. Some licenses forbid to copy and change a Dockerfile.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For Apache, we found a small and popular Dockerfile &lt;a href=&#34;https://hub.docker.com/r/eboraas/apache/~/dockerfile/&#34;&gt;here&lt;/a&gt;. We check the Dockerfile if the three prerequisites in the list we above are met. Here, the Dockerfile is based on Debian, it seems clean and there&amp;rsquo;s no license given that restricts the usage of this work.&lt;/p&gt;
+
+&lt;p&gt;Note that every now and then there are mistakes in Dockerfiles. Therefore we recommend to test the Docker images on your x86 machine before porting it. In case you encounter any errors, the performance advantage of an x86 machine makes debugging much faster than on your ARM machine. See the &lt;a href=&#34;http://docs.docker.com/installation/&#34;&gt;Docker docs to install Docker&lt;/a&gt; on your machine. It&amp;rsquo;s fast and painless.&lt;/p&gt;
+
+&lt;p&gt;Thus, we test the chosen Dockerfile for Apache on a x86 machine. The &lt;code&gt;docker run&lt;/code&gt; command to do this is given in the repo description on the Dockerhub. In advance we had to add the tag &lt;code&gt;wheezy&lt;/code&gt; (read the next chapter when you are curious about the &lt;code&gt;wheezy&lt;/code&gt; here).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;docker run -p 80:80 -p 443:443 -d eboraas/apache:wheezy&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;When the Docker command completed, point your browser to &lt;code&gt;http://&amp;lt;IP OF YOUR PI&amp;gt;:80/&lt;/code&gt;. You should see the default page of Apache:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://blog.hypriot.com/images/port_dockerfiles_to_arm/apache_default_x86.png&#34; alt=&#34;port_dockerfiles_to_arm&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, let&amp;rsquo;s move to the target machine running on ARM. Copy the content of the Dockerfile as is to your ARM machine.&lt;/p&gt;
+
+&lt;p&gt;In our case, we log into the Raspberry Pi (&lt;a href=&#34;https://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/&#34;&gt;get help from our getting started guide&lt;/a&gt;) and copy the content of the Dockerfile to the machine. For this, on the machine, we use the &lt;code&gt;vim&lt;/code&gt; editor by executing&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;vim Dockerfile&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Paste the content.&lt;/p&gt;
+
+&lt;p&gt;Then make sure that the content is formatted as it is on the website, e.g. any command should be at the beginning of a new line etc.&lt;/p&gt;
+
+&lt;p&gt;After formatting, this is how the Dockerfile should look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM eboraas/debian:stable
+MAINTAINER Ed Boraas &amp;lt;ed@boraas.ca&amp;gt;
+
+RUN apt-get update &amp;amp;&amp;amp; apt-get -y install apache2 &amp;amp;&amp;amp; apt-get clean
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
+RUN /bin/ln -sf ../sites-available/default-ssl /etc/apache2/sites-enabled/001-default-ssl
+RUN /bin/ln -sf ../mods-available/ssl.conf /etc/apache2/mods-enabled/
+RUN /bin/ln -sf ../mods-available/ssl.load /etc/apache2/mods-enabled/
+
+EXPOSE 80
+EXPOSE 443
+CMD [&amp;quot;/usr/sbin/apache2ctl&amp;quot;, &amp;quot;-D&amp;quot;, &amp;quot;FOREGROUND&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to change all binaries that are used in this Dockerfile to ARM compatible ones. In general, there are two locations that need to be adjusted:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;FROM field in the Dockerfile&lt;/strong&gt;, which defines the software layer our service will inherit from. Here we change &lt;code&gt;debian:jessie&lt;/code&gt; to &lt;code&gt;resin/rpi-raspbian:wheezy&lt;/code&gt;. Then of course, replace the &lt;code&gt;MAINTAINER&lt;/code&gt; with your name and email address.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;binaries of the apps that are being downloaded&lt;/strong&gt;. In our case, we do not need to change anything because the binary, which is &lt;code&gt;apache2&lt;/code&gt; is downloaded via the &lt;code&gt;apt-get install&lt;/code&gt; command. This command is already architecture sensitive, i.e. it downloads only compatible binaries to the target machine.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Finally, save the Dockerfile. Try if the Dockerfile works by creating &amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;docker build -t rpi-apache .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip; and starting a Docker image:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;docker run -p 80:80 -d rpi-apache&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, when you point your browser to the IP address of your ARM machine, you should see the same default page of Apache&amp;rsquo;s as when you started the image on x86 before.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CONGRATULATIONS! You ARMed your first service!&lt;/strong&gt; Now you have the basic understanding to ARM more services! In case you encounter any error, get help in the next chapter. We cross our fingers for you!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: After you successfully ported a service, you can push it to the Dockerhub, so that other people can use it. In addition make sure to put &lt;code&gt;rpi-&lt;/code&gt; in front of the Docker image&amp;rsquo;s name. This declares it as a Raspberry Pi compatible image and therefore also as an ARM compatible service. It will make the life easier for people looking for ARMed services on the Dockerhub.&lt;/p&gt;
+
+&lt;h2 id=&#34;debugging-hints-to-arm-a-service&#34;&gt;Debugging hints to ARM a service&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Remove any command you do not need to run the service&lt;/strong&gt;. In our Apache example, you can delete everything regarding SSL if you do not need it. This already might solve some problems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Make sure, that all binaries used are pointing to ARM compatible ones&lt;/strong&gt;. If there is no compiled ARM binary available, you might need to compile it yourself.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Check other tags&lt;/strong&gt;. You may have noticed that in the porting example above we explicitly defined the tag &lt;code&gt;wheezy&lt;/code&gt; in the &lt;code&gt;Docker run&lt;/code&gt; command. Why? With the tag &lt;code&gt;stable&lt;/code&gt; as it was defined in the original Dockerfile, the Docker image will not work. The reason for this is a common problem, which arises when Dockerfiles are not updated regularly: At the time the author created this Dockerfile, &lt;code&gt;stable&lt;/code&gt; pointed to Debian Wheezy. This worked out fine. However, meanwhile Debian Jessy has been released which ships updated versions of software as well. This invisibly changes the Dockerfile, because &lt;code&gt;apt-get install apache2&lt;/code&gt; now installs the latest version of Apache. This updated version of Apache is controlled by commands other than the ones given in the Dockerfile. This causes Apache to crash. So this Dockerfile simply has not been updated yet to the newer commands of the updated version of Apache. Thus, try other tags in your Dockerfile – they might just work!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search for ADD commands&lt;/strong&gt; that copy files from the host into the container. Sometimes you need to download these files in advance. Refer to the instructions of the repository, especially look for links to the authors code base , e.g. at Github&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Check the &amp;lsquo;docker run&amp;rsquo; command in the Dockerhub repo info&lt;/strong&gt;. If there are any depending containers (defined via &lt;code&gt;--link&lt;/code&gt; parameter), you need porting these images to ARM too. Also check if someone else already ported the depending images you look for.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Try to resolve any other errors by asking an online search engine&lt;/strong&gt;. Often, you are not the first one having this problem.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;optimize-the-dockerfile-optional&#34;&gt;Optimize the Dockerfile (optional)&lt;/h2&gt;
+
+&lt;p&gt;Optimizing the Dockerfile does have several advantages: It often makes it smaller, i.e. you need less time to download packages and less disk space on your machine. Further, you gain a better overview over the Dockerfile&amp;rsquo;s structure which simplifies debugging. In the following, we give some recommendations of how to optimize a Dockerfile:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Format it nicely.&lt;/strong&gt; Put commands only at the beginning of a line. Add line breaks with &lt;code&gt;\&lt;/code&gt; and combine commands if possible. See this example:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;RUN  	apt-get update &amp;amp;&amp;amp; \
+	apt-get -y install apache2 &amp;amp;&amp;amp; \
+	apt-get clean
+
+...
+
+EXPOSE 80,443
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Again, remove any commands that are not needed&lt;/strong&gt;, i.e. avoid downloading and installing packages that will not be used.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;At the end of a Dockerfile, remove any files that are useless&lt;/strong&gt;, e.g. execute &lt;code&gt;apt-get autoremove &amp;amp;&amp;amp; apt-get clean&lt;/code&gt; after installing several packages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Also, refer to these blog posts that provide more hints (advanced)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.xebia.com/2015/06/30/how-to-create-the-smallest-possible-docker-container-of-any-image/&#34;&gt;How to create the smallest possible docker image&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;If you have a service in Go:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.atlassian.com/blog/2015/07/osx-static-golang-binaries-with-docker/&#34;&gt;Static Go binaries with Docker on OSX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/aerofs/gockerize&#34;&gt;Automatically build static Go binaries and put them into containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://joeshaw.org/smaller-docker-containers-for-go-apps/&#34;&gt;Smaller Docker containers for Go apps&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Use the comments below to share your experiences. Also, join the discussions in the &lt;a href=&#34;https://gitter.im/hypriot/talk&#34;&gt;community channel&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We wish &lt;strong&gt;happy porting parties&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;Mathias &amp;amp; Andreas&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
