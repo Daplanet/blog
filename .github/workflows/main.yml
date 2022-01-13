@@ -19,7 +19,7 @@ jobs:
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2.4.13
         with:
-          hugo-version: '0.18'
+          hugo-version: 'v0.18.1'
           
       - uses: actions/cache@v2
         with:
