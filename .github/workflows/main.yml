@@ -7,26 +7,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+        fetch-depth: 0
 
-      - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2.4.13
-        with:
-          hugo-version: '0.18.1'
+    - name: Hugo setup
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: '0.119.0'
 
-      - name: Build
-        run: hugo --minify
+    - name: Build
+      run: hugo --minify
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/main' }}
+      with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
